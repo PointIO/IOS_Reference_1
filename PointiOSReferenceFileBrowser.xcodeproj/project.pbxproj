@@ -88,6 +88,7 @@
 		8AA513F1176A04C600665111 /* sharingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513E1176A04C600665111 /* sharingViewController.m */; };
 		8AA513F2176A04C600665111 /* signupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513E3176A04C600665111 /* signupViewController.m */; };
 		8AA513F3176A04C600665111 /* storageSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513E5176A04C600665111 /* storageSignupViewController.m */; };
+		8AA513F6176A062D00665111 /* connectionsManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513F5176A062C00665111 /* connectionsManagerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -203,6 +204,8 @@
 		8AA513E5176A04C600665111 /* storageSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = storageSignupViewController.m; sourceTree = "<group>"; };
 		8AA513E6176A04C600665111 /* storageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = storageViewController.h; sourceTree = "<group>"; };
 		8AA513E7176A04C600665111 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		8AA513F4176A062C00665111 /* connectionsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectionsManagerViewController.h; sourceTree = "<group>"; };
+		8AA513F5176A062C00665111 /* connectionsManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectionsManagerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -503,6 +506,8 @@
 		7550E1471768081700E8F547 /* Generic */ = {
 			isa = PBXGroup;
 			children = (
+				8AA513F4176A062C00665111 /* connectionsManagerViewController.h */,
+				8AA513F5176A062C00665111 /* connectionsManagerViewController.m */,
 				8AA513D8176A04C600665111 /* connectionsTableViewController.h */,
 				8AA513D3176A04C600665111 /* connectionsTableViewController.m */,
 				8AA513D9176A04C600665111 /* datePickerViewController.h */,
@@ -677,6 +682,7 @@
 				8AA513F1176A04C600665111 /* sharingViewController.m in Sources */,
 				8AA513F2176A04C600665111 /* signupViewController.m in Sources */,
 				8AA513F3176A04C600665111 /* storageSignupViewController.m in Sources */,
+				8AA513F6176A062D00665111 /* connectionsManagerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
