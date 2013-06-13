@@ -89,6 +89,8 @@
 		8AA513F2176A04C600665111 /* signupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513E3176A04C600665111 /* signupViewController.m */; };
 		8AA513F3176A04C600665111 /* storageSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513E5176A04C600665111 /* storageSignupViewController.m */; };
 		8AA513F6176A062D00665111 /* connectionsManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513F5176A062C00665111 /* connectionsManagerViewController.m */; };
+		8AA513F9176A0BC300665111 /* BackupMainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */; };
+		8AA513FA176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -206,6 +208,8 @@
 		8AA513E7176A04C600665111 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8AA513F4176A062C00665111 /* connectionsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectionsManagerViewController.h; sourceTree = "<group>"; };
 		8AA513F5176A062C00665111 /* connectionsManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectionsManagerViewController.m; sourceTree = "<group>"; };
+		8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BackupMainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BackupMainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -368,6 +372,8 @@
 		7550E01B1767FFB500E8F547 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */,
+				8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */,
 				7550E01C1767FFB500E8F547 /* MainStoryboard_iPad.storyboard */,
 				7550E01D1767FFB500E8F547 /* MainStoryboard_iPhone.storyboard */,
 			);
@@ -643,6 +649,8 @@
 				7550E0A21768011700E8F547 /* usernamePasswordError.png in Resources */,
 				7550E0D21768031300E8F547 /* README.md in Resources */,
 				7550E0D31768031300E8F547 /* release_notes.md in Resources */,
+				8AA513F9176A0BC300665111 /* BackupMainStoryboard_iPad.storyboard in Resources */,
+				8AA513FA176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

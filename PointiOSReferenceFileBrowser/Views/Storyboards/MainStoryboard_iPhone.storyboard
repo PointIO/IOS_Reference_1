@@ -122,7 +122,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="188" y="-309"/>
+            <point key="canvasLocation" x="20" y="-325"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="tsT-fG-CWf">
@@ -227,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Md-hV-UqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="188" y="475"/>
+            <point key="canvasLocation" x="20" y="-325"/>
         </scene>
         <!--Connections Table View Controller - Storage connections-->
         <scene sceneID="P8z-Pz-dkf">
@@ -279,7 +279,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pf-ri-awS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="785" y="-285"/>
+            <point key="canvasLocation" x="469" y="-325"/>
         </scene>
         <!--Shared Folders View Controller-->
         <scene sceneID="Hv4-9i-uku">
@@ -312,7 +312,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qba-FW-fDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1237" y="-309"/>
+            <point key="canvasLocation" x="1117" y="-1117"/>
         </scene>
         <!--Workspace View Controller-->
         <scene sceneID="2NF-D8-WeM">
@@ -348,7 +348,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3D-Q9-6Pv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1659" y="-309"/>
+            <point key="canvasLocation" x="1595" y="-1125"/>
         </scene>
         <!--Connections Manager View Controller - Storage connections-->
         <scene sceneID="Ddq-0r-5ca">
@@ -385,7 +385,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgJ-nI-WX0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="793" y="475"/>
+            <point key="canvasLocation" x="1117" y="-325"/>
         </scene>
         <!--Storage View Controller - Login-->
         <scene sceneID="ngi-ZK-2I9">
@@ -482,7 +482,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qbn-mt-Sgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1320" y="475"/>
+            <point key="canvasLocation" x="1595" y="-325"/>
         </scene>
         <!--New Connection View Controller - New connection-->
         <scene sceneID="npW-B1-TN1">
@@ -493,7 +493,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" id="eIU-nj-DZy">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="1051"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1050"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nMc-c9-3bL">
@@ -614,7 +614,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MA9-ry-wGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="793" y="1210"/>
+            <point key="canvasLocation" x="1117" y="474"/>
         </scene>
         <!--Storage Signup View Controller - Sign up-->
         <scene sceneID="9yn-Yi-GRz">
@@ -629,7 +629,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NFf-a2-e9T" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1320" y="1210"/>
+            <point key="canvasLocation" x="2076" y="-325"/>
         </scene>
         <!--Doc Viewer View Controller-->
         <scene sceneID="PbD-pS-EoJ">
@@ -673,7 +673,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqg-FX-fT6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2077" y="-309"/>
+            <point key="canvasLocation" x="2069" y="-1125"/>
         </scene>
         <!--Sharing View Controller -  Share securely-->
         <scene sceneID="ebp-TK-CIg">
@@ -687,32 +687,32 @@
                                 <rect key="frame" x="204" y="22" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Print" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f45-fy-stN">
-                                <rect key="frame" x="39" y="25" width="157" height="21"/>
+                                <rect key="frame" x="39" y="24" width="157" height="21"/>
                                 <color key="backgroundColor" red="0.0" green="0.074536898000607366" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Download" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ia9-3N-9fi">
-                                <rect key="frame" x="39" y="60" width="157" height="28"/>
+                                <rect key="frame" x="39" y="59" width="157" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="3b0-pg-YPS">
-                                <rect key="frame" x="204" y="60" width="79" height="27"/>
+                                <rect key="frame" x="204" y="59" width="79" height="27"/>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="a6h-zm-Hrs">
-                                <rect key="frame" x="204" y="99" width="79" height="27"/>
+                                <rect key="frame" x="204" y="98" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Expire" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lEf-J3-zaM">
-                                <rect key="frame" x="39" y="99" width="157" height="28"/>
+                                <rect key="frame" x="39" y="98" width="157" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Forwarding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0AQ-oS-xUi">
-                                <rect key="frame" x="39" y="138" width="156" height="28"/>
+                                <rect key="frame" x="39" y="137" width="156" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -721,22 +721,22 @@
                                 <rect key="frame" x="204" y="140" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Screen capture" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MPG-Yf-uRM">
-                                <rect key="frame" x="39" y="178" width="261" height="28"/>
+                                <rect key="frame" x="39" y="177" width="261" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="rRM-bi-Z0w">
-                                <rect key="frame" x="204" y="179" width="79" height="27"/>
+                                <rect key="frame" x="204" y="178" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pm1-yK-Txl">
-                                <rect key="frame" x="39" y="218" width="157" height="28"/>
+                                <rect key="frame" x="39" y="217" width="157" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="hkL-Ld-exy">
-                                <rect key="frame" x="204" y="219" width="79" height="27"/>
+                                <rect key="frame" x="204" y="218" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The passwords don't match" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="avr-zP-Pq0">
                                 <rect key="frame" x="28" y="203" width="264" height="21"/>
@@ -770,7 +770,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOA-PR-5EG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2565" y="-309"/>
+            <point key="canvasLocation" x="2557" y="-1125"/>
         </scene>
         <!--Date Picker View Controller-->
         <scene sceneID="94u-7X-FgV">
@@ -817,7 +817,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3A-eE-3Sr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3015" y="-309"/>
+            <point key="canvasLocation" x="3031" y="-1125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3D8-2S-8kL">
@@ -836,7 +836,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VPk-d9-0zH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-414" y="-309"/>
+            <point key="canvasLocation" x="-494" y="-325"/>
         </scene>
     </scenes>
     <resources>
@@ -849,6 +849,126 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="signUpButton.png" width="165" height="87"/>
         <image name="submitButton.png" width="165" height="87"/>
     </resources>
+    <classes>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goBackPressed"/>
+                <relationship kind="action" name="screenPressed"/>
+                <relationship kind="action" name="signInPressed"/>
+                <relationship kind="action" name="signOutPressed"/>
+                <relationship kind="action" name="signUpPressed"/>
+                <relationship kind="outlet" name="goBackButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="signInButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="signOutButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="connectionsManagerViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionsManagerViewController.h"/>
+        </class>
+        <class className="connectionsTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionsTableViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addNewConnectionPressed:"/>
+                <relationship kind="action" name="manageStoredConnectionsPressed:"/>
+                <relationship kind="outlet" name="manageStoredConnectionsButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="datePickerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/datePickerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
+            </relationships>
+        </class>
+        <class className="docViewerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/docViewerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="shareFilePressed:"/>
+                <relationship kind="outlet" name="docWebView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="errorOccuredLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="shareFileButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
+            </relationships>
+        </class>
+        <class className="newConnectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/newConnectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createPressed"/>
+                <relationship kind="action" name="revisionControlEnabledValueChanged"/>
+                <relationship kind="action" name="screenPressed"/>
+                <relationship kind="outlet" name="checkinCheckout" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="checkinCheckoutLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="createButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="enabledLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="enabledSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="loggingEnabled" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="loggingLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="maxRevisions" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="maxRevisionsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="revisionControl" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="revisionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="sharedFoldersViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/sharedFoldersViewController.h"/>
+        </class>
+        <class className="sharingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/sharingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="shareSecurelyPressed:"/>
+                <relationship kind="outlet" name="downloadSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="expireSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="forwardingSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="passwordSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="printSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="screenCaptureSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="shareSecurelyButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="signupViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/signupViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="screenPressed"/>
+                <relationship kind="action" name="signUpPressed"/>
+                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="reEnterPasswordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
+                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="storageSignupViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/storageSignupViewController.h"/>
+        </class>
+        <class className="storageViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/storageViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="screenPressed"/>
+                <relationship kind="action" name="signInPressed"/>
+                <relationship kind="action" name="signUp"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="signInButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="signingActivityIndicator" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="signingInLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="workspaceViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/workspaceViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
