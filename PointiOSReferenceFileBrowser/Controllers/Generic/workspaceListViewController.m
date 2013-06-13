@@ -46,16 +46,23 @@ UILabel* sharedFolderLabel;
         [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/accessrules/list"]];
         [request setHTTPMethod:@"GET"];
         [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
+        
         NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
         if(!response){
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"Request response is nil"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles: nil];
             [alert show];
-        } else {
+        }
+        else {
             _JSONSharedFoldersArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
             NSLog(@"JSONSHAREDFOLDERSARRAY - %@",_JSONSharedFoldersArray);
             NSDictionary* result = [_JSONSharedFoldersArray valueForKey:@"RESULT"];
             NSArray* columns = [result valueForKey:@"COLUMNS"];
             NSArray* datax = [result valueForKey:@"DATA"];
+            
             _folderNames = [NSMutableArray array];
             _folderShareIDs = [NSMutableArray array];
             for(int i=0; i<[datax count];i++){
@@ -64,6 +71,7 @@ UILabel* sharedFolderLabel;
                 [_folderNames addObject:[temp valueForKey:@"NAME"]];
                 [_folderShareIDs addObject:[temp valueForKey:@"SHAREID"]];
             }
+            
             NSLog(@"CONNECTION SHARED FOLDERS - %@",_connectionSharedFolders);
             for (NSDictionary* tempDict in _connectionSharedFolders) {
                 if([[tempDict valueForKey:_storageName] length] > 0){
@@ -107,6 +115,7 @@ UILabel* sharedFolderLabel;
         [self.navigationController.view addSubview:imgView2];
         [self.navigationController.view addSubview:sharedFolderLabel];
     }
+    
     imgView.alpha = 0;
     imgView2.alpha = 0;
     sharedFolderLabel.alpha = 0;

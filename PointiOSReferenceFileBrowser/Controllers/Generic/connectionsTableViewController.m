@@ -167,75 +167,102 @@ UIImageView* imgView4;
 
 - (void) getConnections{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^
+    {
         NSURLResponse* urlResponseList;
         NSError* requestErrorList;
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
+        
+        // JB 6/14 - CHANGE DATA SOURCE TO ACCESS RULES
+        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/accessrules/list.json"]];
+        // [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
+        
         [request setHTTPMethod:@"GET"];
         [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
         NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
-        if(!response){
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        
+        if(!response) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"Request response is nil"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles: nil];
             [alert show];
-        } else {
-        _JSONArrayList = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"JSON ARRAY LIST = %@",_JSONArrayList);
-        _connectionSharedFolders = nil;
-        _list = nil;
-        _displayList = nil;
-        _list = [NSMutableArray array];
-        _allPossibleConnections = [NSMutableArray array];
-        _storageIDs = [NSMutableArray array];
-        _displayList  = [NSMutableArray array];
-        _connectionSharedFolders = [NSMutableArray array];
-        self.navigationItem.backBarButtonItem.title = @"Back";
-        NSDictionary* result = [_JSONArrayList valueForKey:@"RESULT"];
-        NSArray* columns = [result valueForKey:@"COLUMNS"];
-        NSArray* data = [result valueForKey:@"DATA"];
-        NSDictionary* tempDict;
-        for(int i=0; i<[data count];i++){
-            NSArray* data2 = [data objectAtIndex:i];
-            NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
-            NSLog(@"NEW TEMP = %@",temp);
-            [_list addObject:[temp valueForKey:@"SITETYPENAME"]];
-            tempDict = [NSDictionary dictionaryWithObject:[temp valueForKey:@"NAME"] forKey:[temp valueForKey:@"SITETYPENAME"]];
-            [_connectionSharedFolders addObject:tempDict];
         }
-        [self getAllPossibleConnections];
-        NSArray* tempCpy = [NSArray arrayWithArray:_list];
-        [_list setArray:[[NSSet setWithArray:_list] allObjects]];
-        if([tempCpy count] - [_list count] == 1){
-            if([_appDel.enabledConnections count] - [_list count] == 1){
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"removeOneIndex" object:nil];
+        else {
+            
+            _JSONArrayList = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+            NSLog(@"JSON ARRAY LIST = %@",_JSONArrayList);
+            _connectionSharedFolders = nil;
+            _list = nil;
+            _displayList = nil;
+            _list = [NSMutableArray array];
+            _allPossibleConnections = [NSMutableArray array];
+            _storageIDs = [NSMutableArray array];
+            _displayList  = [NSMutableArray array];
+            _connectionSharedFolders = [NSMutableArray array];
+            
+            self.navigationItem.backBarButtonItem.title = @"Back";
+            
+            NSDictionary* result = [_JSONArrayList valueForKey:@"RESULT"];
+            NSArray* columns = [result valueForKey:@"COLUMNS"];
+            NSArray* data = [result valueForKey:@"DATA"];
+            NSDictionary* tempDict;
+            
+            for(int i=0; i<[data count];i++){
+                NSArray* data2 = [data objectAtIndex:i];
+                NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
+                NSLog(@"NEW TEMP = %@",temp);
+                // JB 6/14/13 Change field to display to accessRule Share Name
+                // [_list addObject:[temp valueForKey:@"SITETYPENAME"]];
+                // tempDict = [NSDictionary dictionaryWithObject:[temp valueForKey:@"NAME"] forKey:[temp valueForKey:@"SITETYPENAME"]];
+                [_list addObject:[temp valueForKey:@"SHARENAME"]];
+                tempDict = [NSDictionary dictionaryWithObject:[temp valueForKey:@"NAME"] forKey:[temp valueForKey:@"SHARENAME"]];
+                
+                [_connectionSharedFolders addObject:tempDict];
             }
-        }
+            
+            [self getAllPossibleConnections];
+            
+            NSArray* tempCpy = [NSArray arrayWithArray:_list];
+            
+            [_list setArray:[[NSSet setWithArray:_list] allObjects]];
+            
+            if([tempCpy count] - [_list count] == 1){
+                if([_appDel.enabledConnections count] - [_list count] == 1){
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"removeOneIndex" object:nil];
+                }
+            }
+            
             if([_appDel.enabledConnections count] == 0 || ([_appDel.enabledConnections count] != [_list count])){
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"getEnabledStates" object:nil];
             }
+            
             if([_appDel.enabledConnections count] != [_list count]){
                 _appDel.enabledConnections = nil;
                 _appDel.enabledConnections = [NSMutableArray array];
+                
                 for(int i = 0; i< [_list count];i++){
                     [_appDel.enabledConnections addObject:@"1"];
                 }
             }
+            
             _displayList = [NSMutableArray array];
             for (int i = 0; i < [_list count];i++){
                 if([[_appDel.enabledConnections objectAtIndex:i] integerValue] == 1){
                     [_displayList addObject:[_list objectAtIndex:i]];
+                    NSLog(@"from getConnections, displayList array contents are: %@", _displayList);
                 }
             }
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"enableBackButton" object:nil];
-            [self.tableView reloadData];
-        });
+            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"enableBackButton" object:nil];
+                [self.tableView reloadData];
+            });
         }
     });
-
-    
 }
 
 

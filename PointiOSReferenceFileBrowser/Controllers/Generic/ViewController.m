@@ -335,8 +335,8 @@ UIImageView* imgView;
         if ([(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
             [self performSegueWithIdentifier:@"goToDocView" sender:self];
         } else {
-            // [self performSegueWithIdentifier:@"goToConnections" sender:self];
-            [self performSegueWithIdentifier:@"goToWorkspaces" sender:self];
+            [self performSegueWithIdentifier:@"goToConnections" sender:self];
+            // [self performSegueWithIdentifier:@"goToWorkspaces" sender:self];
         }
     } else {
         _successfulLogin = NO;

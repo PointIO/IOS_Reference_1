@@ -36,9 +36,6 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
-                                <connections>
-                                    <segue destination="npl-Xe-HbK" kind="push" identifier="goToWorkspaces" id="3ZO-SM-DTb"/>
-                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" id="fpw-Jb-4Fx">
                                 <rect key="frame" x="25" y="143" width="270" height="44"/>
@@ -283,36 +280,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pf-ri-awS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="513" y="-401"/>
-        </scene>
-        <!--Workspace List View Controller-->
-        <scene sceneID="mek-0s-Ka7">
-            <objects>
-                <tableViewController id="npl-Xe-HbK" customClass="workspaceListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="epN-gV-QCl">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="qPO-PI-shX">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="npl-Xe-HbK" id="RBT-Ea-wbc"/>
-                            <outlet property="delegate" destination="npl-Xe-HbK" id="Zwp-x8-yaR"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="gKV-05-0uy"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="N7c-e3-ntm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="493" y="-1791"/>
         </scene>
         <!--Shared Folders View Controller-->
         <scene sceneID="Hv4-9i-uku">
