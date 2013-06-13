@@ -8,6 +8,8 @@
 #import "SystemConfiguration/SystemConfiguration.h"
 #import <QuartzCore/QuartzCore.h>
 #import "docViewerViewControlleriPad.h"
+#import "workspaceListViewController.h"
+
 
 @interface ViewController : UIViewController <UITextFieldDelegate>
 

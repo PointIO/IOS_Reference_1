@@ -335,7 +335,8 @@ UIImageView* imgView;
         if ([(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
             [self performSegueWithIdentifier:@"goToDocView" sender:self];
         } else {
-            [self performSegueWithIdentifier:@"goToConnections" sender:self];
+            // [self performSegueWithIdentifier:@"goToConnections" sender:self];
+            [self performSegueWithIdentifier:@"goToWorkspaces" sender:self];
         }
     } else {
         _successfulLogin = NO;
@@ -360,6 +361,11 @@ UIImageView* imgView;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier] isEqualToString:@"goToWorkspaces"]){
+        workspaceListViewController * ctvc = [segue destinationViewController];
+        [ctvc setJSONArrayList:_JSONArrayList];
+        [ctvc setSessionKey:_sessionKey];
+    }
     if([[segue identifier] isEqualToString:@"goToConnections"]){
         connectionsTableViewController* ctvc = [segue destinationViewController];
         [ctvc setJSONArrayList:_JSONArrayList];

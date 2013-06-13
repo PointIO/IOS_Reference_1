@@ -73,6 +73,7 @@
 		7550E0D91768042500E8F547 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550E0D81768042500E8F547 /* SystemConfiguration.framework */; };
 		7550E0DB1768042C00E8F547 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550E0DA1768042C00E8F547 /* MessageUI.framework */; };
 		7550E0DD1768045700E8F547 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550E0DC1768045700E8F547 /* libz.dylib */; };
+		8A256BC0176A2202001E5823 /* workspaceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A256BBF176A2202001E5823 /* workspaceListViewController.m */; };
 		8AA513CD176A04B800665111 /* docViewerViewControlleriPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513C8176A04B800665111 /* docViewerViewControlleriPad.m */; };
 		8AA513CE176A04B800665111 /* FileViewerControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513CA176A04B800665111 /* FileViewerControllerIpad.m */; };
 		8AA513CF176A04B800665111 /* newConnectionViewControlleriPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513CC176A04B800665111 /* newConnectionViewControlleriPad.m */; };
@@ -176,6 +177,8 @@
 		7550E0D81768042500E8F547 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7550E0DA1768042C00E8F547 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7550E0DC1768045700E8F547 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		8A256BBE176A2202001E5823 /* workspaceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workspaceListViewController.h; sourceTree = "<group>"; };
+		8A256BBF176A2202001E5823 /* workspaceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = workspaceListViewController.m; sourceTree = "<group>"; };
 		8AA513C7176A04B800665111 /* docViewerViewControlleriPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = docViewerViewControlleriPad.h; sourceTree = "<group>"; };
 		8AA513C8176A04B800665111 /* docViewerViewControlleriPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = docViewerViewControlleriPad.m; sourceTree = "<group>"; };
 		8AA513C9176A04B800665111 /* FileViewerControllerIpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewerControllerIpad.h; sourceTree = "<group>"; };
@@ -538,6 +541,8 @@
 				8AA513D7176A04C600665111 /* ViewController.m */,
 				8AA513D0176A04C600665111 /* workspaceViewController.h */,
 				8AA513D1176A04C600665111 /* workspaceViewController.m */,
+				8A256BBE176A2202001E5823 /* workspaceListViewController.h */,
+				8A256BBF176A2202001E5823 /* workspaceListViewController.m */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -691,6 +696,7 @@
 				8AA513F2176A04C600665111 /* signupViewController.m in Sources */,
 				8AA513F3176A04C600665111 /* storageSignupViewController.m in Sources */,
 				8AA513F6176A062D00665111 /* connectionsManagerViewController.m in Sources */,
+				8A256BC0176A2202001E5823 /* workspaceListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

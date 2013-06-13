@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="DbR-zW-sfd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="DbR-zW-sfd">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -9,7 +9,7 @@
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="background.png" id="Ay7-bO-NIz">
@@ -36,6 +36,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <segue destination="npl-Xe-HbK" kind="push" identifier="goToWorkspaces" id="3ZO-SM-DTb"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" id="fpw-Jb-4Fx">
                                 <rect key="frame" x="25" y="143" width="270" height="44"/>
@@ -122,14 +125,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20" y="-325"/>
+            <point key="canvasLocation" x="12" y="-985"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="tsT-fG-CWf">
             <objects>
                 <viewController id="FEl-sE-YK2" customClass="signupViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Zx-ba-jjH">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="background.png" id="t9Z-i2-9lR">
@@ -227,14 +230,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Md-hV-UqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="20" y="-325"/>
+            <point key="canvasLocation" x="40" y="371"/>
         </scene>
         <!--Connections Table View Controller - Storage connections-->
         <scene sceneID="P8z-Pz-dkf">
             <objects>
                 <tableViewController id="bIl-zv-LeE" customClass="connectionsTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="RNK-UK-kPi">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -279,14 +282,44 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pf-ri-awS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="469" y="-325"/>
+            <point key="canvasLocation" x="513" y="-401"/>
+        </scene>
+        <!--Workspace List View Controller-->
+        <scene sceneID="mek-0s-Ka7">
+            <objects>
+                <tableViewController id="npl-Xe-HbK" customClass="workspaceListViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="epN-gV-QCl">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="qPO-PI-shX">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="npl-Xe-HbK" id="RBT-Ea-wbc"/>
+                            <outlet property="delegate" destination="npl-Xe-HbK" id="Zwp-x8-yaR"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="gKV-05-0uy"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N7c-e3-ntm" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="493" y="-1791"/>
         </scene>
         <!--Shared Folders View Controller-->
         <scene sceneID="Hv4-9i-uku">
             <objects>
                 <tableViewController id="IBL-Ev-gAO" customClass="sharedFoldersViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="j8f-mS-d6s">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -319,7 +352,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="workspaceViewController" id="fKg-FK-xKZ" customClass="workspaceViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="B6X-q7-Jri">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -489,11 +522,11 @@
             <objects>
                 <viewController id="6Ps-kN-Pm1" customClass="newConnectionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M2a-re-Hsj">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" id="eIU-nj-DZy">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="958"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1049"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nMc-c9-3bL">
@@ -616,20 +649,6 @@
             </objects>
             <point key="canvasLocation" x="1117" y="474"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="spG-nV-PEq">
-            <objects>
-                <viewController id="bDx-o2-jxZ" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="m2Z-U9-wrc">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="lix-yS-3zi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1113" y="1198"/>
-        </scene>
         <!--Storage Signup View Controller - Sign up-->
         <scene sceneID="9yn-Yi-GRz">
             <objects>
@@ -650,11 +669,11 @@
             <objects>
                 <viewController id="DXI-Pc-COU" customClass="docViewerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kTp-D3-hv8">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="1Au-1g-eN6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
@@ -694,63 +713,63 @@
             <objects>
                 <viewController title=" Share securely" id="dCL-IY-Drm" customClass="sharingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gkW-H2-fRM">
-                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="cA7-CU-CWm">
-                                <rect key="frame" x="204" y="20" width="79" height="27"/>
+                                <rect key="frame" x="204" y="22" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Print" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f45-fy-stN">
-                                <rect key="frame" x="39" y="21" width="157" height="21"/>
+                                <rect key="frame" x="39" y="23" width="157" height="21"/>
                                 <color key="backgroundColor" red="0.0" green="0.074536898000607366" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Download" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ia9-3N-9fi">
-                                <rect key="frame" x="39" y="53" width="157" height="28"/>
+                                <rect key="frame" x="39" y="58" width="157" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="3b0-pg-YPS">
-                                <rect key="frame" x="204" y="53" width="79" height="27"/>
+                                <rect key="frame" x="204" y="58" width="79" height="27"/>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="a6h-zm-Hrs">
-                                <rect key="frame" x="204" y="89" width="79" height="27"/>
+                                <rect key="frame" x="204" y="98" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Expire" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lEf-J3-zaM">
-                                <rect key="frame" x="39" y="89" width="157" height="28"/>
+                                <rect key="frame" x="39" y="98" width="157" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Forwarding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0AQ-oS-xUi">
-                                <rect key="frame" x="39" y="124" width="156" height="28"/>
+                                <rect key="frame" x="39" y="136" width="156" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="9bm-9y-3nK">
-                                <rect key="frame" x="204" y="127" width="79" height="27"/>
+                                <rect key="frame" x="204" y="140" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Screen capture" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MPG-Yf-uRM">
-                                <rect key="frame" x="39" y="160" width="261" height="28"/>
+                                <rect key="frame" x="39" y="176" width="261" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="rRM-bi-Z0w">
-                                <rect key="frame" x="204" y="161" width="79" height="27"/>
+                                <rect key="frame" x="204" y="177" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pm1-yK-Txl">
-                                <rect key="frame" x="39" y="197" width="157" height="28"/>
+                                <rect key="frame" x="39" y="217" width="157" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="hkL-Ld-exy">
-                                <rect key="frame" x="204" y="198" width="79" height="27"/>
+                                <rect key="frame" x="204" y="218" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The passwords don't match" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="avr-zP-Pq0">
                                 <rect key="frame" x="28" y="203" width="264" height="21"/>
@@ -863,132 +882,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="signUpButton.png" width="165" height="87"/>
         <image name="submitButton.png" width="165" height="87"/>
     </resources>
-    <classes>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goBackPressed"/>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signInPressed"/>
-                <relationship kind="action" name="signOutPressed"/>
-                <relationship kind="action" name="signUpPressed"/>
-                <relationship kind="outlet" name="goBackButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="signInButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signOutButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="connectionsManagerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionsManagerViewController.h"/>
-        </class>
-        <class className="connectionsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionsTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewConnectionPressed:"/>
-                <relationship kind="action" name="manageStoredConnectionsPressed:"/>
-                <relationship kind="outlet" name="manageStoredConnectionsButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="datePickerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/datePickerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
-            </relationships>
-        </class>
-        <class className="docViewerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/docViewerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="shareFilePressed:"/>
-                <relationship kind="outlet" name="docWebView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="errorOccuredLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="shareFileButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
-            </relationships>
-        </class>
-        <class className="newConnectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/newConnectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createPressed"/>
-                <relationship kind="action" name="revisionControlEnabledValueChanged"/>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="outlet" name="checkinCheckout" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="checkinCheckoutLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="createButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="enabledLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="enabledSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="loggingEnabled" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="loggingLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="maxRevisions" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="maxRevisionsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="revisionControl" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="revisionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="sharedFoldersViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/sharedFoldersViewController.h"/>
-        </class>
-        <class className="sharingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/sharingViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="shareSecurelyPressed:"/>
-                <relationship kind="outlet" name="downloadSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="expireSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="forwardingSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="passwordSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="printSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="screenCaptureSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="shareSecurelyButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="signupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/signupViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signUpPressed"/>
-                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="reEnterPasswordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
-                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="storageSignupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/storageSignupViewController.h"/>
-        </class>
-        <class className="storageViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/storageViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signInPressed"/>
-                <relationship kind="action" name="signUp"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="signInButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signingActivityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="signingInLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="workspaceViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/workspaceViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="2r6-5M-I7t"/>
+        <segue reference="KfT-pi-SBR"/>
     </inferredMetricsTieBreakers>
 </document>
