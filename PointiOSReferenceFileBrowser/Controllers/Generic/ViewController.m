@@ -29,7 +29,7 @@ UIImageView* imgView;
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
     if ( [(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
-//        return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+        //        return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
         return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
     } else {
         if(toInterfaceOrientation == UIInterfaceOrientationPortrait){
@@ -96,7 +96,7 @@ UIImageView* imgView;
 }
 
 - (BOOL) textFieldShouldReturn:(UITextField *)textField{
-    if(textField == _usernameTextField){
+     if(textField == _usernameTextField){
         [_usernameTextField resignFirstResponder];
         [_passwordTextField becomeFirstResponder];
     }
@@ -148,7 +148,11 @@ UIImageView* imgView;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         if(![self isConnectedToInternet]){
-            UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                          message:@"Looks like there is no internet connection, please check the settings"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"Dismiss"
+                                                otherButtonTitles:nil];
             UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
             temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
             [err addSubview:temp];
@@ -163,7 +167,8 @@ UIImageView* imgView;
             if ( [(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
                  [self performSegueWithIdentifier:@"goToDocView" sender:self];
             } else {
-            [self performSegueWithIdentifier:@"goToConnections" sender:self];
+                // [self performSegueWithIdentifier:@"goToConnections" sender:self];
+                [self performSegueWithIdentifier:@"goToWorkspaces" sender:self];
             }
         });
     });
@@ -171,7 +176,11 @@ UIImageView* imgView;
 
 - (IBAction)signUpPressed {
     if(![self isConnectedToInternet]){
-        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:@"Looks like there is no internet connection, please check the settings"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Dismiss"
+                                            otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection"];
         [err addSubview:temp];
@@ -213,7 +222,7 @@ UIImageView* imgView;
         NSLog(@"IN MAIN VIEW, EMAIL = %@, PASSWORD = %@",_username,_password);
         _postString = [_postString stringByAppendingFormat:@"&email=%@&password=%@",_username,_password];
         [self performSelectorOnMainThread:@selector(performAuthCall) withObject:nil waitUntilDone:YES];
-        }
+    }
 }
 
 - (void) signOut{
@@ -244,16 +253,17 @@ UIImageView* imgView;
     [defaults setObject:nil forKey:@"USERNAME"];
     [defaults setObject:nil forKey:@"PASSWORD"];
     [defaults synchronize];
+
 }
 
 
 
 - (void) performAuthCall{
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/auth.json"]];
-        [request setHTTPMethod:@"POST"];
-        [request setHTTPBody:[_postString dataUsingEncoding:NSUTF8StringEncoding]];
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/auth.json"]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[_postString dataUsingEncoding:NSUTF8StringEncoding]];
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -335,14 +345,15 @@ UIImageView* imgView;
         if ([(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
             [self performSegueWithIdentifier:@"goToDocView" sender:self];
         } else {
-            [self performSegueWithIdentifier:@"goToConnections" sender:self];
-            // [self performSegueWithIdentifier:@"goToWorkspaces" sender:self];
+            // [self performSegueWithIdentifier:@"goToConnections" sender:self];
+            [self performSegueWithIdentifier:@"goToWorkspaces" sender:self];
         }
     } else {
         _successfulLogin = NO;
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
+
 
 - (void) performListCall{
     NSURLResponse* urlResponseList;
@@ -392,8 +403,8 @@ UIImageView* imgView;
         self.splitViewController.delegate = nil;
         self.splitViewController.delegate = self;
     }
-    [self.navigationController setToolbarHidden:YES animated:YES];
-    [self.navigationItem setHidesBackButton:YES];
+    // [self.navigationController setToolbarHidden:NO animated:YES];
+    // [self.navigationItem setHidesBackButton:YES];
     [self screenPressed];
     if(_shouldSignIn){
         [_usernameTextField setText:_username];
@@ -407,17 +418,18 @@ UIImageView* imgView;
 - (void) viewWillAppear:(BOOL)animated{
     if(_successfulLogin){
         [_signOutButton setHidden:NO];
-        [_goBackButton setHidden:NO];
+        // [_goBackButton setHidden:NO];
         [_signInButton setHidden:YES];
         [_signUpButton setHidden:YES];
         [_usernameTextField setHidden:YES];
         [_passwordTextField setHidden:YES];
     }
     if(!imgView){
-    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    imgView.image = [UIImage imageNamed:@"barImageWithLogo.png"];
-    [self.navigationController.navigationBar addSubview:imgView];
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        imgView.image = [UIImage imageNamed:@"barImageWithLogo.png"];
+        [self.navigationController.navigationBar addSubview:imgView];
     }
+    
     imgView.alpha = 0;
     [UIView animateWithDuration:0.25 animations:^(void) {
         imgView.alpha = 1;

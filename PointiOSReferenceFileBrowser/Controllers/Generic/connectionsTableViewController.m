@@ -68,16 +68,21 @@ UIImageView* imgView4;
         
     _appDel = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     if(![self isConnectedToInternet]){
-        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:@"Looks like there is no internet connection, please check the settings"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Dismiss"
+                                            otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
         [err addSubview:temp];
         [err setBackgroundColor:[UIColor clearColor]];
         [err show];
     } else {
-    [self performSelectorOnMainThread:@selector(getConnections) withObject:nil waitUntilDone:YES];
-    [self getAllPossibleConnections];
+        [self performSelectorOnMainThread:@selector(getConnections) withObject:nil waitUntilDone:YES];
+        [self getAllPossibleConnections];
     }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadLists:) name:@"reloadLists" object:nil];
     [_appDel setSessionKey:_sessionKey];
     _EmailFields = [NSMutableArray array];
@@ -146,7 +151,11 @@ UIImageView* imgView4;
 
 - (void) viewDidAppear:(BOOL)animated{
     if(![self isConnectedToInternet]){
-        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:@"Looks like there is no internet connection, please check the settings"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Dismiss"
+                                            otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
         [err addSubview:temp];
@@ -173,9 +182,7 @@ UIImageView* imgView4;
         NSError* requestErrorList;
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         
-        // JB 6/14 - CHANGE DATA SOURCE TO ACCESS RULES
-        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/accessrules/list.json"]];
-        // [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
+        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
         
         [request setHTTPMethod:@"GET"];
         [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
@@ -213,11 +220,8 @@ UIImageView* imgView4;
                 NSArray* data2 = [data objectAtIndex:i];
                 NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
                 NSLog(@"NEW TEMP = %@",temp);
-                // JB 6/14/13 Change field to display to accessRule Share Name
-                // [_list addObject:[temp valueForKey:@"SITETYPENAME"]];
-                // tempDict = [NSDictionary dictionaryWithObject:[temp valueForKey:@"NAME"] forKey:[temp valueForKey:@"SITETYPENAME"]];
-                [_list addObject:[temp valueForKey:@"SHARENAME"]];
-                tempDict = [NSDictionary dictionaryWithObject:[temp valueForKey:@"NAME"] forKey:[temp valueForKey:@"SHARENAME"]];
+                [_list addObject:[temp valueForKey:@"SITETYPENAME"]];
+                tempDict = [NSDictionary dictionaryWithObject:[temp valueForKey:@"NAME"] forKey:[temp valueForKey:@"SITETYPENAME"]];
                 
                 [_connectionSharedFolders addObject:tempDict];
             }
@@ -251,7 +255,7 @@ UIImageView* imgView4;
             for (int i = 0; i < [_list count];i++){
                 if([[_appDel.enabledConnections objectAtIndex:i] integerValue] == 1){
                     [_displayList addObject:[_list objectAtIndex:i]];
-                    NSLog(@"from getConnections, displayList array contents are: %@", _displayList);
+                    // NSLog(@"from getConnections, displayList array contents are: %@", _displayList);
                 }
             }
             
@@ -291,7 +295,7 @@ UIImageView* imgView4;
     static NSString *CellIdentifier = @"ConnectionCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if([_displayList count] != 0){
-    cell.textLabel.text = [_displayList objectAtIndex:indexPath.row];
+        cell.textLabel.text = [_displayList objectAtIndex:indexPath.row];
     }
     return cell;
 }
@@ -366,22 +370,22 @@ UIImageView* imgView4;
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
         [alert show];
     } else {
-    NSArray* availableConnectionsArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    if([[availableConnectionsArray valueForKey:@"ERROR"] integerValue] == 0){
-        NSArray* result = [availableConnectionsArray valueForKey:@"RESULT"];
-        NSArray* columns = [result valueForKey:@"COLUMNS"];
-        NSArray* data = [result valueForKey:@"DATA"];
-        for (int i = 0; i<[data count]; i++) {
-            NSArray* data2 = [data objectAtIndex:i];
-            NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
-            if([[temp valueForKey:@"ENABLED"] integerValue] == 1){
-                [tempy addObject:[temp valueForKey:@"SITETYPENAME"]];
-                [_storageIDs addObject:[temp valueForKey:@"SITETYPEID"]];
+        NSArray* availableConnectionsArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        if([[availableConnectionsArray valueForKey:@"ERROR"] integerValue] == 0){
+            NSArray* result = [availableConnectionsArray valueForKey:@"RESULT"];
+            NSArray* columns = [result valueForKey:@"COLUMNS"];
+            NSArray* data = [result valueForKey:@"DATA"];
+            for (int i = 0; i<[data count]; i++) {
+                    NSArray* data2 = [data objectAtIndex:i];
+                    NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
+                    if([[temp valueForKey:@"ENABLED"] integerValue] == 1){
+                        [tempy addObject:[temp valueForKey:@"SITETYPENAME"]];
+                        [_storageIDs addObject:[temp valueForKey:@"SITETYPEID"]];
+                    }
             }
+            NSLog(@"ALL STORAGE IDs = %@",_storageIDs);
+            _allPossibleConnections = [NSMutableArray arrayWithArray:tempy];
         }
-        NSLog(@"ALL STORAGE IDs = %@",_storageIDs);
-        _allPossibleConnections = [NSMutableArray arrayWithArray:tempy];
-    }
     }
 }
 
@@ -417,10 +421,11 @@ UIImageView* imgView4;
 		// Note: SBTableAlertCell
 		cell = [[SBTableAlertCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
 	}
-	if(indexPath.row == [_allPossibleConnections count] || indexPath.row > [_allPossibleConnections count]){
+	
+    if(indexPath.row == [_allPossibleConnections count] || indexPath.row > [_allPossibleConnections count]){
         [cell.textLabel setText:@""];
     } else {
-	[cell.textLabel setText:[_allPossibleConnections objectAtIndex:indexPath.row]];
+        [cell.textLabel setText:[_allPossibleConnections objectAtIndex:indexPath.row]];
 	}
 	return cell;
 }
@@ -468,7 +473,11 @@ UIImageView* imgView4;
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if(![self isConnectedToInternet]){
-        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:@"Looks like there is no internet connection, please check the settings"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Dismiss"
+                                            otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
         [err addSubview:temp];

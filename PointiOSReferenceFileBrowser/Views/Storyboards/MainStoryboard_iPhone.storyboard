@@ -44,7 +44,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="go"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yW5-Hb-YB1">
-                                <rect key="frame" x="118" y="240" width="84" height="44"/>
+                                <rect key="frame" x="118" y="245" width="84" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Sign in" image="signInButton.png">
@@ -56,6 +56,7 @@
                                 </state>
                                 <connections>
                                     <action selector="signInPressed" destination="2" eventType="touchUpInside" id="UAz-o2-z7r"/>
+                                    <segue destination="jyc-eP-dc0" kind="push" identifier="goToWorkspaces" id="P2R-uD-7Sp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kXU-1L-J47">
@@ -88,7 +89,7 @@
                                     <action selector="signOutPressed" destination="2" eventType="touchUpInside" id="3b3-XY-BgP"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aJA-SC-fwd">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="aJA-SC-fwd">
                                 <rect key="frame" x="118" y="214" width="84" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -103,6 +104,24 @@
                                     <action selector="goBackPressed" destination="2" eventType="touchUpInside" id="F3X-cz-jTa"/>
                                 </connections>
                             </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="y5o-hZ-q73">
+                                <rect key="frame" x="0.0" y="505" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Connections" id="hwg-c7-2lJ">
+                                        <connections>
+                                            <segue destination="bIl-zv-LeE" kind="push" identifier="goToConnections" id="jU7-aH-PSk"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Workspaces" id="wxX-c5-hEA">
+                                        <connections>
+                                            <action selector="goBackPressed" destination="2" id="dO8-uy-umf"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nan-3H-z45"/>
+                                    <barButtonItem enabled="NO" image="TabBarButtonItemSettings.png" id="XKb-me-auE"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -116,13 +135,12 @@
                         <outlet property="signOutButton" destination="r2s-PH-fGG" id="kAl-54-0Bw"/>
                         <outlet property="signUpButton" destination="kXU-1L-J47" id="uv4-HE-bHS"/>
                         <outlet property="usernameTextField" destination="AU3-WZ-NXa" id="L7c-RQ-cAd"/>
-                        <segue destination="bIl-zv-LeE" kind="push" identifier="goToConnections" id="SZj-at-npZ"/>
                         <segue destination="FEl-sE-YK2" kind="push" identifier="goToSignup" id="IMi-co-2TX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="12" y="-985"/>
+            <point key="canvasLocation" x="8" y="-1077"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="tsT-fG-CWf">
@@ -281,12 +299,45 @@
             </objects>
             <point key="canvasLocation" x="513" y="-401"/>
         </scene>
+        <!--Workspace List View Controller - Workspaces-->
+        <scene sceneID="xi8-Da-d7F">
+            <objects>
+                <tableViewController title="Workspaces" id="jyc-eP-dc0" customClass="workspaceListViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="YMl-nn-X3E">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConnectionCell" id="LXj-c4-8DS">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="jyc-eP-dc0" id="vJd-N9-V9H"/>
+                            <outlet property="delegate" destination="jyc-eP-dc0" id="Qwq-0K-A9S"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="uGH-2b-dcD"/>
+                    <connections>
+                        <segue destination="IBL-Ev-gAO" kind="push" identifier="goToFolders" id="rVb-tf-Z0j"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K01-67-yqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="565" y="-1332"/>
+        </scene>
         <!--Shared Folders View Controller-->
         <scene sceneID="Hv4-9i-uku">
             <objects>
                 <tableViewController id="IBL-Ev-gAO" customClass="sharedFoldersViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="j8f-mS-d6s">
-                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -319,7 +370,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="workspaceViewController" id="fKg-FK-xKZ" customClass="workspaceViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="B6X-q7-Jri">
-                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -636,11 +687,11 @@
             <objects>
                 <viewController id="DXI-Pc-COU" customClass="docViewerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kTp-D3-hv8">
-                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="1Au-1g-eN6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
@@ -680,63 +731,63 @@
             <objects>
                 <viewController title=" Share securely" id="dCL-IY-Drm" customClass="sharingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gkW-H2-fRM">
-                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="cA7-CU-CWm">
-                                <rect key="frame" x="204" y="22" width="79" height="27"/>
+                                <rect key="frame" x="204" y="24" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Print" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f45-fy-stN">
-                                <rect key="frame" x="39" y="23" width="157" height="21"/>
+                                <rect key="frame" x="39" y="25" width="157" height="21"/>
                                 <color key="backgroundColor" red="0.0" green="0.074536898000607366" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Download" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ia9-3N-9fi">
-                                <rect key="frame" x="39" y="58" width="157" height="28"/>
+                                <rect key="frame" x="39" y="63" width="157" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="3b0-pg-YPS">
-                                <rect key="frame" x="204" y="58" width="79" height="27"/>
+                                <rect key="frame" x="204" y="63" width="79" height="27"/>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="a6h-zm-Hrs">
-                                <rect key="frame" x="204" y="98" width="79" height="27"/>
+                                <rect key="frame" x="204" y="107" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Expire" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lEf-J3-zaM">
-                                <rect key="frame" x="39" y="98" width="157" height="28"/>
+                                <rect key="frame" x="39" y="107" width="157" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Forwarding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0AQ-oS-xUi">
-                                <rect key="frame" x="39" y="136" width="156" height="28"/>
+                                <rect key="frame" x="39" y="148" width="156" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="9bm-9y-3nK">
-                                <rect key="frame" x="204" y="140" width="79" height="27"/>
+                                <rect key="frame" x="204" y="153" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Screen capture" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MPG-Yf-uRM">
-                                <rect key="frame" x="39" y="176" width="261" height="28"/>
+                                <rect key="frame" x="39" y="192" width="261" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="rRM-bi-Z0w">
-                                <rect key="frame" x="204" y="177" width="79" height="27"/>
+                                <rect key="frame" x="204" y="193" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pm1-yK-Txl">
-                                <rect key="frame" x="39" y="217" width="157" height="28"/>
+                                <rect key="frame" x="39" y="237" width="157" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="hkL-Ld-exy">
-                                <rect key="frame" x="204" y="218" width="79" height="27"/>
+                                <rect key="frame" x="204" y="238" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The passwords don't match" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="avr-zP-Pq0">
                                 <rect key="frame" x="28" y="203" width="264" height="21"/>
@@ -840,6 +891,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
+        <image name="TabBarButtonItemSettings.png" width="26" height="26"/>
         <image name="background.png" width="640" height="921"/>
         <image name="createButton.png" width="171" height="93"/>
         <image name="goBackButton.png" width="165" height="87"/>
@@ -856,5 +908,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="KfT-pi-SBR"/>
+        <segue reference="rVb-tf-Z0j"/>
     </inferredMetricsTieBreakers>
 </document>
