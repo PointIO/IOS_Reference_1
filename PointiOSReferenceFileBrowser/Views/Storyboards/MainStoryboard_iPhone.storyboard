@@ -291,13 +291,12 @@
                     <connections>
                         <outlet property="manageStoredConnectionsButton" destination="02s-Jg-bOy" id="CnN-6h-L1l"/>
                         <segue destination="amJ-qz-gvN" kind="push" identifier="manageConnections" id="OZ3-Sw-KtG"/>
-                        <segue destination="IBL-Ev-gAO" kind="push" identifier="goToFolders" id="obF-jP-fQj"/>
                         <segue destination="6Ps-kN-Pm1" kind="push" identifier="getOtherParams" id="Guj-hK-ntb"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8pf-ri-awS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="513" y="-401"/>
+            <point key="canvasLocation" x="555" y="-393"/>
         </scene>
         <!--Workspace List View Controller - Workspaces-->
         <scene sceneID="xi8-Da-d7F">
@@ -308,7 +307,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConnectionCell" id="LXj-c4-8DS">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="LXj-c4-8DS">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -325,7 +324,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="uGH-2b-dcD"/>
                     <connections>
-                        <segue destination="IBL-Ev-gAO" kind="push" identifier="goToFolders" id="rVb-tf-Z0j"/>
+                        <segue destination="fKg-FK-xKZ" kind="push" identifier="goToFiles" id="qY6-5a-TEm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K01-67-yqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -363,7 +362,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qba-FW-fDa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117" y="-1117"/>
+            <point key="canvasLocation" x="945" y="-989"/>
         </scene>
         <!--Workspace View Controller-->
         <scene sceneID="2NF-D8-WeM">
@@ -399,7 +398,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3D-Q9-6Pv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1595" y="-1125"/>
+            <point key="canvasLocation" x="1577" y="-1350"/>
         </scene>
         <!--Connections Manager View Controller - Storage connections-->
         <scene sceneID="Ddq-0r-5ca">
@@ -1036,6 +1035,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="KfT-pi-SBR"/>
-        <segue reference="rVb-tf-Z0j"/>
+        <segue reference="qY6-5a-TEm"/>
     </inferredMetricsTieBreakers>
 </document>

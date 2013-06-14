@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "Reachability.h"
 #import "SystemConfiguration/SystemConfiguration.h"
+#import "workspaceViewController.h"
 
 @interface workspaceListViewController : UITableViewController
 
@@ -23,6 +24,12 @@
 @property (nonatomic) NSMutableArray* list;
 @property (nonatomic) NSMutableArray* displayList;
 @property (nonatomic) NSString* storageName;
+
+// JB 6/14/13 - Prep to drill into folder
+// @property (nonatomic,strong) NSArray* JSONSharedFoldersArray;
+@property (nonatomic,strong) NSArray* JSONSharedFoldersArray;
+@property (nonatomic) NSMutableArray* folderNames;
+@property (nonatomic) NSMutableArray* folderShareIDs;
 
 // REST API
 @property (nonatomic, strong) SBTableAlert *alert;

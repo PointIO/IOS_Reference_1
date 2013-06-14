@@ -492,13 +492,11 @@ UIImageView* imgView4;
             [ncvc setAllPossibleConnections:_allPossibleConnections];
             [ncvc setRequestedConnectionName:requestedConnectionName];
         }
-        
         if([[segue identifier] isEqualToString:@"goToFolders"]){
             sharedFoldersViewController* sfvc = [segue destinationViewController];
             [sfvc setStorageName:_storageName];
             [sfvc setSessionKey:_sessionKey];
             [sfvc setConnectionSharedFolders:_connectionSharedFolders];
-            
         }
         if([[segue identifier] isEqualToString:@"manageConnections"]){
             connectionsManagerViewController *cmvc = [segue destinationViewController];

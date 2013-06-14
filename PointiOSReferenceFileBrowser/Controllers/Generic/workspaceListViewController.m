@@ -19,9 +19,14 @@
 @synthesize storageName = _storageName;
 @synthesize sessionKey = _sessionKey;
 
-// REST API
+// JB 6/14/13 - properties added to handle drilling into folders; synthesizing for consistency only. no longer necessary to synthesize.
+// @synthesize JSONSharedFoldersArray = _JSONSharedFoldersArray;
+@synthesize folderNames = _folderNames;
+@synthesize folderShareIDs = _folderShareIDs;
 
+// REST API
 @synthesize JSONArrayList = _JSONArrayList;
+@synthesize JSONSharedFoldersArray = _JSONSharedFoldersArray;
 @synthesize shareIDs = _shareIDs;
 @synthesize fileNames = _fileNames;
 @synthesize containerID = _containerID;
@@ -44,12 +49,14 @@ BOOL isEmail;
 int i;
 NSString* requestedConnectionName;
 
-/*
 UIImageView* imgView;
 UIImageView* imgView2;
+UILabel* sharedFolderLabel;
+/*
 UIImageView* imgView3;
 UIImageView* imgView4;
 */
+
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
     if ( [(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
@@ -76,17 +83,63 @@ UIImageView* imgView4;
 {
     [super viewDidLoad];
     
-    self.navigationController.title = @"Workspaces";
+    self.navigationItem.title = _storageName;
+    _JSONSharedFoldersArray = [NSArray array];
+    _list = [NSMutableArray array];
+    _shareIDs = [NSMutableArray array];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        NSURLResponse* urlResponseList;
+        NSError* requestErrorList;
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/accessrules/list"]];
+        [request setHTTPMethod:@"GET"];
+        [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
+        
+        NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
+        if(!response){
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"Request response is nil"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles: nil];
+            [alert show];
+        }
+        else {
+            _JSONSharedFoldersArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+            NSLog(@"JSONSHAREDFOLDERSARRAY - %@",_JSONSharedFoldersArray);
+            NSDictionary* result = [_JSONSharedFoldersArray valueForKey:@"RESULT"];
+            NSArray* columns = [result valueForKey:@"COLUMNS"];
+            NSArray* datax = [result valueForKey:@"DATA"];
+            _folderNames = [[NSMutableArray alloc] init];
+            _folderShareIDs = [[NSMutableArray array] init];
+            
+            for(int i=0; i<[datax count];i++){
+                NSArray* data2 = [datax objectAtIndex:i];
+                NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
+                [_folderNames addObject:[temp valueForKey:@"NAME"]];
+                [_folderShareIDs addObject:[temp valueForKey:@"SHAREID"]];
+                [_list addObject:[temp valueForKey:@"NAME"]];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.tableView reloadData];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            });
+        }
+    });
+    
+    
+    /*
+     // Comment 6/14/13 - this was working to display workspaces
+    [super viewDidLoad];
+    
+    self.navigationItem.title = @"Workspaces";
     [[self navigationController] setNavigationBarHidden:NO animated:YES];
-    
-     /*
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings"
-                                                                             style:UIBarButtonItemStyleDone
-                                                                            target:self
-                                                                            action:@selector(settingsButtonPressed:)];
 
-     */
-    
     _appDel = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     if(![self isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
@@ -104,28 +157,9 @@ UIImageView* imgView4;
     [_appDel setSessionKey:_sessionKey];
     _EmailFields = [NSMutableArray array];
     i = 0;
+    */
     
-    /*
-    _manageStoredConnectionsButton.width = 0.01;
-    NSMutableArray* toolbarButtons = [self.toolbarItems mutableCopy];
-    // lol
-    [toolbarButtons addObject: _manageStoredConnectionsButton];
-    [toolbarButtons addObject: _manageStoredConnectionsButton];
-    [toolbarButtons addObject: _manageStoredConnectionsButton];
-    [toolbarButtons addObject: _manageStoredConnectionsButton];
-    [toolbarButtons addObject: _manageStoredConnectionsButton];
-    [toolbarButtons addObject: _manageStoredConnectionsButton];
-    [self setToolbarItems:toolbarButtons];
-    */
-    // JB 6/9/13: unhiding NavController has messy results...need to re-evaluate
-    // [[self navigationController] setNavigationBarHidden:YES animated:YES];
-    /*
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
-                                  initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                  target:self
-                                  action:@selector(addNewConnectionPressed:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-    */
+    
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
@@ -146,6 +180,32 @@ UIImageView* imgView4;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
+    if(!imgView){
+        sharedFolderLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 16, 150, 50)];
+        sharedFolderLabel.backgroundColor = [UIColor clearColor];
+        sharedFolderLabel.text = _storageName;
+        sharedFolderLabel.textColor = [UIColor whiteColor];
+        [sharedFolderLabel setTextAlignment:UITextAlignmentCenter];
+        sharedFolderLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:18.0];
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
+        imgView.image = [UIImage imageNamed:@"blueBarImageClean.png"];
+        [self.navigationController.view addSubview:imgView];
+        imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
+        imgView2.image = [UIImage imageNamed:@"backButton.png"];
+        [self.navigationController.view addSubview:imgView2];
+        [self.navigationController.view addSubview:sharedFolderLabel];
+    }
+    imgView.alpha = 0;
+    imgView2.alpha = 0;
+    sharedFolderLabel.alpha = 0;
+    [UIView animateWithDuration:0.25 animations:^(void) {
+        imgView.alpha = 1;
+        imgView2.alpha = 1;
+        sharedFolderLabel.alpha = 1;
+    }];
+
+    
+    
     /*
      if(!imgView){
         imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
@@ -202,6 +262,7 @@ UIImageView* imgView4;
     [self.tableView reloadData];
 }
 
+/*
 - (void) getConnections{
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^
@@ -243,14 +304,20 @@ UIImageView* imgView4;
            NSArray* data = [result valueForKey:@"DATA"];
            NSDictionary* tempDict;
            
+           _folderNames = [NSMutableArray array];
+           _folderShareIDs = [NSMutableArray array];
+
            for(int i=0; i<[data count];i++){
                NSArray* data2 = [data objectAtIndex:i];
                NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
                NSLog(@"NEW TEMP = %@",temp);
                [_list addObject:[temp valueForKey:@"SHARENAME"]];
                tempDict = [NSDictionary dictionaryWithObject:[temp valueForKey:@"NAME"] forKey:[temp valueForKey:@"SHARENAME"]];
-               
                [_connectionSharedFolders addObject:tempDict];
+             
+               [_folderNames addObject:[temp valueForKey:@"NAME"]];
+               [_folderShareIDs addObject:[temp valueForKey:@"SHAREID"]];
+
            }
            
            [self getAllPossibleConnections];
@@ -295,7 +362,7 @@ UIImageView* imgView4;
        }
    });
 }
-
+*/
 
 
 - (void)didReceiveMemoryWarning
@@ -313,16 +380,16 @@ UIImageView* imgView4;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    
-    return [_displayList count];
+    return [_list count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"ConnectionCell";
+    static NSString *CellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if([_displayList count] != 0){
-        cell.textLabel.text = [_displayList objectAtIndex:indexPath.row];
+    if([_list count] != 0){
+        cell.textLabel.text = [_list objectAtIndex:indexPath.row];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     return cell;
 }
@@ -333,11 +400,34 @@ UIImageView* imgView4;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    i = indexPath.row;
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
+    NSLog(@"ALL FOLDERS FOR ALL SHARE IDS - %@",allFoldersForAllShareIDs);
+    NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:i]];
+    NSLog(@"SHARE ID = %@", chosenShareID);
+    
+    // JB 6/9/13: Add error test for Null chosenShareID which will occur if no Access Rules defined
+    if (chosenShareID == NULL) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Workspace ID Missing"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    else {
+        [self performSegueWithIdentifier:@"goToFiles" sender:self];
+    }
+    /*
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     _storageName = [_displayList objectAtIndex:indexPath.row];
     [self performSegueWithIdentifier:@"goToFolders" sender:self];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+    */
 }
 
 /*
@@ -349,7 +439,7 @@ UIImageView* imgView4;
 
 
 
-///*
+/*
 - (void) getAllPossibleConnections{
     NSMutableArray* tempy = [NSMutableArray array];
     NSURLResponse* urlResponseList;
@@ -382,32 +472,8 @@ UIImageView* imgView4;
         }
     }
 }
-//*/
-
-/*
- - (IBAction)addNewConnectionPressed:(id)sender {
-    if([_allPossibleConnections count] != 0){
-        _alert	= [[SBTableAlert alloc] initWithTitle:@"Choose a connection" cancelButtonTitle:@"Cancel" messageFormat:nil];
-        [_alert.view setTag:2];
-        [_alert setStyle:SBTableAlertStyleApple];
-        [_alert setDelegate:self];
-        [_alert setDataSource:self];
-        UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 286, 271)];
-        temp.image = [UIImage imageNamed:@"connectionsAlertView"];
-        [_alert.view addSubview:temp];
-        [_alert show];
-        
-        _userKeys = [NSMutableArray array];
-        _userValues = [NSMutableArray array];
-    } else {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There are no available connections for you" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        UIImageView* alertCustomView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 154)];
-        alertCustomView.image = [UIImage imageNamed:@"noAvailableConnections.png"];
-        [alert addSubview:alertCustomView];
-        [alert show];
-    }
-}
 */
+
 
 /*
 - (UITableViewCell *)tableAlert:(SBTableAlert *)tableAlert cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -461,10 +527,6 @@ UIImageView* imgView4;
 */
 
 /*
-- (void) addNewConnection{
-    [self performSegueWithIdentifier:@"getOtherParams" sender:nil];
-}
-
 - (void)tableAlert:(SBTableAlert *)tableAlert didDismissWithButtonIndex:(NSInteger)buttonIndex {
 	if(buttonIndex == -1){
         
@@ -490,6 +552,18 @@ UIImageView* imgView4;
             [sfvc setSessionKey:_sessionKey];
             [sfvc setConnectionSharedFolders:_connectionSharedFolders];
         }
+        else if([[segue identifier] isEqualToString:@"goToFiles"]){
+            NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
+            NSLog(@"ALL FOLDERS FOR ALL SHARE IDS - %@",allFoldersForAllShareIDs);
+            NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:i]];
+            NSLog(@"SHARE ID = %@", chosenShareID);
+            workspaceViewController *wvc = [segue destinationViewController];
+            [wvc setShareID:chosenShareID];
+            [wvc setFolderName:[_list objectAtIndex:i]];
+            [wvc setSessionKey:_sessionKey];
+            NSLog(@"INDEX IS %i",i);
+        }
+
     }
 }
 

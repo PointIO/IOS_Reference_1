@@ -104,19 +104,19 @@ UILabel* sharedFolderLabel;
 
 - (void) viewWillAppear:(BOOL)animated{
     if(!imgView){
-    sharedFolderLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 16, 150, 50)];
-    sharedFolderLabel.backgroundColor = [UIColor clearColor];
-    sharedFolderLabel.text = _storageName;
-    sharedFolderLabel.textColor = [UIColor whiteColor];
-    [sharedFolderLabel setTextAlignment:UITextAlignmentCenter];
-    sharedFolderLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:18.0];
-    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
-    imgView.image = [UIImage imageNamed:@"blueBarImageClean.png"];
-    [self.navigationController.view addSubview:imgView];
-    imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
-    imgView2.image = [UIImage imageNamed:@"backButton.png"];
-    [self.navigationController.view addSubview:imgView2];
-    [self.navigationController.view addSubview:sharedFolderLabel];
+        sharedFolderLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 16, 150, 50)];
+        sharedFolderLabel.backgroundColor = [UIColor clearColor];
+        sharedFolderLabel.text = _storageName;
+        sharedFolderLabel.textColor = [UIColor whiteColor];
+        [sharedFolderLabel setTextAlignment:UITextAlignmentCenter];
+        sharedFolderLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:18.0];
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
+        imgView.image = [UIImage imageNamed:@"blueBarImageClean.png"];
+        [self.navigationController.view addSubview:imgView];
+        imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
+        imgView2.image = [UIImage imageNamed:@"backButton.png"];
+        [self.navigationController.view addSubview:imgView2];
+        [self.navigationController.view addSubview:sharedFolderLabel];
     }
     imgView.alpha = 0;
     imgView2.alpha = 0;
