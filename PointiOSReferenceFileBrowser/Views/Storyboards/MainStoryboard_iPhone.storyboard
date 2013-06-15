@@ -324,19 +324,19 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="uGH-2b-dcD"/>
                     <connections>
-                        <segue destination="fKg-FK-xKZ" kind="push" identifier="goToFiles" id="qY6-5a-TEm"/>
+                        <segue destination="gwR-0k-ws5" kind="modal" identifier="goToFiles" modalTransitionStyle="crossDissolve" id="qY6-5a-TEm"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K01-67-yqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="565" y="-1332"/>
+            <point key="canvasLocation" x="555" y="-1360"/>
         </scene>
         <!--Workspace View Controller-->
         <scene sceneID="2NF-D8-WeM">
             <objects>
                 <tableViewController storyboardIdentifier="workspaceViewController" id="fKg-FK-xKZ" customClass="workspaceViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="B6X-q7-Jri">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -356,16 +356,28 @@
                             <outlet property="delegate" destination="fKg-FK-xKZ" id="KoR-X7-OgW"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="CRG-U2-xNU">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="CCw-qw-jwt"/>
+                        <barButtonItem key="leftBarButtonItem" title="Back" id="VUT-q2-UOL">
+                            <connections>
+                                <action selector="showPastFolder:" destination="fKg-FK-xKZ" id="9dl-MR-1sJ"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Done" id="52f-kd-CY1">
+                            <connections>
+                                <action selector="done:" destination="fKg-FK-xKZ" id="qcI-nc-foX"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="doneButton" destination="52f-kd-CY1" id="2YA-Z8-bex"/>
                         <segue destination="DXI-Pc-COU" kind="push" identifier="viewDocument" id="Zgx-cN-D2e"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3D-Q9-6Pv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1577" y="-1350"/>
+            <point key="canvasLocation" x="1651" y="-1360"/>
         </scene>
         <!--Connections Manager View Controller - Storage connections-->
         <scene sceneID="Ddq-0r-5ca">
@@ -653,11 +665,11 @@
             <objects>
                 <viewController id="DXI-Pc-COU" customClass="docViewerViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kTp-D3-hv8">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" id="1Au-1g-eN6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
@@ -690,70 +702,70 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqg-FX-fT6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2069" y="-1125"/>
+            <point key="canvasLocation" x="2595" y="-1125"/>
         </scene>
         <!--Sharing View Controller -  Share securely-->
         <scene sceneID="ebp-TK-CIg">
             <objects>
                 <viewController title=" Share securely" id="dCL-IY-Drm" customClass="sharingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gkW-H2-fRM">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="cA7-CU-CWm">
-                                <rect key="frame" x="204" y="24" width="79" height="27"/>
+                                <rect key="frame" x="204" y="20" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Print" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="f45-fy-stN">
-                                <rect key="frame" x="39" y="25" width="157" height="21"/>
+                                <rect key="frame" x="39" y="20" width="157" height="21"/>
                                 <color key="backgroundColor" red="0.0" green="0.074536898000607366" blue="1" alpha="0.0" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Download" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ia9-3N-9fi">
-                                <rect key="frame" x="39" y="63" width="157" height="28"/>
+                                <rect key="frame" x="39" y="52" width="157" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="3b0-pg-YPS">
-                                <rect key="frame" x="204" y="63" width="79" height="27"/>
+                                <rect key="frame" x="204" y="52" width="79" height="27"/>
                             </switch>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="a6h-zm-Hrs">
-                                <rect key="frame" x="204" y="107" width="79" height="27"/>
+                                <rect key="frame" x="204" y="89" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Expire" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lEf-J3-zaM">
-                                <rect key="frame" x="39" y="107" width="157" height="28"/>
+                                <rect key="frame" x="39" y="89" width="157" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Forwarding" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0AQ-oS-xUi">
-                                <rect key="frame" x="39" y="148" width="156" height="28"/>
+                                <rect key="frame" x="39" y="123" width="156" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="9bm-9y-3nK">
-                                <rect key="frame" x="204" y="153" width="79" height="27"/>
+                                <rect key="frame" x="204" y="127" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Screen capture" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="MPG-Yf-uRM">
-                                <rect key="frame" x="39" y="192" width="261" height="28"/>
+                                <rect key="frame" x="39" y="159" width="261" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="rRM-bi-Z0w">
-                                <rect key="frame" x="204" y="193" width="79" height="27"/>
+                                <rect key="frame" x="204" y="160" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Pm1-yK-Txl">
-                                <rect key="frame" x="39" y="237" width="157" height="28"/>
+                                <rect key="frame" x="39" y="197" width="157" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="hkL-Ld-exy">
-                                <rect key="frame" x="204" y="238" width="79" height="27"/>
+                                <rect key="frame" x="204" y="197" width="79" height="27"/>
                             </switch>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="The passwords don't match" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="avr-zP-Pq0">
                                 <rect key="frame" x="28" y="203" width="264" height="21"/>
@@ -787,7 +799,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOA-PR-5EG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2557" y="-1125"/>
+            <point key="canvasLocation" x="3083" y="-1125"/>
         </scene>
         <!--Date Picker View Controller-->
         <scene sceneID="94u-7X-FgV">
@@ -834,7 +846,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3A-eE-3Sr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3031" y="-1125"/>
+            <point key="canvasLocation" x="3557" y="-1125"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3D8-2S-8kL">
@@ -854,6 +866,24 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VPk-d9-0zH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-494" y="-325"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Gfy-ii-wRe">
+            <objects>
+                <navigationController id="gwR-0k-ws5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="SNH-3s-NYm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="fKg-FK-xKZ" kind="relationship" relationship="rootViewController" id="86U-tr-9cV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eHr-bF-sKP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1055" y="-1360"/>
         </scene>
     </scenes>
     <resources>
@@ -990,6 +1020,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </class>
         <class className="workspaceViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/workspaceViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="showPastFolder:"/>
+                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

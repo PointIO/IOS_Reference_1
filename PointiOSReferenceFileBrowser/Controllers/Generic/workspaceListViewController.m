@@ -558,11 +558,33 @@ UIImageView* imgView4;
             NSLog(@"ALL FOLDERS FOR ALL SHARE IDS - %@",allFoldersForAllShareIDs);
             NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:i]];
             NSLog(@"SHARE ID = %@", chosenShareID);
+            
+            /*
             workspaceViewController *wvc = [segue destinationViewController];
             [wvc setShareID:chosenShareID];
             [wvc setFolderName:[_list objectAtIndex:i]];
             [wvc setSessionKey:_sessionKey];
             NSLog(@"INDEX IS %i",i);
+            */
+            
+            UINavigationController *navigationController    = segue.destinationViewController;
+            workspaceViewController *wvc                    = [[navigationController viewControllers] objectAtIndex:0];
+            [wvc setShareID:chosenShareID];
+            [wvc setFolderName:[_list objectAtIndex:i]];
+            [wvc setSessionKey:_sessionKey];
+            NSLog(@"INDEX IS %i",i);
+           
+            /*
+            UINavigationController *navigationController            = segue.destinationViewController;
+            PlayerDetailViewController *playerDetailViewController  = [[navigationController viewControllers] objectAtIndex:0];
+            playerDetailViewController.delegate                     = self;
+            
+            NSIndexPath *indexPath                                  = sender;
+            
+            Player *player                                          = [self.fetchedResultsController objectAtIndexPath:indexPath];
+            playerDetailViewController.playerToEdit                 = player;
+            */
+
         }
 
     }

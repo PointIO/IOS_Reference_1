@@ -44,15 +44,19 @@ UILabel* sharedFolderLabel;
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"My Folders";
+    [_backButton setEnabled:NO];
+    
+    // self.navigationItem.title = @"My Documents";
+    /*
     for (UIView *view in self.navigationController.navigationBar.subviews) {
         [view removeFromSuperview];
     }
+    */
     
     i = 0;
     nestedFoldersCounter = 0;
-    self.navigationItem.backBarButtonItem.enabled = YES;
-    self.navigationItem.backBarButtonItem.title = @"Back";
+    // self.navigationItem.backBarButtonItem.enabled = YES;
+    // self.navigationItem.backBarButtonItem.title = @"Back";
     self.navigationItem.title = _folderName;
     _remotePath = @"/";
     rootFolderTitle = self.navigationItem.title;
@@ -80,6 +84,11 @@ UILabel* sharedFolderLabel;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
+    
+    // imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
+    // imgView2.image = [UIImage imageNamed:@"backButton.png"];
+    // [self.navigationController.view addSubview:imgView2];
+
     /*
     if(!imgView){
         sharedFolderLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 16, 150, 50)];
@@ -89,14 +98,14 @@ UILabel* sharedFolderLabel;
         [sharedFolderLabel setTextAlignment:UITextAlignmentCenter];
         sharedFolderLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:18.0];
         
-        // imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
-        // imgView.image = [UIImage imageNamed:@"blueBarImageClean.png"];
-        // [self.navigationController.view addSubview:imgView];
-        // imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
-        // imgView2.image = [UIImage imageNamed:@"backButton.png"];
-        // [self.navigationController.view addSubview:imgView2];
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
+        imgView.image = [UIImage imageNamed:@"blueBarImageClean.png"];
+        [self.navigationController.view addSubview:imgView];
+        imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
+        imgView2.image = [UIImage imageNamed:@"backButton.png"];
+        [self.navigationController.view addSubview:imgView2];
         
-        // [self.navigationController.view addSubview:sharedFolderLabel];
+        [self.navigationController.view addSubview:sharedFolderLabel];
         
         if([_lastFolderTitle length]!=0){
                 self.navigationItem.title = _lastFolderTitle;
@@ -111,12 +120,11 @@ UILabel* sharedFolderLabel;
             imgView2.alpha = 1;
             sharedFolderLabel.alpha = 1;
             }];
-    }
+   }
      */
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
-    /*
      [UIView animateWithDuration:0.25 animations:^(void) {
         imgView.alpha = 0;
         imgView2.alpha = 0;
@@ -125,7 +133,6 @@ UILabel* sharedFolderLabel;
     imgView = nil;
     imgView2 = nil;
     sharedFolderLabel = nil;
-     */
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
@@ -246,6 +253,9 @@ UILabel* sharedFolderLabel;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [_backButton setEnabled:YES];
+    
     i = indexPath.row;
     NSLog(@"%@",_fileIDs);
     //TIP IOS-12
@@ -261,9 +271,11 @@ UILabel* sharedFolderLabel;
         [self setRemotePath:[_remotePath stringByAppendingFormat:@"%@/",[_fileNames objectAtIndex:i]]];
         [self setContainerID:[_containerIDs objectAtIndex:i]];
         NSLog(@"REMOTE PATH = %@",_remotePath);
+        
         nestedFoldersCounter++;
         chosenFolderTitle = [_fileNames objectAtIndex:indexPath.row];
         NSLog(@"CHOSEN FOLDER = %@",chosenFolderTitle);
+        
         _lastFolderTitle = chosenFolderTitle;
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -282,9 +294,14 @@ UILabel* sharedFolderLabel;
                     [sharedFolderLabel setAlpha:1];
                 }];
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStyleBordered target:self action:@selector(showPastFolder)];
+                /*
+                UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Back"
+                                                                         style:UIBarButtonItemStyleBordered
+                                                                        target:self
+                                                                        action:@selector(showPastFolder)];
                 self.navigationItem.hidesBackButton = YES;
                 self.navigationItem.leftBarButtonItem = item;
+                */
             });
         });
     }
@@ -317,8 +334,8 @@ UILabel* sharedFolderLabel;
     
     nestedFoldersCounter--;
     if(nestedFoldersCounter == 0) {
-        self.navigationItem.hidesBackButton = NO;
-        self.navigationItem.leftBarButtonItem = nil;
+        // self.navigationItem.hidesBackButton = NO;
+        // self.navigationItem.leftBarButtonItem = nil;
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -345,6 +362,70 @@ UILabel* sharedFolderLabel;
     });
     
 }
+
+
+- (IBAction)done:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (IBAction)showPastFolder:(id)sender {
+    NSMutableArray* subs = [NSMutableArray arrayWithArray:[_remotePath componentsSeparatedByString:@"/"]];
+    [subs removeLastObject];
+    [subs removeLastObject];
+    
+    NSString* temp = [[NSString alloc] init];
+    tempContainer = nil;
+    tempContainer = [NSMutableArray array];
+    for(int j = 0;j<[subs count];j++){
+        if (![[subs objectAtIndex:j] isEqualToString:@""]) {
+            [tempContainer addObject:[subs objectAtIndex:j]];
+        }
+    }
+    NSLog(@"TEMP CONTAINER = %@",tempContainer);
+    for(int j = 0;j<[tempContainer count];j++){
+        if(j ==0){
+            temp = [NSString stringWithFormat:@"/%@",[tempContainer objectAtIndex:0]];
+        } else {
+            temp = [temp stringByAppendingFormat:@"/%@/",[tempContainer objectAtIndex:j]];
+        }
+    }
+    NSLog(@"TEMP STRING PATH = %@",temp);
+    _remotePath = temp;
+    _containerID = [_containerIDHistory lastObject];
+    
+    nestedFoldersCounter--;
+    if(nestedFoldersCounter == 0) {
+        // self.navigationItem.hidesBackButton = NO;
+        // self.navigationItem.leftBarButtonItem = nil;
+    }
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [self getFileNamesAndFileIDs];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
+            if([tempContainer count] != 0){
+                self.navigationItem.title = [tempContainer lastObject];
+                [sharedFolderLabel setText:[tempContainer lastObject]];
+            } else {
+                self.navigationItem.title = rootFolderTitle;
+                [UIView animateWithDuration:0.15 animations:^(void) {
+                    [sharedFolderLabel setAlpha:0];
+                }];
+                [sharedFolderLabel setText:rootFolderTitle];
+                [UIView animateWithDuration:0.15 animations:^(void) {
+                    [sharedFolderLabel setAlpha:1];
+                }];
+            }
+            [_containerIDHistory removeLastObject];
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        });
+    });
+    
+}
+
+
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"viewDocument"]){

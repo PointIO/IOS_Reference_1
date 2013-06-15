@@ -31,6 +31,13 @@
 @property (nonatomic) int i;
 @property (nonatomic) int nestedFoldersCounter;
 
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *backButton;
+@property (nonatomic, retain) IBOutlet UIBarButtonItem *doneButton;
+
 - (void) getFileNamesAndFileIDs;
+
+- (IBAction)showPastFolder:(id)sender;
+- (IBAction)done:(id)sender;
+
 
 @end

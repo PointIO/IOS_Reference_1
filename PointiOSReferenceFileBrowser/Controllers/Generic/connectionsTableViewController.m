@@ -147,18 +147,18 @@ UIImageView* imgView4;
 - (void) viewWillAppear:(BOOL)animated{
     /*
     if(!imgView){
-    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
-    imgView.image = [UIImage imageNamed:@"blueBarImage.png"];
-    [self.navigationController.view addSubview:imgView];
-    imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
-    imgView2.image = [UIImage imageNamed:@"backButton.png"];
-    [self.navigationController.view addSubview:imgView2];
-    imgView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 1.1f, 320, 44)];
-    imgView3.image = [UIImage imageNamed:@"blueBarImageClean"];
-    [self.navigationController.toolbar addSubview:imgView3];
-    imgView4 = [[UIImageView alloc] initWithFrame:CGRectMake(45, 7, 200, 30)];
-    imgView4.image = [UIImage imageNamed:@"manageStoredConnections.png"];
-    [self.navigationController.toolbar addSubview:imgView4];
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
+        imgView.image = [UIImage imageNamed:@"blueBarImage.png"];
+        [self.navigationController.view addSubview:imgView];
+        imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
+        imgView2.image = [UIImage imageNamed:@"backButton.png"];
+        [self.navigationController.view addSubview:imgView2];
+        imgView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 1.1f, 320, 44)];
+        imgView3.image = [UIImage imageNamed:@"blueBarImageClean"];
+        [self.navigationController.toolbar addSubview:imgView3];
+        imgView4 = [[UIImageView alloc] initWithFrame:CGRectMake(45, 7, 200, 30)];
+        imgView4.image = [UIImage imageNamed:@"manageStoredConnections.png"];
+        [self.navigationController.toolbar addSubview:imgView4];
     }
     imgView.alpha = 0;
     imgView2.alpha = 0;
