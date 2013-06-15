@@ -31,7 +31,10 @@ UIImageView* imgView2;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    for (UIView *view in self.navigationController.navigationBar.subviews) {
+        [view removeFromSuperview];
+    }
+
     self.navigationItem.backBarButtonItem.title = @"Back";
     _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _list = [NSMutableArray array];
@@ -76,12 +79,12 @@ UIImageView* imgView2;
 
 - (void) viewWillAppear:(BOOL)animated{
     if(!imgView){
-    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
-    imgView.image = [UIImage imageNamed:@"blueBarImage.png"];
-    [self.navigationController.view addSubview:imgView];
-    imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
-    imgView2.image = [UIImage imageNamed:@"backButton.png"];
-    [self.navigationController.view addSubview:imgView2];
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
+        imgView.image = [UIImage imageNamed:@"blueBarImage.png"];
+        [self.navigationController.view addSubview:imgView];
+        imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
+        imgView2.image = [UIImage imageNamed:@"backButton.png"];
+        [self.navigationController.view addSubview:imgView2];
     }
     imgView.alpha = 0;
     imgView2.alpha = 0;
@@ -113,7 +116,6 @@ UIImageView* imgView2;
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     UISwitch *tableViewSwitch = [[UISwitch alloc] init];
@@ -137,6 +139,7 @@ UIImageView* imgView2;
     return cell;
 }
 
+
 - (void) valueChanged:(id) sender withIndex:(NSInteger) index{
     UISwitch *controlSwitch = sender;
     UITableViewCell *myCell = [controlSwitch superview];
@@ -148,14 +151,14 @@ UIImageView* imgView2;
     if (controlSwitch.isOn) {
         [_appDel.enabledConnections setObject:@"1" atIndexedSubscript:row];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
-        self.navigationItem.hidesBackButton = YES;
+        // self.navigationItem.hidesBackButton = YES;
         imgView2.alpha = 0.5;
         NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
     }
     if(!controlSwitch.isOn){
         [_appDel.enabledConnections setObject:@"0" atIndexedSubscript:row];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
-        self.navigationItem.hidesBackButton = YES;
+        // self.navigationItem.hidesBackButton = YES;
         imgView2.alpha = 0.5;
         NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
     }

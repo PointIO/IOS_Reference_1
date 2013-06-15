@@ -379,17 +379,23 @@ UIImageView* imgView;
         [ctvc setJSONArrayList:_JSONArrayList];
         [ctvc setSessionKey:_sessionKey];
     }
-    if([[segue identifier] isEqualToString:@"goToConnections"]){
+    else if([[segue identifier] isEqualToString:@"manageConnections"]){
+        connectionsManagerViewController *cmvc = [segue destinationViewController];
+        [cmvc setJSONArrayList:_JSONArrayList];
+        // [cmvc setStorageIDs:_storageIDs];
+        [cmvc setSessionKey:_sessionKey];
+    }
+    else if([[segue identifier] isEqualToString:@"goToConnections"]){
         connectionsTableViewController* ctvc = [segue destinationViewController];
         [ctvc setJSONArrayList:_JSONArrayList];
         [ctvc setSessionKey:_sessionKey];
     }
-    if([[segue identifier] isEqualToString:@"goToDocView"]){
+    else if([[segue identifier] isEqualToString:@"goToDocView"]){
         docViewerViewControlleriPad* dvvc = [segue destinationViewController];
         [dvvc setSessionKey:_sessionKey];
         [dvvc setJSONArrayList:_JSONArrayList];
     }
-    if([[segue identifier] isEqualToString:@"goToSignup"]){
+    else if([[segue identifier] isEqualToString:@"goToSignup"]){
         signupViewController* svc = [segue destinationViewController];
         [svc setSessionKey:_sessionKey];
     }
