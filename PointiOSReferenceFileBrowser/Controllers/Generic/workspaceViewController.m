@@ -46,13 +46,6 @@ UILabel* sharedFolderLabel;
     
     [_backButton setEnabled:NO];
     
-    // self.navigationItem.title = @"My Documents";
-    /*
-    for (UIView *view in self.navigationController.navigationBar.subviews) {
-        [view removeFromSuperview];
-    }
-    */
-    
     i = 0;
     nestedFoldersCounter = 0;
     // self.navigationItem.backBarButtonItem.enabled = YES;

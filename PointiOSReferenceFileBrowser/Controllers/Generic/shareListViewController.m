@@ -1,0 +1,222 @@
+//
+//  shareListViewController.m
+//  PointiOSReferenceFileBrowser
+//
+//  Created by jb on 6/13/13.
+//  Copyright (c) 2013 PointIO. All rights reserved.
+//
+
+#import "shareListViewController.h"
+#import "ShareListCell.h"
+
+
+@interface shareListViewController()
+
+@end
+
+@implementation shareListViewController
+
+int i;
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    if ( [(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
+        return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
+    } else {
+        if(toInterfaceOrientation == UIInterfaceOrientationPortrait){
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+}
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    self = [super initWithStyle:style];
+    if (self) {
+        
+    }
+    return self;
+}
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+     
+    _JSONSharedFoldersArray = [NSArray array];
+    _list = [NSMutableArray array];
+      
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+        NSURLResponse* urlResponseList;
+        NSError* requestErrorList;
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/accessrules/list"]];
+        [request setHTTPMethod:@"GET"];
+        [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
+        
+        NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
+        if(!response){
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"Request response is nil"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles: nil];
+            [alert show];
+        }
+        else {
+            _JSONSharedFoldersArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+            NSLog(@"JSONSHAREDFOLDERSARRAY - %@",_JSONSharedFoldersArray);
+            NSDictionary* result = [_JSONSharedFoldersArray valueForKey:@"RESULT"];
+            NSArray* columns = [result valueForKey:@"COLUMNS"];
+            NSArray* datax = [result valueForKey:@"DATA"];
+            _folderNames = [[NSMutableArray alloc] init];
+            _folderShareIDs = [[NSMutableArray array] init];
+            
+            for(int i=0; i<[datax count];i++){
+                NSArray* data2 = [datax objectAtIndex:i];
+                NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
+                [_folderNames addObject:[temp valueForKey:@"NAME"]];
+                [_folderShareIDs addObject:[temp valueForKey:@"SHAREID"]];
+                [_list addObject:[temp valueForKey:@"NAME"]];
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.tableView reloadData];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            });
+        }
+    });
+}
+
+- (void) viewWillDisappear:(BOOL)animated{
+}
+
+- (void) viewDidDisappear:(BOOL)animated{
+}
+
+- (void) viewWillAppear:(BOOL)animated{
+}
+
+- (void) viewDidAppear:(BOOL)animated{
+    if(![self isConnectedToInternet]){
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:@"Looks like there is no internet connection, please check the settings"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Dismiss"
+                                            otherButtonTitles:nil];
+        UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
+        temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
+        [err addSubview:temp];
+        [err setBackgroundColor:[UIColor clearColor]];
+        [err show];
+    } else {
+        [self.tableView reloadData];
+    }
+}
+
+- (void) reloadLists:(NSNotification *)notification{
+    [self performSelectorOnMainThread:@selector(getConnections) withObject:nil waitUntilDone:YES];
+    [self.tableView reloadData];
+}
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [_list count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    ShareListCell *cell = (ShareListCell *)[tableView dequeueReusableCellWithIdentifier:@"ShareListCell"];
+    
+    if([_list count] != 0){
+        cell.nameLabel.text = [_list objectAtIndex:indexPath.row];
+    }
+    return cell;
+}
+
+
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    int i = indexPath.row;
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
+    NSLog(@"ALL FOLDERS FOR ALL SHARE IDS - %@",allFoldersForAllShareIDs);
+    NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:i]];
+    NSLog(@"SHARE ID = %@", chosenShareID);
+    
+    // JB 6/9/13: Add error test for Null chosenShareID which will occur if no Access Rules defined
+    if (chosenShareID == NULL) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Workspace ID Missing"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles: nil];
+        [alert show];
+        return;
+    }
+    else {
+        [self performSegueWithIdentifier:@"goToFiles" sender:self];
+    }
+}
+
+
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if(![self isConnectedToInternet])
+    {
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
+        temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
+        [err addSubview:temp];
+        [err setBackgroundColor:[UIColor clearColor]];
+        [err show];
+    }
+    else
+    {
+        if([[segue identifier] isEqualToString:@"goToFiles"]){
+            NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
+            NSLog(@"ALL FOLDERS FOR ALL SHARE IDS - %@",allFoldersForAllShareIDs);
+            NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:i]];
+            NSLog(@"SHARE ID = %@", chosenShareID);
+
+            UINavigationController *navigationController    = segue.destinationViewController;
+            workspaceViewController *wvc                    = [[navigationController viewControllers] objectAtIndex:0];
+            [wvc setShareID:chosenShareID];
+            [wvc setFolderName:[_list objectAtIndex:i]];
+            [wvc setSessionKey:_sessionKey];
+            NSLog(@"INDEX IS %i",i);
+        }
+    }
+}
+
+- (BOOL) isConnectedToInternet{
+    Reachability *reachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
+    return !(networkStatus == NotReachable);
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
+}
+@end

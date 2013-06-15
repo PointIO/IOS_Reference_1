@@ -56,7 +56,7 @@
                                 </state>
                                 <connections>
                                     <action selector="signInPressed" destination="2" eventType="touchUpInside" id="UAz-o2-z7r"/>
-                                    <segue destination="jyc-eP-dc0" kind="push" identifier="goToWorkspaces" id="P2R-uD-7Sp"/>
+                                    <segue destination="jyc-eP-dc0" kind="push" identifier="goToShares" id="P2R-uD-7Sp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kXU-1L-J47">
@@ -298,24 +298,34 @@
             </objects>
             <point key="canvasLocation" x="269" y="437"/>
         </scene>
-        <!--Workspace List View Controller-->
+        <!--Share List View Controller - My Shares-->
         <scene sceneID="xi8-Da-d7F">
             <objects>
-                <tableViewController id="jyc-eP-dc0" customClass="workspaceListViewController" sceneMemberID="viewController">
+                <tableViewController id="jyc-eP-dc0" customClass="shareListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="YMl-nn-X3E">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" id="LXj-c4-8DS">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailDisclosureButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ShareListCell" id="LXj-c4-8DS" customClass="ShareListCell">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sny-Is-14n">
+                                            <rect key="frame" x="20" y="11" width="253" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <connections>
+                                    <outlet property="nameLabel" destination="sny-Is-14n" id="EfN-Po-UNa"/>
                                     <segue destination="gdR-aU-CXJ" kind="modal" identifier="goToFiles" modalTransitionStyle="crossDissolve" id="VS2-XD-gQa"/>
                                 </connections>
                             </tableViewCell>
@@ -325,12 +335,12 @@
                             <outlet property="delegate" destination="jyc-eP-dc0" id="Qwq-0K-A9S"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="uGH-2b-dcD"/>
+                    <navigationItem key="navigationItem" title="My Shares" id="uGH-2b-dcD"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K01-67-yqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="368" y="-1298"/>
+            <point key="canvasLocation" x="314" y="-1918"/>
         </scene>
         <!--Workspace View Controller-->
         <scene sceneID="2NF-D8-WeM">
@@ -378,7 +388,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3D-Q9-6Pv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1615" y="-1303"/>
+            <point key="canvasLocation" x="1601" y="-1924"/>
         </scene>
         <!--Connection List View Controller - Connections-->
         <scene sceneID="2M6-3Q-fqQ">
@@ -427,7 +437,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pew-N3-6nQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="368" y="-513"/>
+            <point key="canvasLocation" x="314" y="-641"/>
         </scene>
         <!--Connections Manager View Controller - Storage connections-->
         <scene sceneID="Ddq-0r-5ca">
@@ -752,7 +762,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqg-FX-fT6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3121" y="-1125"/>
+            <point key="canvasLocation" x="2232" y="-1918"/>
         </scene>
         <!--Sharing View Controller -  Share securely-->
         <scene sceneID="ebp-TK-CIg">
@@ -849,7 +859,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOA-PR-5EG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3609" y="-1125"/>
+            <point key="canvasLocation" x="2869" y="-1918"/>
         </scene>
         <!--Date Picker View Controller-->
         <scene sceneID="94u-7X-FgV">
@@ -896,7 +906,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3A-eE-3Sr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4083" y="-1125"/>
+            <point key="canvasLocation" x="3523" y="-1918"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3D8-2S-8kL">
@@ -934,7 +944,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmT-zV-fOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117" y="-1298"/>
+            <point key="canvasLocation" x="945" y="-1924"/>
         </scene>
     </scenes>
     <resources>
@@ -948,146 +958,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="signUpButton.png" width="165" height="87"/>
         <image name="submitButton.png" width="165" height="87"/>
     </resources>
-    <classes>
-        <class className="ConnectionListCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConnectionListCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goBackPressed"/>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signInPressed"/>
-                <relationship kind="action" name="signOutPressed"/>
-                <relationship kind="action" name="signUpPressed"/>
-                <relationship kind="outlet" name="goBackButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="signInButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signOutButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="connectionListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionListViewController.h"/>
-        </class>
-        <class className="connectionsManagerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionsManagerViewController.h"/>
-        </class>
-        <class className="connectionsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionsTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewConnectionPressed:"/>
-                <relationship kind="action" name="manageStoredConnectionsPressed:"/>
-                <relationship kind="outlet" name="manageStoredConnectionsButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="datePickerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/datePickerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
-            </relationships>
-        </class>
-        <class className="docViewerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/docViewerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="shareFilePressed:"/>
-                <relationship kind="outlet" name="docWebView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="errorOccuredLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="shareFileButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
-            </relationships>
-        </class>
-        <class className="newConnectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/newConnectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createPressed"/>
-                <relationship kind="action" name="revisionControlEnabledValueChanged"/>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="outlet" name="checkinCheckout" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="checkinCheckoutLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="createButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="enabledLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="enabledSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="loggingEnabled" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="loggingLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="maxRevisions" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="maxRevisionsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="revisionControl" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="revisionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="sharingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/sharingViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="shareSecurelyPressed:"/>
-                <relationship kind="outlet" name="downloadSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="expireSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="forwardingSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="passwordSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="printSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="screenCaptureSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="shareSecurelyButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="signupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/signupViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signUpPressed"/>
-                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="reEnterPasswordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
-                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="storageSignupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/storageSignupViewController.h"/>
-        </class>
-        <class className="storageViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/storageViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signInPressed"/>
-                <relationship kind="action" name="signUp"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="signInButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signingActivityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="signingInLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="workspaceListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/workspaceListViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewConnectionPressed:"/>
-                <relationship kind="action" name="manageStoredConnectionsPressed:"/>
-                <relationship kind="outlet" name="manageStoredConnectionsButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="workspaceViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/workspaceViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="showPastFolder:"/>
-                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

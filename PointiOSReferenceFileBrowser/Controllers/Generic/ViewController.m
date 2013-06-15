@@ -170,7 +170,7 @@ UIImageView* imgView;
                  [self performSegueWithIdentifier:@"goToDocView" sender:self];
             } else {
                 // [self performSegueWithIdentifier:@"goToConnections" sender:self];
-                [self performSegueWithIdentifier:@"goToWorkspaces" sender:self];
+                [self performSegueWithIdentifier:@"goToShares" sender:self];
             }
         });
     });
@@ -348,7 +348,7 @@ UIImageView* imgView;
             [self performSegueWithIdentifier:@"goToDocView" sender:self];
         } else {
             // [self performSegueWithIdentifier:@"goToConnections" sender:self];
-            [self performSegueWithIdentifier:@"goToWorkspaces" sender:self];
+            [self performSegueWithIdentifier:@"goToShares" sender:self];
         }
     } else {
         _successfulLogin = NO;
@@ -374,9 +374,9 @@ UIImageView* imgView;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([[segue identifier] isEqualToString:@"goToWorkspaces"]){
-        workspaceListViewController * ctvc = [segue destinationViewController];
-        [ctvc setJSONArrayList:_JSONArrayList];
+    if([[segue identifier] isEqualToString:@"goToShares"]){
+        shareListViewController * ctvc = [segue destinationViewController];
+        [ctvc setJSONSharedFoldersArray:_JSONArrayList];
         [ctvc setSessionKey:_sessionKey];
     }
     else if([[segue identifier] isEqualToString:@"manageConnections"]){

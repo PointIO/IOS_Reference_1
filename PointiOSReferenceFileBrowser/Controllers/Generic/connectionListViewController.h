@@ -13,9 +13,8 @@
 
 @interface connectionListViewController : UITableViewController
 
-@property (nonatomic) NSMutableArray* list;
-
 @property (nonatomic) AppDelegate* appDel;
+@property (nonatomic) NSMutableArray* list;
 
 @property (nonatomic) NSArray* JSONArrayList;
 @property (nonatomic) NSString* sessionKey;
