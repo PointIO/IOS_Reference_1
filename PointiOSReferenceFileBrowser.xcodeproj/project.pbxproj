@@ -10,6 +10,10 @@
 		754977DE176CFB4A0042B5D8 /* connectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 754977DD176CFB4A0042B5D8 /* connectionListViewController.m */; };
 		754977E1176D01AB0042B5D8 /* ConnectionListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 754977E0176D01AB0042B5D8 /* ConnectionListCell.m */; };
 		754977E6176D0CB60042B5D8 /* ShareListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 754977E5176D0CB60042B5D8 /* ShareListCell.m */; };
+		754977EC176D1AEE0042B5D8 /* shareDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 754977EB176D1AEE0042B5D8 /* shareDetailViewController.m */; };
+		754977EF176D1D9B0042B5D8 /* ShareDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 754977EE176D1D9B0042B5D8 /* ShareDetailCell.m */; };
+		754977F2176D20520042B5D8 /* Document.png in Resources */ = {isa = PBXBuildFile; fileRef = 754977F0176D204D0042B5D8 /* Document.png */; };
+		754977F3176D20520042B5D8 /* FileCabinet.png in Resources */ = {isa = PBXBuildFile; fileRef = 754977F1176D204F0042B5D8 /* FileCabinet.png */; };
 		7550DFDD1767FDC500E8F547 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550DFDC1767FDC500E8F547 /* UIKit.framework */; };
 		7550DFDF1767FDC500E8F547 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550DFDE1767FDC500E8F547 /* Foundation.framework */; };
 		7550DFE11767FDC500E8F547 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550DFE01767FDC500E8F547 /* CoreGraphics.framework */; };
@@ -106,6 +110,12 @@
 		754977E0176D01AB0042B5D8 /* ConnectionListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionListCell.m; sourceTree = "<group>"; };
 		754977E4176D0CB60042B5D8 /* ShareListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareListCell.h; sourceTree = "<group>"; };
 		754977E5176D0CB60042B5D8 /* ShareListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareListCell.m; sourceTree = "<group>"; };
+		754977EA176D1AED0042B5D8 /* shareDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shareDetailViewController.h; sourceTree = "<group>"; };
+		754977EB176D1AEE0042B5D8 /* shareDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shareDetailViewController.m; sourceTree = "<group>"; };
+		754977ED176D1D9B0042B5D8 /* ShareDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDetailCell.h; sourceTree = "<group>"; };
+		754977EE176D1D9B0042B5D8 /* ShareDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDetailCell.m; sourceTree = "<group>"; };
+		754977F0176D204D0042B5D8 /* Document.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Document.png; sourceTree = "<group>"; };
+		754977F1176D204F0042B5D8 /* FileCabinet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FileCabinet.png; sourceTree = "<group>"; };
 		7550DFD91767FDC500E8F547 /* PointiOSReferenceFileBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointiOSReferenceFileBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7550DFDC1767FDC500E8F547 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7550DFDE1767FDC500E8F547 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -196,8 +206,8 @@
 		8AA513CA176A04B800665111 /* FileViewerControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewerControllerIpad.m; sourceTree = "<group>"; };
 		8AA513CB176A04B800665111 /* newConnectionViewControlleriPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newConnectionViewControlleriPad.h; sourceTree = "<group>"; };
 		8AA513CC176A04B800665111 /* newConnectionViewControlleriPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newConnectionViewControlleriPad.m; sourceTree = "<group>"; };
-		8AA513D0176A04C600665111 /* workspaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workspaceViewController.h; sourceTree = "<group>"; };
-		8AA513D1176A04C600665111 /* workspaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = workspaceViewController.m; sourceTree = "<group>"; };
+		8AA513D0176A04C600665111 /* workspaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = workspaceViewController.h; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/workspaceViewController.h; sourceTree = "<group>"; };
+		8AA513D1176A04C600665111 /* workspaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = workspaceViewController.m; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/workspaceViewController.m; sourceTree = "<group>"; };
 		8AA513D2176A04C600665111 /* storageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = storageViewController.m; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/storageViewController.m; sourceTree = "<group>"; };
 		8AA513D3176A04C600665111 /* connectionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectionsTableViewController.m; sourceTree = "<group>"; };
 		8AA513D4176A04C600665111 /* docViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = docViewerViewController.m; sourceTree = "<group>"; };
@@ -251,6 +261,8 @@
 		754977E3176D08350042B5D8 /* ToBeDeleted */ = {
 			isa = PBXGroup;
 			children = (
+				8AA513D0176A04C600665111 /* workspaceViewController.h */,
+				8AA513D1176A04C600665111 /* workspaceViewController.m */,
 				8AA513E6176A04C600665111 /* storageViewController.h */,
 				8AA513D2176A04C600665111 /* storageViewController.m */,
 			);
@@ -395,6 +407,8 @@
 				754977E0176D01AB0042B5D8 /* ConnectionListCell.m */,
 				754977E4176D0CB60042B5D8 /* ShareListCell.h */,
 				754977E5176D0CB60042B5D8 /* ShareListCell.m */,
+				754977ED176D1D9B0042B5D8 /* ShareDetailCell.h */,
+				754977EE176D1D9B0042B5D8 /* ShareDetailCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -430,9 +444,10 @@
 		7550E05E1768011700E8F547 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				8AEC8571176AAEE300FD7F97 /* borderBar.png */,
-				8AEC8572176AAEE700FD7F97 /* TabBarButtonItemSettings.png */,
+				754977F0176D204D0042B5D8 /* Document.png */,
+				754977F1176D204F0042B5D8 /* FileCabinet.png */,
 				7550E05F1768011700E8F547 /* AlertView.png */,
+				8AEC8571176AAEE300FD7F97 /* borderBar.png */,
 				7550E0601768011700E8F547 /* backButton.png */,
 				7550E0611768011700E8F547 /* background.png */,
 				7550E0621768011700E8F547 /* barImageWithLogo.png */,
@@ -465,6 +480,7 @@
 				7550E07D1768011700E8F547 /* signUpButton.png */,
 				7550E07E1768011700E8F547 /* simpleButton.png */,
 				7550E07F1768011700E8F547 /* submitButton.png */,
+				8AEC8572176AAEE700FD7F97 /* TabBarButtonItemSettings.png */,
 				7550E0801768011700E8F547 /* usernamePasswordError.png */,
 			);
 			path = Images;
@@ -568,10 +584,10 @@
 				8AA513E5176A04C600665111 /* storageSignupViewController.m */,
 				8AA513E7176A04C600665111 /* ViewController.h */,
 				8AA513D7176A04C600665111 /* ViewController.m */,
-				8AA513D0176A04C600665111 /* workspaceViewController.h */,
-				8AA513D1176A04C600665111 /* workspaceViewController.m */,
 				8A256BBE176A2202001E5823 /* shareListViewController.h */,
 				8A256BBF176A2202001E5823 /* shareListViewController.m */,
+				754977EA176D1AED0042B5D8 /* shareDetailViewController.h */,
+				754977EB176D1AEE0042B5D8 /* shareDetailViewController.m */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -687,6 +703,8 @@
 				8AA513FA176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard in Resources */,
 				8AEC8573176AAEED00FD7F97 /* borderBar.png in Resources */,
 				8AEC8574176AAEED00FD7F97 /* TabBarButtonItemSettings.png in Resources */,
+				754977F2176D20520042B5D8 /* Document.png in Resources */,
+				754977F3176D20520042B5D8 /* FileCabinet.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,6 +749,8 @@
 				754977DE176CFB4A0042B5D8 /* connectionListViewController.m in Sources */,
 				754977E1176D01AB0042B5D8 /* ConnectionListCell.m in Sources */,
 				754977E6176D0CB60042B5D8 /* ShareListCell.m in Sources */,
+				754977EC176D1AEE0042B5D8 /* shareDetailViewController.m in Sources */,
+				754977EF176D1D9B0042B5D8 /* ShareDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
