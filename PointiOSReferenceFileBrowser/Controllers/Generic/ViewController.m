@@ -432,6 +432,7 @@ UIImageView* imgView;
         [_usernameTextField setHidden:YES];
         [_passwordTextField setHidden:YES];
     }
+    /*
     if(!imgView){
         imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
         imgView.image = [UIImage imageNamed:@"barImageWithLogo.png"];
@@ -442,6 +443,7 @@ UIImageView* imgView;
     [UIView animateWithDuration:0.25 animations:^(void) {
         imgView.alpha = 1;
     }];
+    */
 }
 
 - (void) viewWillDisappear:(BOOL)animated{

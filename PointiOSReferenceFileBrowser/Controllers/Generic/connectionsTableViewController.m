@@ -67,10 +67,12 @@ UIImageView* imgView4;
     [super viewDidLoad];
     
     self.navigationItem.title = @"My Storage Connections";
+    /*
     for (UIView *view in self.navigationController.navigationBar.subviews) {
         [view removeFromSuperview];
     }
-
+     */
+    
     _appDel = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     if(![self isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -119,6 +121,7 @@ UIImageView* imgView4;
 
 - (void) viewWillDisappear:(BOOL)animated{
     
+    /*
     imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     imgView.image = [UIImage imageNamed:@"barImageWithLogo.png"];
     [self.navigationController.navigationBar addSubview:imgView];
@@ -127,7 +130,7 @@ UIImageView* imgView4;
     [UIView animateWithDuration:0.25 animations:^(void) {
         imgView.alpha = 1;
     }];
-
+     */
     /*
     [UIView animateWithDuration:0.25 animations:^(void) {
         imgView.alpha = 0;

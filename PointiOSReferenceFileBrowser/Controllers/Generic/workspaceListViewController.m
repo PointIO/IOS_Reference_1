@@ -84,9 +84,12 @@ UIImageView* imgView4;
     [super viewDidLoad];
     
     self.navigationItem.title = @"My Folders";
+    /*
     for (UIView *view in self.navigationController.navigationBar.subviews) {
         [view removeFromSuperview];
     }
+    */
+    
     _JSONSharedFoldersArray = [NSArray array];
     _list = [NSMutableArray array];
     _shareIDs = [NSMutableArray array];
@@ -166,6 +169,7 @@ UIImageView* imgView4;
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
+    /*
     imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
     imgView.image = [UIImage imageNamed:@"barImageWithLogo.png"];
     [self.navigationController.navigationBar addSubview:imgView];
@@ -174,6 +178,7 @@ UIImageView* imgView4;
     [UIView animateWithDuration:0.25 animations:^(void) {
         imgView.alpha = 1;
     }];
+    */
 }
 
 - (void) viewDidDisappear:(BOOL)animated{
@@ -573,18 +578,6 @@ UIImageView* imgView4;
             [wvc setFolderName:[_list objectAtIndex:i]];
             [wvc setSessionKey:_sessionKey];
             NSLog(@"INDEX IS %i",i);
-           
-            /*
-            UINavigationController *navigationController            = segue.destinationViewController;
-            PlayerDetailViewController *playerDetailViewController  = [[navigationController viewControllers] objectAtIndex:0];
-            playerDetailViewController.delegate                     = self;
-            
-            NSIndexPath *indexPath                                  = sender;
-            
-            Player *player                                          = [self.fetchedResultsController objectAtIndexPath:indexPath];
-            playerDetailViewController.playerToEdit                 = player;
-            */
-
         }
 
     }

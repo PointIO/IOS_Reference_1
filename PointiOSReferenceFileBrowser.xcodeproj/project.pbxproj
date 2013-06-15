@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		754977DE176CFB4A0042B5D8 /* connectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 754977DD176CFB4A0042B5D8 /* connectionListViewController.m */; };
+		754977E1176D01AB0042B5D8 /* ConnectionListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 754977E0176D01AB0042B5D8 /* ConnectionListCell.m */; };
+		754977E6176D0CB60042B5D8 /* ShareListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 754977E5176D0CB60042B5D8 /* ShareListCell.m */; };
 		7550DFDD1767FDC500E8F547 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550DFDC1767FDC500E8F547 /* UIKit.framework */; };
 		7550DFDF1767FDC500E8F547 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550DFDE1767FDC500E8F547 /* Foundation.framework */; };
 		7550DFE11767FDC500E8F547 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550DFE01767FDC500E8F547 /* CoreGraphics.framework */; };
@@ -97,6 +100,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		754977DC176CFB4A0042B5D8 /* connectionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectionListViewController.h; sourceTree = "<group>"; };
+		754977DD176CFB4A0042B5D8 /* connectionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectionListViewController.m; sourceTree = "<group>"; };
+		754977DF176D01AB0042B5D8 /* ConnectionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConnectionListCell.h; sourceTree = "<group>"; };
+		754977E0176D01AB0042B5D8 /* ConnectionListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConnectionListCell.m; sourceTree = "<group>"; };
+		754977E4176D0CB60042B5D8 /* ShareListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareListCell.h; sourceTree = "<group>"; };
+		754977E5176D0CB60042B5D8 /* ShareListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareListCell.m; sourceTree = "<group>"; };
 		7550DFD91767FDC500E8F547 /* PointiOSReferenceFileBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointiOSReferenceFileBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7550DFDC1767FDC500E8F547 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7550DFDE1767FDC500E8F547 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -189,7 +198,7 @@
 		8AA513CC176A04B800665111 /* newConnectionViewControlleriPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newConnectionViewControlleriPad.m; sourceTree = "<group>"; };
 		8AA513D0176A04C600665111 /* workspaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workspaceViewController.h; sourceTree = "<group>"; };
 		8AA513D1176A04C600665111 /* workspaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = workspaceViewController.m; sourceTree = "<group>"; };
-		8AA513D2176A04C600665111 /* storageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = storageViewController.m; sourceTree = "<group>"; };
+		8AA513D2176A04C600665111 /* storageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = storageViewController.m; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/storageViewController.m; sourceTree = "<group>"; };
 		8AA513D3176A04C600665111 /* connectionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectionsTableViewController.m; sourceTree = "<group>"; };
 		8AA513D4176A04C600665111 /* docViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = docViewerViewController.m; sourceTree = "<group>"; };
 		8AA513D5176A04C600665111 /* newConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newConnectionViewController.m; sourceTree = "<group>"; };
@@ -209,7 +218,7 @@
 		8AA513E3176A04C600665111 /* signupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = signupViewController.m; sourceTree = "<group>"; };
 		8AA513E4176A04C600665111 /* storageSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = storageSignupViewController.h; sourceTree = "<group>"; };
 		8AA513E5176A04C600665111 /* storageSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = storageSignupViewController.m; sourceTree = "<group>"; };
-		8AA513E6176A04C600665111 /* storageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = storageViewController.h; sourceTree = "<group>"; };
+		8AA513E6176A04C600665111 /* storageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = storageViewController.h; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/storageViewController.h; sourceTree = "<group>"; };
 		8AA513E7176A04C600665111 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8AA513F4176A062C00665111 /* connectionsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectionsManagerViewController.h; sourceTree = "<group>"; };
 		8AA513F5176A062C00665111 /* connectionsManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectionsManagerViewController.m; sourceTree = "<group>"; };
@@ -239,9 +248,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		754977E3176D08350042B5D8 /* ToBeDeleted */ = {
+			isa = PBXGroup;
+			children = (
+				8AA513E6176A04C600665111 /* storageViewController.h */,
+				8AA513D2176A04C600665111 /* storageViewController.m */,
+			);
+			path = ToBeDeleted;
+			sourceTree = "<group>";
+		};
 		7550DFD01767FDC500E8F547 = {
 			isa = PBXGroup;
 			children = (
+				754977E3176D08350042B5D8 /* ToBeDeleted */,
 				7550E0261768001400E8F547 /* SupportingFiles */,
 				7550DFE21767FDC500E8F547 /* PointiOSReferenceFileBrowser */,
 				7550DFDB1767FDC500E8F547 /* Frameworks */,
@@ -372,6 +391,10 @@
 		7550E01A1767FFB500E8F547 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				754977DF176D01AB0042B5D8 /* ConnectionListCell.h */,
+				754977E0176D01AB0042B5D8 /* ConnectionListCell.m */,
+				754977E4176D0CB60042B5D8 /* ShareListCell.h */,
+				754977E5176D0CB60042B5D8 /* ShareListCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -521,6 +544,8 @@
 		7550E1471768081700E8F547 /* Generic */ = {
 			isa = PBXGroup;
 			children = (
+				754977DC176CFB4A0042B5D8 /* connectionListViewController.h */,
+				754977DD176CFB4A0042B5D8 /* connectionListViewController.m */,
 				8AA513F4176A062C00665111 /* connectionsManagerViewController.h */,
 				8AA513F5176A062C00665111 /* connectionsManagerViewController.m */,
 				8AA513D8176A04C600665111 /* connectionsTableViewController.h */,
@@ -541,8 +566,6 @@
 				8AA513E3176A04C600665111 /* signupViewController.m */,
 				8AA513E4176A04C600665111 /* storageSignupViewController.h */,
 				8AA513E5176A04C600665111 /* storageSignupViewController.m */,
-				8AA513E6176A04C600665111 /* storageViewController.h */,
-				8AA513D2176A04C600665111 /* storageViewController.m */,
 				8AA513E7176A04C600665111 /* ViewController.h */,
 				8AA513D7176A04C600665111 /* ViewController.m */,
 				8AA513D0176A04C600665111 /* workspaceViewController.h */,
@@ -705,6 +728,9 @@
 				8AA513F3176A04C600665111 /* storageSignupViewController.m in Sources */,
 				8AA513F6176A062D00665111 /* connectionsManagerViewController.m in Sources */,
 				8A256BC0176A2202001E5823 /* workspaceListViewController.m in Sources */,
+				754977DE176CFB4A0042B5D8 /* connectionListViewController.m in Sources */,
+				754977E1176D01AB0042B5D8 /* ConnectionListCell.m in Sources */,
+				754977E6176D0CB60042B5D8 /* ShareListCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
