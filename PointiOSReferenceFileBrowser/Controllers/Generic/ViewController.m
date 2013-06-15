@@ -61,13 +61,15 @@ UIImageView* imgView;
 
     [_signOutButton setHidden:YES];
     [_goBackButton setHidden:YES];
-    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.10980392156863f green:0.37254901960784f blue:0.6078431372549f alpha:1];
-    self.navigationController.toolbar.tintColor = [UIColor colorWithRed:0.10980392156863f green:0.37254901960784f blue:0.6078431372549f alpha:1];
+    // self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.10980392156863f green:0.37254901960784f blue:0.6078431372549f alpha:1];
+    // self.navigationController.toolbar.tintColor = [UIColor colorWithRed:0.10980392156863f green:0.37254901960784f blue:0.6078431372549f alpha:1];
+
     UISwipeGestureRecognizer* swipedUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(screenPressed)];
-    
     [swipedUp setDirection:UISwipeGestureRecognizerDirectionUp];
     [self.view addGestureRecognizer:swipedUp];
+    
     _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     _postString = @"apikey=b022de6e-9bf6-11e2-b014-12313b093415";
     if([[defaults valueForKey:@"USERNAME"] length] != 0 && [[defaults valueForKey:@"PASSWORD"] length] !=0){
@@ -437,10 +439,12 @@ UIImageView* imgView;
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
+    /*
     [UIView animateWithDuration:0.25 animations:^(void) {
         imgView.alpha = 0;
     }];
     imgView = nil;
+    */
 }
 
 - (BOOL) isConnectedToInternet{

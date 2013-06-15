@@ -65,7 +65,12 @@ UIImageView* imgView4;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-        
+    
+    self.navigationItem.title = @"My Storage Connections";
+    for (UIView *view in self.navigationController.navigationBar.subviews) {
+        [view removeFromSuperview];
+    }
+
     _appDel = (AppDelegate*) [[UIApplication sharedApplication] delegate];
     if(![self isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -88,6 +93,7 @@ UIImageView* imgView4;
     _EmailFields = [NSMutableArray array];
     i = 0;
 
+    /*
     _manageStoredConnectionsButton.width = 0.01;
     NSMutableArray* toolbarButtons = [self.toolbarItems mutableCopy];
     // lol
@@ -98,17 +104,31 @@ UIImageView* imgView4;
     [toolbarButtons addObject: _manageStoredConnectionsButton];
     [toolbarButtons addObject: _manageStoredConnectionsButton];
     [self setToolbarItems:toolbarButtons];
+    */
     
     // JB 6/9/13: unhiding NavController has messy results...need to re-evaluate
     // [[self navigationController] setNavigationBarHidden:YES animated:YES];
+    /*
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc]
                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAction
                                   target:self
                                   action:@selector(addNewConnectionPressed:)];
     self.navigationItem.rightBarButtonItem = addButton;
+    */
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
+    
+    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    imgView.image = [UIImage imageNamed:@"barImageWithLogo.png"];
+    [self.navigationController.navigationBar addSubview:imgView];
+    
+    imgView.alpha = 0;
+    [UIView animateWithDuration:0.25 animations:^(void) {
+        imgView.alpha = 1;
+    }];
+
+    /*
     [UIView animateWithDuration:0.25 animations:^(void) {
         imgView.alpha = 0;
         imgView2.alpha = 0;
@@ -117,6 +137,7 @@ UIImageView* imgView4;
     imgView = nil;
     imgView2 = nil;
     imgView4 = nil;
+    */
 }
 
 - (void) viewDidDisappear:(BOOL)animated{
@@ -124,6 +145,7 @@ UIImageView* imgView4;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
+    /*
     if(!imgView){
     imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
     imgView.image = [UIImage imageNamed:@"blueBarImage.png"];
@@ -147,6 +169,7 @@ UIImageView* imgView4;
         imgView3.alpha = 1;
         imgView4.alpha = 1;
     }];
+    */
 }
 
 - (void) viewDidAppear:(BOOL)animated{
@@ -162,7 +185,7 @@ UIImageView* imgView4;
         [err setBackgroundColor:[UIColor clearColor]];
         [err show];
     } else {
-        [self.navigationController setToolbarHidden:NO animated:YES];
+        // [self.navigationController setToolbarHidden:NO animated:YES];
         _userStorageInput = nil;
         _connectionSiteTypeID = nil;
         [self.tableView reloadData];
@@ -209,7 +232,7 @@ UIImageView* imgView4;
             _displayList  = [NSMutableArray array];
             _connectionSharedFolders = [NSMutableArray array];
             
-            self.navigationItem.backBarButtonItem.title = @"Back";
+            // self.navigationItem.backBarButtonItem.title = @"Back";
             
             NSDictionary* result = [_JSONArrayList valueForKey:@"RESULT"];
             NSArray* columns = [result valueForKey:@"COLUMNS"];

@@ -44,13 +44,22 @@ NSArray* tempArray;
 {
     [super viewDidLoad];
     
+    /*
+    for (UIView *view in self.navigationController.navigationBar.subviews) {
+        [view removeFromSuperview];
+    }
+     */
+    
+    
     [_errorOccuredLabel setAlpha:0];
     [_shareFileButton setEnabled:NO];
 	self.navigationItem.title = _fileName;
     _docWebView.delegate = self;
     _docWebView.scalesPageToFit = YES;
-    self.navigationItem.backBarButtonItem.title = @"Back";
-    [self.navigationController setToolbarHidden:NO animated:YES];
+    
+    // self.navigationItem.backBarButtonItem.title = @"Back";
+    // [self.navigationController setToolbarHidden:NO animated:YES];
+    
     if(![self isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
@@ -103,6 +112,7 @@ NSArray* tempArray;
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
+    /*
     [UIView animateWithDuration:0.25 animations:^(void) {
         imgView.alpha = 0;
         imgView2.alpha = 0;
@@ -114,30 +124,31 @@ NSArray* tempArray;
     imgView2 = nil;
     imgView4 = nil;
     fileNameLabel = nil;
+    */
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     if(!imgView){
-    fileNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 16, 150, 50)];
-    fileNameLabel.backgroundColor = [UIColor clearColor];
-    fileNameLabel.text = _fileName;
-    fileNameLabel.textColor = [UIColor whiteColor];
-    [fileNameLabel setTextAlignment:UITextAlignmentCenter];
-    fileNameLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:18.0];
-    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
-    imgView.image = [UIImage imageNamed:@"blueBarImageClean.png"];
-    [self.navigationController.view addSubview:imgView];
-    imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
-    imgView2.image = [UIImage imageNamed:@"backButton.png"];
-    [self.navigationController.view addSubview:imgView2];
-    [self.navigationController.view addSubview:fileNameLabel];
-    imgView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 1.1f, 320, 44)];
-    imgView3.image = [UIImage imageNamed:@"blueBarImageClean"];
-    [self.navigationController.toolbar addSubview:imgView3];
-    imgView4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 7, 78, 30)];
-    //JB 6/9/13 - changed ShareFileButton to standard Apple Action image
-    // imgView4.image = [UIImage imageNamed:@"shareFileButton"];
-    [self.navigationController.toolbar addSubview:imgView4];
+        fileNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(85, 16, 150, 50)];
+        fileNameLabel.backgroundColor = [UIColor clearColor];
+        fileNameLabel.text = _fileName;
+        fileNameLabel.textColor = [UIColor whiteColor];
+        [fileNameLabel setTextAlignment:UITextAlignmentCenter];
+        fileNameLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:18.0];
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
+        imgView.image = [UIImage imageNamed:@"blueBarImageClean.png"];
+        [self.navigationController.view addSubview:imgView];
+        imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
+        imgView2.image = [UIImage imageNamed:@"backButton.png"];
+        [self.navigationController.view addSubview:imgView2];
+        [self.navigationController.view addSubview:fileNameLabel];
+        imgView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 1.1f, 320, 44)];
+        imgView3.image = [UIImage imageNamed:@"blueBarImageClean"];
+        [self.navigationController.toolbar addSubview:imgView3];
+        imgView4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 7, 78, 30)];
+        //JB 6/9/13 - changed ShareFileButton to standard Apple Action image
+        // imgView4.image = [UIImage imageNamed:@"shareFileButton"];
+        [self.navigationController.toolbar addSubview:imgView4];
     }
     imgView.alpha = 0;
     imgView2.alpha = 0;
@@ -217,12 +228,12 @@ NSArray* tempArray;
         [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
     }
     NSString* requestParams = [pairs componentsJoinedByString:@"&"];
-//    requestParams = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
-//                                                                                              NULL,
-//                                                                                              (CFStringRef)requestParams,
-//                                                                                              NULL,
-//                                                                                              (CFStringRef)@"!*'();:@&=+$,/?%#[]",
-//                                                                                              kCFStringEncodingUTF8 ));
+    //    requestParams = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(
+    //                                                                                              NULL,
+    //                                                                                              (CFStringRef)requestParams,
+    //                                                                                              NULL,
+    //                                                                                              (CFStringRef)@"!*'();:@&=+$,/?%#[]",
+    //                                                                                              kCFStringEncodingUTF8 ));
     URLString = [URLString stringByAppendingFormat:@"?%@",requestParams];
     URLString = [URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [request setURL:[NSURL URLWithString:URLString]];

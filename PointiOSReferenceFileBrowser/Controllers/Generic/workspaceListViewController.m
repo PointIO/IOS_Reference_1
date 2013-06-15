@@ -50,7 +50,7 @@ int i;
 NSString* requestedConnectionName;
 
 UIImageView* imgView;
-UIImageView* imgView2;
+// UIImageView* imgView2;
 UILabel* sharedFolderLabel;
 /*
 UIImageView* imgView3;
@@ -83,7 +83,10 @@ UIImageView* imgView4;
 {
     [super viewDidLoad];
     
-    self.navigationItem.title = _storageName;
+    self.navigationItem.title = @"My Folders";
+    for (UIView *view in self.navigationController.navigationBar.subviews) {
+        [view removeFromSuperview];
+    }
     _JSONSharedFoldersArray = [NSArray array];
     _list = [NSMutableArray array];
     _shareIDs = [NSMutableArray array];
@@ -163,20 +166,17 @@ UIImageView* imgView4;
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
-    /*
-     [UIView animateWithDuration:0.25 animations:^(void) {
-        imgView.alpha = 0;
-        imgView2.alpha = 0;
-        imgView4.alpha = 0;
+    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+    imgView.image = [UIImage imageNamed:@"barImageWithLogo.png"];
+    [self.navigationController.navigationBar addSubview:imgView];
+    
+    imgView.alpha = 0;
+    [UIView animateWithDuration:0.25 animations:^(void) {
+        imgView.alpha = 1;
     }];
-    imgView = nil;
-    imgView2 = nil;
-    imgView4 = nil;
-    */
 }
 
 - (void) viewDidDisappear:(BOOL)animated{
-    
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -187,14 +187,15 @@ UIImageView* imgView4;
         sharedFolderLabel.textColor = [UIColor whiteColor];
         [sharedFolderLabel setTextAlignment:UITextAlignmentCenter];
         sharedFolderLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:18.0];
-        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
-        imgView.image = [UIImage imageNamed:@"blueBarImageClean.png"];
-        [self.navigationController.view addSubview:imgView];
-        imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
-        imgView2.image = [UIImage imageNamed:@"backButton.png"];
-        [self.navigationController.view addSubview:imgView2];
-        [self.navigationController.view addSubview:sharedFolderLabel];
+        // imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
+        // imgView.image = [UIImage imageNamed:@"blueBarImageClean.png"];
+        // [self.navigationController.view addSubview:imgView];
+        // imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
+        // imgView2.image = [UIImage imageNamed:@"backButton.png"];
+        // [self.navigationController.view addSubview:imgView2];
+        // [self.navigationController.view addSubview:sharedFolderLabel];
     }
+    /*
     imgView.alpha = 0;
     imgView2.alpha = 0;
     sharedFolderLabel.alpha = 0;
@@ -203,7 +204,7 @@ UIImageView* imgView4;
         imgView2.alpha = 1;
         sharedFolderLabel.alpha = 1;
     }];
-
+     */
     
     
     /*
