@@ -166,20 +166,12 @@ int i;
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     selectedRow = indexPath.row;
-    [self performSegueWithIdentifier:@"goToFiles" sender:indexPath];
-
-    /*
-     NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
-    _selectedShareID = [allFoldersForAllShareIDs valueForKey:[_folderNames objectAtIndex:selectedRow]];
-    NSLog(@"Chosen Folder ID from inside didSelectRowAtIndexPath %@", _selectedShareID);
-    
-    
     NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
     _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
     NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
-    
+
     [self performSegueWithIdentifier:@"goToFiles" sender:indexPath];
-    */
+
 }
 
 
@@ -187,6 +179,10 @@ int i;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     selectedRow = indexPath.row;
+    NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
+    _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
+    NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
+    
     [self performSegueWithIdentifier:@"goToFiles" sender:indexPath];
 
 }
@@ -205,16 +201,16 @@ int i;
     else{
         if([[segue identifier] isEqualToString:@"goToFiles"]){
             NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
-            // NSLog(@"ALL FOLDERS FOR ALL SHARE IDS - %@",allFoldersForAllShareIDs);
             NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:selectedRow]];
-            // NSLog(@"SHARE ID = %@", chosenShareID);
             
             UINavigationController *navigationController    = segue.destinationViewController;
             shareDetailViewController *wvc                  = [[navigationController viewControllers] objectAtIndex:0];
+            
             [wvc setShareID:chosenShareID];
             [wvc setFolderName:[_list objectAtIndex:i]];
             [wvc setSessionKey:_sessionKey];
-            NSLog(@"INDEX IS %i",i);
+            wvc.selectedShareID = _selectedShareID;
+            wvc.selectedShareName = _selectedShareName;
         }
     }
 }

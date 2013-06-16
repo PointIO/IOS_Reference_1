@@ -37,7 +37,7 @@ UIImageView* imgView2;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    // self.navigationItem.title = _selectedShareName;
+    self.navigationItem.title = _selectedShareName;
     
     // [_backButton setEnabled:NO];
     
@@ -84,6 +84,7 @@ UIImageView* imgView2;
 
 - (void) viewDidAppear:(BOOL)animated{
     // [self.navigationController setToolbarHidden:YES animated:YES];
+    self.navigationItem.title = _selectedShareName;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
 
