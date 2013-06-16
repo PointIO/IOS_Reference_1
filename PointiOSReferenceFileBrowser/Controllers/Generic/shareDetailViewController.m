@@ -16,22 +16,6 @@
 
 @implementation shareDetailViewController
 
-/*
-@synthesize folderName = _folderName;
-@synthesize JSONSharedFoldersArray = _JSONSharedFoldersArray;
-@synthesize sessionKey = _sessionKey;
-@synthesize fileNames = _fileNames;
-@synthesize containerID = _containerID;
-@synthesize remotePath = _remotePath;
-@synthesize fileIDs = _fileIDs;
-@synthesize shareID = _shareID;
-@synthesize fileShareIDs = _fileShareIDs;
-@synthesize containerIDs = _containerIDs;
-@synthesize filePaths = _filePaths;
-@synthesize isFolder = _isFolder; //TIP IOS-12
-@synthesize containerIDHistory = _containerIDHistory;
-@synthesize lastFolderTitle = _lastFolderTitle;
-*/
 @synthesize i;
 @synthesize nestedFoldersCounter;
 
@@ -41,7 +25,6 @@ NSMutableArray* tempContainer;
 
 UIImageView* imgView;
 UIImageView* imgView2;
-UILabel* sharedFolderLabel;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -54,6 +37,7 @@ UILabel* sharedFolderLabel;
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    // self.navigationItem.title = _selectedShareName;
     
     // [_backButton setEnabled:NO];
     
@@ -90,7 +74,6 @@ UILabel* sharedFolderLabel;
             });
         });
     }
-    
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -140,10 +123,11 @@ UILabel* sharedFolderLabel;
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    [_backButton setEnabled:YES];
+    // [_backButton setEnabled:YES];
     
     i = indexPath.row;
     NSLog(@"%@",_fileIDs);
+    
     //TIP IOS-12
     if([[_isFolder objectAtIndex:i] boolValue] == NO) {
         NSLog(@"IS NOT A FOLDER");
@@ -172,6 +156,7 @@ UILabel* sharedFolderLabel;
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self.navigationItem setTitle:chosenFolderTitle];
                 [self.tableView reloadData];
+                /*
                 [UIView animateWithDuration:0.15 animations:^(void) {
                     [sharedFolderLabel setAlpha:0];
                 }];
@@ -179,6 +164,7 @@ UILabel* sharedFolderLabel;
                 [UIView animateWithDuration:0.15 animations:^(void) {
                     [sharedFolderLabel setAlpha:1];
                 }];
+                */
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 /*
                 UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Back"
@@ -195,6 +181,89 @@ UILabel* sharedFolderLabel;
 
 
 #pragma mark - Business Logic
+- (void) getFileNamesAndFileIDs{
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    NSURLResponse* urlResponseList;
+    NSError* requestErrorList;
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    NSString* URLString = [NSString stringWithFormat:@"https://api.point.io/api/v2/folders/list.json"];
+    
+    NSMutableArray* objects;
+    NSMutableArray* keys;
+    if(_containerID){
+        objects = [NSArray arrayWithObjects:_shareID,_remotePath,_containerID,nil];
+        keys = [NSArray arrayWithObjects:@"folderid",@"path",@"containerid",nil];
+    } else {
+        objects = [NSArray arrayWithObjects:_shareID,_remotePath,nil];
+        keys = [NSArray arrayWithObjects:@"folderid",@"path",nil];
+    }
+    
+    NSDictionary* params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    NSMutableArray* pairs = [[NSMutableArray alloc] initWithCapacity:0];
+    for(NSString* key in params){
+        [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
+    }
+    
+    NSString* requestParams = [pairs componentsJoinedByString:@"&"];
+    URLString = [URLString stringByAppendingFormat:@"?%@",requestParams];
+    URLString = [URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [request setURL:[NSURL URLWithString:URLString]];
+    NSLog(@"URL STRING = %@",URLString);
+    
+    [request setHTTPMethod:@"POST"];
+    [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
+    NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
+    if(!response){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        [alert show];
+    } else {
+        NSArray* listFilesResponse = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"list file response = %@",listFilesResponse);
+        
+        _containerID = [listFilesResponse valueForKey:@"CONTAINERID"];
+        _fileNames = nil;
+        _fileIDs = nil;
+        _fileShareIDs = nil;
+        _filePaths = nil;
+        _containerIDs = nil;
+        //TIP IOS-12
+        _isFolder = nil;
+        
+        _isFolder = [NSMutableArray array];
+        _fileNames = [NSMutableArray array];
+        _filePaths = [NSMutableArray array];
+        _fileIDs = [NSMutableArray array];
+        _fileShareIDs = [NSMutableArray array];
+        _containerIDs = [NSMutableArray array];
+        
+        NSDictionary* result = [listFilesResponse valueForKey:@"RESULT"];
+        NSArray* columns = [result valueForKey:@"COLUMNS"];
+        NSArray* data = [result valueForKey:@"DATA"];
+        for(int j=0; j<[data count];j++){
+            NSArray* data2 = [data objectAtIndex:j];
+            NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
+            [_fileNames addObject:[temp valueForKey:@"NAME"]];
+            [_fileIDs addObject:[temp valueForKey:@"FILEID"]];
+            //TIP finish logic to distinguish between folder and file IOS-12
+            if ([[temp valueForKey:@"TYPE"] rangeOfString:@"DIR"].location == NSNotFound) {
+                //This is a file
+                [_isFolder addObject:@0];
+                //[_isFolder addObject:[NSNumber numberWithInt:0]];
+            }
+            else {
+                //This is a folder
+                [_isFolder addObject:@1];
+                //[_isFolder addObject:[NSNumber numberWithInt:1]];
+            }
+            [_fileShareIDs addObject:[temp valueForKey:@"SHAREID"]];
+            [_containerIDs addObject:[temp valueForKey:@"CONTAINERID"]];
+            [_filePaths addObject:[temp valueForKey:@"PATH"]];
+        }
+    }
+    NSLog(@"NUMBER OF FILES = %i",[_fileNames count]);
+}
+
+
 - (void) showPastFolder{
     NSMutableArray* subs = [NSMutableArray arrayWithArray:[_remotePath componentsSeparatedByString:@"/"]];
     [subs removeLastObject];
@@ -232,10 +301,11 @@ UILabel* sharedFolderLabel;
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.tableView reloadData];
             if([tempContainer count] != 0){
-            self.navigationItem.title = [tempContainer lastObject];
-            [sharedFolderLabel setText:[tempContainer lastObject]];
+                // self.navigationItem.title = [tempContainer lastObject];
+                // [sharedFolderLabel setText:[tempContainer lastObject]];
             } else {
-                self.navigationItem.title = rootFolderTitle;
+                // self.navigationItem.title = rootFolderTitle;
+                /*
                 [UIView animateWithDuration:0.15 animations:^(void) {
                     [sharedFolderLabel setAlpha:0];
                 }];
@@ -243,91 +313,13 @@ UILabel* sharedFolderLabel;
                 [UIView animateWithDuration:0.15 animations:^(void) {
                     [sharedFolderLabel setAlpha:1];
                 }];
+                */
             }
             [_containerIDHistory removeLastObject];
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         });
     });
     
-}
-
-
-- (void) getFileNamesAndFileIDs{
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    NSURLResponse* urlResponseList;
-    NSError* requestErrorList;
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSString* URLString = [NSString stringWithFormat:@"https://api.point.io/api/v2/folders/list.json"];
-    
-    NSMutableArray* objects;
-    NSMutableArray* keys;
-    if(_containerID){
-        objects = [NSArray arrayWithObjects:_shareID,_remotePath,_containerID,nil];
-        keys = [NSArray arrayWithObjects:@"folderid",@"path",@"containerid",nil];
-    } else {
-        objects = [NSArray arrayWithObjects:_shareID,_remotePath,nil];
-        keys = [NSArray arrayWithObjects:@"folderid",@"path",nil];
-    }
-    NSDictionary* params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-    
-    NSMutableArray* pairs = [[NSMutableArray alloc] initWithCapacity:0];
-    for(NSString* key in params){
-        [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
-    }
-    NSString* requestParams = [pairs componentsJoinedByString:@"&"];
-    
-    URLString = [URLString stringByAppendingFormat:@"?%@",requestParams];
-    URLString = [URLString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    [request setURL:[NSURL URLWithString:URLString]];
-    NSLog(@"URL STRING = %@",URLString);
-    [request setHTTPMethod:@"POST"];
-    [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
-    NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
-    if(!response){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [alert show];
-    } else {
-        NSArray* listFilesResponse = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"list file response = %@",listFilesResponse);
-        _containerID = [listFilesResponse valueForKey:@"CONTAINERID"];
-        _fileNames = nil;
-        _fileIDs = nil;
-        _fileShareIDs = nil;
-        _filePaths = nil;
-        _containerIDs = nil;
-        //TIP IOS-12
-        _isFolder = nil;
-        _isFolder = [NSMutableArray array];
-        _fileNames = [NSMutableArray array];
-        _filePaths = [NSMutableArray array];
-        _fileIDs = [NSMutableArray array];
-        _fileShareIDs = [NSMutableArray array];
-        _containerIDs = [NSMutableArray array];
-        NSDictionary* result = [listFilesResponse valueForKey:@"RESULT"];
-        NSArray* columns = [result valueForKey:@"COLUMNS"];
-        NSArray* data = [result valueForKey:@"DATA"];
-        for(int j=0; j<[data count];j++){
-            NSArray* data2 = [data objectAtIndex:j];
-            NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
-            [_fileNames addObject:[temp valueForKey:@"NAME"]];
-            [_fileIDs addObject:[temp valueForKey:@"FILEID"]];
-            //TIP finish logic to distinguish between folder and file IOS-12
-            if ([[temp valueForKey:@"TYPE"] rangeOfString:@"DIR"].location == NSNotFound) {
-                //This is a file
-                [_isFolder addObject:@0];
-                //[_isFolder addObject:[NSNumber numberWithInt:0]];
-            }
-            else {
-                //This is a folder
-                [_isFolder addObject:@1];
-                //[_isFolder addObject:[NSNumber numberWithInt:1]];
-            }
-            [_fileShareIDs addObject:[temp valueForKey:@"SHAREID"]];
-            [_containerIDs addObject:[temp valueForKey:@"CONTAINERID"]];
-            [_filePaths addObject:[temp valueForKey:@"PATH"]];
-        }
-    }
-    NSLog(@"NUMBER OF FILES = %i",[_fileNames count]);
 }
 
 
@@ -368,10 +360,11 @@ UILabel* sharedFolderLabel;
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.tableView reloadData];
             if([tempContainer count] != 0){
-                self.navigationItem.title = [tempContainer lastObject];
-                [sharedFolderLabel setText:[tempContainer lastObject]];
+                // self.navigationItem.title = [tempContainer lastObject];
+                // [sharedFolderLabel setText:[tempContainer lastObject]];
             } else {
-                self.navigationItem.title = rootFolderTitle;
+                // self.navigationItem.title = rootFolderTitle;
+                /*
                 [UIView animateWithDuration:0.15 animations:^(void) {
                     [sharedFolderLabel setAlpha:0];
                 }];
@@ -379,6 +372,7 @@ UILabel* sharedFolderLabel;
                 [UIView animateWithDuration:0.15 animations:^(void) {
                     [sharedFolderLabel setAlpha:1];
                 }];
+                */
             }
             [_containerIDHistory removeLastObject];
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

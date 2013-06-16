@@ -326,7 +326,7 @@
                                 </view>
                                 <connections>
                                     <outlet property="nameLabel" destination="sny-Is-14n" id="EfN-Po-UNa"/>
-                                    <segue destination="gdR-aU-CXJ" kind="modal" identifier="goToFiles" modalTransitionStyle="partialCurl" id="VS2-XD-gQa"/>
+                                    <segue destination="gdR-aU-CXJ" kind="modal" identifier="goToFiles" modalTransitionStyle="crossDissolve" id="VS2-XD-gQa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -444,7 +444,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Connections" id="ssP-tc-KRd">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rt6-GJ-HXj">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="rt6-GJ-HXj">
                             <connections>
                                 <segue destination="6Ps-kN-Pm1" kind="push" identifier="addConnection" id="owh-cI-ucv"/>
                             </connections>
@@ -975,154 +975,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="signUpButton.png" width="165" height="87"/>
         <image name="submitButton.png" width="165" height="87"/>
     </resources>
-    <classes>
-        <class className="ConnectionListCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConnectionListCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ShareDetailCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShareDetailCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="typeImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ShareListCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShareListCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goBackPressed"/>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signInPressed"/>
-                <relationship kind="action" name="signOutPressed"/>
-                <relationship kind="action" name="signUpPressed"/>
-                <relationship kind="outlet" name="goBackButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="signInButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signOutButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="connectionListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionListViewController.h"/>
-        </class>
-        <class className="connectionsManagerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionsManagerViewController.h"/>
-        </class>
-        <class className="connectionsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionsTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewConnectionPressed:"/>
-                <relationship kind="action" name="manageStoredConnectionsPressed:"/>
-                <relationship kind="outlet" name="manageStoredConnectionsButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="datePickerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/datePickerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
-            </relationships>
-        </class>
-        <class className="docViewerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/docViewerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="shareFilePressed:"/>
-                <relationship kind="outlet" name="docWebView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="errorOccuredLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="shareFileButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
-            </relationships>
-        </class>
-        <class className="newConnectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/newConnectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createPressed"/>
-                <relationship kind="action" name="revisionControlEnabledValueChanged"/>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="outlet" name="checkinCheckout" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="checkinCheckoutLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="createButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="enabledLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="enabledSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="loggingEnabled" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="loggingLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="maxRevisions" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="maxRevisionsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="revisionControl" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="revisionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="shareDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/shareDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="showPastFolder:"/>
-                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="shareListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/shareListViewController.h"/>
-        </class>
-        <class className="sharingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/sharingViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="shareSecurelyPressed:"/>
-                <relationship kind="outlet" name="downloadSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="expireSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="forwardingSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="passwordSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="printSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="screenCaptureSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="shareSecurelyButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="signupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/signupViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signUpPressed"/>
-                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="reEnterPasswordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
-                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="storageSignupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/storageSignupViewController.h"/>
-        </class>
-        <class className="storageViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/storageViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signInPressed"/>
-                <relationship kind="action" name="signUp"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="signInButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signingActivityIndicator" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="signingInLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="textLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

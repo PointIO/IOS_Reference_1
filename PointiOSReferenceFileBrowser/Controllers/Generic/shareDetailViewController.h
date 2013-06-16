@@ -19,6 +19,11 @@
 
 @property (nonatomic) NSString* folderName;
 
+// JB
+@property (nonatomic, retain) NSString *selectedShareName;
+@property (nonatomic, retain) NSString *selectedShareID;
+
+
 //REST API
 @property (nonatomic,strong) NSArray* JSONSharedFoldersArray;
 @property (nonatomic) NSString* sessionKey;

@@ -17,6 +17,8 @@
 @property (nonatomic) NSMutableArray* list;
 @property (nonatomic) AppDelegate* appDel;
 @property (nonatomic) NSString* label;
+@property (nonatomic, retain) NSString *selectedShareName;
+@property (nonatomic, retain) NSString *selectedShareID;
 
 // REST API
 @property (nonatomic,strong) NSArray* JSONSharedFoldersArray;

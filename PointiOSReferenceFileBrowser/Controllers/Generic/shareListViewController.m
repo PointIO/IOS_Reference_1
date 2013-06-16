@@ -8,6 +8,7 @@
 
 #import "shareListViewController.h"
 #import "ShareListCell.h"
+#import "shareDetailViewController.h"
 
 
 @interface shareListViewController()
@@ -16,7 +17,10 @@
 
 @implementation shareListViewController
 
+int selectedRow;
 int i;
+
+
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
     if ( [(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
@@ -80,6 +84,9 @@ int i;
                 [_folderNames addObject:[temp valueForKey:@"NAME"]];
                 [_folderShareIDs addObject:[temp valueForKey:@"SHAREID"]];
                 [_list addObject:[temp valueForKey:@"NAME"]];
+                // NSLog(@"Folder Names are %@", _folderNames);
+                // NSLog(@"List contents are%@", _list);
+                // NSLog(@"Folder Share IDs are %@", _folderShareIDs);
             }
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -89,7 +96,7 @@ int i;
             });
         }
     });
-}
+ }
 
 - (void) viewWillDisappear:(BOOL)animated{
 }
@@ -155,36 +162,48 @@ int i;
 
 #pragma mark - Table view delegate
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+// Handle Disclosure Button Tap
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    int i = indexPath.row;
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    /*
+    selectedRow = indexPath.row;
     
     NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
-    NSLog(@"ALL FOLDERS FOR ALL SHARE IDS - %@",allFoldersForAllShareIDs);
-    NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:i]];
-    NSLog(@"SHARE ID = %@", chosenShareID);
+    _selectedShareID = [allFoldersForAllShareIDs valueForKey:[_folderNames objectAtIndex:selectedRow]];
+    NSLog(@"Chosen Folder ID from inside didSelectRowAtIndexPath %@", _selectedShareID);
     
-    // JB 6/9/13: Add error test for Null chosenShareID which will occur if no Access Rules defined
-    if (chosenShareID == NULL) {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"Workspace ID Missing"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles: nil];
-        [alert show];
-        return;
-    }
-    else {
-        [self performSegueWithIdentifier:@"goToFiles" sender:self];
-    }
+    
+    NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
+    _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
+    NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
+    
+    [self performSegueWithIdentifier:@"goToFiles" sender:indexPath];
+    */
+}
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    selectedRow = indexPath.row;
+    
+    NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
+    _selectedShareID = [allFoldersForAllShareIDs valueForKey:[_folderNames objectAtIndex:selectedRow]];
+    NSLog(@"Chosen Folder ID from inside didSelectRowAtIndexPath %@", _selectedShareID);
+
+    
+    NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
+    _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
+    NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
+
+    [self performSegueWithIdentifier:@"goToFiles" sender:indexPath];
+
 }
 
 
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if(![self isConnectedToInternet])
-    {
+    if(![self isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
@@ -192,14 +211,22 @@ int i;
         [err setBackgroundColor:[UIColor clearColor]];
         [err show];
     }
-    else
-    {
+    else{
+        ///*
         if([[segue identifier] isEqualToString:@"goToFiles"]){
+            /*
+            // should work but does not, wtf?
+            UINavigationController *navigationController    = segue.destinationViewController;
+            shareDetailViewController *wvc                  = [[navigationController viewControllers] objectAtIndex:0];
+            // [wvc setShareID:_selectedShareID];
+            // [wvc setFolderName:[_list objectAtIndex:i]];
+            // [wvc setSessionKey:_sessionKey];
+             */
             NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
             NSLog(@"ALL FOLDERS FOR ALL SHARE IDS - %@",allFoldersForAllShareIDs);
             NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:i]];
             NSLog(@"SHARE ID = %@", chosenShareID);
-
+            
             UINavigationController *navigationController    = segue.destinationViewController;
             workspaceViewController *wvc                    = [[navigationController viewControllers] objectAtIndex:0];
             [wvc setShareID:chosenShareID];
