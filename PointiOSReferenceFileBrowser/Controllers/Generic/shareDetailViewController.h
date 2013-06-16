@@ -22,6 +22,7 @@
 // JB
 @property (nonatomic, retain) NSString *selectedShareName;
 @property (nonatomic, retain) NSString *selectedShareID;
+@property (nonatomic) NSString* shareID;
 
 
 //REST API
@@ -31,7 +32,6 @@
 @property (nonatomic,strong) NSMutableArray* fileIDs;
 @property (nonatomic) NSString* containerID;
 @property (nonatomic) NSString* remotePath;
-@property (nonatomic) NSString* shareID;
 @property (nonatomic) NSMutableArray* fileShareIDs;
 @property (nonatomic) NSMutableArray* containerIDs;
 @property (nonatomic) NSMutableArray* filePaths;
