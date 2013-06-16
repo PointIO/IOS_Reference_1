@@ -984,8 +984,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="VS2-XD-gQa"/>
         <segue reference="KfT-pi-SBR"/>
         <segue reference="owh-cI-ucv"/>
-        <segue reference="9n1-t2-Zrp"/>
     </inferredMetricsTieBreakers>
 </document>

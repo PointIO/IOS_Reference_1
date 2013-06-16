@@ -81,9 +81,9 @@ int i;
             for(int i=0; i<[datax count];i++){
                 NSArray* data2 = [datax objectAtIndex:i];
                 NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
-                [_folderNames addObject:[temp valueForKey:@"NAME"]];
+                [_folderNames addObject:[temp valueForKey:@"SHARENAME"]];
                 [_folderShareIDs addObject:[temp valueForKey:@"SHAREID"]];
-                [_list addObject:[temp valueForKey:@"NAME"]];
+                [_list addObject:[temp valueForKey:@"SHARENAME"]];
                 // NSLog(@"Folder Names are %@", _folderNames);
                 // NSLog(@"List contents are%@", _list);
                 // NSLog(@"Folder Share IDs are %@", _folderShareIDs);
@@ -165,13 +165,15 @@ int i;
 // Handle Disclosure Button Tap
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
+    [self performSegueWithIdentifier:@"goToFiles" sender:indexPath];
+    /*
     selectedRow = indexPath.row;
     NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
     _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
     NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
 
     [self performSegueWithIdentifier:@"goToFiles" sender:indexPath];
-
+    */
 }
 
 
@@ -201,11 +203,19 @@ int i;
     }
     else{
         if([[segue identifier] isEqualToString:@"goToFiles"]){
+            
+            NSIndexPath *indexPath = sender;
+            selectedRow = indexPath.row;
+            NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
+            _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
+            NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
+
+            
             NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
             NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:selectedRow]];
             
-            UINavigationController *navigationController    = segue.destinationViewController;
-            shareDetailViewController *wvc                  = [[navigationController viewControllers] objectAtIndex:0];
+            UINavigationController *navigationController = segue.destinationViewController;
+            shareDetailViewController *wvc = [[navigationController viewControllers] objectAtIndex:0];
             
             [wvc setShareID:chosenShareID];
             [wvc setFolderName:[_list objectAtIndex:i]];
@@ -215,7 +225,7 @@ int i;
         }
         else if ([[segue identifier] isEqualToString:@"goToFilesFromTableViewCell"]){
             
-            NSIndexPath *indexPath                                  = [self.tableView indexPathForCell:sender];
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
             selectedRow = indexPath.row;
             NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
             _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
