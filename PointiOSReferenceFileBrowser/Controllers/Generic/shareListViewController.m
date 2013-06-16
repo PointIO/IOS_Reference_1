@@ -178,13 +178,14 @@ int i;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    /*
     selectedRow = indexPath.row;
     NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
     _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
     NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
     
     [self performSegueWithIdentifier:@"goToFiles" sender:indexPath];
-
+    */
 }
 
 
@@ -211,6 +212,37 @@ int i;
             [wvc setSessionKey:_sessionKey];
             wvc.selectedShareID = _selectedShareID;
             wvc.selectedShareName = _selectedShareName;
+        }
+        else if ([[segue identifier] isEqualToString:@"goToFilesFromTableViewCell"]){
+            
+            NSIndexPath *indexPath                                  = [self.tableView indexPathForCell:sender];
+            selectedRow = indexPath.row;
+            NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
+            _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
+            NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
+
+            NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
+            NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:selectedRow]];
+                
+            UINavigationController *navigationController    = segue.destinationViewController;
+            shareDetailViewController *wvc                  = [[navigationController viewControllers] objectAtIndex:0];
+                
+            [wvc setShareID:chosenShareID];
+            [wvc setFolderName:[_list objectAtIndex:i]];
+            [wvc setSessionKey:_sessionKey];
+            wvc.selectedShareID = _selectedShareID;
+            wvc.selectedShareName = _selectedShareName;
+            
+            /*
+             UINavigationController *navigationController            = segue.destinationViewController;
+             PlayerDetailViewController *playerDetailViewController  = [[navigationController viewControllers] objectAtIndex:0];
+             playerDetailViewController.delegate                     = self;
+             
+             NSIndexPath *indexPath                                  = [self.tableView indexPathForCell:sender];
+             
+             Player *player                                          = [self.fetchedResultsController objectAtIndexPath:indexPath];
+             playerDetailViewController.playerToEdit                 = player;
+             */
         }
     }
 }

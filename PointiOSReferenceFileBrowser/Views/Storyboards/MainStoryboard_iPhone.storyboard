@@ -326,7 +326,7 @@
                                 </view>
                                 <connections>
                                     <outlet property="nameLabel" destination="sny-Is-14n" id="EfN-Po-UNa"/>
-                                    <segue destination="gdR-aU-CXJ" kind="modal" identifier="goToFiles" modalTransitionStyle="crossDissolve" id="VS2-XD-gQa"/>
+                                    <segue destination="gdR-aU-CXJ" kind="modal" identifier="goToFilesFromTableViewCell" modalTransitionStyle="crossDissolve" id="VS2-XD-gQa"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -337,6 +337,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="My Shares" id="uGH-2b-dcD"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <segue destination="gdR-aU-CXJ" kind="modal" identifier="goToFiles" id="9n1-t2-Zrp"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K01-67-yqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -983,5 +986,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     <inferredMetricsTieBreakers>
         <segue reference="KfT-pi-SBR"/>
         <segue reference="owh-cI-ucv"/>
+        <segue reference="9n1-t2-Zrp"/>
     </inferredMetricsTieBreakers>
 </document>

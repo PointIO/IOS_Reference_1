@@ -84,8 +84,6 @@
 		8AA513CD176A04B800665111 /* docViewerViewControlleriPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513C8176A04B800665111 /* docViewerViewControlleriPad.m */; };
 		8AA513CE176A04B800665111 /* FileViewerControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513CA176A04B800665111 /* FileViewerControllerIpad.m */; };
 		8AA513CF176A04B800665111 /* newConnectionViewControlleriPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513CC176A04B800665111 /* newConnectionViewControlleriPad.m */; };
-		8AA513E8176A04C600665111 /* workspaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513D1176A04C600665111 /* workspaceViewController.m */; };
-		8AA513E9176A04C600665111 /* storageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513D2176A04C600665111 /* storageViewController.m */; };
 		8AA513EA176A04C600665111 /* connectionsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513D3176A04C600665111 /* connectionsTableViewController.m */; };
 		8AA513EB176A04C600665111 /* docViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513D4176A04C600665111 /* docViewerViewController.m */; };
 		8AA513EC176A04C600665111 /* newConnectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513D5176A04C600665111 /* newConnectionViewController.m */; };
@@ -99,6 +97,8 @@
 		8AA513F6176A062D00665111 /* connectionsManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513F5176A062C00665111 /* connectionsManagerViewController.m */; };
 		8AA513F9176A0BC300665111 /* BackupMainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */; };
 		8AA513FA176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */; };
+		8ADFB201176E24BF00B40894 /* workspaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFB1FD176E24BF00B40894 /* workspaceViewController.m */; };
+		8ADFB202176E24BF00B40894 /* storageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ADFB1FF176E24BF00B40894 /* storageViewController.m */; };
 		8AEC8573176AAEED00FD7F97 /* borderBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AEC8571176AAEE300FD7F97 /* borderBar.png */; };
 		8AEC8574176AAEED00FD7F97 /* TabBarButtonItemSettings.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AEC8572176AAEE700FD7F97 /* TabBarButtonItemSettings.png */; };
 /* End PBXBuildFile section */
@@ -206,9 +206,6 @@
 		8AA513CA176A04B800665111 /* FileViewerControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewerControllerIpad.m; sourceTree = "<group>"; };
 		8AA513CB176A04B800665111 /* newConnectionViewControlleriPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newConnectionViewControlleriPad.h; sourceTree = "<group>"; };
 		8AA513CC176A04B800665111 /* newConnectionViewControlleriPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newConnectionViewControlleriPad.m; sourceTree = "<group>"; };
-		8AA513D0176A04C600665111 /* workspaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = workspaceViewController.h; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/workspaceViewController.h; sourceTree = "<group>"; };
-		8AA513D1176A04C600665111 /* workspaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = workspaceViewController.m; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/workspaceViewController.m; sourceTree = "<group>"; };
-		8AA513D2176A04C600665111 /* storageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = storageViewController.m; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/storageViewController.m; sourceTree = "<group>"; };
 		8AA513D3176A04C600665111 /* connectionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectionsTableViewController.m; sourceTree = "<group>"; };
 		8AA513D4176A04C600665111 /* docViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = docViewerViewController.m; sourceTree = "<group>"; };
 		8AA513D5176A04C600665111 /* newConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newConnectionViewController.m; sourceTree = "<group>"; };
@@ -228,12 +225,15 @@
 		8AA513E3176A04C600665111 /* signupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = signupViewController.m; sourceTree = "<group>"; };
 		8AA513E4176A04C600665111 /* storageSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = storageSignupViewController.h; sourceTree = "<group>"; };
 		8AA513E5176A04C600665111 /* storageSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = storageSignupViewController.m; sourceTree = "<group>"; };
-		8AA513E6176A04C600665111 /* storageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = storageViewController.h; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/storageViewController.h; sourceTree = "<group>"; };
 		8AA513E7176A04C600665111 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8AA513F4176A062C00665111 /* connectionsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectionsManagerViewController.h; sourceTree = "<group>"; };
 		8AA513F5176A062C00665111 /* connectionsManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectionsManagerViewController.m; sourceTree = "<group>"; };
 		8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BackupMainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BackupMainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		8ADFB1FD176E24BF00B40894 /* workspaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = workspaceViewController.m; path = PointiOSReferenceFileBrowser/Controllers/Generic/workspaceViewController.m; sourceTree = SOURCE_ROOT; };
+		8ADFB1FE176E24BF00B40894 /* workspaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = workspaceViewController.h; path = PointiOSReferenceFileBrowser/Controllers/Generic/workspaceViewController.h; sourceTree = SOURCE_ROOT; };
+		8ADFB1FF176E24BF00B40894 /* storageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = storageViewController.m; path = PointiOSReferenceFileBrowser/Controllers/Generic/storageViewController.m; sourceTree = SOURCE_ROOT; };
+		8ADFB200176E24BF00B40894 /* storageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = storageViewController.h; path = PointiOSReferenceFileBrowser/Controllers/Generic/storageViewController.h; sourceTree = SOURCE_ROOT; };
 		8AEC8571176AAEE300FD7F97 /* borderBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = borderBar.png; sourceTree = "<group>"; };
 		8AEC8572176AAEE700FD7F97 /* TabBarButtonItemSettings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarButtonItemSettings.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -261,10 +261,10 @@
 		754977E3176D08350042B5D8 /* ToBeDeleted */ = {
 			isa = PBXGroup;
 			children = (
-				8AA513D0176A04C600665111 /* workspaceViewController.h */,
-				8AA513D1176A04C600665111 /* workspaceViewController.m */,
-				8AA513E6176A04C600665111 /* storageViewController.h */,
-				8AA513D2176A04C600665111 /* storageViewController.m */,
+				8ADFB1FD176E24BF00B40894 /* workspaceViewController.m */,
+				8ADFB1FE176E24BF00B40894 /* workspaceViewController.h */,
+				8ADFB1FF176E24BF00B40894 /* storageViewController.m */,
+				8ADFB200176E24BF00B40894 /* storageViewController.h */,
 			);
 			path = ToBeDeleted;
 			sourceTree = "<group>";
@@ -732,8 +732,6 @@
 				8AA513CD176A04B800665111 /* docViewerViewControlleriPad.m in Sources */,
 				8AA513CE176A04B800665111 /* FileViewerControllerIpad.m in Sources */,
 				8AA513CF176A04B800665111 /* newConnectionViewControlleriPad.m in Sources */,
-				8AA513E8176A04C600665111 /* workspaceViewController.m in Sources */,
-				8AA513E9176A04C600665111 /* storageViewController.m in Sources */,
 				8AA513EA176A04C600665111 /* connectionsTableViewController.m in Sources */,
 				8AA513EB176A04C600665111 /* docViewerViewController.m in Sources */,
 				8AA513EC176A04C600665111 /* newConnectionViewController.m in Sources */,
@@ -751,6 +749,8 @@
 				754977E6176D0CB60042B5D8 /* ShareListCell.m in Sources */,
 				754977EC176D1AEE0042B5D8 /* shareDetailViewController.m in Sources */,
 				754977EF176D1D9B0042B5D8 /* ShareDetailCell.m in Sources */,
+				8ADFB201176E24BF00B40894 /* workspaceViewController.m in Sources */,
+				8ADFB202176E24BF00B40894 /* storageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
