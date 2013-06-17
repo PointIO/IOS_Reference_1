@@ -112,8 +112,11 @@ UIImageView* imgView2;
         cell.nameLabel.text = [_fileNames objectAtIndex:indexPath.row];
          if([[_isFolder objectAtIndex:row] boolValue] == NO) {
              cell.typeImage.image = [UIImage imageNamed:@"Document"];
+             // cell.accessoryType = nil;
          } else {
              cell.typeImage.image = [UIImage imageNamed:@"FileCabinet.png"];
+             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
         }
     }
     return cell;

@@ -135,6 +135,8 @@ NSArray* tempArray;
         fileNameLabel.textColor = [UIColor whiteColor];
         [fileNameLabel setTextAlignment:UITextAlignmentCenter];
         fileNameLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:18.0];
+        
+        /*
         imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
         imgView.image = [UIImage imageNamed:@"blueBarImageClean.png"];
         [self.navigationController.view addSubview:imgView];
@@ -146,6 +148,8 @@ NSArray* tempArray;
         imgView3.image = [UIImage imageNamed:@"blueBarImageClean"];
         [self.navigationController.toolbar addSubview:imgView3];
         imgView4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 7, 78, 30)];
+        */
+         
         //JB 6/9/13 - changed ShareFileButton to standard Apple Action image
         // imgView4.image = [UIImage imageNamed:@"shareFileButton"];
         [self.navigationController.toolbar addSubview:imgView4];
@@ -156,6 +160,7 @@ NSArray* tempArray;
     imgView4.alpha = 0;
     fileNameLabel.alpha = 0;
     _shareFileButton.width = 0.01;
+    /*
     [UIView animateWithDuration:0.25 animations:^(void) {
         imgView.alpha = 1;
         imgView2.alpha = 1;
@@ -166,6 +171,7 @@ NSArray* tempArray;
         }
         fileNameLabel.alpha = 1;
     }];
+    */
 }
 
 
