@@ -8,8 +8,13 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "Flurry.h"
 
 @implementation AppDelegate
+
+
+static NSString *const kFlurryAPIKey = @"HNQK54VGWG37852TVD75";
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -17,6 +22,8 @@
     [TestFlight takeOff:@"0ed81236-cf70-4f5e-9ac4-b1cd91995b10"];
     _hasLoggedIn = NO;
     
+    [Flurry startSession:kFlurryAPIKey];
+
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(getEnabledStates:) name:@"getEnabledStates" object:nil];
     

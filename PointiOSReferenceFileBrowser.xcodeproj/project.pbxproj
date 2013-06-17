@@ -82,6 +82,7 @@
 		7550E0DD1768045700E8F547 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550E0DC1768045700E8F547 /* libz.dylib */; };
 		7599C78A176F8AEE00AE368C /* workspaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599C788176F8AEE00AE368C /* workspaceViewController.m */; };
 		7599C78D176F8AF700AE368C /* sharedFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599C78B176F8AF700AE368C /* sharedFoldersViewController.m */; };
+		7599C790176F94B200AE368C /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599C78F176F94B200AE368C /* libFlurry.a */; };
 		8A256BC0176A2202001E5823 /* shareListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A256BBF176A2202001E5823 /* shareListViewController.m */; };
 		8AA513CD176A04B800665111 /* docViewerViewControlleriPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513C8176A04B800665111 /* docViewerViewControlleriPad.m */; };
 		8AA513CE176A04B800665111 /* FileViewerControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513CA176A04B800665111 /* FileViewerControllerIpad.m */; };
@@ -201,6 +202,8 @@
 		7599C789176F8AEE00AE368C /* workspaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workspaceViewController.h; sourceTree = "<group>"; };
 		7599C78B176F8AF700AE368C /* sharedFoldersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sharedFoldersViewController.m; sourceTree = "<group>"; };
 		7599C78C176F8AF700AE368C /* sharedFoldersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sharedFoldersViewController.h; sourceTree = "<group>"; };
+		7599C78E176F94B200AE368C /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Flurry/Flurry.h; sourceTree = "<group>"; };
+		7599C78F176F94B200AE368C /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry.a; path = Flurry/libFlurry.a; sourceTree = "<group>"; };
 		8A256BBE176A2202001E5823 /* shareListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shareListViewController.h; sourceTree = "<group>"; };
 		8A256BBF176A2202001E5823 /* shareListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shareListViewController.m; sourceTree = "<group>"; };
 		8AA513C7176A04B800665111 /* docViewerViewControlleriPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = docViewerViewControlleriPad.h; sourceTree = "<group>"; };
@@ -249,6 +252,7 @@
 				7550E0D51768040E00E8F547 /* QuartzCore.framework in Frameworks */,
 				7550E0D71768041B00E8F547 /* QuickLook.framework in Frameworks */,
 				7550DFDD1767FDC500E8F547 /* UIKit.framework in Frameworks */,
+				7599C790176F94B200AE368C /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +329,8 @@
 		7550E0071767FFA300E8F547 /* 3rdParty */ = {
 			isa = PBXGroup;
 			children = (
+				7599C78E176F94B200AE368C /* Flurry.h */,
+				7599C78F176F94B200AE368C /* libFlurry.a */,
 				7550E0CC1768031300E8F547 /* TestFlightSDK1.2.4 */,
 				7550E0C81768030F00E8F547 /* SBTableAlert */,
 				7550E0C41768030900E8F547 /* Reachability */,
@@ -592,10 +598,10 @@
 		7599C787176F8A7E00AE368C /* ToBeDeleted */ = {
 			isa = PBXGroup;
 			children = (
-				7599C78B176F8AF700AE368C /* sharedFoldersViewController.m */,
 				7599C78C176F8AF700AE368C /* sharedFoldersViewController.h */,
-				7599C788176F8AEE00AE368C /* workspaceViewController.m */,
+				7599C78B176F8AF700AE368C /* sharedFoldersViewController.m */,
 				7599C789176F8AEE00AE368C /* workspaceViewController.h */,
+				7599C788176F8AEE00AE368C /* workspaceViewController.m */,
 			);
 			path = ToBeDeleted;
 			sourceTree = "<group>";
@@ -829,6 +835,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty/TestFlightSDK1.2.4\"",
+					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -844,6 +851,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty/TestFlightSDK1.2.4\"",
+					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
