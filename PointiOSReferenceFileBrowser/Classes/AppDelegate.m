@@ -34,7 +34,7 @@
             }
         }
     }
-    
+    NSLog(@"Enabled Connections Status is %@",_enabledConnections);
     return YES;
 }
 

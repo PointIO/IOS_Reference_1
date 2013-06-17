@@ -109,14 +109,15 @@ UIImageView* imgView2;
     ShareDetailCell *cell = (ShareDetailCell *)[tableView dequeueReusableCellWithIdentifier:@"ShareDetailCell"];
     
     if([_fileNames count] != 0){
+        
         cell.nameLabel.text = [_fileNames objectAtIndex:indexPath.row];
-         if([[_isFolder objectAtIndex:row] boolValue] == NO) {
-             cell.typeImage.image = [UIImage imageNamed:@"Document"];
-             // cell.accessoryType = nil;
-         } else {
-             cell.typeImage.image = [UIImage imageNamed:@"FileCabinet.png"];
-             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+        cell.dateModifiedLabel.text = [_fileDateModified objectAtIndex:indexPath.row];
+        
+        if([[_isFolder objectAtIndex:row] boolValue] == NO) {
+            cell.typeImage.image = [UIImage imageNamed:@"Document"];
+        } else {
+            cell.typeImage.image = [UIImage imageNamed:@"FileCabinet.png"];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
     }
     return cell;
@@ -239,6 +240,7 @@ UIImageView* imgView2;
         _fileIDs = [NSMutableArray array];
         _fileShareIDs = [NSMutableArray array];
         _containerIDs = [NSMutableArray array];
+        _fileDateModified = [[NSMutableArray alloc] init];
         
         NSDictionary* result = [listFilesResponse valueForKey:@"RESULT"];
         NSArray* columns = [result valueForKey:@"COLUMNS"];
@@ -262,6 +264,7 @@ UIImageView* imgView2;
             [_fileShareIDs addObject:[temp valueForKey:@"SHAREID"]];
             [_containerIDs addObject:[temp valueForKey:@"CONTAINERID"]];
             [_filePaths addObject:[temp valueForKey:@"PATH"]];
+            [_fileDateModified addObject:[temp valueForKey:@"MODIFIED"]];
         }
     }
     NSLog(@"NUMBER OF FILES = %i",[_fileNames count]);

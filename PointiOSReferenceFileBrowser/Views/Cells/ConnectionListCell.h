@@ -10,6 +10,7 @@
 
 @interface ConnectionListCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UILabel      * nameLabel;
+@property (nonatomic, strong) IBOutlet UILabel  * nameLabel;
+@property (nonatomic, strong) IBOutlet UISwitch * statusSwitch;
 
 @end

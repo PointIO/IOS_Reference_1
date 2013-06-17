@@ -30,6 +30,7 @@
 @property (nonatomic) NSString* sessionKey;
 @property (nonatomic,strong) NSMutableArray* fileNames;
 @property (nonatomic,strong) NSMutableArray* fileIDs;
+@property (nonatomic,strong) NSMutableArray *fileDateModified;
 @property (nonatomic) NSString* containerID;
 @property (nonatomic) NSString* remotePath;
 @property (nonatomic) NSMutableArray* fileShareIDs;

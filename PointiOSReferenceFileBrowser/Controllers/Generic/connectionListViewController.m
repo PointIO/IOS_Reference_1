@@ -91,14 +91,46 @@
     NSDictionary* result = [_JSONArrayList valueForKey:@"RESULT"];
     NSArray* columns = [result valueForKey:@"COLUMNS"];
     NSArray* data = [result valueForKey:@"DATA"];
-    for(int i=0; i<[data count];i++){
-        NSArray* data2 = [data objectAtIndex:i];
-        _sharedFolderData = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
-    }
     
     row = indexPath.row;
     cell.nameLabel.text = [_list objectAtIndex:indexPath.row];
+    
+    for(int i=0; i<[data count];i++){
+        NSArray* data2 = [data objectAtIndex:i];
+        _sharedFolderData = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
+        NSLog(@"Connections user data is %@", _sharedFolderData);
+        if([[_appDel.enabledConnections objectAtIndex:indexPath.row] integerValue] == 1){
+            cell.statusSwitch.on = YES;
+        } else {
+            cell.statusSwitch.on = NO;
+        }
+    }
     return cell;
+    
+    /*
+    static NSString *CellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    UISwitch *tableViewSwitch = [[UISwitch alloc] init];
+    cell.accessoryView = tableViewSwitch;
+    NSDictionary* result = [_JSONArrayList valueForKey:@"RESULT"];
+    NSArray* columns = [result valueForKey:@"COLUMNS"];
+    NSArray* data = [result valueForKey:@"DATA"];
+    for(int i=0; i<[data count];i++){
+        NSArray* data2 = [data objectAtIndex:i];
+        _sharedFolderData = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
+        if([[_appDel.enabledConnections objectAtIndex:indexPath.row] integerValue] == 1){
+            tableViewSwitch.on = YES;
+        } else {
+            tableViewSwitch.on = NO;
+        }
+    }
+
+    [tableViewSwitch addTarget:self action:@selector(valueChanged:withIndex:) forControlEvents:UIControlEventValueChanged];
+    row = indexPath.row;
+    cell.textLabel.text = [_list objectAtIndex:indexPath.row];
+    return cell;
+     */
+    
 }
 
 /*
@@ -140,6 +172,56 @@
 }
 */
 
+#pragma mark - Business Logic
+- (IBAction)valueChanged:(id) sender withIndex:(NSInteger) index{
+    
+    UISwitch *controlSwitch = sender;
+    // UITableViewCell *myCell = [controlSwitch superview];
+    ConnectionListCell *myCell = (ConnectionListCell *)[controlSwitch superview];
+    
+    // storageName = myCell.textLabel.text;
+    // JB Crashing - needs more work here
+    storageName = myCell.nameLabel.text;
+
+    UITableView* tableView = (UITableView*)[myCell superview];
+    NSIndexPath* path = [tableView indexPathForCell:myCell];
+    row = path.row;
+    NSLog(@"ROW IS %i",row);
+    if (controlSwitch.isOn) {
+        [_appDel.enabledConnections setObject:@"1" atIndexedSubscript:row];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
+        // self.navigationItem.hidesBackButton = YES;
+        // imgView2.alpha = 0.5;
+        NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
+    }
+    if(!controlSwitch.isOn){
+        [_appDel.enabledConnections setObject:@"0" atIndexedSubscript:row];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
+        // self.navigationItem.hidesBackButton = YES;
+        // imgView2.alpha = 0.5;
+        NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
+    }
+    NSString* temp = [[NSString alloc] init];
+    for(int i = 0;i < [_appDel.enabledConnections count];i++){
+        if([[_appDel.enabledConnections objectAtIndex:i] isEqualToString:@"1"]){
+            if(i==0){
+                temp = [NSString stringWithFormat:@"1"];
+            } else {
+                temp = [temp stringByAppendingString:@"1"];
+            }
+        } else {
+            if(i==0){
+                temp = [NSString stringWithFormat:@"0"];
+            } else {
+                temp = [temp stringByAppendingString:@"0"];
+            }
+        }
+    }
+    [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"ENABLEDCONNECTIONS"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [TestFlight passCheckpoint:@"User changed enabled connections value"];
+}
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,6 +234,8 @@
     [self.tableView reloadData];
 }
 
+
+#pragma mark - Segue
 - (void) goToStorage {
     [self performSegueWithIdentifier:@"goToStorage" sender:self];
 }
@@ -161,16 +245,18 @@
         // storageViewController *svc = [segue destinationViewController];
         // [svc setText:storageName];
     }
+    /*
     else if([[segue identifier] isEqualToString:@"addConnection"]){
         newConnectionViewController* ncvc = [segue destinationViewController];
-        // [ncvc setUserStorageInput:_userStorageInput];
+        [ncvc setUserStorageInput:_userStorageInput];
         [ncvc setSessionKey:_sessionKey];
-        // [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
-        // [ncvc setAllPossibleConnections:_allPossibleConnections];
-        // [ncvc setRequestedConnectionName:requestedConnectionName];
+        [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
+        [ncvc setAllPossibleConnections:_allPossibleConnections];
+        [ncvc setRequestedConnectionName:requestedConnectionName];
     }
-
+    */
 }
+
 
 - (BOOL) isConnectedToInternet{
     Reachability *reachability = [Reachability reachabilityForInternetConnection];

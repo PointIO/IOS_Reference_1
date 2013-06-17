@@ -21,6 +21,9 @@
 @property (nonatomic) NSMutableArray* storageIDs;
 @property (nonatomic) NSDictionary* sharedFolderData;
 
+// @property (nonatomic, strong) IBOutlet UISwitch *statusSwitch;
+
 - (BOOL) isConnectedToInternet;
+- (IBAction)valueChanged:(id) sender withIndex:(NSInteger) index;
 
 @end

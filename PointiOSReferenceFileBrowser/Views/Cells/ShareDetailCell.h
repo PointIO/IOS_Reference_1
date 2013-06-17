@@ -12,5 +12,6 @@
 
 @property (nonatomic, strong) IBOutlet UILabel      * nameLabel;
 @property (nonatomic, strong) IBOutlet UIImageView  * typeImage;
+@property (nonatomic, strong) IBOutlet UILabel * dateModifiedLabel;
 
 @end

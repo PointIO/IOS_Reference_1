@@ -154,12 +154,15 @@ NSArray* tempArray;
         // imgView4.image = [UIImage imageNamed:@"shareFileButton"];
         [self.navigationController.toolbar addSubview:imgView4];
     }
-    imgView.alpha = 0;
+    
+
+     imgView.alpha = 0;
     imgView2.alpha = 0;
     imgView3.alpha = 0;
     imgView4.alpha = 0;
     fileNameLabel.alpha = 0;
     _shareFileButton.width = 0.01;
+
     /*
     [UIView animateWithDuration:0.25 animations:^(void) {
         imgView.alpha = 1;
