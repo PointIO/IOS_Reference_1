@@ -1,5 +1,8 @@
 #import "ViewController.h"
 
+#define IS_IPAD (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone)
+
+
 @interface ViewController ()
 
 @end
@@ -28,7 +31,8 @@
 UIImageView* imgView;
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
-    if ( [(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
+    if (IS_IPAD) {
+    // if ( [(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
         //        return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
         return UIInterfaceOrientationIsLandscape(toInterfaceOrientation);
     } else {
@@ -166,7 +170,8 @@ UIImageView* imgView;
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if ( [(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
+            if (IS_IPAD) {
+            // if ( [(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
                  [self performSegueWithIdentifier:@"goToDocView" sender:self];
             } else {
                 // [self performSegueWithIdentifier:@"goToConnections" sender:self];
@@ -344,7 +349,8 @@ UIImageView* imgView;
     if([[_JSONArrayAuth valueForKey:@"ERROR"] integerValue] == 0){
         [TestFlight passCheckpoint:@"User logged in"];
         _successfulLogin = YES;
-        if ([(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
+        if (IS_IPAD) {
+        // if ([(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
             [self performSegueWithIdentifier:@"goToDocView" sender:self];
         } else {
             // [self performSegueWithIdentifier:@"goToConnections" sender:self];
