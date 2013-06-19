@@ -15,13 +15,13 @@
 
 @property (nonatomic) AppDelegate* appDel;
 @property (nonatomic) NSMutableArray* list;
-
 @property (nonatomic) NSArray* JSONArrayList;
 @property (nonatomic) NSString* sessionKey;
 @property (nonatomic) NSMutableArray* storageIDs;
 @property (nonatomic) NSDictionary* sharedFolderData;
 
 // @property (nonatomic, strong) IBOutlet UISwitch *statusSwitch;
+@property (nonatomic) NSString *selectedStorageName;
 
 - (BOOL) isConnectedToInternet;
 - (IBAction)valueChanged:(id) sender withIndex:(NSInteger) index;

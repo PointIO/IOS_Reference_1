@@ -66,6 +66,105 @@
     }
 }
 
+
+/*
+- (void) getConnections{
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^
+    {
+        NSURLResponse* urlResponseList;
+        NSError* requestErrorList;
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        
+        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
+        
+        [request setHTTPMethod:@"GET"];
+        [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
+        NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
+        
+        if(!response) {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"Request response is nil"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles: nil];
+            [alert show];
+        }
+        else {
+            
+            _JSONArrayList = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+            NSLog(@"JSON ARRAY LIST = %@",_JSONArrayList);
+            _connectionSharedFolders = nil;
+            _list = nil;
+            _displayList = nil;
+            _list = [NSMutableArray array];
+            _allPossibleConnections = [NSMutableArray array];
+            _storageIDs = [NSMutableArray array];
+            _displayList  = [NSMutableArray array];
+            _connectionSharedFolders = [NSMutableArray array];
+            
+            // self.navigationItem.backBarButtonItem.title = @"Back";
+            
+            NSDictionary* result = [_JSONArrayList valueForKey:@"RESULT"];
+            NSArray* columns = [result valueForKey:@"COLUMNS"];
+            NSArray* data = [result valueForKey:@"DATA"];
+            NSDictionary* tempDict;
+            
+            for(int i=0; i<[data count];i++){
+                NSArray* data2 = [data objectAtIndex:i];
+                NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
+                NSLog(@"NEW TEMP = %@",temp);
+                [_list addObject:[temp valueForKey:@"SITETYPENAME"]];
+                tempDict = [NSDictionary dictionaryWithObject:[temp valueForKey:@"NAME"] forKey:[temp valueForKey:@"SITETYPENAME"]];
+                
+                [_connectionSharedFolders addObject:tempDict];
+            }
+            
+            [self getAllPossibleConnections];
+            
+            NSArray* tempCpy = [NSArray arrayWithArray:_list];
+            
+            [_list setArray:[[NSSet setWithArray:_list] allObjects]];
+            
+            if([tempCpy count] - [_list count] == 1){
+                if([_appDel.enabledConnections count] - [_list count] == 1){
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"removeOneIndex" object:nil];
+                }
+            }
+            
+            if([_appDel.enabledConnections count] == 0 || ([_appDel.enabledConnections count] != [_list count])){
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"getEnabledStates" object:nil];
+            }
+            
+            if([_appDel.enabledConnections count] != [_list count]){
+                _appDel.enabledConnections = nil;
+                _appDel.enabledConnections = [NSMutableArray array];
+                
+                for(int i = 0; i< [_list count];i++){
+                    [_appDel.enabledConnections addObject:@"1"];
+                }
+            }
+            
+            _displayList = [NSMutableArray array];
+            for (int i = 0; i < [_list count];i++){
+                if([[_appDel.enabledConnections objectAtIndex:i] integerValue] == 1){
+                    [_displayList addObject:[_list objectAtIndex:i]];
+                    // NSLog(@"from getConnections, displayList array contents are: %@", _displayList);
+                }
+            }
+            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"enableBackButton" object:nil];
+                [self.tableView reloadData];
+            });
+        }
+    });
+}
+*/
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -88,6 +187,9 @@
 {
     ConnectionListCell *cell = (ConnectionListCell *)[tableView dequeueReusableCellWithIdentifier:@"ConnectionListCell"];
     
+    UISwitch *statusSwitch = [[UISwitch alloc] init];
+    cell.accessoryView = statusSwitch;
+
     NSDictionary* result = [_JSONArrayList valueForKey:@"RESULT"];
     NSArray* columns = [result valueForKey:@"COLUMNS"];
     NSArray* data = [result valueForKey:@"DATA"];
@@ -105,31 +207,10 @@
             cell.statusSwitch.on = NO;
         }
     }
-    return cell;
     
-    /*
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    UISwitch *tableViewSwitch = [[UISwitch alloc] init];
-    cell.accessoryView = tableViewSwitch;
-    NSDictionary* result = [_JSONArrayList valueForKey:@"RESULT"];
-    NSArray* columns = [result valueForKey:@"COLUMNS"];
-    NSArray* data = [result valueForKey:@"DATA"];
-    for(int i=0; i<[data count];i++){
-        NSArray* data2 = [data objectAtIndex:i];
-        _sharedFolderData = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
-        if([[_appDel.enabledConnections objectAtIndex:indexPath.row] integerValue] == 1){
-            tableViewSwitch.on = YES;
-        } else {
-            tableViewSwitch.on = NO;
-        }
-    }
+    [statusSwitch addTarget:self action:@selector(valueChanged:withIndex:) forControlEvents:UIControlEventValueChanged];
 
-    [tableViewSwitch addTarget:self action:@selector(valueChanged:withIndex:) forControlEvents:UIControlEventValueChanged];
-    row = indexPath.row;
-    cell.textLabel.text = [_list objectAtIndex:indexPath.row];
     return cell;
-     */
     
 }
 
@@ -174,18 +255,15 @@
 
 #pragma mark - Business Logic
 - (IBAction)valueChanged:(id) sender withIndex:(NSInteger) index{
-    
+
     UISwitch *controlSwitch = sender;
     // UITableViewCell *myCell = [controlSwitch superview];
-    ConnectionListCell *myCell = (ConnectionListCell *)[controlSwitch superview];
+    // ConnectionListCell *myCell = (ConnectionListCell *)[controlSwitch superview];
+    //
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:(ConnectionListCell *)[sender superview]];
+    row = indexPath.row;
+    storageName = [_list objectAtIndex:row];
     
-    // storageName = myCell.textLabel.text;
-    // JB Crashing - needs more work here
-    storageName = myCell.nameLabel.text;
-
-    UITableView* tableView = (UITableView*)[myCell superview];
-    NSIndexPath* path = [tableView indexPathForCell:myCell];
-    row = path.row;
     NSLog(@"ROW IS %i",row);
     if (controlSwitch.isOn) {
         [_appDel.enabledConnections setObject:@"1" atIndexedSubscript:row];
@@ -226,6 +304,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    // cell.nameLabel.text = [_list objectAtIndex:indexPath.row];
     // [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     // [self performSegueWithIdentifier:@"goToStorage" sender:self];
 }

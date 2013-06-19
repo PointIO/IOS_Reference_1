@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "Flurry.h"
+#import "Common.h"
+
 
 @implementation AppDelegate
 
@@ -30,6 +32,8 @@ static NSString *const kFlurryAPIKey = @"HNQK54VGWG37852TVD75";
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(removeOneIndex:) name:@"removeOneIndex" object:nil];
     
+    [self getEnabledStatesOnFirstLaunch];
+    
     NSString* temp = [[NSUserDefaults standardUserDefaults] objectForKey:@"ENABLEDCONNECTIONS"];
     if([temp length] > 0){
         _enabledConnections = [NSMutableArray array];
@@ -42,9 +46,95 @@ static NSString *const kFlurryAPIKey = @"HNQK54VGWG37852TVD75";
         }
     }
     NSLog(@"Enabled Connections Status is %@",_enabledConnections);
+    // NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+
     return YES;
 }
 
+
+
+- (void) getEnabledStatesOnFirstLaunch{
+    //
+    // On First Time Launch only, populate NSUserDefaults with each Storage Connection's Enabled Status
+    // Subsequent launches will look to NSUserDefaults to determine Storage Connection's Enabled/Disabled Status
+    // since the user can change this status from within the app, and we can save network calls by tracking
+    // this information locally.
+    //
+    NSInteger firstLaunch = [[NSUserDefaults standardUserDefaults] integerForKey:@"PointFirstLaunch"];
+
+    if(![Common isConnectedToInternet]){
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
+        temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
+        [err addSubview:temp];
+        [err setBackgroundColor:[UIColor clearColor]];
+        [err show];
+    }
+    else if (firstLaunch != 1) {
+
+        _enabledConnections = [NSMutableArray array];
+        NSURLResponse* urlResponseList;
+        NSError* requestErrorList;
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
+        [request setHTTPMethod:@"GET"];
+        [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
+        NSData* response = [NSURLConnection sendSynchronousRequest:request
+                                                 returningResponse:&urlResponseList
+                                                             error:&requestErrorList];
+        if(response){
+            NSArray* JSONArrayList = [NSJSONSerialization JSONObjectWithData:response
+                                                                     options:NSJSONReadingMutableContainers
+                                                                       error:nil];
+            NSDictionary* result = [JSONArrayList valueForKey:@"RESULT"];
+            NSArray* columns = [result valueForKey:@"COLUMNS"];
+            NSArray* data = [result valueForKey:@"DATA"];
+            for(int i=0; i<[data count];i++){
+                NSArray* data2 = [data objectAtIndex:i];
+                NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
+                if([[temp valueForKey:@"ENABLED"] integerValue] == 1){
+                    [_enabledConnections addObject:@"1"];
+                } else {
+                    [_enabledConnections addObject:@"0"];
+                }
+            }
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"PointFirstLaunch"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            NSLog(@"NSUserDefaults Object Contents are %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"ENABLEDCONNECTIONS"]);
+            NSLog(@"NSUserDefaults Object Contents are %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"PointFirstLaunch"]);
+
+        }
+    }
+}
+
+
+/*
+NSInteger firstTimeOniPhoneWithPlaysFeature = [[NSUserDefaults standardUserDefaults] integerForKey:@"iPlayBookWithPlaysFeatureHasLaunchedOniPhone"];
+if (firstTimeOniPhoneWithPlaysFeature != 1)
+{
+    for (TokenImageView *dv in [self.view subviews])
+    {
+        if ((dv.tag > 1010 && dv.tag < 9998))
+        {
+            if ([dv isKindOfClass:[TokenImageView class]])
+            {
+                CGRect  iPadFrame   = dv.frame;
+                CGRect  frame       = [self setFrameiPadtoiPhone:iPadFrame];
+                dv.frame = frame;
+            }
+        }
+    }
+    [self updateCurrentPlay];
+    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"iPlayBookWithPlaysFeatureHasLaunchedOniPhone"];
+    // [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"iPlayBookWithPlaysFeatureHasLaunchedOniPhone"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSLog(@"NSUserDefaults Object Contents are %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+    
+}
+*/
+
+
+/*
 - (void) removeOneIndex:(NSNotification*)notification{
     [_enabledConnections removeLastObject];
     NSString* temp = [[NSString alloc] init];
@@ -95,6 +185,9 @@ static NSString *const kFlurryAPIKey = @"HNQK54VGWG37852TVD75";
         }
     }
 }
+*/
+
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -123,5 +216,7 @@ static NSString *const kFlurryAPIKey = @"HNQK54VGWG37852TVD75";
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
 
 @end
