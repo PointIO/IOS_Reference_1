@@ -1,6 +1,9 @@
 #import "ViewController.h"
+#import "Common.h"
+
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone)
+static NSString *resetFirstLaunch = @"YES";
 
 
 @interface ViewController ()
@@ -81,7 +84,7 @@ UIImageView* imgView;
         [_passwordTextField setText:[defaults valueForKey:@"PASSWORD"]];
         _username = [defaults valueForKey:@"USERNAME"];
         _password = [defaults valueForKey:@"PASSWORD"];
-        if(![self isConnectedToInternet]){
+        if(![Common isConnectedToInternet]){
             UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
             UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
             temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
@@ -90,10 +93,78 @@ UIImageView* imgView;
             [err show];
         } else {
             [self signIn];
+            
+            if ([resetFirstLaunch isEqualToString:@"YES"]) {
+                [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PointFirstLaunch"];
+            }
+            
+            [self getEnabledStatesOnFirstLaunch];
         }
     }
-    
 }
+
+
+
+
+
+
+
+- (void) getEnabledStatesOnFirstLaunch{
+    //
+    // On First Time Launch only, populate NSUserDefaults with each Storage Connection's Enabled Status
+    // Subsequent launches will look to NSUserDefaults to determine Storage Connection's Enabled/Disabled Status
+    // since the user can change this status from within the app, and we can save network calls by tracking
+    // this information locally.
+    //
+    
+    NSInteger firstLaunch = [[NSUserDefaults standardUserDefaults] integerForKey:@"PointFirstLaunch"];
+    
+    if(![Common isConnectedToInternet]){
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
+        temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
+        [err addSubview:temp];
+        [err setBackgroundColor:[UIColor clearColor]];
+        [err show];
+    }
+    else if (firstLaunch != 1) {
+        
+        _enabledConnections = [NSMutableArray array];
+        NSURLResponse* urlResponseList;
+        NSError* requestErrorList;
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
+        [request setHTTPMethod:@"GET"];
+        [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
+        NSData* response = [NSURLConnection sendSynchronousRequest:request
+                                                 returningResponse:&urlResponseList
+                                                             error:&requestErrorList];
+        if(response){
+            NSArray* JSONArrayList = [NSJSONSerialization JSONObjectWithData:response
+                                                                     options:NSJSONReadingMutableContainers
+                                                                       error:nil];
+            NSDictionary* result = [JSONArrayList valueForKey:@"RESULT"];
+            NSArray* columns = [result valueForKey:@"COLUMNS"];
+            NSArray* data = [result valueForKey:@"DATA"];
+            for(int i=0; i<[data count];i++){
+                NSArray* data2 = [data objectAtIndex:i];
+                NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
+                if([[temp valueForKey:@"ENABLED"] integerValue] == 1){
+                    [_enabledConnections addObject:@"1"];
+                } else {
+                    [_enabledConnections addObject:@"0"];
+                }
+            }
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"PointFirstLaunch"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            NSLog(@"NSUserDefaults Object Contents are %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"ENABLEDCONNECTIONS"]);
+            NSLog(@"NSUserDefaults Object Contents are %@", [[NSUserDefaults standardUserDefaults] objectForKey:@"PointFirstLaunch"]);
+            
+        }
+    }
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -115,7 +186,7 @@ UIImageView* imgView;
 
 
 - (IBAction)signInPressed {
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
                                                      delegate:nil
@@ -153,7 +224,7 @@ UIImageView* imgView;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        if(![self isConnectedToInternet]){
+        if(![Common isConnectedToInternet]){
             UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                           message:@"Looks like there is no internet connection, please check the settings"
                                                          delegate:nil
@@ -182,7 +253,7 @@ UIImageView* imgView;
 }
 
 - (IBAction)signUpPressed {
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
                                                      delegate:nil
@@ -274,7 +345,7 @@ UIImageView* imgView;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        if(![self isConnectedToInternet]){
+        if(![Common isConnectedToInternet]){
             UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
             UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
             temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
@@ -461,10 +532,12 @@ UIImageView* imgView;
     */
 }
 
+// moved to Common
+/*
 - (BOOL) isConnectedToInternet{
     Reachability *reachability = [Reachability reachabilityForInternetConnection];
     NetworkStatus networkStatus = [reachability currentReachabilityStatus];
     return !(networkStatus == NotReachable);
 }
-
+*/
 @end

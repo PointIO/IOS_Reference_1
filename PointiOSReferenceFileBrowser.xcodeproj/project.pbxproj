@@ -576,6 +576,10 @@
 				8AA513DD176A04C600665111 /* HubsViewController.m */,
 				8AA513DE176A04C600665111 /* newConnectionViewController.h */,
 				8AA513D5176A04C600665111 /* newConnectionViewController.m */,
+				8A256BBE176A2202001E5823 /* shareListViewController.h */,
+				8A256BBF176A2202001E5823 /* shareListViewController.m */,
+				754977EA176D1AED0042B5D8 /* shareDetailViewController.h */,
+				754977EB176D1AEE0042B5D8 /* shareDetailViewController.m */,
 				8AA513E0176A04C600665111 /* sharingViewController.h */,
 				8AA513E1176A04C600665111 /* sharingViewController.m */,
 				8AA513E2176A04C600665111 /* signupViewController.h */,
@@ -584,10 +588,6 @@
 				8AA513E5176A04C600665111 /* storageSignupViewController.m */,
 				8AA513E7176A04C600665111 /* ViewController.h */,
 				8AA513D7176A04C600665111 /* ViewController.m */,
-				8A256BBE176A2202001E5823 /* shareListViewController.h */,
-				8A256BBF176A2202001E5823 /* shareListViewController.m */,
-				754977EA176D1AED0042B5D8 /* shareDetailViewController.h */,
-				754977EB176D1AEE0042B5D8 /* shareDetailViewController.m */,
 			);
 			path = Generic;
 			sourceTree = "<group>";

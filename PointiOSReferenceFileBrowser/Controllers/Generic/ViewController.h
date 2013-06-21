@@ -30,6 +30,7 @@
 @property (nonatomic) BOOL successfulLogin;
 @property (nonatomic) BOOL shouldSignIn;
 @property (nonatomic) AppDelegate* appDel;
+@property (nonatomic, strong) NSMutableArray* enabledConnections;
 
 - (IBAction)signInPressed;				
 - (IBAction)screenPressed;
@@ -44,5 +45,5 @@
 - (void) performListCall;
 - (void) displayError;
 
-- (BOOL) isConnectedToInternet;
+// - (BOOL) isConnectedToInternet;
 @end
