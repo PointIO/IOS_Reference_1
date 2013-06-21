@@ -65,6 +65,8 @@ NSMutableArray* keys2;
     _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     totalYOffset = 0;
     
+    NSLog(@"Requested connection name = %@",_requestedConnectionName);
+    
     NSArray* storageInputParams;
     NSURLResponse* urlResponseList;
     NSError* requestErrorList;
@@ -198,6 +200,11 @@ NSMutableArray* keys2;
         swipe.direction = UISwipeGestureRecognizerDirectionUp;
         [self.scrollView addGestureRecognizer:swipe];
         [self.view addSubview:_scrollView];
+        
+        [_maxRevisions setEnabled:NO];
+        [_maxRevisions setAlpha:0.25];
+        // JB 6/9/13; IOS-6 - https://pointio.atlassian.net/browse/IOS-6 Set Default Max # Revisions to null if Revs off
+        _maxRevisions.text=@"";
     }
     }
 }
@@ -418,7 +425,7 @@ NSMutableArray* keys2;
         temp = [NSJSONSerialization JSONObjectWithData:response2 options:NSJSONReadingMutableContainers error:nil];
         
         NSLog(@"CREATING RESULT = %@",temp);
-        // TEMP HOLDS INFO ABOUT NEW STORAGE.
+                
         
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         }
@@ -448,6 +455,10 @@ NSMutableArray* keys2;
                     }
                 }
                 [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"ENABLEDCONNECTIONS"];
+                [_appDel.connectionsNameAndTypes addEntriesFromDictionary:[NSDictionary dictionaryWithObject:_requestedConnectionName forKey:[_nameTextField text]]];
+                [_appDel.connectionsTypesAndEnabledStates addEntriesFromDictionary:[NSDictionary dictionaryWithObject:@"1" forKey:_requestedConnectionName]];
+                [[NSUserDefaults standardUserDefaults] setObject:_appDel.connectionsNameAndTypes forKey:@"NAMETYPES"];
+                [[NSUserDefaults standardUserDefaults] setObject:_appDel.connectionsTypesAndEnabledStates forKey:@"ENABLEDTYPES"];
                 [[NSUserDefaults standardUserDefaults] synchronize];
             } else if ([[temp valueForKey:@"ERROR"] integerValue] == 0){
                 [self displayMessage:NO];
@@ -475,7 +486,7 @@ NSMutableArray* keys2;
 }
 
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    // [TestFlight passCheckpoint:@"User added a connection"];
+    [TestFlight passCheckpoint:@"User added a connection"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-// #import "TestFlight.h"
+#import "TestFlight.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
@@ -19,6 +19,8 @@
 @property (nonatomic, strong) NSString* user;
 @property (nonatomic, strong) NSString* password;
 @property (nonatomic, strong) NSString* shareExpirationDate;
+@property (nonatomic, strong) NSMutableDictionary* connectionsNameAndTypes;
+@property (nonatomic, strong) NSMutableDictionary* connectionsTypesAndEnabledStates;
 
 
 @property (nonatomic, strong) id vc;

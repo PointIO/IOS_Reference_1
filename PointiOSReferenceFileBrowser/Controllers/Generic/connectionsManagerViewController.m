@@ -180,7 +180,7 @@ UIImageView* imgView2;
     }
     [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"ENABLEDCONNECTIONS"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    // [TestFlight passCheckpoint:@"User changed enabled connections value"];
+    [TestFlight passCheckpoint:@"User changed enabled connections value"];
 }
 
 - (void) enableBackButton:(NSNotification*)notification{

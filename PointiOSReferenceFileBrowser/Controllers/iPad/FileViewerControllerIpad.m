@@ -100,7 +100,7 @@ UIAlertView* passwordAlertView;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.filesTableView animated:YES];
                 [_filesTableView reloadData];
-                // [TestFlight passCheckpoint:@"User loaded his workspace successfully"];
+                [TestFlight passCheckpoint:@"User loaded his workspace successfully"];
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             });
         });
@@ -143,7 +143,7 @@ UIAlertView* passwordAlertView;
              [self load];
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.docWebView animated:YES];
-                // [TestFlight passCheckpoint:@"User loaded viewed a file"];
+                [TestFlight passCheckpoint:@"User loaded viewed a file"];
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             });
         });
@@ -431,7 +431,7 @@ UIAlertView* passwordAlertView;
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     _shareBarButton.enabled = YES;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    // [TestFlight passCheckpoint:@"User viewed a document"];
+    [TestFlight passCheckpoint:@"User viewed a document"];
     
 }
 

@@ -73,7 +73,6 @@ NSArray* tempArray;
         dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
             [self load];
             dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [_shareFileButton setEnabled:YES];
                 if(!tempArray){
                     [UIView animateWithDuration:2.0 animations:^(void) {
@@ -99,7 +98,9 @@ NSArray* tempArray;
                 } else {
                 imgView4.alpha = 1;
                 }
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             });
+            
         });
     }
     
@@ -181,12 +182,14 @@ NSArray* tempArray;
 
 - (void) webViewDidStartLoad:(UIWebView *)webView{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    // [TestFlight passCheckpoint:@"User viewed a document"];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [TestFlight passCheckpoint:@"User viewed a document"];
 
 }
 

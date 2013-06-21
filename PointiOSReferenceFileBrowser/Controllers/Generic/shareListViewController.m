@@ -49,6 +49,7 @@ int i;
      
     _JSONSharedFoldersArray = [NSArray array];
     _list = [NSMutableArray array];
+    _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
       
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -71,7 +72,7 @@ int i;
         }
         else {
             _JSONSharedFoldersArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-            NSLog(@"JSONSHAREDFOLDERSARRAY - %@",_JSONSharedFoldersArray);
+//            NSLog(@"JSONSHAREDFOLDERSARRAY - %@",_JSONSharedFoldersArray);
             NSDictionary* result = [_JSONSharedFoldersArray valueForKey:@"RESULT"];
             NSArray* columns = [result valueForKey:@"COLUMNS"];
             NSArray* datax = [result valueForKey:@"DATA"];
@@ -83,7 +84,10 @@ int i;
                 NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
                 [_folderNames addObject:[temp valueForKey:@"SHARENAME"]];
                 [_folderShareIDs addObject:[temp valueForKey:@"SHAREID"]];
+                NSLog(@"Connections types = %@, sharename = %@",_appDel.connectionsTypesAndEnabledStates,[_appDel.connectionsNameAndTypes valueForKey:[temp valueForKey:@"SHARENAME"]]);
+                if([[_appDel.connectionsTypesAndEnabledStates valueForKey:[_appDel.connectionsNameAndTypes valueForKey:[temp valueForKey:@"SHARENAME"]]] integerValue] == 1){
                 [_list addObject:[temp valueForKey:@"SHARENAME"]];
+                }
                 // NSLog(@"Folder Names are %@", _folderNames);
                 // NSLog(@"List contents are%@", _list);
                 // NSLog(@"Folder Share IDs are %@", _folderShareIDs);
@@ -224,7 +228,6 @@ int i;
             wvc.selectedShareName = _selectedShareName;
         }
         else if ([[segue identifier] isEqualToString:@"goToFilesFromTableViewCell"]){
-            
             NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
             selectedRow = indexPath.row;
             NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];

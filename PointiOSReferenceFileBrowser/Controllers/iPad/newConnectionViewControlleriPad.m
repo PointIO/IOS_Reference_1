@@ -470,7 +470,7 @@ NSMutableArray* keys2;
 }
 
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    // [TestFlight passCheckpoint:@"User added a connection"];
+    [TestFlight passCheckpoint:@"User added a connection"];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

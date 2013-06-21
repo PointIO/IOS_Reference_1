@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "sharingViewController.h"
-// #import "TestFlight.h"
+#import "TestFlight.h"
 #import "MBProgressHUD.h"
 #import "QuickLook/QuickLook.h"
 #import "SBTableAlert.h"

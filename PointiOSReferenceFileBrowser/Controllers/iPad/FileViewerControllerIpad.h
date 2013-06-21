@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
 #import "Reachability.h"
-// #import "TestFlight.h"
+#import "TestFlight.h"
 #import "MessageUI/MessageUI.h"
 #import "AppDelegate.h"
 

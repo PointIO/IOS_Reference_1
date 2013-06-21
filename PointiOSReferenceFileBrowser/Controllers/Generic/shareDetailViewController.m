@@ -43,7 +43,7 @@ UIImageView* imgView2;
     
     i = 0;
     nestedFoldersCounter = 0;
-    
+    [_backButton setEnabled:NO];
     // self.navigationItem.backBarButtonItem.enabled = YES;
     // self.navigationItem.backBarButtonItem.title = @"Back";
     // self.navigationItem.title = _folderName;
@@ -69,7 +69,7 @@ UIImageView* imgView2;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self.tableView reloadData];
-                // [TestFlight passCheckpoint:@"User loaded his workspace successfully"];
+                [TestFlight passCheckpoint:@"User loaded his workspace successfully"];
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             });
         });
@@ -160,6 +160,7 @@ UIImageView* imgView2;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self.navigationItem setTitle:chosenFolderTitle];
+                [_backButton setEnabled:YES];
                 [self.tableView reloadData];
                 /*
                 [UIView animateWithDuration:0.15 animations:^(void) {
@@ -357,6 +358,7 @@ UIImageView* imgView2;
     
     nestedFoldersCounter--;
     if(nestedFoldersCounter == 0) {
+        [_backButton setEnabled:NO];
         // self.navigationItem.hidesBackButton = NO;
         // self.navigationItem.leftBarButtonItem = nil;
     }

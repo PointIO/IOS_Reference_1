@@ -22,6 +22,7 @@
 @property (nonatomic) NSString* sessionKey;
 @property (nonatomic) NSString* siteTypeID;
 @property (nonatomic) NSString* userInputString;
+@property (nonatomic) NSString* siteTypeName;
 
 @property (nonatomic) AppDelegate* appDel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
