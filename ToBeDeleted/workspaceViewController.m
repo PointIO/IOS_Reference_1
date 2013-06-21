@@ -68,7 +68,7 @@ UILabel* sharedFolderLabel;
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self.tableView reloadData];
-                [TestFlight passCheckpoint:@"User loaded his workspace successfully"];
+                // [TestFlight passCheckpoint:@"User loaded his workspace successfully"];
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             });
         });

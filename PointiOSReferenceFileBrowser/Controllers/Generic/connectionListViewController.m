@@ -297,7 +297,7 @@
     }
     [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"ENABLEDCONNECTIONS"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [TestFlight passCheckpoint:@"User changed enabled connections value"];
+    // [TestFlight passCheckpoint:@"User changed enabled connections value"];
 }
 
 #pragma mark - Table view delegate

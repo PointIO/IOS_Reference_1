@@ -321,7 +321,7 @@ BOOL manageStorageConnections;
     }
     [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"ENABLEDCONNECTIONS"];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [TestFlight passCheckpoint:@"User changed enabled connections value"];
+    // [TestFlight passCheckpoint:@"User changed enabled connections value"];
 }
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -431,7 +431,7 @@ BOOL manageStorageConnections;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [TestFlight passCheckpoint:@"User viewed a document"];
+    // [TestFlight passCheckpoint:@"User viewed a document"];
     
 }
 

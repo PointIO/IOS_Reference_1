@@ -418,7 +418,7 @@ UIImageView* imgView;
 
 - (void) goToConnectionsView{
     if([[_JSONArrayAuth valueForKey:@"ERROR"] integerValue] == 0){
-        [TestFlight passCheckpoint:@"User logged in"];
+        // [TestFlight passCheckpoint:@"User logged in"];
         _successfulLogin = YES;
         if (IS_IPAD) {
         // if ([(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {

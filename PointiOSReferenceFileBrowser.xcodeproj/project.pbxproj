@@ -80,6 +80,14 @@
 		7550E0D91768042500E8F547 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550E0D81768042500E8F547 /* SystemConfiguration.framework */; };
 		7550E0DB1768042C00E8F547 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550E0DA1768042C00E8F547 /* MessageUI.framework */; };
 		7550E0DD1768045700E8F547 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550E0DC1768045700E8F547 /* libz.dylib */; };
+		75626AEE1774C3DB0019765F /* pointIO_57.png in Resources */ = {isa = PBXBuildFile; fileRef = 75626AEC1774C3DB0019765F /* pointIO_57.png */; };
+		75626AEF1774C3DB0019765F /* pointIO_114.png in Resources */ = {isa = PBXBuildFile; fileRef = 75626AED1774C3DB0019765F /* pointIO_114.png */; };
+		75626AF61774C4460019765F /* pointio50x50.png in Resources */ = {isa = PBXBuildFile; fileRef = 75626AF01774C4440019765F /* pointio50x50.png */; };
+		75626AF91774C4460019765F /* pointio114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 75626AF31774C4450019765F /* pointio114x114.png */; };
+		75626AFA1774C4460019765F /* pointio512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 75626AF41774C4450019765F /* pointio512x512.png */; };
+		75626AFB1774C4460019765F /* pointio1024x1024.png in Resources */ = {isa = PBXBuildFile; fileRef = 75626AF51774C4450019765F /* pointio1024x1024.png */; };
+		75626AFE1774C6550019765F /* pointio57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 75626AFC1774C6540019765F /* pointio57x57.png */; };
+		75626AFF1774C6550019765F /* pointio72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 75626AFD1774C6540019765F /* pointio72x72.png */; };
 		7599C78A176F8AEE00AE368C /* workspaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599C788176F8AEE00AE368C /* workspaceViewController.m */; };
 		7599C78D176F8AF700AE368C /* sharedFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599C78B176F8AF700AE368C /* sharedFoldersViewController.m */; };
 		7599C790176F94B200AE368C /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7599C78F176F94B200AE368C /* libFlurry.a */; };
@@ -118,7 +126,7 @@
 		754977EE176D1D9B0042B5D8 /* ShareDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDetailCell.m; sourceTree = "<group>"; };
 		754977F0176D204D0042B5D8 /* Document.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Document.png; sourceTree = "<group>"; };
 		754977F1176D204F0042B5D8 /* FileCabinet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FileCabinet.png; sourceTree = "<group>"; };
-		7550DFD91767FDC500E8F547 /* PointiOSReferenceFileBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointiOSReferenceFileBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7550DFD91767FDC500E8F547 /* Point.IO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Point.IO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7550DFDC1767FDC500E8F547 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7550DFDE1767FDC500E8F547 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7550DFE01767FDC500E8F547 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -200,6 +208,14 @@
 		7550E0D81768042500E8F547 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		7550E0DA1768042C00E8F547 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		7550E0DC1768045700E8F547 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		75626AEC1774C3DB0019765F /* pointIO_57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointIO_57.png; sourceTree = "<group>"; };
+		75626AED1774C3DB0019765F /* pointIO_114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointIO_114.png; sourceTree = "<group>"; };
+		75626AF01774C4440019765F /* pointio50x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio50x50.png; sourceTree = "<group>"; };
+		75626AF31774C4450019765F /* pointio114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio114x114.png; sourceTree = "<group>"; };
+		75626AF41774C4450019765F /* pointio512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio512x512.png; sourceTree = "<group>"; };
+		75626AF51774C4450019765F /* pointio1024x1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio1024x1024.png; sourceTree = "<group>"; };
+		75626AFC1774C6540019765F /* pointio57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio57x57.png; sourceTree = "<group>"; };
+		75626AFD1774C6540019765F /* pointio72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio72x72.png; sourceTree = "<group>"; };
 		7599C788176F8AEE00AE368C /* workspaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = workspaceViewController.m; sourceTree = "<group>"; };
 		7599C789176F8AEE00AE368C /* workspaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workspaceViewController.h; sourceTree = "<group>"; };
 		7599C78B176F8AF700AE368C /* sharedFoldersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sharedFoldersViewController.m; sourceTree = "<group>"; };
@@ -268,6 +284,8 @@
 		7550DFD01767FDC500E8F547 = {
 			isa = PBXGroup;
 			children = (
+				75626AFC1774C6540019765F /* pointio57x57.png */,
+				75626AFD1774C6540019765F /* pointio72x72.png */,
 				7599C787176F8A7E00AE368C /* ToBeDeleted */,
 				7550E0261768001400E8F547 /* SupportingFiles */,
 				7550DFE21767FDC500E8F547 /* PointiOSReferenceFileBrowser */,
@@ -279,7 +297,7 @@
 		7550DFDA1767FDC500E8F547 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7550DFD91767FDC500E8F547 /* PointiOSReferenceFileBrowser.app */,
+				7550DFD91767FDC500E8F547 /* Point.IO.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -376,6 +394,12 @@
 		7550E00E1767FFAC00E8F547 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				75626AF01774C4440019765F /* pointio50x50.png */,
+				75626AF31774C4450019765F /* pointio114x114.png */,
+				75626AF41774C4450019765F /* pointio512x512.png */,
+				75626AF51774C4450019765F /* pointio1024x1024.png */,
+				75626AEC1774C3DB0019765F /* pointIO_57.png */,
+				75626AED1774C3DB0019765F /* pointIO_114.png */,
 				7550E00F1767FFAC00E8F547 /* Default-568h@2x.png */,
 				7550E0101767FFAC00E8F547 /* Default.png */,
 				7550E0111767FFAC00E8F547 /* Default@2x.png */,
@@ -633,7 +657,7 @@
 			);
 			name = PointiOSReferenceFileBrowser;
 			productName = PointiOSReferenceFileBrowser;
-			productReference = 7550DFD91767FDC500E8F547 /* PointiOSReferenceFileBrowser.app */;
+			productReference = 7550DFD91767FDC500E8F547 /* Point.IO.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -716,6 +740,14 @@
 				8AEC8574176AAEED00FD7F97 /* TabBarButtonItemSettings.png in Resources */,
 				754977F2176D20520042B5D8 /* Document.png in Resources */,
 				754977F3176D20520042B5D8 /* FileCabinet.png in Resources */,
+				75626AEE1774C3DB0019765F /* pointIO_57.png in Resources */,
+				75626AEF1774C3DB0019765F /* pointIO_114.png in Resources */,
+				75626AF61774C4460019765F /* pointio50x50.png in Resources */,
+				75626AF91774C4460019765F /* pointio114x114.png in Resources */,
+				75626AFA1774C4460019765F /* pointio512x512.png in Resources */,
+				75626AFB1774C4460019765F /* pointio1024x1024.png in Resources */,
+				75626AFE1774C6550019765F /* pointio57x57.png in Resources */,
+				75626AFF1774C6550019765F /* pointio72x72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -841,6 +873,8 @@
 		7550E0001767FDC600E8F547 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Andrew Schwabe (6H6E7F352G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrew Schwabe (6H6E7F352G)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PointiOSReferenceFileBrowser/PointiOSReferenceFileBrowser-Prefix.pch";
 				INFOPLIST_FILE = "PointiOSReferenceFileBrowser/SupportingFiles/PointiOSReferenceFileBrowser-Info.plist";
@@ -849,7 +883,10 @@
 					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty/TestFlightSDK1.2.4\"",
 					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty/Flurry\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Point.IO;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -857,6 +894,8 @@
 		7550E0011767FDC600E8F547 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Schwabe (HLL9EUZVZS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PointiOSReferenceFileBrowser/PointiOSReferenceFileBrowser-Prefix.pch";
 				INFOPLIST_FILE = "PointiOSReferenceFileBrowser/SupportingFiles/PointiOSReferenceFileBrowser-Info.plist";
@@ -865,7 +904,10 @@
 					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty/TestFlightSDK1.2.4\"",
 					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty/Flurry\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Point.IO;
+				PROVISIONING_PROFILE = "9C76942A-DD45-4DE0-9D48-9BFF10D5A4E6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

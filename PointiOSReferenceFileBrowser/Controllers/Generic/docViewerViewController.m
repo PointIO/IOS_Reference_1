@@ -186,7 +186,7 @@ NSArray* tempArray;
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    [TestFlight passCheckpoint:@"User viewed a document"];
+    // [TestFlight passCheckpoint:@"User viewed a document"];
 
 }
 

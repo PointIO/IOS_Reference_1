@@ -298,19 +298,19 @@ BOOL shareSecurelyPressed, shouldCheck;
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     if(result == MFMailComposeResultSent){
-        [TestFlight passCheckpoint:@"User sent a mail"];
+        // [TestFlight passCheckpoint:@"User sent a mail"];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     else if(result == MFMailComposeResultCancelled){
-        [TestFlight passCheckpoint:@"User cancelled sending a mail"];
+        // [TestFlight passCheckpoint:@"User cancelled sending a mail"];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     else if(result == MFMailComposeResultSaved){
-        [TestFlight passCheckpoint:@"User saved a mail"];
+        // [TestFlight passCheckpoint:@"User saved a mail"];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     else if(result == MFMailComposeResultFailed){
-        [TestFlight passCheckpoint:@"User failed to send a mail"];
+        // [TestFlight passCheckpoint:@"User failed to send a mail"];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
     [_shareSecurelyButton setEnabled:YES];
