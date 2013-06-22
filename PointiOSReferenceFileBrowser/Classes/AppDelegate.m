@@ -20,9 +20,11 @@ static NSString *const kFlurryAPIKey = @"HNQK54VGWG37852TVD75";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    /*
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     [TestFlight takeOff:@"0ed81236-cf70-4f5e-9ac4-b1cd91995b10"];
     _hasLoggedIn = NO;
+    */
     
     [Flurry startSession:kFlurryAPIKey];
 

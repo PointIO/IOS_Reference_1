@@ -123,7 +123,7 @@
 		754977EE176D1D9B0042B5D8 /* ShareDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDetailCell.m; sourceTree = "<group>"; };
 		754977F0176D204D0042B5D8 /* Document.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Document.png; sourceTree = "<group>"; };
 		754977F1176D204F0042B5D8 /* FileCabinet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FileCabinet.png; sourceTree = "<group>"; };
-		7550DFD91767FDC500E8F547 /* PointiOSReferenceFileBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointiOSReferenceFileBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7550DFD91767FDC500E8F547 /* pointio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pointio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7550DFDC1767FDC500E8F547 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7550DFDE1767FDC500E8F547 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7550DFE01767FDC500E8F547 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -289,7 +289,7 @@
 		7550DFDA1767FDC500E8F547 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7550DFD91767FDC500E8F547 /* PointiOSReferenceFileBrowser.app */,
+				7550DFD91767FDC500E8F547 /* pointio.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -634,9 +634,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7550DFD81767FDC500E8F547 /* Point.IO */ = {
+		7550DFD81767FDC500E8F547 /* pointio */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7550DFFF1767FDC600E8F547 /* Build configuration list for PBXNativeTarget "Point.IO" */;
+			buildConfigurationList = 7550DFFF1767FDC600E8F547 /* Build configuration list for PBXNativeTarget "pointio" */;
 			buildPhases = (
 				7550DFD51767FDC500E8F547 /* Sources */,
 				7550DFD61767FDC500E8F547 /* Frameworks */,
@@ -646,9 +646,9 @@
 			);
 			dependencies = (
 			);
-			name = Point.IO;
+			name = pointio;
 			productName = PointiOSReferenceFileBrowser;
-			productReference = 7550DFD91767FDC500E8F547 /* PointiOSReferenceFileBrowser.app */;
+			productReference = 7550DFD91767FDC500E8F547 /* pointio.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -672,7 +672,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7550DFD81767FDC500E8F547 /* Point.IO */,
+				7550DFD81767FDC500E8F547 /* pointio */,
 			);
 		};
 /* End PBXProject section */
@@ -861,6 +861,7 @@
 		7550E0001767FDC600E8F547 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrew Schwabe (6H6E7F352G)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PointiOSReferenceFileBrowser/PointiOSReferenceFileBrowser-Prefix.pch";
 				INFOPLIST_FILE = "PointiOSReferenceFileBrowser/SupportingFiles/PointiOSReferenceFileBrowser-Info.plist";
@@ -871,6 +872,7 @@
 					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B3FD36C5-2FED-440D-B22F-CE03F08A03C9";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -879,6 +881,8 @@
 		7550E0011767FDC600E8F547 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PointiOSReferenceFileBrowser/PointiOSReferenceFileBrowser-Prefix.pch";
 				INFOPLIST_FILE = "PointiOSReferenceFileBrowser/SupportingFiles/PointiOSReferenceFileBrowser-Info.plist";
@@ -889,6 +893,8 @@
 					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -906,7 +912,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7550DFFF1767FDC600E8F547 /* Build configuration list for PBXNativeTarget "Point.IO" */ = {
+		7550DFFF1767FDC600E8F547 /* Build configuration list for PBXNativeTarget "pointio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7550E0001767FDC600E8F547 /* Debug */,
