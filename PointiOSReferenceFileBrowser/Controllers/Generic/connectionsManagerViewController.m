@@ -1,4 +1,5 @@
 #import "connectionsManagerViewController.h"
+#import "Common.h"
 
 @interface connectionsManagerViewController ()
 {
@@ -42,7 +43,7 @@ UIImageView* imgView2;
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(enableBackButton:) name:@"enableBackButton" object:nil];
     
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
@@ -255,10 +256,6 @@ UIImageView* imgView2;
     }
 }
 
-- (BOOL) isConnectedToInternet{
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
-    return !(networkStatus == NotReachable);
-}
+
 
 @end

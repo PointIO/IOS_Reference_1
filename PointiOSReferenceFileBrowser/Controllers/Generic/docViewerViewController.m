@@ -1,5 +1,5 @@
 #import "docViewerViewController.h"
-
+#import "Common.h"
 @interface docViewerViewController ()
 
 @end
@@ -60,7 +60,7 @@ NSArray* tempArray;
     // self.navigationItem.backBarButtonItem.title = @"Back";
     // [self.navigationController setToolbarHidden:NO animated:YES];
     
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
@@ -281,10 +281,6 @@ NSArray* tempArray;
     [super viewDidUnload];
 }
 
-- (BOOL) isConnectedToInternet{
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
-    return !(networkStatus == NotReachable);
-}
+
 
 @end

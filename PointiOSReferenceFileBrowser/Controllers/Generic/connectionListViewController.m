@@ -9,7 +9,7 @@
 #import "connectionListViewController.h"
 #import "StorageViewController.h"
 #import "ConnectionListCell.h"
-
+#import "Common.h"
 
 @interface connectionListViewController () {
     NSInteger row;
@@ -44,7 +44,7 @@ NSString *requestedConnectionName;
                                                  name:@"enableBackButton"
                                                object:nil];
     
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
                                                      delegate:nil
@@ -492,9 +492,5 @@ NSString *requestedConnectionName;
 }
 
 
-- (BOOL) isConnectedToInternet{
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
-    return !(networkStatus == NotReachable);
-}
+
 @end

@@ -1,4 +1,6 @@
 #import "sharingViewController.h"
+#import "Common.h"
+
 
 @interface sharingViewController ()
 
@@ -176,7 +178,7 @@ BOOL shareSecurelyPressed, shouldCheck;
 
 - (IBAction)shareSecurelyPressed:(id)sender {
 
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
@@ -321,11 +323,7 @@ BOOL shareSecurelyPressed, shouldCheck;
     [super viewDidUnload];
 }
 
-- (BOOL) isConnectedToInternet{
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
-    return !(networkStatus == NotReachable);
-}
+
 
 
 @end

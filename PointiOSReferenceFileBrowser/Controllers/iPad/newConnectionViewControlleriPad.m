@@ -7,6 +7,8 @@
 //
 
 #import "newConnectionViewControlleriPad.h"
+#import "Common.h"
+
 
 @implementation newConnectionViewControlleriPad
 
@@ -58,7 +60,7 @@ NSMutableArray* keys2;
     _maxRevisions.delegate = self;
     _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     totalYOffset = 0;
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
@@ -474,10 +476,5 @@ NSMutableArray* keys2;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (BOOL) isConnectedToInternet{
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
-    return !(networkStatus == NotReachable);
-}
 
 @end

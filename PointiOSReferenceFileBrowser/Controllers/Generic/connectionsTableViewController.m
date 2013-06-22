@@ -1,4 +1,5 @@
 #import "connectionsTableViewController.h"
+#import "Common.h"
 
 @interface connectionsTableViewController ()
 
@@ -74,7 +75,7 @@ UIImageView* imgView4;
      */
     
     _appDel = (AppDelegate*) [[UIApplication sharedApplication] delegate];
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
                                                      delegate:nil
@@ -176,7 +177,7 @@ UIImageView* imgView4;
 }
 
 - (void) viewDidAppear:(BOOL)animated{
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
                                                      delegate:nil
@@ -498,7 +499,7 @@ UIImageView* imgView4;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
                                                      delegate:nil
@@ -534,11 +535,7 @@ UIImageView* imgView4;
     
 }
 
-- (BOOL) isConnectedToInternet{
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
-    return !(networkStatus == NotReachable);
-}
+
 
 - (void)viewDidUnload {
     [self setManageStoredConnectionsButton:nil];

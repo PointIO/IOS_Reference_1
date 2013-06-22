@@ -8,6 +8,7 @@
 
 #import "shareDetailViewController.h"
 #import "ShareDetailCell.h"
+#import "Common.h"
 
 
 @interface shareDetailViewController ()
@@ -51,7 +52,7 @@ UIImageView* imgView2;
     _remotePath = @"/";
     // rootFolderTitle = self.navigationItem.title;
     
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
                                                      delegate:nil
@@ -409,12 +410,6 @@ UIImageView* imgView2;
     }
 }
 
-
-- (BOOL) isConnectedToInternet{
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
-    return !(networkStatus == NotReachable);
-}
 
 
 @end

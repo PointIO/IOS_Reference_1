@@ -2,6 +2,8 @@
 #import "FileViewerControllerIpad.h"
 #import "newConnectionViewControlleriPad.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Common.h"
+
 
 @interface docViewerViewControlleriPad ()
 
@@ -73,7 +75,7 @@ BOOL manageStorageConnections;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadLists:) name:@"reloadLists" object:nil];
     self.navigationItem.backBarButtonItem.title = @"Back";
     [self.navigationController setToolbarHidden:NO animated:YES];
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
@@ -448,11 +450,7 @@ BOOL manageStorageConnections;
     [super viewDidUnload];
 }
 
-- (BOOL) isConnectedToInternet{
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
-    return !(networkStatus == NotReachable);
-}
+
 
 - (IBAction)manageStoredConnectionsPressed:(id)sender {
     manageStorageConnections = !manageStorageConnections;
@@ -564,5 +562,6 @@ BOOL manageStorageConnections;
         [hvc setActiveStorageConnections:_displayList];
     }
 }
+
 
 @end

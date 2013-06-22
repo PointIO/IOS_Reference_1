@@ -7,6 +7,8 @@
 //
 
 #import "FileViewerControllerIpad.h"
+#import "Common.h"
+
 
 @implementation FileViewerControllerIpad
 
@@ -86,7 +88,7 @@ UIAlertView* passwordAlertView;
     self.navigationItem.title = folderName;
     _remotePath = @"/";
     rootFolderTitle = self.navigationItem.title;
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
@@ -436,11 +438,7 @@ UIAlertView* passwordAlertView;
 }
 
 
-- (BOOL) isConnectedToInternet{
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
-    return !(networkStatus == NotReachable);
-}
+
 
 /*----------------------SHARING FILES--------------------------*/
 
@@ -573,7 +571,7 @@ UIAlertView* passwordAlertView;
 }
 
 - (IBAction)shareButtonPressed:(id)sender{
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
@@ -665,4 +663,7 @@ UIAlertView* passwordAlertView;
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
+
+
+
 @end

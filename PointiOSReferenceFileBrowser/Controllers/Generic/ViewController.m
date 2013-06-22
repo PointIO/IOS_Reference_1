@@ -1,4 +1,6 @@
 #import "ViewController.h"
+#import "Common.h"
+
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone)
 
@@ -81,7 +83,7 @@ UIImageView* imgView;
         [_passwordTextField setText:[defaults valueForKey:@"PASSWORD"]];
         _username = [defaults valueForKey:@"USERNAME"];
         _password = [defaults valueForKey:@"PASSWORD"];
-        if(![self isConnectedToInternet]){
+        if(![Common isConnectedToInternet]){
             UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
             UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
             temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
@@ -115,7 +117,7 @@ UIImageView* imgView;
 
 
 - (IBAction)signInPressed {
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
                                                      delegate:nil
@@ -153,7 +155,7 @@ UIImageView* imgView;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        if(![self isConnectedToInternet]){
+        if(![Common isConnectedToInternet]){
             UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                           message:@"Looks like there is no internet connection, please check the settings"
                                                          delegate:nil
@@ -182,7 +184,7 @@ UIImageView* imgView;
 }
 
 - (IBAction)signUpPressed {
-    if(![self isConnectedToInternet]){
+    if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
                                                      delegate:nil
@@ -277,7 +279,7 @@ UIImageView* imgView;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        if(![self isConnectedToInternet]){
+        if(![Common isConnectedToInternet]){
             UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
             UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
             temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
@@ -464,10 +466,6 @@ UIImageView* imgView;
     */
 }
 
-- (BOOL) isConnectedToInternet{
-    Reachability *reachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus networkStatus = [reachability currentReachabilityStatus];
-    return !(networkStatus == NotReachable);
-}
+
 
 @end
