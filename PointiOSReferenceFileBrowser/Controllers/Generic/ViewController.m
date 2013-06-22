@@ -1,5 +1,6 @@
 #import "ViewController.h"
 #import "Common.h"
+#import "SettingsViewController.h"
 
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone)
@@ -384,33 +385,6 @@ UIImageView* imgView;
     }
 }
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([[segue identifier] isEqualToString:@"goToShares"]){
-        shareListViewController * ctvc = [segue destinationViewController];
-        [ctvc setJSONSharedFoldersArray:_JSONArrayList];
-        [ctvc setSessionKey:_sessionKey];
-    }
-    else if([[segue identifier] isEqualToString:@"manageConnections"]){
-        connectionsManagerViewController *cmvc = [segue destinationViewController];
-        [cmvc setJSONArrayList:_JSONArrayList];
-        // [cmvc setStorageIDs:_storageIDs];
-        [cmvc setSessionKey:_sessionKey];
-    }
-    else if([[segue identifier] isEqualToString:@"goToConnections"]){
-        connectionsTableViewController* ctvc = [segue destinationViewController];
-        [ctvc setJSONArrayList:_JSONArrayList];
-        [ctvc setSessionKey:_sessionKey];
-    }
-    else if([[segue identifier] isEqualToString:@"goToDocView"]){
-        docViewerViewControlleriPad* dvvc = [segue destinationViewController];
-        [dvvc setSessionKey:_sessionKey];
-        [dvvc setJSONArrayList:_JSONArrayList];
-    }
-    else if([[segue identifier] isEqualToString:@"goToSignup"]){
-        signupViewController* svc = [segue destinationViewController];
-        [svc setSessionKey:_sessionKey];
-    }
-}
 
 - (void)viewDidUnload {
     [self setGoBackButton:nil];
@@ -466,6 +440,38 @@ UIImageView* imgView;
     */
 }
 
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier] isEqualToString:@"goToShares"]){
+        shareListViewController * ctvc = [segue destinationViewController];
+        [ctvc setJSONSharedFoldersArray:_JSONArrayList];
+        [ctvc setSessionKey:_sessionKey];
+    }
+    else if([[segue identifier] isEqualToString:@"manageConnections"]){
+        connectionsManagerViewController *cmvc = [segue destinationViewController];
+        [cmvc setJSONArrayList:_JSONArrayList];
+        // [cmvc setStorageIDs:_storageIDs];
+        [cmvc setSessionKey:_sessionKey];
+    }
+    else if([[segue identifier] isEqualToString:@"goToConnections"]){
+        connectionsTableViewController* ctvc = [segue destinationViewController];
+        [ctvc setJSONArrayList:_JSONArrayList];
+        [ctvc setSessionKey:_sessionKey];
+    }
+    else if([[segue identifier] isEqualToString:@"goToDocView"]){
+        docViewerViewControlleriPad* dvvc = [segue destinationViewController];
+        [dvvc setSessionKey:_sessionKey];
+        [dvvc setJSONArrayList:_JSONArrayList];
+    }
+    else if([[segue identifier] isEqualToString:@"goToSignup"]){
+        signupViewController* svc = [segue destinationViewController];
+        [svc setSessionKey:_sessionKey];
+    }
+    else if([[segue identifier] isEqualToString:@"goToSettings"]){
+        SettingsViewController* svc2 = [segue destinationViewController];
+        // [svc2 setSessionKey:_sessionKey];
+    }
+
+}
 
 
 @end

@@ -90,6 +90,20 @@
 		8A2DD56F177511AB002310D0 /* pointio72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD56A177511AB002310D0 /* pointio72x72.png */; };
 		8A2DD570177511AB002310D0 /* pointio114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD56B177511AB002310D0 /* pointio114x114.png */; };
 		8A2DD571177511AB002310D0 /* pointio512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD56C177511AB002310D0 /* pointio512x512.png */; };
+		8A4D2C3C1775F1CD00E662E4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4D2C3B1775F1CD00E662E4 /* SettingsViewController.m */; };
+		8A4D2C4817762C3400E662E4 /* colorBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C3E17762C3400E662E4 /* colorBlack.png */; };
+		8A4D2C4917762C3400E662E4 /* colorBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C3F17762C3400E662E4 /* colorBlue.png */; };
+		8A4D2C4A17762C3400E662E4 /* colorEraser.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C4017762C3400E662E4 /* colorEraser.png */; };
+		8A4D2C4B17762C3400E662E4 /* colorGray.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C4117762C3400E662E4 /* colorGray.png */; };
+		8A4D2C4C17762C3400E662E4 /* colorGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C4217762C3400E662E4 /* colorGreen.png */; };
+		8A4D2C4D17762C3400E662E4 /* colorOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C4317762C3400E662E4 /* colorOff.png */; };
+		8A4D2C4E17762C3400E662E4 /* colorOrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C4417762C3400E662E4 /* colorOrange.png */; };
+		8A4D2C4F17762C3400E662E4 /* colorRed.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C4517762C3400E662E4 /* colorRed.png */; };
+		8A4D2C5017762C3400E662E4 /* colorWhite.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C4617762C3400E662E4 /* colorWhite.png */; };
+		8A4D2C5117762C3400E662E4 /* colorYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C4717762C3400E662E4 /* colorYellow.png */; };
+		8A4D2C5417762CB300E662E4 /* ColorThemePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4D2C5217762CB300E662E4 /* ColorThemePickerViewController.m */; };
+		8A4D2C5717762CC700E662E4 /* ColorThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4D2C5517762CC700E662E4 /* ColorThemeCell.m */; };
+		8A4D2C5917763A4E00E662E4 /* AppContent.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C5817763A4E00E662E4 /* AppContent.plist */; };
 		8AA513CD176A04B800665111 /* docViewerViewControlleriPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513C8176A04B800665111 /* docViewerViewControlleriPad.m */; };
 		8AA513CE176A04B800665111 /* FileViewerControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513CA176A04B800665111 /* FileViewerControllerIpad.m */; };
 		8AA513CF176A04B800665111 /* newConnectionViewControlleriPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513CC176A04B800665111 /* newConnectionViewControlleriPad.m */; };
@@ -220,6 +234,23 @@
 		8A2DD56A177511AB002310D0 /* pointio72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio72x72.png; sourceTree = "<group>"; };
 		8A2DD56B177511AB002310D0 /* pointio114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio114x114.png; sourceTree = "<group>"; };
 		8A2DD56C177511AB002310D0 /* pointio512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio512x512.png; sourceTree = "<group>"; };
+		8A4D2C3A1775F1CD00E662E4 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = PointiOSReferenceFileBrowser/Controllers/Generic/SettingsViewController.h; sourceTree = SOURCE_ROOT; };
+		8A4D2C3B1775F1CD00E662E4 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = PointiOSReferenceFileBrowser/Controllers/Generic/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
+		8A4D2C3E17762C3400E662E4 /* colorBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorBlack.png; sourceTree = "<group>"; };
+		8A4D2C3F17762C3400E662E4 /* colorBlue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorBlue.png; sourceTree = "<group>"; };
+		8A4D2C4017762C3400E662E4 /* colorEraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorEraser.png; sourceTree = "<group>"; };
+		8A4D2C4117762C3400E662E4 /* colorGray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorGray.png; sourceTree = "<group>"; };
+		8A4D2C4217762C3400E662E4 /* colorGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorGreen.png; sourceTree = "<group>"; };
+		8A4D2C4317762C3400E662E4 /* colorOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorOff.png; sourceTree = "<group>"; };
+		8A4D2C4417762C3400E662E4 /* colorOrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorOrange.png; sourceTree = "<group>"; };
+		8A4D2C4517762C3400E662E4 /* colorRed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorRed.png; sourceTree = "<group>"; };
+		8A4D2C4617762C3400E662E4 /* colorWhite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorWhite.png; sourceTree = "<group>"; };
+		8A4D2C4717762C3400E662E4 /* colorYellow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorYellow.png; sourceTree = "<group>"; };
+		8A4D2C5217762CB300E662E4 /* ColorThemePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorThemePickerViewController.m; sourceTree = "<group>"; };
+		8A4D2C5317762CB300E662E4 /* ColorThemePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorThemePickerViewController.h; sourceTree = "<group>"; };
+		8A4D2C5517762CC700E662E4 /* ColorThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorThemeCell.m; sourceTree = "<group>"; };
+		8A4D2C5617762CC700E662E4 /* ColorThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorThemeCell.h; sourceTree = "<group>"; };
+		8A4D2C5817763A4E00E662E4 /* AppContent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppContent.plist; sourceTree = "<group>"; };
 		8AA513C7176A04B800665111 /* docViewerViewControlleriPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = docViewerViewControlleriPad.h; sourceTree = "<group>"; };
 		8AA513C8176A04B800665111 /* docViewerViewControlleriPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = docViewerViewControlleriPad.m; sourceTree = "<group>"; };
 		8AA513C9176A04B800665111 /* FileViewerControllerIpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewerControllerIpad.h; sourceTree = "<group>"; };
@@ -364,6 +395,9 @@
 		7550E00A1767FFA300E8F547 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8A4D2C5817763A4E00E662E4 /* AppContent.plist */,
+				8A4D2C5317762CB300E662E4 /* ColorThemePickerViewController.h */,
+				8A4D2C5217762CB300E662E4 /* ColorThemePickerViewController.m */,
 				8AE2FEA51771DCB300FD20BF /* Common.h */,
 				8AE2FEA61771DCB300FD20BF /* Common.m */,
 			);
@@ -382,6 +416,7 @@
 		7550E00D1767FFAC00E8F547 /* Artwork */ = {
 			isa = PBXGroup;
 			children = (
+				8A4D2C3D17762C3400E662E4 /* Colors */,
 				7550E05E1768011700E8F547 /* Images */,
 				7550E00E1767FFAC00E8F547 /* Icons */,
 			);
@@ -418,6 +453,8 @@
 		7550E01A1767FFB500E8F547 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				8A4D2C5517762CC700E662E4 /* ColorThemeCell.m */,
+				8A4D2C5617762CC700E662E4 /* ColorThemeCell.h */,
 				754977DF176D01AB0042B5D8 /* ConnectionListCell.h */,
 				754977E0176D01AB0042B5D8 /* ConnectionListCell.m */,
 				754977E4176D0CB60042B5D8 /* ShareListCell.h */,
@@ -599,6 +636,8 @@
 				8AA513E5176A04C600665111 /* storageSignupViewController.m */,
 				8AA513E7176A04C600665111 /* ViewController.h */,
 				8AA513D7176A04C600665111 /* ViewController.m */,
+				8A4D2C3A1775F1CD00E662E4 /* SettingsViewController.h */,
+				8A4D2C3B1775F1CD00E662E4 /* SettingsViewController.m */,
 				8A256BBE176A2202001E5823 /* shareListViewController.h */,
 				8A256BBF176A2202001E5823 /* shareListViewController.m */,
 				754977EA176D1AED0042B5D8 /* shareDetailViewController.h */,
@@ -629,6 +668,23 @@
 				7599C788176F8AEE00AE368C /* workspaceViewController.m */,
 			);
 			path = ToBeDeleted;
+			sourceTree = "<group>";
+		};
+		8A4D2C3D17762C3400E662E4 /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				8A4D2C3E17762C3400E662E4 /* colorBlack.png */,
+				8A4D2C3F17762C3400E662E4 /* colorBlue.png */,
+				8A4D2C4017762C3400E662E4 /* colorEraser.png */,
+				8A4D2C4117762C3400E662E4 /* colorGray.png */,
+				8A4D2C4217762C3400E662E4 /* colorGreen.png */,
+				8A4D2C4317762C3400E662E4 /* colorOff.png */,
+				8A4D2C4417762C3400E662E4 /* colorOrange.png */,
+				8A4D2C4517762C3400E662E4 /* colorRed.png */,
+				8A4D2C4617762C3400E662E4 /* colorWhite.png */,
+				8A4D2C4717762C3400E662E4 /* colorYellow.png */,
+			);
+			path = Colors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -736,6 +792,17 @@
 				8A2DD56F177511AB002310D0 /* pointio72x72.png in Resources */,
 				8A2DD570177511AB002310D0 /* pointio114x114.png in Resources */,
 				8A2DD571177511AB002310D0 /* pointio512x512.png in Resources */,
+				8A4D2C4817762C3400E662E4 /* colorBlack.png in Resources */,
+				8A4D2C4917762C3400E662E4 /* colorBlue.png in Resources */,
+				8A4D2C4A17762C3400E662E4 /* colorEraser.png in Resources */,
+				8A4D2C4B17762C3400E662E4 /* colorGray.png in Resources */,
+				8A4D2C4C17762C3400E662E4 /* colorGreen.png in Resources */,
+				8A4D2C4D17762C3400E662E4 /* colorOff.png in Resources */,
+				8A4D2C4E17762C3400E662E4 /* colorOrange.png in Resources */,
+				8A4D2C4F17762C3400E662E4 /* colorRed.png in Resources */,
+				8A4D2C5017762C3400E662E4 /* colorWhite.png in Resources */,
+				8A4D2C5117762C3400E662E4 /* colorYellow.png in Resources */,
+				8A4D2C5917763A4E00E662E4 /* AppContent.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,6 +850,9 @@
 				7599C78D176F8AF700AE368C /* sharedFoldersViewController.m in Sources */,
 				8A25DA741770A0470025BBD3 /* connectionDetailViewController.m in Sources */,
 				8AE2FEA71771DCB300FD20BF /* Common.m in Sources */,
+				8A4D2C3C1775F1CD00E662E4 /* SettingsViewController.m in Sources */,
+				8A4D2C5417762CB300E662E4 /* ColorThemePickerViewController.m in Sources */,
+				8A4D2C5717762CC700E662E4 /* ColorThemeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

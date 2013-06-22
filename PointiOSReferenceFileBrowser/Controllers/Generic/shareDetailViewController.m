@@ -9,6 +9,7 @@
 #import "shareDetailViewController.h"
 #import "ShareDetailCell.h"
 #import "Common.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface shareDetailViewController ()
@@ -16,6 +17,11 @@
 @end
 
 @implementation shareDetailViewController
+
+{
+    CAGradientLayer* _gradientLayer;
+}
+
 
 @synthesize i;
 @synthesize nestedFoldersCounter;
@@ -122,6 +128,21 @@ UIImageView* imgView2;
         }
     }
     return cell;
+}
+
+#pragma mark
+#pragma Core Graphics
+
+-(UIColor*)colorForIndex:(NSInteger) index
+{
+    NSUInteger itemCount = [_fileNames count];
+    return [Common theColor:index:itemCount];
+}
+
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = [self colorForIndex:indexPath.row];
 }
 
 #pragma mark - Table view delegate

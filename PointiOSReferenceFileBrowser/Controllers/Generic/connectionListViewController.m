@@ -10,6 +10,7 @@
 #import "StorageViewController.h"
 #import "ConnectionListCell.h"
 #import "Common.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface connectionListViewController () {
     NSInteger row;
@@ -21,6 +22,11 @@ int i;
 NSString *requestedConnectionName;
 
 @implementation connectionListViewController
+
+{
+    CAGradientLayer* _gradientLayer;
+}
+
 
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -91,104 +97,6 @@ NSString *requestedConnectionName;
 }
 
 
-/*
-- (void) getConnections{
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^
-    {
-        NSURLResponse* urlResponseList;
-        NSError* requestErrorList;
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        
-        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
-        
-        [request setHTTPMethod:@"GET"];
-        [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
-        NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
-        
-        if(!response) {
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:@"Request response is nil"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Dismiss"
-                                                  otherButtonTitles: nil];
-            [alert show];
-        }
-        else {
-            
-            _JSONArrayList = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-            NSLog(@"JSON ARRAY LIST = %@",_JSONArrayList);
-            _connectionSharedFolders = nil;
-            _list = nil;
-            _displayList = nil;
-            _list = [NSMutableArray array];
-            _allPossibleConnections = [NSMutableArray array];
-            _storageIDs = [NSMutableArray array];
-            _displayList  = [NSMutableArray array];
-            _connectionSharedFolders = [NSMutableArray array];
-            
-            // self.navigationItem.backBarButtonItem.title = @"Back";
-            
-            NSDictionary* result = [_JSONArrayList valueForKey:@"RESULT"];
-            NSArray* columns = [result valueForKey:@"COLUMNS"];
-            NSArray* data = [result valueForKey:@"DATA"];
-            NSDictionary* tempDict;
-            
-            for(int i=0; i<[data count];i++){
-                NSArray* data2 = [data objectAtIndex:i];
-                NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
-                NSLog(@"NEW TEMP = %@",temp);
-                [_list addObject:[temp valueForKey:@"SITETYPENAME"]];
-                tempDict = [NSDictionary dictionaryWithObject:[temp valueForKey:@"NAME"] forKey:[temp valueForKey:@"SITETYPENAME"]];
-                
-                [_connectionSharedFolders addObject:tempDict];
-            }
-            
-            [self getAllPossibleConnections];
-            
-            NSArray* tempCpy = [NSArray arrayWithArray:_list];
-            
-            [_list setArray:[[NSSet setWithArray:_list] allObjects]];
-            
-            if([tempCpy count] - [_list count] == 1){
-                if([_appDel.enabledConnections count] - [_list count] == 1){
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"removeOneIndex" object:nil];
-                }
-            }
-            
-            if([_appDel.enabledConnections count] == 0 || ([_appDel.enabledConnections count] != [_list count])){
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"getEnabledStates" object:nil];
-            }
-            
-            if([_appDel.enabledConnections count] != [_list count]){
-                _appDel.enabledConnections = nil;
-                _appDel.enabledConnections = [NSMutableArray array];
-                
-                for(int i = 0; i< [_list count];i++){
-                    [_appDel.enabledConnections addObject:@"1"];
-                }
-            }
-            
-            _displayList = [NSMutableArray array];
-            for (int i = 0; i < [_list count];i++){
-                if([[_appDel.enabledConnections objectAtIndex:i] integerValue] == 1){
-                    [_displayList addObject:[_list objectAtIndex:i]];
-                    // NSLog(@"from getConnections, displayList array contents are: %@", _displayList);
-                }
-            }
-            
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"enableBackButton" object:nil];
-                [self.tableView reloadData];
-            });
-        }
-    });
-}
-*/
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -224,7 +132,7 @@ NSString *requestedConnectionName;
     for(int i=0; i<[data count];i++){
         NSArray* data2 = [data objectAtIndex:i];
         _sharedFolderData = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
-//        NSLog(@"Connections user data is %@", _sharedFolderData);
+        //        NSLog(@"Connections user data is %@", _sharedFolderData);
         if(!_appDel.connectionsNameAndTypes){
             _appDel.connectionsNameAndTypes = [[NSMutableDictionary alloc] init];
         }
@@ -244,44 +152,21 @@ NSString *requestedConnectionName;
     
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+#pragma mark
+#pragma Core Graphics
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+-(UIColor*)colorForIndex:(NSInteger) index
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+    NSUInteger itemCount = [_list count];
+    return [Common theColor:index:itemCount];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+    cell.backgroundColor = [self colorForIndex:indexPath.row];
 }
-*/
+
 
 #pragma mark - Business Logic
 - (IBAction)valueChanged:(id) sender withIndex:(NSInteger) index{
@@ -300,18 +185,19 @@ NSString *requestedConnectionName;
     if (controlSwitch.isOn) {
         [_appDel.enabledConnections setObject:@"1" atIndexedSubscript:row];
         [_appDel.connectionsTypesAndEnabledStates setObject:@"1" forKey:storageName];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
+        // [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
         // self.navigationItem.hidesBackButton = YES;
         // imgView2.alpha = 0.5;
-//        NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
+        // NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
     }
+    
     if(!controlSwitch.isOn){
         [_appDel.enabledConnections setObject:@"0" atIndexedSubscript:row];
         [_appDel.connectionsTypesAndEnabledStates setObject:@"0" forKey:storageName];
-//        [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
+        // [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
         // self.navigationItem.hidesBackButton = YES;
         // imgView2.alpha = 0.5;
-//        NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
+        // NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
     }
     NSString* temp = [[NSString alloc] init];
     for(int i = 0;i < [_list count];i++){

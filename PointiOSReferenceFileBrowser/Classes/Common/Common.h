@@ -17,5 +17,12 @@
 
 +(BOOL)isConnectedToInternet;
 
+
++ (UIColor *)theColor:(NSInteger) index:(NSInteger) numberOfItems;
++ (UIColor *)theTableViewBackgroundColor;
++ (BOOL)isDefaultColorThemeWhite;
++ (BOOL)shouldUseGradient;
+
+
 @end
 

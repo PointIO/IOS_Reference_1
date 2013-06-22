@@ -10,6 +10,7 @@
 #import "ShareListCell.h"
 #import "shareDetailViewController.h"
 #import "Common.h"
+#import <QuartzCore/QuartzCore.h>
 
 
 @interface shareListViewController()
@@ -17,6 +18,11 @@
 @end
 
 @implementation shareListViewController
+
+{
+    CAGradientLayer* _gradientLayer;
+}
+
 
 int selectedRow;
 int i;
@@ -73,7 +79,7 @@ int i;
         }
         else {
             _JSONSharedFoldersArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-//            NSLog(@"JSONSHAREDFOLDERSARRAY - %@",_JSONSharedFoldersArray);
+            // NSLog(@"JSONSHAREDFOLDERSARRAY - %@",_JSONSharedFoldersArray);
             NSDictionary* result = [_JSONSharedFoldersArray valueForKey:@"RESULT"];
             NSArray* columns = [result valueForKey:@"COLUMNS"];
             NSArray* datax = [result valueForKey:@"DATA"];
@@ -164,6 +170,21 @@ int i;
 }
 
 
+
+#pragma mark
+#pragma Core Graphics
+
+-(UIColor*)colorForIndex:(NSInteger) index
+{
+    NSUInteger itemCount = [_list count];
+    return [Common theColor:index:itemCount];
+}
+
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    cell.backgroundColor = [self colorForIndex:indexPath.row];
+}
 
 #pragma mark - Table view delegate
 
