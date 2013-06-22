@@ -873,7 +873,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B3FD36C5-2FED-440D-B22F-CE03F08A03C9";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -881,8 +881,8 @@
 		7550E0011767FDC600E8F547 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Andrew Schwabe (HLL9EUZVZS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Andrew Schwabe (HLL9EUZVZS)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PointiOSReferenceFileBrowser/PointiOSReferenceFileBrowser-Prefix.pch";
 				INFOPLIST_FILE = "PointiOSReferenceFileBrowser/SupportingFiles/PointiOSReferenceFileBrowser-Info.plist";
@@ -893,9 +893,9 @@
 					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				TARGETED_DEVICE_FAMILY = 1;
+				PROVISIONING_PROFILE = "DBFE9333-6063-432C-9818-B0A69B9E8C7A";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DBFE9333-6063-432C-9818-B0A69B9E8C7A";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
