@@ -246,7 +246,7 @@
 		754977EE176D1D9B0042B5D8 /* ShareDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDetailCell.m; sourceTree = "<group>"; };
 		754977F0176D204D0042B5D8 /* Document.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Document.png; sourceTree = "<group>"; };
 		754977F1176D204F0042B5D8 /* FileCabinet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FileCabinet.png; sourceTree = "<group>"; };
-		7550DFD91767FDC500E8F547 /* PointIO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PointIO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7550DFD91767FDC500E8F547 /* pointio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pointio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7550DFDC1767FDC500E8F547 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		7550DFDE1767FDC500E8F547 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7550DFE01767FDC500E8F547 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -606,7 +606,7 @@
 		7550DFDA1767FDC500E8F547 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7550DFD91767FDC500E8F547 /* PointIO.app */,
+				7550DFD91767FDC500E8F547 /* pointio.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1299,9 +1299,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7550DFD81767FDC500E8F547 /* PointIO */ = {
+		7550DFD81767FDC500E8F547 /* pointio */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7550DFFF1767FDC600E8F547 /* Build configuration list for PBXNativeTarget "PointIO" */;
+			buildConfigurationList = 7550DFFF1767FDC600E8F547 /* Build configuration list for PBXNativeTarget "pointio" */;
 			buildPhases = (
 				7550DFD51767FDC500E8F547 /* Sources */,
 				7550DFD61767FDC500E8F547 /* Frameworks */,
@@ -1311,9 +1311,9 @@
 			);
 			dependencies = (
 			);
-			name = PointIO;
+			name = pointio;
 			productName = PointiOSReferenceFileBrowser;
-			productReference = 7550DFD91767FDC500E8F547 /* PointIO.app */;
+			productReference = 7550DFD91767FDC500E8F547 /* pointio.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1338,7 +1338,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7550DFD81767FDC500E8F547 /* PointIO */,
+				7550DFD81767FDC500E8F547 /* pointio */,
 			);
 		};
 /* End PBXProject section */
@@ -1716,7 +1716,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7550DFFF1767FDC600E8F547 /* Build configuration list for PBXNativeTarget "PointIO" */ = {
+		7550DFFF1767FDC600E8F547 /* Build configuration list for PBXNativeTarget "pointio" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7550E0001767FDC600E8F547 /* Debug */,
