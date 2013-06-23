@@ -10,7 +10,7 @@
 #import "ViewController.h"
 #import "Flurry.h"
 #import "Common.h"
-
+#import "JMC.h"
 
 @implementation AppDelegate
 
@@ -20,14 +20,19 @@ static NSString *const kFlurryAPIKey = @"2XMYBQX7DPHPK96SQ9H9";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    ///*
+    /*
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     [TestFlight takeOff:@"ca4346c7-dd19-4ed7-b994-89c49c700d5a"];
     _hasLoggedIn = NO;
-    //*/
+    */
     
     [Flurry startSession:kFlurryAPIKey];
 
+    
+    [[JMC sharedInstance] configureJiraConnect:@"https://pointio.atlassian.net/"
+                                    projectKey:@"IOS"
+                                        apiKey:@"b85906bc-f3aa-4fd7-afb7-df3b7f4b2853"];
+    
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(getEnabledStates:) name:@"getEnabledStates" object:nil];
     

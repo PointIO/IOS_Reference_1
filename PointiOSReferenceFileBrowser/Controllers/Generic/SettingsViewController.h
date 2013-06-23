@@ -16,7 +16,10 @@
 >
 
 @property (nonatomic, strong) IBOutlet UILabel *currentColorThemeLabel;
+@property (nonatomic, strong) IBOutlet UIButton *jiraButton;
 
+
+-(IBAction)showFeedback;
 
 
 @end

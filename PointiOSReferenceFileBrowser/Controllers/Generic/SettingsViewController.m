@@ -9,6 +9,8 @@
 #import "SettingsViewController.h"
 #import "ColorThemePickerViewController.h"
 #import "Common.h"
+#import "JMC.h"
+
 
 @interface SettingsViewController ()
 
@@ -61,6 +63,12 @@
     _currentColorThemeLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"defaultColorTheme"];
 }
 
+// Jira Connect
+// - (IBAction)addConnectionPressed:(id)sender {
+
+-(IBAction)showFeedback {
+    [self presentModalViewController:[[JMC sharedInstance] viewController] animated:YES];
+}
 
 #pragma mark
 #pragma Segue Logic
@@ -73,6 +81,7 @@
         colorThemePickerViewController.delegate = self;
         colorThemePickerViewController.currentValue = colorThemePickerViewController.currentValue;
     }
+    
 }
 
 
