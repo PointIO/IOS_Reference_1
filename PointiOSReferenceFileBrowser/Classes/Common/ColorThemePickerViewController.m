@@ -115,9 +115,9 @@
     [[NSUserDefaults standardUserDefaults] setValue:theSelectedColorName forKey:@"defaultColorTheme"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    NSString *iPracticeUserDefaultColorTheme = [[NSUserDefaults standardUserDefaults] stringForKey:@"defaultColorTheme"];
+    NSString *defaultColorTheme = [[NSUserDefaults standardUserDefaults] stringForKey:@"defaultColorTheme"];
 
-    NSLog(@"Inside ColorThemePickerVC, didSelectRow, after setting color, new NSUserDefaults Color is %@", iPracticeUserDefaultColorTheme);
+    NSLog(@"Inside ColorThemePickerVC, didSelectRow, after setting color, new NSUserDefaults Color is %@", defaultColorTheme);
 
     [self.delegate colorThemePickerViewController:self didSelectValue:theSelectedColorName];
 

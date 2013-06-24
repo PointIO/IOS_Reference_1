@@ -79,7 +79,7 @@ int i;
         }
         else {
             _JSONSharedFoldersArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-            // NSLog(@"JSONSHAREDFOLDERSARRAY - %@",_JSONSharedFoldersArray);
+            NSLog(@"JSONSHAREDFOLDERSARRAY - %@",_JSONSharedFoldersArray);
             NSDictionary* result = [_JSONSharedFoldersArray valueForKey:@"RESULT"];
             NSArray* columns = [result valueForKey:@"COLUMNS"];
             NSArray* datax = [result valueForKey:@"DATA"];
@@ -91,15 +91,21 @@ int i;
                 NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
                 [_folderNames addObject:[temp valueForKey:@"SHARENAME"]];
                 [_folderShareIDs addObject:[temp valueForKey:@"SHAREID"]];
-                NSLog(@"Connections types = %@, sharename = %@",_appDel.connectionsTypesAndEnabledStates,[_appDel.connectionsNameAndTypes valueForKey:[temp valueForKey:@"SHARENAME"]]);
+                 
+                // NSLog(@"Inside ShareListVC, ViewDidLoad, Connections types = %@, sharename = %@",_appDel.connectionsTypesAndEnabledStates,[_appDel.connectionsNameAndTypes valueForKey:[temp valueForKey:@"SHARENAME"]]);
+                // connectionsTypesAndEnabledStates = NSUserDefaults.ENABLEDTYPES = list of StorageTypes and Enabled Status
+                // connectionsNameAndTypes = NSUserDefaults.NAMETYPES = list of StorageSites
+                // neither are accessRules
+                //
                 if([[_appDel.connectionsTypesAndEnabledStates valueForKey:[_appDel.connectionsNameAndTypes valueForKey:[temp valueForKey:@"SHARENAME"]]] integerValue] == 1){
-                [_list addObject:[temp valueForKey:@"SHARENAME"]];
+                    [_list addObject:[temp valueForKey:@"SHARENAME"]];
                 }
-                // NSLog(@"Folder Names are %@", _folderNames);
-                // NSLog(@"List contents are%@", _list);
-                // NSLog(@"Folder Share IDs are %@", _folderShareIDs);
             }
-            
+            NSLog(@"Inside ShareListVC, ViewDidLoad, Shares List is  %@", _list);
+            NSLog(@"Folder Names are %@", _folderNames);
+            NSLog(@"Folder Share IDs are %@", _folderShareIDs);
+            NSLog(@"List of shares to display are %@", _list);
+
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self.tableView reloadData];

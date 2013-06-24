@@ -170,12 +170,12 @@ NSString *requestedConnectionName;
 
 #pragma mark - Business Logic
 - (IBAction)valueChanged:(id) sender withIndex:(NSInteger) index{
+    
     UISwitch *controlSwitch = sender;
     // UITableViewCell *myCell = [controlSwitch superview];
     NSLog(@"Index is %i",index);
     ConnectionListCell *myCell = (ConnectionListCell*)[sender superview];
-    // storageName = myCell.textLabel.text;
-    // JB Crashing - needs more work here
+
     NSLog(@"My cell  %@",myCell);
     storageName = myCell.nameLabel.text;
     NSLog(@"Storage name = %@",storageName);
@@ -185,20 +185,13 @@ NSString *requestedConnectionName;
     if (controlSwitch.isOn) {
         [_appDel.enabledConnections setObject:@"1" atIndexedSubscript:row];
         [_appDel.connectionsTypesAndEnabledStates setObject:@"1" forKey:storageName];
-        // [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
-        // self.navigationItem.hidesBackButton = YES;
-        // imgView2.alpha = 0.5;
-        // NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
     }
     
     if(!controlSwitch.isOn){
         [_appDel.enabledConnections setObject:@"0" atIndexedSubscript:row];
         [_appDel.connectionsTypesAndEnabledStates setObject:@"0" forKey:storageName];
-        // [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
-        // self.navigationItem.hidesBackButton = YES;
-        // imgView2.alpha = 0.5;
-        // NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
     }
+    
     NSString* temp = [[NSString alloc] init];
     for(int i = 0;i < [_list count];i++){
         if([[_appDel.enabledConnections objectAtIndex:i] isEqualToString:@"1"]){
@@ -252,10 +245,6 @@ NSString *requestedConnectionName;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    // cell.nameLabel.text = [_list objectAtIndex:indexPath.row];
-    // [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    // [self performSegueWithIdentifier:@"goToStorage" sender:self];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -365,16 +354,6 @@ NSString *requestedConnectionName;
         // storageViewController *svc = [segue destinationViewController];
         // [svc setText:storageName];
     }
-    /*
-    else if([[segue identifier] isEqualToString:@"addConnection"]){
-        newConnectionViewController* ncvc = [segue destinationViewController];
-        [ncvc setUserStorageInput:_userStorageInput];
-        [ncvc setSessionKey:_sessionKey];
-        [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
-        [ncvc setAllPossibleConnections:_allPossibleConnections];
-        [ncvc setRequestedConnectionName:requestedConnectionName];
-    }
-    */
 }
 
 

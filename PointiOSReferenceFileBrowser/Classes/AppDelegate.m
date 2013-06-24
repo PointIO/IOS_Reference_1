@@ -53,12 +53,20 @@ static NSString *const kFlurryAPIKey = @"2XMYBQX7DPHPK96SQ9H9";
             }
         }
     }
+    
+    NSLog(@"Inside AppDelegate, _enabledConnections array contents is %@,", _enabledConnections);
+    
     if(!_connectionsNameAndTypes){
         _connectionsNameAndTypes = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"NAMETYPES"]];
         _connectionsTypesAndEnabledStates = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ENABLEDTYPES"]];
     }
-    NSLog(@"Recovered dictionaries - %@\n\n%@",_connectionsNameAndTypes,_connectionsTypesAndEnabledStates);
+    NSLog(@"Inside AppDelegate, Displaying ConnectionsNameAndTypes and ConnectionsTypesAndEnabledStates - %@\n\n%@",_connectionsNameAndTypes,_connectionsTypesAndEnabledStates);
+    
+    
+    NSLog(@"NSUserDefaults dump: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+
     return YES;
+
 }
 
 
@@ -116,32 +124,6 @@ static NSString *const kFlurryAPIKey = @"2XMYBQX7DPHPK96SQ9H9";
         }
     }
 }
-
-
-/*
-NSInteger firstTimeOniPhoneWithPlaysFeature = [[NSUserDefaults standardUserDefaults] integerForKey:@"iPlayBookWithPlaysFeatureHasLaunchedOniPhone"];
-if (firstTimeOniPhoneWithPlaysFeature != 1)
-{
-    for (TokenImageView *dv in [self.view subviews])
-    {
-        if ((dv.tag > 1010 && dv.tag < 9998))
-        {
-            if ([dv isKindOfClass:[TokenImageView class]])
-            {
-                CGRect  iPadFrame   = dv.frame;
-                CGRect  frame       = [self setFrameiPadtoiPhone:iPadFrame];
-                dv.frame = frame;
-            }
-        }
-    }
-    [self updateCurrentPlay];
-    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"iPlayBookWithPlaysFeatureHasLaunchedOniPhone"];
-    // [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"iPlayBookWithPlaysFeatureHasLaunchedOniPhone"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    NSLog(@"NSUserDefaults Object Contents are %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
-    
-}
-*/
 
 
 /*

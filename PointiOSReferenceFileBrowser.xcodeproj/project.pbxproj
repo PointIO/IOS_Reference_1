@@ -639,11 +639,11 @@
 				8A2DD56A177511AB002310D0 /* pointio72x72.png */,
 				8A2DD56B177511AB002310D0 /* pointio114x114.png */,
 				8A2DD56C177511AB002310D0 /* pointio512x512.png */,
+				7550E0061767FFA300E8F547 /* Classes */,
+				7550E0021767FF9700E8F547 /* Controllers */,
 				7550E0201767FFBB00E8F547 /* Model */,
 				7550E0191767FFB500E8F547 /* Views */,
 				7550E00C1767FFAC00E8F547 /* Resources */,
-				7550E0061767FFA300E8F547 /* Classes */,
-				7550E0021767FF9700E8F547 /* Controllers */,
 			);
 			path = PointiOSReferenceFileBrowser;
 			sourceTree = "<group>";
@@ -919,20 +919,20 @@
 				8AA513DD176A04C600665111 /* HubsViewController.m */,
 				8AA513DE176A04C600665111 /* newConnectionViewController.h */,
 				8AA513D5176A04C600665111 /* newConnectionViewController.m */,
-				8AA513E0176A04C600665111 /* sharingViewController.h */,
-				8AA513E1176A04C600665111 /* sharingViewController.m */,
+				8A4D2C3A1775F1CD00E662E4 /* SettingsViewController.h */,
+				8A4D2C3B1775F1CD00E662E4 /* SettingsViewController.m */,
 				8AA513E2176A04C600665111 /* signupViewController.h */,
 				8AA513E3176A04C600665111 /* signupViewController.m */,
 				8AA513E4176A04C600665111 /* storageSignupViewController.h */,
 				8AA513E5176A04C600665111 /* storageSignupViewController.m */,
-				8AA513E7176A04C600665111 /* ViewController.h */,
-				8AA513D7176A04C600665111 /* ViewController.m */,
-				8A4D2C3A1775F1CD00E662E4 /* SettingsViewController.h */,
-				8A4D2C3B1775F1CD00E662E4 /* SettingsViewController.m */,
 				8A256BBE176A2202001E5823 /* shareListViewController.h */,
 				8A256BBF176A2202001E5823 /* shareListViewController.m */,
 				754977EA176D1AED0042B5D8 /* shareDetailViewController.h */,
 				754977EB176D1AEE0042B5D8 /* shareDetailViewController.m */,
+				8AA513E0176A04C600665111 /* sharingViewController.h */,
+				8AA513E1176A04C600665111 /* sharingViewController.m */,
+				8AA513E7176A04C600665111 /* ViewController.h */,
+				8AA513D7176A04C600665111 /* ViewController.m */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
