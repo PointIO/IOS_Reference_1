@@ -302,6 +302,94 @@
             </objects>
             <point key="canvasLocation" x="1589" y="-1129"/>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="Me4-wY-dQm">
+            <objects>
+                <viewController id="lhf-Mq-pZF" customClass="LoginViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WBE-Ll-ebj">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="4Bz-Je-aUZ">
+                                <rect key="frame" x="10" y="82" width="320" height="522"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="screenPressed" destination="2" eventType="touchUpInside" id="Wfw-Mc-ShY"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="User Name" minimumFontSize="17" clearButtonMode="whileEditing" id="ZJR-Gj-NYE">
+                                <rect key="frame" x="35" y="189" width="270" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" id="aO0-0v-QIv">
+                                <rect key="frame" x="35" y="242" width="270" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="oz8-vE-vOA">
+                                <rect key="frame" x="128" y="344" width="84" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Sign in" image="signInButton.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signInPressed" destination="2" eventType="touchUpInside" id="4bf-jt-Zlk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wpL-13-wjE">
+                                <rect key="frame" x="128" y="396" width="84" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Sign up" image="signUpButton.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signUpPressed" destination="2" eventType="touchUpInside" id="fr2-q1-tT1"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="y98-cw-kO2">
+                                <rect key="frame" x="128" y="261" width="84" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="signOutButton.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="signOutPressed" destination="2" eventType="touchUpInside" id="tf6-um-DwB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gyp-aM-oDt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-328" y="-2084"/>
+        </scene>
         <!--Share List View Controller - My Stuff-->
         <scene sceneID="xi8-Da-d7F">
             <objects>
@@ -347,7 +435,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K01-67-yqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="314" y="-1918"/>
+            <point key="canvasLocation" x="314" y="-2084"/>
         </scene>
         <!--Share Detail View Controller - My Documents-->
         <scene sceneID="2NF-D8-WeM">
@@ -473,7 +561,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pew-N3-6nQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="314" y="-1117"/>
+            <point key="canvasLocation" x="320" y="-1285"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="5SY-bl-UYx">
@@ -556,7 +644,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9U-VP-SV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="314" y="-401"/>
+            <point key="canvasLocation" x="314" y="-477"/>
         </scene>
         <!--Color Theme Picker View Controller - Select Color Theme-->
         <scene sceneID="Dye-kz-vSF">
@@ -736,7 +824,7 @@
             <objects>
                 <viewController id="6Ps-kN-Pm1" customClass="newConnectionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M2a-re-Hsj">
-                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" id="eIU-nj-DZy">
@@ -1116,172 +1204,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="signUpButton.png" width="165" height="87"/>
         <image name="submitButton.png" width="165" height="87"/>
     </resources>
-    <classes>
-        <class className="ColorThemeCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ColorThemeCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="colorThemeColor" candidateClass="UIColor"/>
-                <relationship kind="outlet" name="colorThemeColorImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="colorThemeColorNameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ColorThemePickerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ColorThemePickerViewController.h"/>
-        </class>
-        <class className="ConnectionListCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConnectionListCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statusSwitch" candidateClass="UISwitch"/>
-            </relationships>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showFeedback"/>
-                <relationship kind="outlet" name="currentColorThemeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="jiraButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="ShareDetailCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShareDetailCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dateModifiedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="typeImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ShareListCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShareListCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goBackPressed"/>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signInPressed"/>
-                <relationship kind="action" name="signOutPressed"/>
-                <relationship kind="action" name="signUpPressed"/>
-                <relationship kind="outlet" name="goBackButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="signInButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signOutButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="connectionListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionListViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addConnectionPressed:"/>
-                <relationship kind="action" name="valueChanged:withIndex:"/>
-            </relationships>
-        </class>
-        <class className="connectionsManagerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionsManagerViewController.h"/>
-        </class>
-        <class className="connectionsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionsTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewConnectionPressed:"/>
-                <relationship kind="action" name="manageStoredConnectionsPressed:"/>
-                <relationship kind="outlet" name="manageStoredConnectionsButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="datePickerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/datePickerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
-            </relationships>
-        </class>
-        <class className="docViewerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/docViewerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="shareFilePressed:"/>
-                <relationship kind="outlet" name="docWebView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="errorOccuredLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="shareFileButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
-            </relationships>
-        </class>
-        <class className="newConnectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/newConnectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createPressed"/>
-                <relationship kind="action" name="revisionControlEnabledValueChanged"/>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="outlet" name="checkinCheckout" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="checkinCheckoutLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="createButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="enabledLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="enabledSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="loggingEnabled" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="loggingLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="maxRevisions" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="maxRevisionsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="revisionControl" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="revisionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="shareDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/shareDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="showPastFolder:"/>
-                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="shareListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/shareListViewController.h"/>
-        </class>
-        <class className="sharingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/sharingViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="shareSecurelyPressed:"/>
-                <relationship kind="outlet" name="downloadSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="expireSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="forwardingSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="passwordSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="printSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="screenCaptureSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="shareSecurelyButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="signupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/signupViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signUpPressed"/>
-                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="reEnterPasswordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
-                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="storageSignupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/storageSignupViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Guj-hK-ntb"/>
-        <segue reference="9n1-t2-Zrp"/>
         <segue reference="KfT-pi-SBR"/>
+        <segue reference="9n1-t2-Zrp"/>
+        <segue reference="bjj-CI-bpb"/>
     </inferredMetricsTieBreakers>
 </document>

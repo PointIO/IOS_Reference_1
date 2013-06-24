@@ -50,6 +50,8 @@ NSString *requestedConnectionName;
                                                  name:@"enableBackButton"
                                                object:nil];
     
+    // NSLog(@"Inside ViewDidLoad CONNECTION TYPES AND ENABLED STATES = %@",_appDel.connectionsTypesAndEnabledStates);
+
     if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
@@ -70,15 +72,20 @@ NSString *requestedConnectionName;
             NSArray* data2 = [data objectAtIndex:i];
             _sharedFolderData = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
             [_list addObject:[_sharedFolderData valueForKey:@"SITETYPENAME"]];
-        }
+            // [_list addObject:[_sharedFolderData valueForKey:@"SITETYPEID"]];
+       }
         [_list setArray:[[NSSet setWithArray:_list] allObjects]];
     }
     
     if(!_appDel.enabledConnections){
         _appDel.enabledConnections = [NSMutableArray array];
     }
+    NSLog(@"Inside ViewDidLoad, after parsing jsonArrayList, CONNECTION TYPES AND ENABLED STATES = %@",_appDel.connectionsTypesAndEnabledStates);
+
     for(int i = 0;i<[_list count];i++){
         [_appDel.enabledConnections addObject:@"0"];
+        NSLog(@"Inside ViewDidLoad, after _list and updating _appDel.enabledConnections, CONNECTION TYPES AND ENABLED STATES = %@",_appDel.connectionsTypesAndEnabledStates);
+        NSLog(@"Inside ViewDidLoad, after _list and updating _appDel.enabledConnections, value of _appDel.enabledConnections = %@",_appDel.enabledConnections);
     }
 
 }
@@ -89,10 +96,11 @@ NSString *requestedConnectionName;
         _appDel.connectionsTypesAndEnabledStates = [[NSMutableDictionary alloc] init];
     }
     for(int i = [_list count]-1; i >=0; i--){
-        NSDictionary* tempDict = [NSDictionary dictionaryWithObject:[_appDel.enabledConnections objectAtIndex:i]  forKey:[_list objectAtIndex:i]];
+        NSDictionary* tempDict = [NSDictionary dictionaryWithObject:[_appDel.enabledConnections objectAtIndex:i]
+                                                             forKey:[_list objectAtIndex:i]];
         [_appDel.connectionsTypesAndEnabledStates addEntriesFromDictionary:tempDict];
     }
-    NSLog(@"CONNECTION TYPES AND ENABLED STATES = %@",_appDel.connectionsTypesAndEnabledStates);
+    NSLog(@"Inside ViewDidAppear CONNECTION TYPES AND ENABLED STATES = %@",_appDel.connectionsTypesAndEnabledStates);
 
 }
 
@@ -128,6 +136,7 @@ NSString *requestedConnectionName;
     
     row = indexPath.row;
     cell.nameLabel.text = [_list objectAtIndex:indexPath.row];
+    // cell.nameLabel.text = [[_list objectAtIndex:indexPath.row] stringValue];
     
     for(int i=0; i<[data count];i++){
         NSArray* data2 = [data objectAtIndex:i];
@@ -252,6 +261,11 @@ NSString *requestedConnectionName;
 }
 
 - (void) getAllPossibleConnections{
+    
+    //
+    // called by addConnection
+    //
+    
     NSMutableArray* tempy = [NSMutableArray array];
     NSURLResponse* urlResponseList;
     NSError* requestErrorList;
@@ -286,6 +300,7 @@ NSString *requestedConnectionName;
         }
     }
 }
+
 
 
 #pragma mark - Segue

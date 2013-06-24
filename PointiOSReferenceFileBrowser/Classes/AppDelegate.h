@@ -25,6 +25,19 @@
 
 @property (nonatomic, strong) id vc;
 
+
+
+
+
+// JB 6/24
+@property (nonatomic,strong) NSArray* storageTypesArray;
+@property (nonatomic,strong) NSArray* storageSitesArray;
+@property (nonatomic,strong) NSArray* storageSitesEnabledArray;
+@property (nonatomic,strong) NSArray* accessRulesArray;
+@property (nonatomic,strong) NSArray* accessRulesEnabledArray;
+
+
+
 // DetailViewManager is assigned as the Split View Controller's delegate.
 // However, UISplitViewController maintains only a weak reference to its
 // delegate.  Someone must hold a strong reference to DetailViewManager

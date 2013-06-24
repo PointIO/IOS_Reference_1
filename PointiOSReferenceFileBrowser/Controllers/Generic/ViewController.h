@@ -1,5 +1,4 @@
 #import <UIKit/UIKit.h>
-#import "connectionsTableViewController.h"
 #import "AFJSONRequestOperation.h"
 #import "dispatch/dispatch.h"
 
@@ -7,8 +6,12 @@
 #import "Reachability.h"
 #import "SystemConfiguration/SystemConfiguration.h"
 #import <QuartzCore/QuartzCore.h>
+
 #import "docViewerViewControlleriPad.h"
 #import "shareListViewController.h"
+#import "ConnectionListViewController.h"
+#import "connectionsTableViewController.h"
+#import "SettingsViewController.h"
 
 
 @interface ViewController : UIViewController <UITextFieldDelegate>
@@ -30,6 +33,23 @@
 @property (nonatomic) BOOL successfulLogin;
 @property (nonatomic) BOOL shouldSignIn;
 @property (nonatomic) AppDelegate* appDel;
+
+
+// JB 6/24
+@property (nonatomic,strong) NSArray* storageTypesArray;
+@property (nonatomic,strong) NSArray* storageSitesArray;
+@property (nonatomic,strong) NSMutableDictionary* storageSitesDictionary;
+@property (nonatomic,strong) NSArray* accessRulesArray;
+@property (nonatomic,strong) NSArray* accessRulesEnabledArray;
+
+/*
+@property (nonatomic,strong) NSDictionary* storageTypesDictionary;
+@property (nonatomic,strong) NSArray* storageTypeNamesArray;
+@property (nonatomic,strong) NSArray* storageTypeIDsArray;
+@property (nonatomic,strong) NSArray* storageTypeEnabledArray;
+*/
+
+
 
 - (IBAction)signInPressed;				
 - (IBAction)screenPressed;

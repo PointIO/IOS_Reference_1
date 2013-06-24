@@ -16,6 +16,7 @@
 
 
 static NSString *const kFlurryAPIKey = @"2XMYBQX7DPHPK96SQ9H9";
+static NSString *resetPointFirstLaunchKey = @"1";
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -39,10 +40,15 @@ static NSString *const kFlurryAPIKey = @"2XMYBQX7DPHPK96SQ9H9";
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(removeOneIndex:) name:@"removeOneIndex" object:nil];
     
-    [self getEnabledStatesOnFirstLaunch];
+    if ([resetPointFirstLaunchKey isEqualToString:@"1"]) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PointFirstLaunch"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    // [self getEnabledStatesOnFirstLaunch];
     
     NSString* temp = [[NSUserDefaults standardUserDefaults] objectForKey:@"ENABLEDCONNECTIONS"];
-    NSLog(@"Temp = %@",temp);
+    // NSLog(@"Temp = %@",temp);
     if([temp length] > 0){
         _enabledConnections = [NSMutableArray array];
         for(int i = 0; i < [temp length]; i++){
@@ -53,17 +59,14 @@ static NSString *const kFlurryAPIKey = @"2XMYBQX7DPHPK96SQ9H9";
             }
         }
     }
-    
-    NSLog(@"Inside AppDelegate, _enabledConnections array contents is %@,", _enabledConnections);
+    // NSLog(@"Inside AppDelegate, _enabledConnections array contents is %@,", _enabledConnections);
     
     if(!_connectionsNameAndTypes){
         _connectionsNameAndTypes = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"NAMETYPES"]];
         _connectionsTypesAndEnabledStates = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ENABLEDTYPES"]];
     }
-    NSLog(@"Inside AppDelegate, Displaying ConnectionsNameAndTypes and ConnectionsTypesAndEnabledStates - %@\n\n%@",_connectionsNameAndTypes,_connectionsTypesAndEnabledStates);
-    
-    
-    NSLog(@"NSUserDefaults dump: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+    // NSLog(@"Inside AppDelegate, Displaying ConnectionsNameAndTypes and ConnectionsTypesAndEnabledStates - %@\n\n%@",_connectionsNameAndTypes,_connectionsTypesAndEnabledStates);
+    // NSLog(@"NSUserDefaults dump: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
 
     return YES;
 
@@ -71,6 +74,7 @@ static NSString *const kFlurryAPIKey = @"2XMYBQX7DPHPK96SQ9H9";
 
 
 
+/*
 - (void) getEnabledStatesOnFirstLaunch{
     //
     // On First Time Launch only, populate NSUserDefaults with each Storage Connection's Enabled Status
@@ -107,6 +111,7 @@ static NSString *const kFlurryAPIKey = @"2XMYBQX7DPHPK96SQ9H9";
             NSDictionary* result = [JSONArrayList valueForKey:@"RESULT"];
             NSArray* columns = [result valueForKey:@"COLUMNS"];
             NSArray* data = [result valueForKey:@"DATA"];
+            NSLog(@"StorageSites from API are %@", JSONArrayList);
             for(int i=0; i<[data count];i++){
                 NSArray* data2 = [data objectAtIndex:i];
                 NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
@@ -124,7 +129,7 @@ static NSString *const kFlurryAPIKey = @"2XMYBQX7DPHPK96SQ9H9";
         }
     }
 }
-
+*/
 
 /*
 - (void) removeOneIndex:(NSNotification*)notification{

@@ -1,6 +1,5 @@
 #import "ViewController.h"
 #import "Common.h"
-#import "SettingsViewController.h"
 
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone)
@@ -68,8 +67,6 @@ UIImageView* imgView;
 
     [_signOutButton setHidden:YES];
     [_goBackButton setHidden:YES];
-    // self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.10980392156863f green:0.37254901960784f blue:0.6078431372549f alpha:1];
-    // self.navigationController.toolbar.tintColor = [UIColor colorWithRed:0.10980392156863f green:0.37254901960784f blue:0.6078431372549f alpha:1];
 
     UISwipeGestureRecognizer* swipedUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(screenPressed)];
     [swipedUp setDirection:UISwipeGestureRecognizerDirectionUp];
@@ -294,25 +291,24 @@ UIImageView* imgView;
             if(!response){
                 UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
                 [alert show];
-            } else {
-        _JSONArrayAuth = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-        NSString* errorFlagString = [_JSONArrayAuth valueForKey:@"ERROR"];
-        int errorFlag = [errorFlagString integerValue];
-        if(errorFlag == 1){
-            [self performSelectorOnMainThread:@selector(displayError) withObject:nil waitUntilDone:YES];
         } else {
-            _successfulLogin = YES;
-            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:_username forKey:@"USERNAME"];
-            [defaults setObject:_password forKey:@"PASSWORD"];
-            [defaults synchronize];
-            NSDictionary* result = [_JSONArrayAuth valueForKey:@"RESULT"];
-            _sessionKey = [result valueForKey:@"SESSIONKEY"];
-            _appDel.sessionKey = _sessionKey;
-            NSLog(@"SESSION KEY = %@",_sessionKey);
-            [self performSelectorOnMainThread:@selector(performListCall) withObject:nil waitUntilDone:YES];
-            
-            }
+            _JSONArrayAuth = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+            NSString* errorFlagString = [_JSONArrayAuth valueForKey:@"ERROR"];
+            int errorFlag = [errorFlagString integerValue];
+            if(errorFlag == 1){
+                [self performSelectorOnMainThread:@selector(displayError) withObject:nil waitUntilDone:YES];
+            } else {
+                _successfulLogin = YES;
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:_username forKey:@"USERNAME"];
+                [defaults setObject:_password forKey:@"PASSWORD"];
+                [defaults synchronize];
+                NSDictionary* result = [_JSONArrayAuth valueForKey:@"RESULT"];
+                _sessionKey = [result valueForKey:@"SESSIONKEY"];
+                _appDel.sessionKey = _sessionKey;
+                NSLog(@"SESSION KEY = %@",_sessionKey);
+                [self performSelectorOnMainThread:@selector(performListCall) withObject:nil waitUntilDone:YES];
+             }
         }
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -370,6 +366,8 @@ UIImageView* imgView;
 
 
 - (void) performListCall{
+     
+    // get storageSites ORIGINAL CODE
     NSURLResponse* urlResponseList;
     NSError* requestErrorList;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -381,8 +379,92 @@ UIImageView* imgView;
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
         [alert show];
     } else {
-    _JSONArrayList = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        _JSONArrayList = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
     }
+    
+     // get storageTypes
+    NSURLResponse* urlResponseList1;
+    NSError* requestErrorList1;
+    NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc] init];
+    [request1 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagetypes/list.json"]];
+    [request1 setHTTPMethod:@"GET"];
+    [request1 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
+    NSData* response1 = [NSURLConnection sendSynchronousRequest:request1 returningResponse:&urlResponseList1 error:&requestErrorList1];
+    if(!response1){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        [alert show];
+    } else {
+        _storageTypesArray = [NSJSONSerialization JSONObjectWithData:response1 options:NSJSONReadingMutableContainers error:nil];
+    }
+    NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _storageTypesArray);
+   
+    // get storageSites
+    NSURLResponse* urlResponseList2;
+    NSError* requestErrorList2;
+    NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] init];
+    [request2 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
+    [request2 setHTTPMethod:@"GET"];
+    [request2 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
+    NSData* response2 = [NSURLConnection sendSynchronousRequest:request2 returningResponse:&urlResponseList2 error:&requestErrorList2];
+    if(!response2){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        [alert show];
+    } else {
+        _storageSitesArray = [NSJSONSerialization JSONObjectWithData:response2 options:NSJSONReadingMutableContainers error:nil];
+    }
+    NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _storageSitesArray);
+
+    
+    // create storageSites Dictionary
+    ///*
+    NSDictionary *resultStorageSitesDictionary = [_storageSitesArray valueForKey:@"RESULT"];
+    NSArray *resultColumns = [resultStorageSitesDictionary valueForKey:@"COLUMNS"];
+    NSArray *resultData = [resultStorageSitesDictionary valueForKey:@"DATA"];
+    NSLog(@"Columns is %@", resultColumns);
+    NSLog(@"Data is %@", resultData);
+    NSLog(@"Data number of records is %i", [resultData count]);
+    //*/
+    // [dict setObject:[NSNumber numberWithInt:42] forKey:@"A cool number"];
+    for(int i=0; i<[resultData count];i++){
+        // [postVariablesDictionary setObject:imageData forKey:@"image"];
+        [_storageSitesDictionary setObject:@"StorageSiteID" forKey:@"StorageSiteID"];
+        [_storageSitesDictionary setObject:@"1" forKey:@"StorageSiteEnabled"];
+    }
+    NSLog(@"storageSitesDictionary is %@", _storageSitesDictionary);
+    
+    // get accessRules
+    NSURLResponse* urlResponseList3;
+    NSError* requestErrorList3;
+    NSMutableURLRequest *request3 = [[NSMutableURLRequest alloc] init];
+    [request3 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/accessrules/list.json"]];
+    [request3 setHTTPMethod:@"GET"];
+    [request3 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
+    NSData* response3 = [NSURLConnection sendSynchronousRequest:request3 returningResponse:&urlResponseList3 error:&requestErrorList3];
+    if(!response3){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        [alert show];
+    } else {
+        _accessRulesArray = [NSJSONSerialization JSONObjectWithData:response3 options:NSJSONReadingMutableContainers error:nil];
+    }
+    NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _accessRulesArray);
+
+    // get enabledAccessRules
+    /*
+    NSURLResponse* urlResponseList4;
+    NSError* requestErrorList4;
+    NSMutableURLRequest *request4 = [[NSMutableURLRequest alloc] init];
+    [request4 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/accessrules/list.json"]];
+    [request4 setHTTPMethod:@"GET"];
+    [request4 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
+    NSData* response4 = [NSURLConnection sendSynchronousRequest:request4 returningResponse:&urlResponseList4 error:&requestErrorList4];
+    if(!response4){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        [alert show];
+    } else {
+        _accessRulesEnabledArray = [NSJSONSerialization JSONObjectWithData:response4 options:NSJSONReadingMutableContainers error:nil];
+    }
+    NSLog(@"Inside ViewController, performListCall where accessRules are %@", _accessRulesArray);
+   */
 }
 
 
@@ -453,7 +535,7 @@ UIImageView* imgView;
         [cmvc setSessionKey:_sessionKey];
     }
     else if([[segue identifier] isEqualToString:@"goToConnections"]){
-        connectionsTableViewController* ctvc = [segue destinationViewController];
+        connectionListViewController * ctvc = [segue destinationViewController];
         [ctvc setJSONArrayList:_JSONArrayList];
         [ctvc setSessionKey:_sessionKey];
     }
