@@ -52,6 +52,9 @@ int i;
 
 - (void)viewDidLoad
 {
+    // need to update this to display only accessRules from storageSites which are enabled
+    // read from appDelegate _accessRulesEnabled
+    
     [super viewDidLoad];
      
     _JSONSharedFoldersArray = [NSArray array];
@@ -78,6 +81,18 @@ int i;
             [alert show];
         }
         else {
+
+            NSArray *enabledSharesArray = [[NSArray alloc] init];
+            enabledSharesArray = _appDel.accessRulesEnabledArray;
+            NSLog(@"Inside ShareListViewController.ViewDidLoad, enabledShares from appDelegate is %@", enabledSharesArray);
+            
+            for (i=0; i<[enabledSharesArray count]; i++) {
+                NSArray *accessRuleItem;
+                accessRuleItem = [enabledSharesArray objectAtIndex:i];
+                 [_list addObject:accessRuleItem];
+            }
+            
+            /*
             _JSONSharedFoldersArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
             NSLog(@"JSONSHAREDFOLDERSARRAY - %@",_JSONSharedFoldersArray);
             NSDictionary* result = [_JSONSharedFoldersArray valueForKey:@"RESULT"];
@@ -92,11 +107,6 @@ int i;
                 [_folderNames addObject:[temp valueForKey:@"SHARENAME"]];
                 [_folderShareIDs addObject:[temp valueForKey:@"SHAREID"]];
                  
-                // NSLog(@"Inside ShareListVC, ViewDidLoad, Connections types = %@, sharename = %@",_appDel.connectionsTypesAndEnabledStates,[_appDel.connectionsNameAndTypes valueForKey:[temp valueForKey:@"SHARENAME"]]);
-                // connectionsTypesAndEnabledStates = NSUserDefaults.ENABLEDTYPES = list of StorageTypes and Enabled Status
-                // connectionsNameAndTypes = NSUserDefaults.NAMETYPES = list of StorageSites
-                // neither are accessRules
-                //
                 if([[_appDel.connectionsTypesAndEnabledStates valueForKey:[_appDel.connectionsNameAndTypes valueForKey:[temp valueForKey:@"SHARENAME"]]] integerValue] == 1){
                     [_list addObject:[temp valueForKey:@"SHARENAME"]];
                 }
@@ -105,19 +115,15 @@ int i;
             NSLog(@"Folder Names are %@", _folderNames);
             NSLog(@"Folder Share IDs are %@", _folderShareIDs);
             NSLog(@"List of shares to display are %@", _list);
-
+            */
+             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self.tableView reloadData];
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             });
         }
-    });
-    
-    NSArray *enabledShares = [[NSArray alloc] init];
-    enabledShares = _appDel.accessRulesEnabledArray;
-    NSLog(@"Inside ShareListViewController.ViewDidLoad, enabledShares from appDelegate is %@", enabledShares);
-    
+    });    
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
@@ -175,7 +181,10 @@ int i;
     ShareListCell *cell = (ShareListCell *)[tableView dequeueReusableCellWithIdentifier:@"ShareListCell"];
     
     if([_list count] != 0){
-        cell.nameLabel.text = [_list objectAtIndex:indexPath.row];
+        
+        // cell.nameLabel.text = [_list objectAtIndex:indexPath.row];
+        cell.nameLabel.text = [[_list objectAtIndex:indexPath.row] valueForKey:@"AccessRuleShareName"];
+        
     }
     return cell;
 }
@@ -243,6 +252,7 @@ int i;
             
             NSIndexPath *indexPath = sender;
             selectedRow = indexPath.row;
+            
             NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
             _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
             NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
@@ -261,6 +271,24 @@ int i;
             wvc.selectedShareName = _selectedShareName;
         }
         else if ([[segue identifier] isEqualToString:@"goToFilesFromTableViewCell"]){
+            
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+            selectedRow = indexPath.row;
+            NSDictionary *selectedAccessRuleDictionary = [[NSDictionary alloc] initWithDictionary:[_list objectAtIndex:selectedRow]];
+            
+            UINavigationController *navigationController    = segue.destinationViewController;
+            shareDetailViewController *wvc                  = [[navigationController viewControllers] objectAtIndex:0];
+            
+            [wvc setShareID:[selectedAccessRuleDictionary valueForKey:@"AccessRuleShareID"]];
+            [wvc setFolderName:[selectedAccessRuleDictionary valueForKey:@"AccessRuleName"]];
+            [wvc setSessionKey:_sessionKey];
+            wvc.selectedShareID = [selectedAccessRuleDictionary valueForKey:@"AccessRuleShareID"];
+            wvc.selectedShareName = [selectedAccessRuleDictionary valueForKey:@"AccessRuleName"];
+            
+            // NSArray *keysArray = [[NSArray alloc] initWithObjects:@"AccessRuleShareID",@"AccessRuleShareName", nil];
+            // NSArray *valuesArray = [[NSArray alloc] initWithObjects:[_accessRulesShareIDArray objectAtIndex:i], [_accessRulesNamesArray objectAtIndex:i], nil];
+            // NSDictionary *accessRuleDictionary = [[NSDictionary alloc] initWithObjects:valuesArray forKeys:keysArray]
+            /*
             NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
             selectedRow = indexPath.row;
             NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
@@ -278,17 +306,7 @@ int i;
             [wvc setSessionKey:_sessionKey];
             wvc.selectedShareID = _selectedShareID;
             wvc.selectedShareName = _selectedShareName;
-            
-            /*
-             UINavigationController *navigationController            = segue.destinationViewController;
-             PlayerDetailViewController *playerDetailViewController  = [[navigationController viewControllers] objectAtIndex:0];
-             playerDetailViewController.delegate                     = self;
-             
-             NSIndexPath *indexPath                                  = [self.tableView indexPathForCell:sender];
-             
-             Player *player                                          = [self.fetchedResultsController objectAtIndexPath:indexPath];
-             playerDetailViewController.playerToEdit                 = player;
-             */
+            */
         }
     }
 }

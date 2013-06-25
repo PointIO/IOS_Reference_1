@@ -36,7 +36,7 @@
 
 
 // JB 6/24
-@property (nonatomic,strong) NSMutableArray* storageTypesArray;
+// @property (nonatomic,strong) NSMutableArray* storageTypesArray;
 
 @property (nonatomic,strong) NSMutableArray* storageSitesArray;
 @property (nonatomic,strong) NSMutableArray* storageSitesNamesArray;
@@ -49,8 +49,6 @@
 @property (nonatomic,strong) NSMutableArray* accessRulesSiteIDArray;
 
 @property (nonatomic,strong) NSMutableArray* accessRulesEnabledArray;
-@property (nonatomic,strong) NSMutableDictionary* accessRulesEnabledDictionary;
-
 
 
 - (IBAction)signInPressed;				

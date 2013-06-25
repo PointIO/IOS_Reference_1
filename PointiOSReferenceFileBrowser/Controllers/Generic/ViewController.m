@@ -11,24 +11,6 @@
 
 @implementation ViewController
 
-@synthesize usernameTextField = _usernameTextField;
-@synthesize passwordTextField = _passwordTextField;
-@synthesize signInButton = _signInButton;
-@synthesize signUpButton = _signUpButton;
-@synthesize signOutButton = _signOutButton;
-@synthesize goBackButton = _goBackButton;
-
-// REST API
-@synthesize username = _username;
-@synthesize password = _password;
-@synthesize sessionKey = _sessionKey;
-@synthesize postString = _postString;
-@synthesize JSONArrayAuth = _JSONArrayAuth;
-@synthesize JSONArrayList = _JSONArrayList;
-@synthesize successfulLogin = _successfulLogin;
-@synthesize appDel = _appDel;
-@synthesize shouldSignIn = _shouldSignIn;
-
 
 UIImageView* imgView;
 
@@ -367,22 +349,8 @@ UIImageView* imgView;
 
 - (void) performListCall{
      
-    // get storageSites ORIGINAL CODE
-    NSURLResponse* urlResponseList;
-    NSError* requestErrorList;
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
-    [request setHTTPMethod:@"GET"];
-    [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
-    NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
-    if(!response){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [alert show];
-    } else {
-        _JSONArrayList = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-    }
-    
-     // get storageTypes
+    // get storageTypes
+    /*
     NSURLResponse* urlResponseList1;
     NSError* requestErrorList1;
     NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc] init];
@@ -397,7 +365,9 @@ UIImageView* imgView;
         _storageTypesArray = [NSJSONSerialization JSONObjectWithData:response1 options:NSJSONReadingMutableContainers error:nil];
     }
     NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _storageTypesArray);
-   
+    */
+    
+    
     //
     // get storageSites
     //
@@ -417,36 +387,32 @@ UIImageView* imgView;
     NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _storageSitesArray);
 
     
-    // create storageSites Arrays
+    //
+    // create 3 storageSites Arrays for Names, IDs, and Enabled Status
+    //
     NSDictionary *resultStorageSitesDictionary = [_storageSitesArray valueForKey:@"RESULT"];
     NSArray *resultColumns = [resultStorageSitesDictionary valueForKey:@"COLUMNS"];
     NSArray *resultData = [resultStorageSitesDictionary valueForKey:@"DATA"];
     
-    // NSLog(@"Columns is %@", resultColumns);
-    // NSLog(@"Data is %@", resultData);
-    // NSLog(@"Data number of records is %i", [resultData count]);
     _storageSitesNamesArray = [[NSMutableArray alloc] init];
     _storageSitesIDsArray = [[NSMutableArray array] init];
     _storageSitesEnabledStatusArray = [[NSMutableArray array] init];
 
-    // [dict setObject:[NSNumber numberWithInt:42] forKey:@"A cool number"];
-    for(int i=0; i<[resultData count];i++){
+     for(int i=0; i<[resultData count];i++){
         NSArray* data2 = [resultData objectAtIndex:i];
         NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:resultColumns];
         NSString *enabledStatus = [[temp valueForKey:@"ENABLED"] stringValue];
         if ([enabledStatus isEqualToString:@"1"]) {
-        // if (enabledStatus = 1) {
             [_storageSitesNamesArray addObject:[temp valueForKey:@"NAME"]];
             [_storageSitesIDsArray addObject:[temp valueForKey:@"SITEID"]];
             [_storageSitesEnabledStatusArray addObject:[temp valueForKey:@"ENABLED"]];
         }
-    }
-    NSLog(@"_storageSitesNamesArray is %@", _storageSitesNamesArray);
-    NSLog(@"_storageSitesIDsArray is %@", _storageSitesIDsArray);
-    NSLog(@"_storageSitesEnabledArray is %@", _storageSitesEnabledStatusArray);
-    
+    }    
 
+    
+    //
     // get accessRules
+    // 
     NSURLResponse* urlResponseList3;
     NSError* requestErrorList3;
     NSMutableURLRequest *request3 = [[NSMutableURLRequest alloc] init];
@@ -463,19 +429,17 @@ UIImageView* imgView;
     NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _accessRulesArray);
 
     
-    // get enabledAccessRules
+    //
+    // Create dictionary to track Enabled access rules, both Name and ID
+    //
     NSDictionary *resultAccessRulesDictionary = [_accessRulesArray valueForKey:@"RESULT"];
     NSArray *resultColumns1 = [resultAccessRulesDictionary valueForKey:@"COLUMNS"];
     NSArray *resultData1 = [resultAccessRulesDictionary valueForKey:@"DATA"];
     
-    // NSLog(@"Columns is %@", resultColumns);
-    // NSLog(@"Data is %@", resultData);
-    // NSLog(@"Data number of records is %i", [resultData count]);
     _accessRulesNamesArray = [[NSMutableArray alloc] init];
     _accessRulesShareIDArray = [[NSMutableArray array] init];
     _accessRulesSiteIDArray = [[NSMutableArray array] init];
     _accessRulesEnabledArray = [[NSMutableArray array] init];
-    _accessRulesEnabledDictionary = [[NSMutableDictionary alloc] init];
     
     for(int i=0; i<[resultData1 count];i++){
         NSArray* data2 = [resultData1 objectAtIndex:i];
@@ -490,19 +454,18 @@ UIImageView* imgView;
             if ([[_accessRulesSiteIDArray objectAtIndex:i] isEqualToString:[_storageSitesIDsArray objectAtIndex:j]]) {
                 NSString *storageSiteEnabledStatus = [[_storageSitesEnabledStatusArray objectAtIndex:j] stringValue];
                 if ([storageSiteEnabledStatus isEqualToString:@"1"]) {
-                    [_accessRulesEnabledDictionary setObject:[_accessRulesShareIDArray objectAtIndex:i] forKey:@"AccessRuleShareID"];
-                    [_accessRulesEnabledDictionary setObject:[_accessRulesNamesArray objectAtIndex:i] forKey:@"AccessRuleShareName"];
-                    [_accessRulesEnabledArray addObject:[_accessRulesEnabledDictionary allValues]];
+                    
+                    NSArray *keysArray = [[NSArray alloc] initWithObjects:@"AccessRuleShareID",@"AccessRuleShareName", nil];
+                    NSArray *valuesArray = [[NSArray alloc] initWithObjects:[_accessRulesShareIDArray objectAtIndex:i], [_accessRulesNamesArray objectAtIndex:i], nil];
+                    NSDictionary *accessRuleDictionary = [[NSDictionary alloc] initWithObjects:valuesArray forKeys:keysArray];
+                    [_accessRulesEnabledArray addObject:accessRuleDictionary];
                     break;
                 }
              }
         }
     }
-    // NSLog(@"_accessRulesNamesArray is %@", _accessRulesNamesArray);
-    // NSLog(@"_accessRulesShareIDArray is %@", _accessRulesShareIDArray);
-    // NSLog(@"_accessRulesSiteIDArray is %@", _accessRulesSiteIDArray);
-    NSLog(@"_accessRulesEnabledArray is %@", _accessRulesEnabledArray);
-    // NSLog(@"_accessRulesEnabledDictionary is %@", _accessRulesEnabledDictionary);
+
+    // send NSArray of Dictionaries (accessRulesEnabledArray) to AppDelegate object
     _appDel.accessRulesEnabledArray = _accessRulesEnabledArray;
     
 }
@@ -518,8 +481,7 @@ UIImageView* imgView;
         self.splitViewController.delegate = nil;
         self.splitViewController.delegate = self;
     }
-    // [self.navigationController setToolbarHidden:NO animated:YES];
-    // [self.navigationItem setHidesBackButton:YES];
+
     [self screenPressed];
     if(_shouldSignIn){
         [_usernameTextField setText:_username];
@@ -539,33 +501,16 @@ UIImageView* imgView;
         [_usernameTextField setHidden:YES];
         [_passwordTextField setHidden:YES];
     }
-    /*
-    if(!imgView){
-        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-        imgView.image = [UIImage imageNamed:@"barImageWithLogo.png"];
-        [self.navigationController.navigationBar addSubview:imgView];
-    }
-    
-    imgView.alpha = 0;
-    [UIView animateWithDuration:0.25 animations:^(void) {
-        imgView.alpha = 1;
-    }];
-    */
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
-    /*
-    [UIView animateWithDuration:0.25 animations:^(void) {
-        imgView.alpha = 0;
-    }];
-    imgView = nil;
-    */
+ 
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"goToShares"]){
         shareListViewController * ctvc = [segue destinationViewController];
-        [ctvc setJSONSharedFoldersArray:_JSONArrayList];
+        // [ctvc setJSONSharedFoldersArray:_JSONArrayList];
         [ctvc setSessionKey:_sessionKey];
     }
     else if([[segue identifier] isEqualToString:@"manageConnections"]){
