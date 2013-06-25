@@ -26,8 +26,12 @@
 @property (nonatomic) NSDictionary* sharedFolderData;
 @property (nonatomic) NSDictionary* userStorageInput;
 
+// JB 6/24/13
+@property (nonatomic, strong) NSArray* storageSitesArrayOfDictionaries;
 // @property (nonatomic, strong) IBOutlet UISwitch *statusSwitch;
 @property (nonatomic) NSString *selectedStorageName;
+
+
 
 - (BOOL) isConnectedToInternet;
 - (IBAction)valueChanged:(id) sender withIndex:(NSInteger) index;

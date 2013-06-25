@@ -42,6 +42,7 @@
 @property (nonatomic,strong) NSMutableArray* storageSitesNamesArray;
 @property (nonatomic,strong) NSMutableArray* storageSitesIDsArray;
 @property (nonatomic,strong) NSMutableArray* storageSitesEnabledStatusArray;
+@property (nonatomic,strong) NSMutableArray* storageSitesArrayOfDictionaries;
 
 @property (nonatomic,strong) NSMutableArray* accessRulesArray;
 @property (nonatomic,strong) NSMutableArray* accessRulesNamesArray;

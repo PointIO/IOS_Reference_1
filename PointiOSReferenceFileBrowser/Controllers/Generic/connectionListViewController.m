@@ -45,12 +45,13 @@ NSString *requestedConnectionName;
     _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _list = [NSMutableArray array];
     
+    // JB 6/25/13 Comment all enable/disabled code
+    /*
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(enableBackButton:)
                                                  name:@"enableBackButton"
                                                object:nil];
-    
-    // NSLog(@"Inside ViewDidLoad CONNECTION TYPES AND ENABLED STATES = %@",_appDel.connectionsTypesAndEnabledStates);
+    */
 
     if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -63,35 +64,19 @@ NSString *requestedConnectionName;
         [err addSubview:temp];
         [err setBackgroundColor:[UIColor clearColor]];
         [err show];
-    } else {
-        NSDictionary* result    = [_JSONArrayList valueForKey:@"RESULT"];
-        NSArray* columns        = [result valueForKey:@"COLUMNS"];
-        NSDictionary* result2   = [_JSONArrayList valueForKey:@"RESULT"];
-        NSArray* data           = [result2 valueForKey:@"DATA"];
-        for(int i=0; i<[data count];i++){
-            NSArray* data2 = [data objectAtIndex:i];
-            _sharedFolderData = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
-            [_list addObject:[_sharedFolderData valueForKey:@"SITETYPENAME"]];
-            // [_list addObject:[_sharedFolderData valueForKey:@"SITETYPEID"]];
-       }
-        [_list setArray:[[NSSet setWithArray:_list] allObjects]];
     }
-    
-    if(!_appDel.enabledConnections){
-        _appDel.enabledConnections = [NSMutableArray array];
+    else {
+         for (i=0; i<[_storageSitesArrayOfDictionaries count]; i++) {
+            NSArray *storageSiteItem;
+            storageSiteItem = [_storageSitesArrayOfDictionaries objectAtIndex:i];
+            [_list addObject:storageSiteItem];
+        }
     }
-    NSLog(@"Inside ViewDidLoad, after parsing jsonArrayList, CONNECTION TYPES AND ENABLED STATES = %@",_appDel.connectionsTypesAndEnabledStates);
-
-    for(int i = 0;i<[_list count];i++){
-        [_appDel.enabledConnections addObject:@"0"];
-        NSLog(@"Inside ViewDidLoad, after _list and updating _appDel.enabledConnections, CONNECTION TYPES AND ENABLED STATES = %@",_appDel.connectionsTypesAndEnabledStates);
-        NSLog(@"Inside ViewDidLoad, after _list and updating _appDel.enabledConnections, value of _appDel.enabledConnections = %@",_appDel.enabledConnections);
-    }
-
 }
 
 - (void) viewDidAppear:(BOOL)animated{
     _userStorageInput = nil;
+    /*
     if(!_appDel.connectionsTypesAndEnabledStates) {
         _appDel.connectionsTypesAndEnabledStates = [[NSMutableDictionary alloc] init];
     }
@@ -101,7 +86,8 @@ NSString *requestedConnectionName;
         [_appDel.connectionsTypesAndEnabledStates addEntriesFromDictionary:tempDict];
     }
     NSLog(@"Inside ViewDidAppear CONNECTION TYPES AND ENABLED STATES = %@",_appDel.connectionsTypesAndEnabledStates);
-
+    */
+    
 }
 
 
@@ -135,27 +121,32 @@ NSString *requestedConnectionName;
     NSArray* data = [result valueForKey:@"DATA"];
     
     row = indexPath.row;
-    cell.nameLabel.text = [_list objectAtIndex:indexPath.row];
+    cell.nameLabel.text = [[_list objectAtIndex:indexPath.row] valueForKey:@"StorageSiteName"];
+    
     // cell.nameLabel.text = [[_list objectAtIndex:indexPath.row] stringValue];
     
     for(int i=0; i<[data count];i++){
         NSArray* data2 = [data objectAtIndex:i];
         _sharedFolderData = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
-        //        NSLog(@"Connections user data is %@", _sharedFolderData);
+
+        /*
         if(!_appDel.connectionsNameAndTypes){
             _appDel.connectionsNameAndTypes = [[NSMutableDictionary alloc] init];
         }
+
         NSDictionary* tempDict = [NSDictionary dictionaryWithObject:[_sharedFolderData valueForKey:@"SITETYPENAME"] forKey:[_sharedFolderData valueForKey:@"NAME"]];
-        [_appDel.connectionsNameAndTypes addEntriesFromDictionary:tempDict];
-        if([[_appDel.connectionsTypesAndEnabledStates valueForKey:[_list objectAtIndex:indexPath.row]] integerValue] == 1){
+        // [_appDel.connectionsNameAndTypes addEntriesFromDictionary:tempDict];
+
+         if([[_appDel.connectionsTypesAndEnabledStates valueForKey:[_list objectAtIndex:indexPath.row]] integerValue] == 1){
             NSLog(@"%@ should be on",[_list objectAtIndex:indexPath.row]);
             statusSwitch.on = YES;
         } else {
             statusSwitch.on = NO;
         }
+        */
     }
     
-    [statusSwitch addTarget:self action:@selector(valueChanged:withIndex:) forControlEvents:UIControlEventValueChanged];
+    // [statusSwitch addTarget:self action:@selector(valueChanged:withIndex:) forControlEvents:UIControlEventValueChanged];
 
     return cell;
     

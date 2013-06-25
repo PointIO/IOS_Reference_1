@@ -40,15 +40,20 @@ static NSString *resetPointFirstLaunchKey = @"1";
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(removeOneIndex:) name:@"removeOneIndex" object:nil];
     
+    ///*
     if ([resetPointFirstLaunchKey isEqualToString:@"1"]) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"PointFirstLaunch"];
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
+    //*/
     
     // [self getEnabledStatesOnFirstLaunch];
+    
     _accessRulesEnabledArray = [[NSMutableArray alloc] init];
     
     
+    // JB 6/24/13 Comment out with plans to refactor
+    /*
     NSString* temp = [[NSUserDefaults standardUserDefaults] objectForKey:@"ENABLEDCONNECTIONS"];
     // NSLog(@"Temp = %@",temp);
     if([temp length] > 0){
@@ -67,9 +72,8 @@ static NSString *resetPointFirstLaunchKey = @"1";
         _connectionsNameAndTypes = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"NAMETYPES"]];
         _connectionsTypesAndEnabledStates = [NSMutableDictionary dictionaryWithDictionary:[[NSUserDefaults standardUserDefaults] dictionaryForKey:@"ENABLEDTYPES"]];
     }
-    // NSLog(@"Inside AppDelegate, Displaying ConnectionsNameAndTypes and ConnectionsTypesAndEnabledStates - %@\n\n%@",_connectionsNameAndTypes,_connectionsTypesAndEnabledStates);
-    // NSLog(@"NSUserDefaults dump: %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
-
+     */
+    
     return YES;
 
 }

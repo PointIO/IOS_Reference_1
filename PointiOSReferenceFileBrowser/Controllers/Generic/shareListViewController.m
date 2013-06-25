@@ -63,6 +63,8 @@ int i;
       
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        /*
         [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
         NSURLResponse* urlResponseList;
         NSError* requestErrorList;
@@ -81,6 +83,7 @@ int i;
             [alert show];
         }
         else {
+        */
 
             NSArray *enabledSharesArray = [[NSArray alloc] init];
             enabledSharesArray = _appDel.accessRulesEnabledArray;
@@ -92,37 +95,13 @@ int i;
                  [_list addObject:accessRuleItem];
             }
             
-            /*
-            _JSONSharedFoldersArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-            NSLog(@"JSONSHAREDFOLDERSARRAY - %@",_JSONSharedFoldersArray);
-            NSDictionary* result = [_JSONSharedFoldersArray valueForKey:@"RESULT"];
-            NSArray* columns = [result valueForKey:@"COLUMNS"];
-            NSArray* datax = [result valueForKey:@"DATA"];
-            _folderNames = [[NSMutableArray alloc] init];
-            _folderShareIDs = [[NSMutableArray array] init];
-            
-            for(int i=0; i<[datax count];i++){
-                NSArray* data2 = [datax objectAtIndex:i];
-                NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
-                [_folderNames addObject:[temp valueForKey:@"SHARENAME"]];
-                [_folderShareIDs addObject:[temp valueForKey:@"SHAREID"]];
-                 
-                if([[_appDel.connectionsTypesAndEnabledStates valueForKey:[_appDel.connectionsNameAndTypes valueForKey:[temp valueForKey:@"SHARENAME"]]] integerValue] == 1){
-                    [_list addObject:[temp valueForKey:@"SHARENAME"]];
-                }
-            }
-            NSLog(@"Inside ShareListVC, ViewDidLoad, Shares List is  %@", _list);
-            NSLog(@"Folder Names are %@", _folderNames);
-            NSLog(@"Folder Share IDs are %@", _folderShareIDs);
-            NSLog(@"List of shares to display are %@", _list);
-            */
-             
+              
             dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
                 [self.tableView reloadData];
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             });
-        }
+        //}
     });    
 }
 
@@ -152,10 +131,12 @@ int i;
     }
 }
 
+/*
 - (void) reloadLists:(NSNotification *)notification{
     [self performSelectorOnMainThread:@selector(getConnections) withObject:nil waitUntilDone:YES];
     [self.tableView reloadData];
 }
+*/
 
 
 - (void)didReceiveMemoryWarning
@@ -211,15 +192,7 @@ int i;
 // Handle Disclosure Button Tap
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    [self performSegueWithIdentifier:@"goToFiles" sender:indexPath];
-    /*
-    selectedRow = indexPath.row;
-    NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
-    _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
-    NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
-
-    [self performSegueWithIdentifier:@"goToFiles" sender:indexPath];
-    */
+    // [self performSegueWithIdentifier:@"goToFiles" sender:indexPath];
 }
 
 
@@ -247,67 +220,43 @@ int i;
         [err setBackgroundColor:[UIColor clearColor]];
         [err show];
     }
-    else{
-        if([[segue identifier] isEqualToString:@"goToFiles"]){
-            
-            NSIndexPath *indexPath = sender;
-            selectedRow = indexPath.row;
-            
-            NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
-            _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
-            NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
+    else if ([[segue identifier] isEqualToString:@"goToFilesFromTableViewCell"]){
+        
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        selectedRow = indexPath.row;
+        NSDictionary *selectedAccessRuleDictionary = [[NSDictionary alloc] initWithDictionary:[_list objectAtIndex:selectedRow]];
+        
+        UINavigationController *navigationController    = segue.destinationViewController;
+        shareDetailViewController *wvc                  = [[navigationController viewControllers] objectAtIndex:0];
+        
+        [wvc setShareID:[selectedAccessRuleDictionary valueForKey:@"AccessRuleShareID"]];
+        [wvc setFolderName:[selectedAccessRuleDictionary valueForKey:@"AccessRuleName"]];
+        [wvc setSessionKey:_sessionKey];
+        wvc.selectedShareID = [selectedAccessRuleDictionary valueForKey:@"AccessRuleShareID"];
+        wvc.selectedShareName = [selectedAccessRuleDictionary valueForKey:@"AccessRuleName"];
+        
+        // NSArray *keysArray = [[NSArray alloc] initWithObjects:@"AccessRuleShareID",@"AccessRuleShareName", nil];
+        // NSArray *valuesArray = [[NSArray alloc] initWithObjects:[_accessRulesShareIDArray objectAtIndex:i], [_accessRulesNamesArray objectAtIndex:i], nil];
+        // NSDictionary *accessRuleDictionary = [[NSDictionary alloc] initWithObjects:valuesArray forKeys:keysArray]
+        /*
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        selectedRow = indexPath.row;
+        NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
+        _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
+        NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
 
+        NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
+        NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:selectedRow]];
             
-            NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
-            NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:selectedRow]];
+        UINavigationController *navigationController    = segue.destinationViewController;
+        shareDetailViewController *wvc                  = [[navigationController viewControllers] objectAtIndex:0];
             
-            UINavigationController *navigationController = segue.destinationViewController;
-            shareDetailViewController *wvc = [[navigationController viewControllers] objectAtIndex:0];
-            
-            [wvc setShareID:chosenShareID];
-            [wvc setFolderName:[_list objectAtIndex:i]];
-            [wvc setSessionKey:_sessionKey];
-            wvc.selectedShareID = _selectedShareID;
-            wvc.selectedShareName = _selectedShareName;
-        }
-        else if ([[segue identifier] isEqualToString:@"goToFilesFromTableViewCell"]){
-            
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            selectedRow = indexPath.row;
-            NSDictionary *selectedAccessRuleDictionary = [[NSDictionary alloc] initWithDictionary:[_list objectAtIndex:selectedRow]];
-            
-            UINavigationController *navigationController    = segue.destinationViewController;
-            shareDetailViewController *wvc                  = [[navigationController viewControllers] objectAtIndex:0];
-            
-            [wvc setShareID:[selectedAccessRuleDictionary valueForKey:@"AccessRuleShareID"]];
-            [wvc setFolderName:[selectedAccessRuleDictionary valueForKey:@"AccessRuleName"]];
-            [wvc setSessionKey:_sessionKey];
-            wvc.selectedShareID = [selectedAccessRuleDictionary valueForKey:@"AccessRuleShareID"];
-            wvc.selectedShareName = [selectedAccessRuleDictionary valueForKey:@"AccessRuleName"];
-            
-            // NSArray *keysArray = [[NSArray alloc] initWithObjects:@"AccessRuleShareID",@"AccessRuleShareName", nil];
-            // NSArray *valuesArray = [[NSArray alloc] initWithObjects:[_accessRulesShareIDArray objectAtIndex:i], [_accessRulesNamesArray objectAtIndex:i], nil];
-            // NSDictionary *accessRuleDictionary = [[NSDictionary alloc] initWithObjects:valuesArray forKeys:keysArray]
-            /*
-            NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-            selectedRow = indexPath.row;
-            NSDictionary *allFolderNamesForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderNames forKeys:_folderShareIDs];
-            _selectedShareName = [allFolderNamesForAllShareIDs valueForKey:[_folderShareIDs objectAtIndex:selectedRow]];
-            NSLog(@"Chosen Folder Name from inside didSelectRowAtIndexPath %@", _selectedShareName);
-
-            NSDictionary* allFoldersForAllShareIDs = [NSDictionary dictionaryWithObjects:_folderShareIDs forKeys:_folderNames];
-            NSString* chosenShareID = [allFoldersForAllShareIDs valueForKey:[_list objectAtIndex:selectedRow]];
-                
-            UINavigationController *navigationController    = segue.destinationViewController;
-            shareDetailViewController *wvc                  = [[navigationController viewControllers] objectAtIndex:0];
-                
-            [wvc setShareID:chosenShareID];
-            [wvc setFolderName:[_list objectAtIndex:i]];
-            [wvc setSessionKey:_sessionKey];
-            wvc.selectedShareID = _selectedShareID;
-            wvc.selectedShareName = _selectedShareName;
-            */
-        }
+        [wvc setShareID:chosenShareID];
+        [wvc setFolderName:[_list objectAtIndex:i]];
+        [wvc setSessionKey:_sessionKey];
+        wvc.selectedShareID = _selectedShareID;
+        wvc.selectedShareName = _selectedShareName;
+        */
     }
 }
 

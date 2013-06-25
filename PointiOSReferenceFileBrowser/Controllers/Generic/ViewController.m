@@ -384,7 +384,7 @@ UIImageView* imgView;
     } else {
         _storageSitesArray = [NSJSONSerialization JSONObjectWithData:response2 options:NSJSONReadingMutableContainers error:nil];
     }
-    NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _storageSitesArray);
+    // NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _storageSitesArray);
 
     
     //
@@ -395,20 +395,36 @@ UIImageView* imgView;
     NSArray *resultData = [resultStorageSitesDictionary valueForKey:@"DATA"];
     
     _storageSitesNamesArray = [[NSMutableArray alloc] init];
-    _storageSitesIDsArray = [[NSMutableArray array] init];
-    _storageSitesEnabledStatusArray = [[NSMutableArray array] init];
-
+    _storageSitesIDsArray = [[NSMutableArray alloc] init];
+    _storageSitesEnabledStatusArray = [[NSMutableArray alloc] init];
+    _storageSitesArrayOfDictionaries    = [[NSMutableArray alloc] init];
+    
      for(int i=0; i<[resultData count];i++){
         NSArray* data2 = [resultData objectAtIndex:i];
         NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:resultColumns];
         NSString *enabledStatus = [[temp valueForKey:@"ENABLED"] stringValue];
-        if ([enabledStatus isEqualToString:@"1"]) {
-            [_storageSitesNamesArray addObject:[temp valueForKey:@"NAME"]];
+        // if ([enabledStatus isEqualToString:@"1"]) {
             [_storageSitesIDsArray addObject:[temp valueForKey:@"SITEID"]];
+            [_storageSitesNamesArray addObject:[temp valueForKey:@"NAME"]];
             [_storageSitesEnabledStatusArray addObject:[temp valueForKey:@"ENABLED"]];
-        }
-    }    
-
+            //
+            // evaluate storage sites for status of enabled or disabled
+            //
+            NSArray *keysArray = [[NSArray alloc] initWithObjects:@"StorageSiteID",@"StorageSiteName", @"StorageSiteEnabled", nil];
+            
+            NSArray *valuesArray = [[NSArray alloc] initWithObjects:[_storageSitesIDsArray objectAtIndex:i], [_storageSitesNamesArray objectAtIndex:i], [_storageSitesEnabledStatusArray objectAtIndex:i], nil];
+            
+            NSDictionary *storageSiteDictionary = [[NSDictionary alloc] initWithObjects:valuesArray forKeys:keysArray];
+            [_storageSitesArrayOfDictionaries addObject:storageSiteDictionary];
+        // }
+    }
+    
+    
+    
+    
+    
+    
+    
     
     //
     // get accessRules
@@ -426,11 +442,11 @@ UIImageView* imgView;
     } else {
         _accessRulesArray = [NSJSONSerialization JSONObjectWithData:response3 options:NSJSONReadingMutableContainers error:nil];
     }
-    NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _accessRulesArray);
+    // NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _accessRulesArray);
 
     
     //
-    // Create dictionary to track Enabled access rules, both Name and ID
+    // create Dictionary of AccessRulesName, AccessRuleID, AccessRuleEnabled Status
     //
     NSDictionary *resultAccessRulesDictionary = [_accessRulesArray valueForKey:@"RESULT"];
     NSArray *resultColumns1 = [resultAccessRulesDictionary valueForKey:@"COLUMNS"];
@@ -465,7 +481,11 @@ UIImageView* imgView;
         }
     }
 
+    
+    
+    //
     // send NSArray of Dictionaries (accessRulesEnabledArray) to AppDelegate object
+    //
     _appDel.accessRulesEnabledArray = _accessRulesEnabledArray;
     
 }
@@ -513,15 +533,17 @@ UIImageView* imgView;
         // [ctvc setJSONSharedFoldersArray:_JSONArrayList];
         [ctvc setSessionKey:_sessionKey];
     }
+    /*
     else if([[segue identifier] isEqualToString:@"manageConnections"]){
         connectionsManagerViewController *cmvc = [segue destinationViewController];
         [cmvc setJSONArrayList:_JSONArrayList];
         // [cmvc setStorageIDs:_storageIDs];
         [cmvc setSessionKey:_sessionKey];
     }
+    */
     else if([[segue identifier] isEqualToString:@"goToConnections"]){
         connectionListViewController * ctvc = [segue destinationViewController];
-        [ctvc setJSONArrayList:_JSONArrayList];
+        [ctvc setStorageSitesArrayOfDictionaries:_storageSitesArrayOfDictionaries];
         [ctvc setSessionKey:_sessionKey];
     }
     else if([[segue identifier] isEqualToString:@"goToDocView"]){
