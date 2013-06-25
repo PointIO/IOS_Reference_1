@@ -398,7 +398,9 @@ UIImageView* imgView;
     }
     NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _storageTypesArray);
    
+    //
     // get storageSites
+    //
     NSURLResponse* urlResponseList2;
     NSError* requestErrorList2;
     NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] init];
@@ -415,23 +417,35 @@ UIImageView* imgView;
     NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _storageSitesArray);
 
     
-    // create storageSites Dictionary
-    ///*
+    // create storageSites Arrays
     NSDictionary *resultStorageSitesDictionary = [_storageSitesArray valueForKey:@"RESULT"];
     NSArray *resultColumns = [resultStorageSitesDictionary valueForKey:@"COLUMNS"];
     NSArray *resultData = [resultStorageSitesDictionary valueForKey:@"DATA"];
-    NSLog(@"Columns is %@", resultColumns);
-    NSLog(@"Data is %@", resultData);
-    NSLog(@"Data number of records is %i", [resultData count]);
-    //*/
+    
+    // NSLog(@"Columns is %@", resultColumns);
+    // NSLog(@"Data is %@", resultData);
+    // NSLog(@"Data number of records is %i", [resultData count]);
+    _storageSitesNamesArray = [[NSMutableArray alloc] init];
+    _storageSitesIDsArray = [[NSMutableArray array] init];
+    _storageSitesEnabledStatusArray = [[NSMutableArray array] init];
+
     // [dict setObject:[NSNumber numberWithInt:42] forKey:@"A cool number"];
     for(int i=0; i<[resultData count];i++){
-        // [postVariablesDictionary setObject:imageData forKey:@"image"];
-        [_storageSitesDictionary setObject:@"StorageSiteID" forKey:@"StorageSiteID"];
-        [_storageSitesDictionary setObject:@"1" forKey:@"StorageSiteEnabled"];
+        NSArray* data2 = [resultData objectAtIndex:i];
+        NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:resultColumns];
+        NSString *enabledStatus = [[temp valueForKey:@"ENABLED"] stringValue];
+        if ([enabledStatus isEqualToString:@"1"]) {
+        // if (enabledStatus = 1) {
+            [_storageSitesNamesArray addObject:[temp valueForKey:@"NAME"]];
+            [_storageSitesIDsArray addObject:[temp valueForKey:@"SITEID"]];
+            [_storageSitesEnabledStatusArray addObject:[temp valueForKey:@"ENABLED"]];
+        }
     }
-    NSLog(@"storageSitesDictionary is %@", _storageSitesDictionary);
+    NSLog(@"_storageSitesNamesArray is %@", _storageSitesNamesArray);
+    NSLog(@"_storageSitesIDsArray is %@", _storageSitesIDsArray);
+    NSLog(@"_storageSitesEnabledArray is %@", _storageSitesEnabledStatusArray);
     
+
     // get accessRules
     NSURLResponse* urlResponseList3;
     NSError* requestErrorList3;
@@ -448,23 +462,48 @@ UIImageView* imgView;
     }
     NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _accessRulesArray);
 
+    
     // get enabledAccessRules
-    /*
-    NSURLResponse* urlResponseList4;
-    NSError* requestErrorList4;
-    NSMutableURLRequest *request4 = [[NSMutableURLRequest alloc] init];
-    [request4 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/accessrules/list.json"]];
-    [request4 setHTTPMethod:@"GET"];
-    [request4 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
-    NSData* response4 = [NSURLConnection sendSynchronousRequest:request4 returningResponse:&urlResponseList4 error:&requestErrorList4];
-    if(!response4){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [alert show];
-    } else {
-        _accessRulesEnabledArray = [NSJSONSerialization JSONObjectWithData:response4 options:NSJSONReadingMutableContainers error:nil];
+    NSDictionary *resultAccessRulesDictionary = [_accessRulesArray valueForKey:@"RESULT"];
+    NSArray *resultColumns1 = [resultAccessRulesDictionary valueForKey:@"COLUMNS"];
+    NSArray *resultData1 = [resultAccessRulesDictionary valueForKey:@"DATA"];
+    
+    // NSLog(@"Columns is %@", resultColumns);
+    // NSLog(@"Data is %@", resultData);
+    // NSLog(@"Data number of records is %i", [resultData count]);
+    _accessRulesNamesArray = [[NSMutableArray alloc] init];
+    _accessRulesShareIDArray = [[NSMutableArray array] init];
+    _accessRulesSiteIDArray = [[NSMutableArray array] init];
+    _accessRulesEnabledArray = [[NSMutableArray array] init];
+    _accessRulesEnabledDictionary = [[NSMutableDictionary alloc] init];
+    
+    for(int i=0; i<[resultData1 count];i++){
+        NSArray* data2 = [resultData1 objectAtIndex:i];
+        NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:resultColumns1];
+        [_accessRulesNamesArray addObject:[temp valueForKey:@"SHARENAME"]];
+        [_accessRulesShareIDArray addObject:[temp valueForKey:@"SHAREID"]];
+        [_accessRulesSiteIDArray addObject:[temp valueForKey:@"SITEID"]];
+        //
+        // evaluate _storageSitesIDArray until finding a matching siteID, then determine if enabled or disabled
+        //
+        for(int j=0; j<[_storageSitesIDsArray count];j++){
+            if ([[_accessRulesSiteIDArray objectAtIndex:i] isEqualToString:[_storageSitesIDsArray objectAtIndex:j]]) {
+                NSString *storageSiteEnabledStatus = [[_storageSitesEnabledStatusArray objectAtIndex:j] stringValue];
+                if ([storageSiteEnabledStatus isEqualToString:@"1"]) {
+                    [_accessRulesEnabledDictionary setObject:[_accessRulesShareIDArray objectAtIndex:i] forKey:@"AccessRuleShareID"];
+                    [_accessRulesEnabledDictionary setObject:[_accessRulesNamesArray objectAtIndex:i] forKey:@"AccessRuleShareName"];
+                    [_accessRulesEnabledArray addObject:[_accessRulesEnabledDictionary allValues]];
+                    break;
+                }
+             }
+        }
     }
-    NSLog(@"Inside ViewController, performListCall where accessRules are %@", _accessRulesArray);
-   */
+    // NSLog(@"_accessRulesNamesArray is %@", _accessRulesNamesArray);
+    // NSLog(@"_accessRulesShareIDArray is %@", _accessRulesShareIDArray);
+    // NSLog(@"_accessRulesSiteIDArray is %@", _accessRulesSiteIDArray);
+    NSLog(@"_accessRulesEnabledArray is %@", _accessRulesEnabledArray);
+    // NSLog(@"_accessRulesEnabledDictionary is %@", _accessRulesEnabledDictionary);
+    
 }
 
 

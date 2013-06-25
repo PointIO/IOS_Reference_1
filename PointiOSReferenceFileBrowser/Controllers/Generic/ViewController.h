@@ -36,18 +36,20 @@
 
 
 // JB 6/24
-@property (nonatomic,strong) NSArray* storageTypesArray;
-@property (nonatomic,strong) NSArray* storageSitesArray;
-@property (nonatomic,strong) NSMutableDictionary* storageSitesDictionary;
-@property (nonatomic,strong) NSArray* accessRulesArray;
-@property (nonatomic,strong) NSArray* accessRulesEnabledArray;
+@property (nonatomic,strong) NSMutableArray* storageTypesArray;
 
-/*
-@property (nonatomic,strong) NSDictionary* storageTypesDictionary;
-@property (nonatomic,strong) NSArray* storageTypeNamesArray;
-@property (nonatomic,strong) NSArray* storageTypeIDsArray;
-@property (nonatomic,strong) NSArray* storageTypeEnabledArray;
-*/
+@property (nonatomic,strong) NSMutableArray* storageSitesArray;
+@property (nonatomic,strong) NSMutableArray* storageSitesNamesArray;
+@property (nonatomic,strong) NSMutableArray* storageSitesIDsArray;
+@property (nonatomic,strong) NSMutableArray* storageSitesEnabledStatusArray;
+
+@property (nonatomic,strong) NSMutableArray* accessRulesArray;
+@property (nonatomic,strong) NSMutableArray* accessRulesNamesArray;
+@property (nonatomic,strong) NSMutableArray* accessRulesShareIDArray;
+@property (nonatomic,strong) NSMutableArray* accessRulesSiteIDArray;
+
+@property (nonatomic,strong) NSMutableArray* accessRulesEnabledArray;
+@property (nonatomic,strong) NSMutableDictionary* accessRulesEnabledDictionary;
 
 
 
