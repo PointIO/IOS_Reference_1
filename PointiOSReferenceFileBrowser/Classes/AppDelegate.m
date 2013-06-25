@@ -46,6 +46,8 @@ static NSString *resetPointFirstLaunchKey = @"1";
     }
     
     // [self getEnabledStatesOnFirstLaunch];
+    _accessRulesEnabledArray = [[NSMutableArray alloc] init];
+    
     
     NSString* temp = [[NSUserDefaults standardUserDefaults] objectForKey:@"ENABLEDCONNECTIONS"];
     // NSLog(@"Temp = %@",temp);

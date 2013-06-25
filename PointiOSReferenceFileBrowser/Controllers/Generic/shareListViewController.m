@@ -113,7 +113,12 @@ int i;
             });
         }
     });
- }
+    
+    NSArray *enabledShares = [[NSArray alloc] init];
+    enabledShares = _appDel.accessRulesEnabledArray;
+    NSLog(@"Inside ShareListViewController.ViewDidLoad, enabledShares from appDelegate is %@", enabledShares);
+    
+}
 
 - (void) viewWillDisappear:(BOOL)animated{
 }

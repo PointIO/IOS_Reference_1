@@ -503,6 +503,7 @@ UIImageView* imgView;
     // NSLog(@"_accessRulesSiteIDArray is %@", _accessRulesSiteIDArray);
     NSLog(@"_accessRulesEnabledArray is %@", _accessRulesEnabledArray);
     // NSLog(@"_accessRulesEnabledDictionary is %@", _accessRulesEnabledDictionary);
+    _appDel.accessRulesEnabledArray = _accessRulesEnabledArray;
     
 }
 
