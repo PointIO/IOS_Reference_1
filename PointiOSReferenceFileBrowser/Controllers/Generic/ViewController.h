@@ -36,12 +36,14 @@
 
 
 // JB 6/24
-// @property (nonatomic,strong) NSMutableArray* storageTypesArray;
+@property (nonatomic,strong) NSMutableArray* storageTypesArray;
 
 @property (nonatomic,strong) NSMutableArray* storageSitesArray;
 @property (nonatomic,strong) NSMutableArray* storageSitesNamesArray;
 @property (nonatomic,strong) NSMutableArray* storageSitesIDsArray;
 @property (nonatomic,strong) NSMutableArray* storageSitesEnabledStatusArray;
+@property (nonatomic,strong) NSMutableArray* storageSitesSiteTypeIDArray;
+@property (nonatomic,strong) NSMutableArray* storageSitesSiteTypeNameArray;
 @property (nonatomic,strong) NSMutableArray* storageSitesArrayOfDictionaries;
 
 @property (nonatomic,strong) NSMutableArray* accessRulesArray;

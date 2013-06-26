@@ -213,6 +213,7 @@
 		8A4D2DA817775C6700E662E4 /* SBJsonStreamWriterState.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4D2D3E17775C6700E662E4 /* SBJsonStreamWriterState.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8A4D2DA917775C6700E662E4 /* SBJsonTokeniser.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4D2D4017775C6700E662E4 /* SBJsonTokeniser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		8A4D2DAA17775C6700E662E4 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4D2D4217775C6700E662E4 /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		8A89FDA2177A7EBD00D0F8A8 /* storageSitesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A89FDA0177A7EB000D0F8A8 /* storageSitesListViewController.m */; };
 		8AA513CD176A04B800665111 /* docViewerViewControlleriPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513C8176A04B800665111 /* docViewerViewControlleriPad.m */; };
 		8AA513CE176A04B800665111 /* FileViewerControllerIpad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513CA176A04B800665111 /* FileViewerControllerIpad.m */; };
 		8AA513CF176A04B800665111 /* newConnectionViewControlleriPad.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AA513CC176A04B800665111 /* newConnectionViewControlleriPad.m */; };
@@ -531,6 +532,8 @@
 		8A4D2D4017775C6700E662E4 /* SBJsonTokeniser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonTokeniser.m; sourceTree = "<group>"; };
 		8A4D2D4117775C6700E662E4 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		8A4D2D4217775C6700E662E4 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		8A89FDA0177A7EB000D0F8A8 /* storageSitesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = storageSitesListViewController.m; sourceTree = "<group>"; };
+		8A89FDA1177A7EB400D0F8A8 /* storageSitesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = storageSitesListViewController.h; sourceTree = "<group>"; };
 		8AA513C7176A04B800665111 /* docViewerViewControlleriPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = docViewerViewControlleriPad.h; sourceTree = "<group>"; };
 		8AA513C8176A04B800665111 /* docViewerViewControlleriPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = docViewerViewControlleriPad.m; sourceTree = "<group>"; };
 		8AA513C9176A04B800665111 /* FileViewerControllerIpad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileViewerControllerIpad.h; sourceTree = "<group>"; };
@@ -931,6 +934,8 @@
 				754977EB176D1AEE0042B5D8 /* shareDetailViewController.m */,
 				8AA513E0176A04C600665111 /* sharingViewController.h */,
 				8AA513E1176A04C600665111 /* sharingViewController.m */,
+				8A89FDA1177A7EB400D0F8A8 /* storageSitesListViewController.h */,
+				8A89FDA0177A7EB000D0F8A8 /* storageSitesListViewController.m */,
 				8AA513E7176A04C600665111 /* ViewController.h */,
 				8AA513D7176A04C600665111 /* ViewController.m */,
 			);
@@ -1566,6 +1571,7 @@
 				8A4D2DA817775C6700E662E4 /* SBJsonStreamWriterState.m in Sources */,
 				8A4D2DA917775C6700E662E4 /* SBJsonTokeniser.m in Sources */,
 				8A4D2DAA17775C6700E662E4 /* SBJsonWriter.m in Sources */,
+				8A89FDA2177A7EBD00D0F8A8 /* storageSitesListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

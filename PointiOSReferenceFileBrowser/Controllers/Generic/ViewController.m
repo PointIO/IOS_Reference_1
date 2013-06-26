@@ -1,5 +1,6 @@
 #import "ViewController.h"
 #import "Common.h"
+#import "storageSitesListViewController.h"
 
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone)
@@ -350,7 +351,6 @@ UIImageView* imgView;
 - (void) performListCall{
      
     // get storageTypes
-    /*
     NSURLResponse* urlResponseList1;
     NSError* requestErrorList1;
     NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc] init];
@@ -365,7 +365,7 @@ UIImageView* imgView;
         _storageTypesArray = [NSJSONSerialization JSONObjectWithData:response1 options:NSJSONReadingMutableContainers error:nil];
     }
     NSLog(@"Inside ViewController, performListCall where storageTypes are %@", _storageTypesArray);
-    */
+    
     
     
     //
@@ -388,7 +388,7 @@ UIImageView* imgView;
 
     
     //
-    // create 3 storageSites Arrays for Names, IDs, and Enabled Status
+    // create storageSites Arrays for Names, IDs, Enabled Status, SiteTypeID and SiteTypeName
     //
     NSDictionary *resultStorageSitesDictionary = [_storageSitesArray valueForKey:@"RESULT"];
     NSArray *resultColumns = [resultStorageSitesDictionary valueForKey:@"COLUMNS"];
@@ -397,34 +397,40 @@ UIImageView* imgView;
     _storageSitesNamesArray = [[NSMutableArray alloc] init];
     _storageSitesIDsArray = [[NSMutableArray alloc] init];
     _storageSitesEnabledStatusArray = [[NSMutableArray alloc] init];
-    _storageSitesArrayOfDictionaries    = [[NSMutableArray alloc] init];
+    _storageSitesSiteTypeNameArray = [[NSMutableArray alloc] init];
+    _storageSitesSiteTypeIDArray = [[NSMutableArray alloc] init];
+    _storageSitesArrayOfDictionaries = [[NSMutableArray alloc] init];
     
      for(int i=0; i<[resultData count];i++){
         NSArray* data2 = [resultData objectAtIndex:i];
         NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:resultColumns];
-        NSString *enabledStatus = [[temp valueForKey:@"ENABLED"] stringValue];
-        // if ([enabledStatus isEqualToString:@"1"]) {
-            [_storageSitesIDsArray addObject:[temp valueForKey:@"SITEID"]];
-            [_storageSitesNamesArray addObject:[temp valueForKey:@"NAME"]];
-            [_storageSitesEnabledStatusArray addObject:[temp valueForKey:@"ENABLED"]];
-            //
-            // evaluate storage sites for status of enabled or disabled
-            //
-            NSArray *keysArray = [[NSArray alloc] initWithObjects:@"StorageSiteID",@"StorageSiteName", @"StorageSiteEnabled", nil];
-            
-            NSArray *valuesArray = [[NSArray alloc] initWithObjects:[_storageSitesIDsArray objectAtIndex:i], [_storageSitesNamesArray objectAtIndex:i], [_storageSitesEnabledStatusArray objectAtIndex:i], nil];
-            
-            NSDictionary *storageSiteDictionary = [[NSDictionary alloc] initWithObjects:valuesArray forKeys:keysArray];
-            [_storageSitesArrayOfDictionaries addObject:storageSiteDictionary];
-        // }
-    }
-    
-    
-    
-    
-    
-    
-    
+        [_storageSitesIDsArray addObject:[temp valueForKey:@"SITEID"]];
+        [_storageSitesNamesArray addObject:[temp valueForKey:@"NAME"]];
+        [_storageSitesEnabledStatusArray addObject:[temp valueForKey:@"ENABLED"]];
+        [_storageSitesSiteTypeIDArray addObject:[temp valueForKey:@"SITETYPEID"]];
+        [_storageSitesSiteTypeNameArray addObject:[temp valueForKey:@"SITETYPENAME"]];
+        //
+        // evaluate storage sites for status of enabled or disabled
+        //
+        NSArray *keysArray = [[NSArray alloc] initWithObjects:
+                              @"StorageSiteID",
+                              @"StorageSiteName",
+                              @"StorageSiteEnabled",
+                              @"StorageSiteSiteTypeID",
+                              @"StorageSiteSiteTypeName",
+                              nil];
+        
+        NSArray *valuesArray = [[NSArray alloc] initWithObjects:
+                                [_storageSitesIDsArray objectAtIndex:i],
+                                [_storageSitesNamesArray objectAtIndex:i],
+                                [_storageSitesEnabledStatusArray objectAtIndex:i],
+                                [_storageSitesSiteTypeIDArray objectAtIndex:i],
+                                [_storageSitesSiteTypeNameArray objectAtIndex:i],
+                                nil];
+        
+        NSDictionary *storageSiteDictionary = [[NSDictionary alloc] initWithObjects:valuesArray forKeys:keysArray];
+        [_storageSitesArrayOfDictionaries addObject:storageSiteDictionary];
+     }
     
     //
     // get accessRules
@@ -480,9 +486,6 @@ UIImageView* imgView;
              }
         }
     }
-
-    
-    
     //
     // send NSArray of Dictionaries (accessRulesEnabledArray) to AppDelegate object
     //
@@ -542,7 +545,7 @@ UIImageView* imgView;
     }
     */
     else if([[segue identifier] isEqualToString:@"goToConnections"]){
-        connectionListViewController * ctvc = [segue destinationViewController];
+        storageSitesListViewController * ctvc = [segue destinationViewController];
         [ctvc setStorageSitesArrayOfDictionaries:_storageSitesArrayOfDictionaries];
         [ctvc setSessionKey:_sessionKey];
     }
