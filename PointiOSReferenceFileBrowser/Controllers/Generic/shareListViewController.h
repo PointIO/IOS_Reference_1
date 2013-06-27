@@ -14,7 +14,8 @@
 @interface shareListViewController : UITableViewController
 
 
-@property (nonatomic) NSMutableArray* list;
+@property (nonatomic) NSArray* list;
+@property (nonatomic) NSMutableArray* tempArray;
 @property (nonatomic) AppDelegate* appDel;
 @property (nonatomic) NSString* label;
 @property (nonatomic, retain) NSString *selectedShareName;

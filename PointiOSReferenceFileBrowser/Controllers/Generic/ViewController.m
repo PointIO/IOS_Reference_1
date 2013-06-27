@@ -461,6 +461,7 @@ UIImageView* imgView;
     _accessRulesNamesArray = [[NSMutableArray alloc] init];
     _accessRulesShareIDArray = [[NSMutableArray array] init];
     _accessRulesSiteIDArray = [[NSMutableArray array] init];
+    _accessRulesSiteTypeNameArray = [[NSMutableArray array] init];
     _accessRulesEnabledArray = [[NSMutableArray array] init];
     
     for(int i=0; i<[resultData1 count];i++){
@@ -469,6 +470,7 @@ UIImageView* imgView;
         [_accessRulesNamesArray addObject:[temp valueForKey:@"SHARENAME"]];
         [_accessRulesShareIDArray addObject:[temp valueForKey:@"SHAREID"]];
         [_accessRulesSiteIDArray addObject:[temp valueForKey:@"SITEID"]];
+        [_accessRulesSiteTypeNameArray addObject:[temp valueForKey:@"SITETYPENAME"]];
         //
         // evaluate _storageSitesIDArray until finding a matching siteID, then determine if enabled or disabled
         //
@@ -477,8 +479,8 @@ UIImageView* imgView;
                 NSString *storageSiteEnabledStatus = [[_storageSitesEnabledStatusArray objectAtIndex:j] stringValue];
                 if ([storageSiteEnabledStatus isEqualToString:@"1"]) {
                     
-                    NSArray *keysArray = [[NSArray alloc] initWithObjects:@"AccessRuleShareID",@"AccessRuleShareName", nil];
-                    NSArray *valuesArray = [[NSArray alloc] initWithObjects:[_accessRulesShareIDArray objectAtIndex:i], [_accessRulesNamesArray objectAtIndex:i], nil];
+                    NSArray *keysArray = [[NSArray alloc] initWithObjects:@"AccessRuleShareID",@"AccessRuleShareName", @"AccessRuleSiteTypeName", nil];
+                    NSArray *valuesArray = [[NSArray alloc] initWithObjects:[_accessRulesShareIDArray objectAtIndex:i], [_accessRulesNamesArray objectAtIndex:i], [_accessRulesSiteTypeNameArray objectAtIndex:i], nil];
                     NSDictionary *accessRuleDictionary = [[NSDictionary alloc] initWithObjects:valuesArray forKeys:keysArray];
                     [_accessRulesEnabledArray addObject:accessRuleDictionary];
                     break;

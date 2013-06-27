@@ -11,5 +11,7 @@
 @interface ShareListCell : UITableViewCell
 
 @property (nonatomic, strong) IBOutlet UILabel * nameLabel;
+@property (nonatomic, strong) IBOutlet UIImageView * storageImage;
+
 
 @end

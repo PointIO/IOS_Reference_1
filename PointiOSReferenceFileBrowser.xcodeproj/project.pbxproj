@@ -234,7 +234,7 @@
 		8AE07888177B8D22005318D1 /* SFTP.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE07880177B8D22005318D1 /* SFTP.png */; };
 		8AE07889177B8D22005318D1 /* Sharepoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE07881177B8D22005318D1 /* Sharepoint.png */; };
 		8AE0788A177B8D22005318D1 /* Box.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE07882177B8D22005318D1 /* Box.png */; };
-		8AE0788B177B8D22005318D1 /* AmazonS3.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE07883177B8D22005318D1 /* AmazonS3.png */; };
+		8AE0788B177B8D22005318D1 /* Amazon.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE07883177B8D22005318D1 /* Amazon.png */; };
 		8AE0788C177B8D22005318D1 /* Dropbox.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE07884177B8D22005318D1 /* Dropbox.png */; };
 		8AE0788D177B8D22005318D1 /* Google.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE07885177B8D22005318D1 /* Google.png */; };
 		8AE07890177B8DBD005318D1 /* StorageConnectionListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AE0788F177B8DBD005318D1 /* StorageConnectionListCell.m */; };
@@ -576,7 +576,7 @@
 		8AE07880177B8D22005318D1 /* SFTP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SFTP.png; sourceTree = "<group>"; };
 		8AE07881177B8D22005318D1 /* Sharepoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sharepoint.png; sourceTree = "<group>"; };
 		8AE07882177B8D22005318D1 /* Box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Box.png; sourceTree = "<group>"; };
-		8AE07883177B8D22005318D1 /* AmazonS3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AmazonS3.png; sourceTree = "<group>"; };
+		8AE07883177B8D22005318D1 /* Amazon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Amazon.png; sourceTree = "<group>"; };
 		8AE07884177B8D22005318D1 /* Dropbox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dropbox.png; sourceTree = "<group>"; };
 		8AE07885177B8D22005318D1 /* Google.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Google.png; sourceTree = "<group>"; };
 		8AE0788E177B8DAA005318D1 /* StorageConnectionListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StorageConnectionListCell.h; sourceTree = "<group>"; };
@@ -816,7 +816,7 @@
 				8AE07880177B8D22005318D1 /* SFTP.png */,
 				8AE07881177B8D22005318D1 /* Sharepoint.png */,
 				8AE07882177B8D22005318D1 /* Box.png */,
-				8AE07883177B8D22005318D1 /* AmazonS3.png */,
+				8AE07883177B8D22005318D1 /* Amazon.png */,
 				8AE07884177B8D22005318D1 /* Dropbox.png */,
 				8AE07885177B8D22005318D1 /* Google.png */,
 				754977F0176D204D0042B5D8 /* Document.png */,
@@ -1499,7 +1499,7 @@
 				8AE07888177B8D22005318D1 /* SFTP.png in Resources */,
 				8AE07889177B8D22005318D1 /* Sharepoint.png in Resources */,
 				8AE0788A177B8D22005318D1 /* Box.png in Resources */,
-				8AE0788B177B8D22005318D1 /* AmazonS3.png in Resources */,
+				8AE0788B177B8D22005318D1 /* Amazon.png in Resources */,
 				8AE0788C177B8D22005318D1 /* Dropbox.png in Resources */,
 				8AE0788D177B8D22005318D1 /* Google.png in Resources */,
 			);

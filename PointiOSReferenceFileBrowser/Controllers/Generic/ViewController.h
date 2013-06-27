@@ -50,6 +50,7 @@
 @property (nonatomic,strong) NSMutableArray* accessRulesNamesArray;
 @property (nonatomic,strong) NSMutableArray* accessRulesShareIDArray;
 @property (nonatomic,strong) NSMutableArray* accessRulesSiteIDArray;
+@property (nonatomic,strong) NSMutableArray* accessRulesSiteTypeNameArray;
 
 @property (nonatomic,strong) NSMutableArray* accessRulesEnabledArray;
 

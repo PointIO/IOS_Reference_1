@@ -76,7 +76,6 @@ NSString *requestedConnectionName;
          }
         
          
-        // NSLog(@"Unsorted StorageTypesInUse is %@", tmpArray);
         NSSortDescriptor *nameDescriptor =
         [[NSSortDescriptor alloc] initWithKey:@"StorageSiteSiteTypeName"
                                     ascending:YES
@@ -115,27 +114,31 @@ NSString *requestedConnectionName;
 {
     StorageConnectionListCell *cell = (StorageConnectionListCell *)[tableView dequeueReusableCellWithIdentifier:@"StorageConnectionListCell"];
     
+    // set Cell Name
     NSString *tmpSiteName = [[_storageSiteTypesInUse objectAtIndex:indexPath.row] valueForKey:@"StorageSiteSiteTypeName"];
     cell.nameLabel.text = tmpSiteName;
     
+    // Set Cell Image
+    // Values are stored in sorted Dictionary in AppContent.plist
+    /*
     NSString *tmpFileName               = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"AppContent"];
     NSString *tmpFilePath               = [[NSBundle mainBundle] pathForResource:tmpFileName ofType:@"plist"];
     NSMutableDictionary *tmpDictionary  = [[NSMutableDictionary alloc] initWithContentsOfFile:tmpFilePath];
     NSDictionary *cloudProviderDict     = [[tmpDictionary valueForKey:@"cloudProviders"] objectAtIndex:indexPath.row];
     NSString *tmpImageName  = [cloudProviderDict valueForKey:@"cloudProviderArtwork"];
     cell.storageImage.image = [UIImage imageNamed:tmpImageName];
-    
-    // cell.storageImage.image             = [UIImage imageNamed:tmpSiteName];
-    
-    // cloudProviderArtwork
-    
-     /*
-     NSDictionary *currentColor      = [[self.sourceDictionary valueForKey:@"colorsList"] objectAtIndex:indexPath.row];
-     cell.colorThemeColorImage.image = [UIImage imageNamed:[currentColor objectForKey:@"ColorArt"]];
-     */
-    
+    */
+    NSString *tmpFileName               = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"AppContent"];
+    NSString *tmpFilePath               = [[NSBundle mainBundle] pathForResource:tmpFileName ofType:@"plist"];
+    NSMutableDictionary *tmpDictionary  = [[NSMutableDictionary alloc] initWithContentsOfFile:tmpFilePath];
+    NSDictionary *cloudProviderDict     = [tmpDictionary valueForKey:@"storageProviderArtwork"];
+    NSString *tmpImageName  = [cloudProviderDict valueForKey:tmpSiteName];
+    cell.storageImage.image = [UIImage imageNamed:tmpImageName];
+
     return cell;
 }
+
+
 
 #pragma mark
 #pragma Core Graphics

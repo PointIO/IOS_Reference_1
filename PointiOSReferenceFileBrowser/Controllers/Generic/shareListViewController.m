@@ -52,57 +52,45 @@ int i;
 
 - (void)viewDidLoad
 {
-    // need to update this to display only accessRules from storageSites which are enabled
-    // read from appDelegate _accessRulesEnabled
-    
     [super viewDidLoad];
      
     _JSONSharedFoldersArray = [NSArray array];
-    _list = [NSMutableArray array];
+    _list = [[NSMutableArray alloc] init];
+    _tempArray = [[NSMutableArray alloc] init];
+    
     _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
       
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        
-        /*
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-        NSURLResponse* urlResponseList;
-        NSError* requestErrorList;
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/accessrules/list"]];
-        [request setHTTPMethod:@"GET"];
-        [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
-        
-        NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
-        if(!response){
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:@"Request response is nil"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Dismiss"
-                                                  otherButtonTitles: nil];
-            [alert show];
-        }
-        else {
-        */
 
-            NSArray *enabledSharesArray = [[NSArray alloc] init];
-            enabledSharesArray = _appDel.accessRulesEnabledArray;
-            NSLog(@"Inside ShareListViewController.ViewDidLoad, enabledShares from appDelegate is %@", enabledSharesArray);
-            
-            for (i=0; i<[enabledSharesArray count]; i++) {
-                NSArray *accessRuleItem;
-                accessRuleItem = [enabledSharesArray objectAtIndex:i];
-                 [_list addObject:accessRuleItem];
-            }
-            
-              
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [self.tableView reloadData];
-                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            });
-        //}
-    });    
+        NSArray *enabledSharesArray = [[NSArray alloc] init];
+        enabledSharesArray = _appDel.accessRulesEnabledArray;
+        NSLog(@"Inside ShareListViewController.ViewDidLoad, enabledShares from appDelegate is %@", enabledSharesArray);
+        
+        for (i=0; i<[enabledSharesArray count]; i++) {
+            NSArray *accessRuleItem;
+            accessRuleItem = [enabledSharesArray objectAtIndex:i];
+             [_tempArray addObject:accessRuleItem];
+        }
+    
+        NSSortDescriptor *nameDescriptor =
+        [[NSSortDescriptor alloc] initWithKey:@"AccessRuleShareName"
+                                    ascending:YES
+                                     selector:@selector(localizedCaseInsensitiveCompare:)];
+        
+        NSArray *descriptors = [NSArray arrayWithObjects:nameDescriptor, nil];
+        NSArray *sortedArray = [_tempArray sortedArrayUsingDescriptors:descriptors];
+        _list = sortedArray;
+        NSLog(@"Sorted Access Rules is %@", _list);
+
+          
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.tableView reloadData];
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        });
+    });
+    
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
@@ -163,13 +151,20 @@ int i;
     
     if([_list count] != 0){
         
-        // cell.nameLabel.text = [_list objectAtIndex:indexPath.row];
         cell.nameLabel.text = [[_list objectAtIndex:indexPath.row] valueForKey:@"AccessRuleShareName"];
+        NSString *storageSiteSiteName = [[_list objectAtIndex:indexPath.row] valueForKey:@"AccessRuleSiteTypeName"];
         
+        // Set Cell Image
+        // Values are stored in sorted Dictionary in AppContent.plist
+        NSString *tmpFileName               = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"AppContent"];
+        NSString *tmpFilePath               = [[NSBundle mainBundle] pathForResource:tmpFileName ofType:@"plist"];
+        NSMutableDictionary *tmpDictionary  = [[NSMutableDictionary alloc] initWithContentsOfFile:tmpFilePath];
+        NSDictionary *cloudProviderDict     = [tmpDictionary valueForKey:@"storageProviderArtwork"];
+        NSString *tmpImageName  = [cloudProviderDict valueForKey:storageSiteSiteName];
+        cell.storageImage.image = [UIImage imageNamed:tmpImageName];
     }
     return cell;
 }
-
 
 
 #pragma mark
