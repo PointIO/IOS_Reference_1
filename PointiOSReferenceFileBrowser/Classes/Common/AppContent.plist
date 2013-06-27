@@ -4,6 +4,57 @@
 <dict>
 	<key>defaultColor</key>
 	<string>White</string>
+	<key>cloudProviders</key>
+	<array>
+		<dict>
+			<key>cloudProviderName</key>
+			<string>Amazon</string>
+			<key>cloudProviderArtwork</key>
+			<string>Amazon.png</string>
+		</dict>
+		<dict>
+			<key>cloudProviderName</key>
+			<string>Box</string>
+			<key>cloudProviderArtwork</key>
+			<string>Box.png</string>
+		</dict>
+		<dict>
+			<key>cloudProviderName</key>
+			<string>Dropbox</string>
+			<key>cloudProviderArtwork</key>
+			<string>Dropbox</string>
+		</dict>
+		<dict>
+			<key>cloudProviderName</key>
+			<string>FTP</string>
+			<key>cloudProviderArtwork</key>
+			<string>FTP.png</string>
+		</dict>
+		<dict>
+			<key>cloudProviderName</key>
+			<string>Google</string>
+			<key>cloudProviderArtwork</key>
+			<string>Google.png</string>
+		</dict>
+		<dict>
+			<key>cloudProviderName</key>
+			<string>Samba</string>
+			<key>cloudProviderArtwork</key>
+			<string>Samba.png</string>
+		</dict>
+		<dict>
+			<key>cloudProviderName</key>
+			<string>SFTP</string>
+			<key>cloudProviderArtwork</key>
+			<string>SFTP.png</string>
+		</dict>
+		<dict>
+			<key>cloudProviderName</key>
+			<string>Sharepoint</string>
+			<key>cloudProviderArtwork</key>
+			<string>Sharepoint.png</string>
+		</dict>
+	</array>
 	<key>colorsList</key>
 	<array>
 		<dict>

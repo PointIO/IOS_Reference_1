@@ -536,14 +536,6 @@ UIImageView* imgView;
         // [ctvc setJSONSharedFoldersArray:_JSONArrayList];
         [ctvc setSessionKey:_sessionKey];
     }
-    /*
-    else if([[segue identifier] isEqualToString:@"manageConnections"]){
-        connectionsManagerViewController *cmvc = [segue destinationViewController];
-        [cmvc setJSONArrayList:_JSONArrayList];
-        // [cmvc setStorageIDs:_storageIDs];
-        [cmvc setSessionKey:_sessionKey];
-    }
-    */
     else if([[segue identifier] isEqualToString:@"goToConnections"]){
         storageSitesListViewController * ctvc = [segue destinationViewController];
         [ctvc setStorageSitesArrayOfDictionaries:_storageSitesArrayOfDictionaries];
@@ -562,6 +554,14 @@ UIImageView* imgView;
         SettingsViewController* svc2 = [segue destinationViewController];
         // [svc2 setSessionKey:_sessionKey];
     }
+    /*
+    else if([[segue identifier] isEqualToString:@"manageConnections"]){
+        connectionsManagerViewController *cmvc = [segue destinationViewController];
+        [cmvc setJSONArrayList:_JSONArrayList];
+        // [cmvc setStorageIDs:_storageIDs];
+        [cmvc setSessionKey:_sessionKey];
+    }
+    */
 
 }
 

@@ -22,21 +22,12 @@ SBTableAlertDelegate
 @property (nonatomic) AppDelegate* appDel;
 // @property (nonatomic) NSMutableArray* list;
 @property (nonatomic, strong) NSArray *storageSitesArrayOfDictionaries;
-@property (nonatomic, strong) NSMutableArray *storageSiteTypes;
-
-
-
-
-
+@property (nonatomic, strong) NSArray *storageSiteTypesInUse;
 
 
 @property (nonatomic, strong) SBTableAlert *alert;
 @property (nonatomic) NSString* sessionKey;
 @property (nonatomic) NSString *selectedStorageName;
-
-
-
-
 @property (nonatomic, strong) NSMutableArray* allPossibleConnections;
 @property (nonatomic, strong) NSMutableArray* userKeys;
 @property (nonatomic, strong) NSMutableArray* userValues;

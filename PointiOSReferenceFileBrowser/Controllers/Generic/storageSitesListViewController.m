@@ -8,7 +8,7 @@
 
 #import "storageSitesListViewController.h"
 #import "StorageViewController.h"
-#import "ConnectionListCell.h"
+#import "StorageConnectionListCell.h"
 #import "Common.h"
 #import <QuartzCore/QuartzCore.h>
 
@@ -43,8 +43,8 @@ NSString *requestedConnectionName;
     [super viewDidLoad];
     
     _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    _storageSiteTypes = [[NSMutableArray alloc] init];
-
+    _storageSiteTypesInUse = [[NSMutableArray alloc] init];
+     
     if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
@@ -58,29 +58,34 @@ NSString *requestedConnectionName;
         [err show];
     }
     else {
-        // for each storageSiteDictionaryItem, get unique set of storageSiteIDs
-        // NSSet *uniqueSiteIDs = [NSSet setWithArray:[_storageSitesArrayOfDictionaries valueForKey:@"StorageSiteSiteTypeID"]];
-        // NSLog(@"allStorageTypesInUse is %@", uniqueSiteIDs);
-        ///*
         
-        _storageSiteTypes = [[NSMutableArray alloc] init];
+        _storageSiteTypesInUse = [[NSArray alloc] init];
         NSMutableArray *temp = [[NSMutableArray alloc] init];
-        
+        NSMutableArray *tmpArrayOfDictionaries = [[NSMutableArray alloc] init];
+
         NSString *firstStorageSiteID = [[[_storageSitesArrayOfDictionaries objectAtIndex:0] valueForKey:@"StorageSiteSiteTypeID"] stringValue];
-        [_storageSiteTypes addObject:[_storageSitesArrayOfDictionaries objectAtIndex:0]];
+        [tmpArrayOfDictionaries addObject:[_storageSitesArrayOfDictionaries objectAtIndex:0]];
         [temp addObject:firstStorageSiteID];
         
         for(int i=0; i<[_storageSitesArrayOfDictionaries count];i++){
             NSString *storageSiteID = [[[_storageSitesArrayOfDictionaries objectAtIndex:i] valueForKey:@"StorageSiteSiteTypeID"] stringValue];
             if (![temp containsObject: storageSiteID]) {
                 [temp addObject:[[[_storageSitesArrayOfDictionaries objectAtIndex:i] valueForKey:@"StorageSiteSiteTypeID"] stringValue]];
-                [_storageSiteTypes addObject:[_storageSitesArrayOfDictionaries objectAtIndex:i]];
+                [tmpArrayOfDictionaries addObject:[_storageSitesArrayOfDictionaries objectAtIndex:i]];
             }
          }
         
-        //*/
-        // NSMutableArray *allStorageTypesInUse = [NSMutableArray arrayWithArray:[uniqueSiteIDs allObjects]];
-        NSLog(@"allStorageTypesInUse is %@", _storageSiteTypes);
+         
+        // NSLog(@"Unsorted StorageTypesInUse is %@", tmpArray);
+        NSSortDescriptor *nameDescriptor =
+        [[NSSortDescriptor alloc] initWithKey:@"StorageSiteSiteTypeName"
+                                    ascending:YES
+                                     selector:@selector(localizedCaseInsensitiveCompare:)];
+
+        NSArray *descriptors = [NSArray arrayWithObjects:nameDescriptor, nil];
+        NSArray *sortedArray = [tmpArrayOfDictionaries sortedArrayUsingDescriptors:descriptors];
+        _storageSiteTypesInUse = sortedArray;
+        NSLog(@"Sorted StorageTypesInUse is %@", _storageSiteTypesInUse);
     }
 }
 
@@ -103,13 +108,31 @@ NSString *requestedConnectionName;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_storageSiteTypes count];
+    return [_storageSiteTypesInUse count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ConnectionListCell *cell = (ConnectionListCell *)[tableView dequeueReusableCellWithIdentifier:@"ConnectionListCell"];
-    cell.nameLabel.text = [[_storageSiteTypes objectAtIndex:indexPath.row] valueForKey:@"StorageSiteSiteTypeName"];
+    StorageConnectionListCell *cell = (StorageConnectionListCell *)[tableView dequeueReusableCellWithIdentifier:@"StorageConnectionListCell"];
+    
+    NSString *tmpSiteName = [[_storageSiteTypesInUse objectAtIndex:indexPath.row] valueForKey:@"StorageSiteSiteTypeName"];
+    cell.nameLabel.text = tmpSiteName;
+    
+    NSString *tmpFileName               = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"AppContent"];
+    NSString *tmpFilePath               = [[NSBundle mainBundle] pathForResource:tmpFileName ofType:@"plist"];
+    NSMutableDictionary *tmpDictionary  = [[NSMutableDictionary alloc] initWithContentsOfFile:tmpFilePath];
+    NSDictionary *cloudProviderDict     = [[tmpDictionary valueForKey:@"cloudProviders"] objectAtIndex:indexPath.row];
+    NSString *tmpImageName  = [cloudProviderDict valueForKey:@"cloudProviderArtwork"];
+    cell.storageImage.image = [UIImage imageNamed:tmpImageName];
+    
+    // cell.storageImage.image             = [UIImage imageNamed:tmpSiteName];
+    
+    // cloudProviderArtwork
+    
+     /*
+     NSDictionary *currentColor      = [[self.sourceDictionary valueForKey:@"colorsList"] objectAtIndex:indexPath.row];
+     cell.colorThemeColorImage.image = [UIImage imageNamed:[currentColor objectForKey:@"ColorArt"]];
+     */
     
     return cell;
 }
@@ -119,7 +142,7 @@ NSString *requestedConnectionName;
 
 -(UIColor*)colorForIndex:(NSInteger) index
 {
-    NSUInteger itemCount = [_storageSiteTypes count];
+    NSUInteger itemCount = [_storageSiteTypesInUse count];
     return [Common theColor:index:itemCount];
 }
 
