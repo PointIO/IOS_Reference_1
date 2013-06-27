@@ -11,6 +11,9 @@
 #import "StorageConnectionListCell.h"
 #import "Common.h"
 #import <QuartzCore/QuartzCore.h>
+#import "StorageTypesViewController.h"
+
+
 
 @interface storageSitesListViewController () {
     NSInteger row;
@@ -74,7 +77,6 @@ NSString *requestedConnectionName;
                 [tmpArrayOfDictionaries addObject:[_storageSitesArrayOfDictionaries objectAtIndex:i]];
             }
          }
-        
          
         NSSortDescriptor *nameDescriptor =
         [[NSSortDescriptor alloc] initWithKey:@"StorageSiteSiteTypeName"
@@ -120,14 +122,6 @@ NSString *requestedConnectionName;
     
     // Set Cell Image
     // Values are stored in sorted Dictionary in AppContent.plist
-    /*
-    NSString *tmpFileName               = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"AppContent"];
-    NSString *tmpFilePath               = [[NSBundle mainBundle] pathForResource:tmpFileName ofType:@"plist"];
-    NSMutableDictionary *tmpDictionary  = [[NSMutableDictionary alloc] initWithContentsOfFile:tmpFilePath];
-    NSDictionary *cloudProviderDict     = [[tmpDictionary valueForKey:@"cloudProviders"] objectAtIndex:indexPath.row];
-    NSString *tmpImageName  = [cloudProviderDict valueForKey:@"cloudProviderArtwork"];
-    cell.storageImage.image = [UIImage imageNamed:tmpImageName];
-    */
     NSString *tmpFileName               = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"AppContent"];
     NSString *tmpFilePath               = [[NSBundle mainBundle] pathForResource:tmpFileName ofType:@"plist"];
     NSMutableDictionary *tmpDictionary  = [[NSMutableDictionary alloc] initWithContentsOfFile:tmpFilePath];
@@ -289,6 +283,7 @@ NSString *requestedConnectionName;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    /*
     if([[segue identifier] isEqualToString:@"addConnection"]){
         newConnectionViewController* ncvc = [segue destinationViewController];
         [ncvc setUserStorageInput:_userStorageInput];
@@ -296,6 +291,15 @@ NSString *requestedConnectionName;
         [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
         [ncvc setAllPossibleConnections:_allPossibleConnections];
         [ncvc setRequestedConnectionName:requestedConnectionName];
+    }
+    */
+    if([[segue identifier] isEqualToString:@"addConnection"]){
+        StorageTypesViewController * ncvc = [segue destinationViewController];
+        // [ncvc setUserStorageInput:_userStorageInput];
+        [ncvc setSessionKey:_sessionKey];
+        // [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
+        // [ncvc setAllPossibleConnections:_allPossibleConnections];
+        // [ncvc setRequestedConnectionName:requestedConnectionName];
     }
     else if([segue.identifier isEqualToString:@"goToStorage"]){
         // storageViewController *svc = [segue destinationViewController];

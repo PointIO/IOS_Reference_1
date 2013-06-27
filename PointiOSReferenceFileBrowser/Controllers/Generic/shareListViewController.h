@@ -23,8 +23,8 @@
 
 // REST API
 @property (nonatomic,strong) NSArray* JSONSharedFoldersArray;
-@property (nonatomic) NSMutableArray* folderNames;
-@property (nonatomic) NSMutableArray* folderShareIDs;
+// @property (nonatomic) NSMutableArray* folderNames;
+// @property (nonatomic) NSMutableArray* folderShareIDs;
 @property (nonatomic) NSString* sessionKey;
 @property (nonatomic) NSArray* result;
 
