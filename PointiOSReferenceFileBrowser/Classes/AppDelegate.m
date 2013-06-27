@@ -23,7 +23,7 @@ static NSString *resetPointFirstLaunchKey = @"1";
 {
     ///*
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-    [TestFlight takeOff:@"ca4346c7-dd19-4ed7-b994-89c49c700d5a"];
+    [TestFlight takeOff:@"a16c5748-0fde-45d6-b1f5-6874d4388987"];
     _hasLoggedIn = NO;
     //*/
     
