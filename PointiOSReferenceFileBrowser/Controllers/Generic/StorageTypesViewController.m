@@ -8,7 +8,7 @@
 
 #import "StorageTypesViewController.h"
 #import "StorageTypeCell.h"
-
+#import "newConnectionViewController.h"
 
 @interface StorageTypesViewController ()
 
@@ -172,13 +172,42 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+}
+
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+    if([[segue identifier] isEqualToString:@"addConnection"]){
+        
+        newConnectionViewController* ncvc = [segue destinationViewController];
+        // not used, ok to delete // [ncvc setUserStorageInput:_userStorageInput];
+        [ncvc setSessionKey:_sessionKey];
+        // set below // [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
+        // [ncvc setAllPossibleConnections:_allPossibleConnections];
+        // set below // [ncvc setRequestedConnectionName:requestedConnectionName];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        
+        NSString *tmpSiteName = [[_storageTypesArrayOfDictionaries objectAtIndex:indexPath.row] valueForKey:@"StorageTypeName"];
+        NSString *tmpSiteID = [[[_storageTypesArrayOfDictionaries objectAtIndex:indexPath.row] valueForKey:@"StorageTypeID"] stringValue];
+        ncvc.requestedConnectionName = tmpSiteName;
+        ncvc.siteTypeID = tmpSiteID;
+        
+        /*
+        UINavigationController *navigationController            = segue.destinationViewController;
+        PlayerDetailViewController *playerDetailViewController  = [[navigationController viewControllers] objectAtIndex:0];
+        playerDetailViewController.delegate                     = self;
+        
+        NSIndexPath *indexPath                                  = [self.tableView indexPathForCell:sender];
+        
+        Player *player                                          = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        playerDetailViewController.playerToEdit                 = player;
+        */
+        
+    }
+    else if([segue.identifier isEqualToString:@"goToStorage"]){
+        // storageViewController *svc = [segue destinationViewController];
+        // [svc setText:storageName];
+    }
 }
 
 @end
