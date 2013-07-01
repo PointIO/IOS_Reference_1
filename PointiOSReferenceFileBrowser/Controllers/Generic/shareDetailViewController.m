@@ -30,11 +30,9 @@ NSString* chosenFolderTitle;
 NSString* rootFolderTitle;
 NSMutableArray* tempContainer;
 
-UIImageView* imgView;
-UIImageView* imgView2;
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+
+- (id)initWithStyle:(UITableViewStyle)style{
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -51,9 +49,6 @@ UIImageView* imgView2;
     i = 0;
     nestedFoldersCounter = 0;
     [_backButton setEnabled:NO];
-    // self.navigationItem.backBarButtonItem.enabled = YES;
-    // self.navigationItem.backBarButtonItem.title = @"Back";
-    // self.navigationItem.title = _folderName;
     
     _remotePath = @"/";
     // rootFolderTitle = self.navigationItem.title;
@@ -130,27 +125,26 @@ UIImageView* imgView2;
     return cell;
 }
 
+
+
 #pragma mark
 #pragma Core Graphics
 
--(UIColor*)colorForIndex:(NSInteger) index
-{
+-(UIColor*)colorForIndex:(NSInteger) index{
     NSUInteger itemCount = [_fileNames count];
     return [Common theColor:index:itemCount];
 }
 
-
--(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.backgroundColor = [self colorForIndex:indexPath.row];
 }
+
+
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    // [_backButton setEnabled:YES];
     
     i = indexPath.row;
     NSLog(@"%@",_fileIDs);
@@ -159,7 +153,8 @@ UIImageView* imgView2;
     if([[_isFolder objectAtIndex:i] boolValue] == NO) {
         NSLog(@"IS NOT A FOLDER");
         [self performSegueWithIdentifier:@"viewDocument" sender:nil];
-    } else {
+    }
+    else {
         NSLog(@"IS A FOLDER");
         if (!_containerIDHistory) {
             _containerIDHistory = [NSMutableArray array];
@@ -194,22 +189,16 @@ UIImageView* imgView2;
                 }];
                 */
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                /*
-                UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Back"
-                                                                         style:UIBarButtonItemStyleBordered
-                                                                        target:self
-                                                                        action:@selector(showPastFolder)];
-                self.navigationItem.hidesBackButton = YES;
-                self.navigationItem.leftBarButtonItem = item;
-                */
             });
         });
     }
 }
 
 
+
 #pragma mark - Business Logic
 - (void) getFileNamesAndFileIDs{
+    
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     NSURLResponse* urlResponseList;
     NSError* requestErrorList;
@@ -242,10 +231,17 @@ UIImageView* imgView2;
     [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
     NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
     if(!response){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Request response is nil"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Dismiss"
+                                              otherButtonTitles: nil];
         [alert show];
-    } else {
-        NSArray* listFilesResponse = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+    }
+    else {
+        NSArray* listFilesResponse = [NSJSONSerialization JSONObjectWithData:response
+                                                                     options:NSJSONReadingMutableContainers
+                                                                       error:nil];
         NSLog(@"list file response = %@",listFilesResponse);
         
         _containerID = [listFilesResponse valueForKey:@"CONTAINERID"];
@@ -268,7 +264,9 @@ UIImageView* imgView2;
         NSDictionary* result = [listFilesResponse valueForKey:@"RESULT"];
         NSArray* columns = [result valueForKey:@"COLUMNS"];
         NSArray* data = [result valueForKey:@"DATA"];
+        
         for(int j=0; j<[data count];j++){
+            
             NSArray* data2 = [data objectAtIndex:j];
             NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
             [_fileNames addObject:[temp valueForKey:@"NAME"]];
@@ -292,7 +290,6 @@ UIImageView* imgView2;
     }
     NSLog(@"NUMBER OF FILES = %i",[_fileNames count]);
 }
-
 
 - (void) showPastFolder{
     NSMutableArray* subs = [NSMutableArray arrayWithArray:[_remotePath componentsSeparatedByString:@"/"]];
@@ -321,8 +318,7 @@ UIImageView* imgView2;
     
     nestedFoldersCounter--;
     if(nestedFoldersCounter == 0) {
-        // self.navigationItem.hidesBackButton = NO;
-        // self.navigationItem.leftBarButtonItem = nil;
+
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -331,10 +327,10 @@ UIImageView* imgView2;
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.tableView reloadData];
             if([tempContainer count] != 0){
-                // self.navigationItem.title = [tempContainer lastObject];
+                self.navigationItem.title = [tempContainer lastObject];
                 // [sharedFolderLabel setText:[tempContainer lastObject]];
             } else {
-                // self.navigationItem.title = rootFolderTitle;
+                self.navigationItem.title = rootFolderTitle;
                 /*
                 [UIView animateWithDuration:0.15 animations:^(void) {
                     [sharedFolderLabel setAlpha:0];
@@ -352,8 +348,8 @@ UIImageView* imgView2;
     
 }
 
-
 - (IBAction)showPastFolder:(id)sender {
+    
     NSMutableArray* subs = [NSMutableArray arrayWithArray:[_remotePath componentsSeparatedByString:@"/"]];
     [subs removeLastObject];
     [subs removeLastObject];
@@ -381,8 +377,6 @@ UIImageView* imgView2;
     nestedFoldersCounter--;
     if(nestedFoldersCounter == 0) {
         [_backButton setEnabled:NO];
-        // self.navigationItem.hidesBackButton = NO;
-        // self.navigationItem.leftBarButtonItem = nil;
     }
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
@@ -391,7 +385,7 @@ UIImageView* imgView2;
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             [self.tableView reloadData];
             if([tempContainer count] != 0){
-                // self.navigationItem.title = [tempContainer lastObject];
+                self.navigationItem.title = [tempContainer lastObject];
                 // [sharedFolderLabel setText:[tempContainer lastObject]];
             } else {
                 // self.navigationItem.title = rootFolderTitle;
@@ -411,6 +405,7 @@ UIImageView* imgView2;
     });
     
 }
+
 
 
 #pragma mark - Segues

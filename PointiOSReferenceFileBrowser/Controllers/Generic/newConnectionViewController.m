@@ -526,6 +526,7 @@ NSMutableArray* keys2;
                     [self displayError];
                 }
                 
+                // JB Need to refactor the ENABLED CONNECTIONS component
                 if(temp && [[temp valueForKey:@"ERROR"] integerValue] ==0) {
                     
                     [_appDel.enabledConnections addObject:@"1"];
