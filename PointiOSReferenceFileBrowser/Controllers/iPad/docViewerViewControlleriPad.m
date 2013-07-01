@@ -162,7 +162,7 @@ BOOL manageStorageConnections;
             }
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
                 if([_appDel.enabledConnections count] == 0 || ([_appDel.enabledConnections count] != [_list count])){
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"getEnabledStates" object:nil];
+                    // [[NSNotificationCenter defaultCenter] postNotificationName:@"getEnabledStates" object:nil];
                 }
                 if([_appDel.enabledConnections count] != [_list count]){
                     _appDel.enabledConnections = nil;
