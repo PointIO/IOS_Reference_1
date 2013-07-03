@@ -1461,7 +1461,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </scene>
     </scenes>
     <resources>
-        <image name="TabBarButtonItemFileCabinet.png" width="396" height="396"/>
+        <image name="TabBarButtonItemFileCabinet.png" width="24" height="22"/>
         <image name="TabBarButtonItemSettings.png" width="26" height="26"/>
         <image name="background.png" width="640" height="921"/>
         <image name="createButton.png" width="171" height="93"/>
