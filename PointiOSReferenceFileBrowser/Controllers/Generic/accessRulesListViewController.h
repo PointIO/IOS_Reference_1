@@ -11,7 +11,7 @@
 #import "SystemConfiguration/SystemConfiguration.h"
 
 @interface accessRulesListViewController : UITableViewController
-
+// 
 
 // @property (nonatomic) AppDelegate* appDel;
 @property (nonatomic) NSArray* list;
