@@ -21,7 +21,7 @@
 @property (nonatomic, retain) NSString *selectedShareID;
 
 // REST API
-@property (nonatomic,strong) NSArray* JSONSharedFoldersArray;
+// @property (nonatomic,strong) NSArray* JSONSharedFoldersArray;
 @property (nonatomic) NSString* sessionKey;
 @property (nonatomic) NSArray* result;
 

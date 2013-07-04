@@ -54,45 +54,47 @@ int i;
     [super viewDidLoad];
     
     // _appDel                 = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    _JSONSharedFoldersArray = [NSArray array];
+    // _JSONSharedFoldersArray = [NSArray array];
     _list                   = [[NSMutableArray alloc] init];
     _tempArray              = [[NSMutableArray alloc] init];
-    // _sessionKey             = _appDel.sessionKey;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
 
-        /*
-        NSArray *enabledSharesArray = [[NSArray alloc] init];
-        enabledSharesArray = _appDel.accessRulesEnabledArray;
-        NSLog(@"Inside ShareListViewController.ViewDidLoad, enabledShares from appDelegate is %@", enabledSharesArray);
-        
-        for (i=0; i<[enabledSharesArray count]; i++) {
-            NSArray *accessRuleItem;
-            accessRuleItem = [enabledSharesArray objectAtIndex:i];
-             [_tempArray addObject:accessRuleItem];
-        }
-    
-        NSSortDescriptor *nameDescriptor =
-        [[NSSortDescriptor alloc] initWithKey:@"AccessRuleShareName"
-                                    ascending:YES
-                                     selector:@selector(localizedCaseInsensitiveCompare:)];
-        
-        NSArray *descriptors = [NSArray arrayWithObjects:nameDescriptor, nil];
-        NSArray *sortedArray = [_tempArray sortedArrayUsingDescriptors:descriptors];
-        _list = sortedArray;
-        NSLog(@"Sorted Access Rules is %@", _list);
-        */
-
         [self performListCall];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self.tableView reloadData];
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        });
-     });
+        if (![_accessRulesEnabledArray count]==0){
+            for (i=0; i<[_accessRulesEnabledArray count]; i++) {
+                NSArray *accessRuleItem;
+                accessRuleItem = [_accessRulesEnabledArray objectAtIndex:i];
+                [_tempArray addObject:accessRuleItem];
+            }
     
+            NSSortDescriptor *nameDescriptor =
+            [[NSSortDescriptor alloc] initWithKey:@"AccessRuleShareName"
+                                        ascending:YES
+                                         selector:@selector(localizedCaseInsensitiveCompare:)];
+        
+            NSArray *descriptors = [NSArray arrayWithObjects:nameDescriptor, nil];
+            NSArray *sortedArray = [_tempArray sortedArrayUsingDescriptors:descriptors];
+            _list = sortedArray;
+            NSLog(@"Sorted Access Rules is %@", _list);
+     
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.tableView reloadData];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            });
+        }
+        else {
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                              message:@"There are no enabled shares"
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"Dismiss"
+                                                    otherButtonTitles:nil];
+                [alert show];
+        }
+     });    
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
@@ -342,7 +344,11 @@ int i;
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if(![Common isConnectedToInternet]){
-        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:@"Looks like there is no internet connection, please check the settings"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Dismiss"
+                                            otherButtonTitles:nil];
         UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
         temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
         [err addSubview:temp];
