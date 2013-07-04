@@ -119,6 +119,7 @@ NSDictionary* sitesAndShareIDs;
         sitesAndShareIDs = [NSDictionary dictionaryWithObjects:shareIDs forKeys:_list];
         NSArray* tempCpy = [NSArray arrayWithArray:_list];
         [_list setArray:[[NSSet setWithArray:_list] allObjects]];
+        /*
         if([tempCpy count] - [_list count] == 1){
             if([_appDel.enabledConnections count] - [_list count] == 1){
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"removeOneIndex" object:nil];
@@ -140,6 +141,7 @@ NSDictionary* sitesAndShareIDs;
                 [_displayList addObject:[_list objectAtIndex:j]];
             }
         }
+        */
     }
 }
 

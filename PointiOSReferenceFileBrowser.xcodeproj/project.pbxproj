@@ -82,7 +82,7 @@
 		7550E0DD1768045700E8F547 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550E0DC1768045700E8F547 /* libz.dylib */; };
 		7599C78A176F8AEE00AE368C /* workspaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599C788176F8AEE00AE368C /* workspaceViewController.m */; };
 		7599C78D176F8AF700AE368C /* sharedFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599C78B176F8AF700AE368C /* sharedFoldersViewController.m */; };
-		8A256BC0176A2202001E5823 /* shareListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A256BBF176A2202001E5823 /* shareListViewController.m */; };
+		8A256BC0176A2202001E5823 /* accessRulesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A256BBF176A2202001E5823 /* accessRulesListViewController.m */; };
 		8A25DA741770A0470025BBD3 /* connectionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A25DA731770A0470025BBD3 /* connectionDetailViewController.m */; };
 		8A2DD56D177511AB002310D0 /* pointio50x50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD568177511AB002310D0 /* pointio50x50.png */; };
 		8A2DD56E177511AB002310D0 /* pointio57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD569177511AB002310D0 /* pointio57x57.png */; };
@@ -345,8 +345,8 @@
 		7599C789176F8AEE00AE368C /* workspaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workspaceViewController.h; sourceTree = "<group>"; };
 		7599C78B176F8AF700AE368C /* sharedFoldersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sharedFoldersViewController.m; sourceTree = "<group>"; };
 		7599C78C176F8AF700AE368C /* sharedFoldersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sharedFoldersViewController.h; sourceTree = "<group>"; };
-		8A256BBE176A2202001E5823 /* shareListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shareListViewController.h; sourceTree = "<group>"; };
-		8A256BBF176A2202001E5823 /* shareListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = shareListViewController.m; sourceTree = "<group>"; };
+		8A256BBE176A2202001E5823 /* accessRulesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accessRulesListViewController.h; sourceTree = "<group>"; };
+		8A256BBF176A2202001E5823 /* accessRulesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accessRulesListViewController.m; sourceTree = "<group>"; };
 		8A25DA721770A0470025BBD3 /* connectionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectionDetailViewController.h; sourceTree = "<group>"; };
 		8A25DA731770A0470025BBD3 /* connectionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectionDetailViewController.m; sourceTree = "<group>"; };
 		8A2DD568177511AB002310D0 /* pointio50x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio50x50.png; sourceTree = "<group>"; };
@@ -556,11 +556,11 @@
 		8AA513CA176A04B800665111 /* FileViewerControllerIpad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileViewerControllerIpad.m; sourceTree = "<group>"; };
 		8AA513CB176A04B800665111 /* newConnectionViewControlleriPad.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newConnectionViewControlleriPad.h; sourceTree = "<group>"; };
 		8AA513CC176A04B800665111 /* newConnectionViewControlleriPad.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newConnectionViewControlleriPad.m; sourceTree = "<group>"; };
-		8AA513D3176A04C600665111 /* connectionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectionsTableViewController.m; sourceTree = "<group>"; };
+		8AA513D3176A04C600665111 /* connectionsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = connectionsTableViewController.m; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/connectionsTableViewController.m; sourceTree = "<group>"; };
 		8AA513D4176A04C600665111 /* docViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = docViewerViewController.m; sourceTree = "<group>"; };
 		8AA513D5176A04C600665111 /* newConnectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newConnectionViewController.m; sourceTree = "<group>"; };
 		8AA513D7176A04C600665111 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		8AA513D8176A04C600665111 /* connectionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectionsTableViewController.h; sourceTree = "<group>"; };
+		8AA513D8176A04C600665111 /* connectionsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = connectionsTableViewController.h; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/connectionsTableViewController.h; sourceTree = "<group>"; };
 		8AA513D9176A04C600665111 /* datePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datePickerViewController.h; sourceTree = "<group>"; };
 		8AA513DA176A04C600665111 /* datePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = datePickerViewController.m; sourceTree = "<group>"; };
 		8AA513DB176A04C600665111 /* docViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = docViewerViewController.h; sourceTree = "<group>"; };
@@ -574,8 +574,8 @@
 		8AA513E4176A04C600665111 /* storageSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = storageSignupViewController.h; sourceTree = "<group>"; };
 		8AA513E5176A04C600665111 /* storageSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = storageSignupViewController.m; sourceTree = "<group>"; };
 		8AA513E7176A04C600665111 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		8AA513F4176A062C00665111 /* connectionsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectionsManagerViewController.h; sourceTree = "<group>"; };
-		8AA513F5176A062C00665111 /* connectionsManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = connectionsManagerViewController.m; sourceTree = "<group>"; };
+		8AA513F4176A062C00665111 /* connectionsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = connectionsManagerViewController.h; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/connectionsManagerViewController.h; sourceTree = "<group>"; };
+		8AA513F5176A062C00665111 /* connectionsManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = connectionsManagerViewController.m; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/connectionsManagerViewController.m; sourceTree = "<group>"; };
 		8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BackupMainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BackupMainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		8AA6572217832B38002C9A7B /* TabBarButtonItemFileCabinet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarButtonItemFileCabinet.png; sourceTree = "<group>"; };
@@ -946,14 +946,12 @@
 		7550E1471768081700E8F547 /* Generic */ = {
 			isa = PBXGroup;
 			children = (
+				8A256BBE176A2202001E5823 /* accessRulesListViewController.h */,
+				8A256BBF176A2202001E5823 /* accessRulesListViewController.m */,
 				8A25DA721770A0470025BBD3 /* connectionDetailViewController.h */,
 				8A25DA731770A0470025BBD3 /* connectionDetailViewController.m */,
 				754977DC176CFB4A0042B5D8 /* connectionListViewController.h */,
 				754977DD176CFB4A0042B5D8 /* connectionListViewController.m */,
-				8AA513F4176A062C00665111 /* connectionsManagerViewController.h */,
-				8AA513F5176A062C00665111 /* connectionsManagerViewController.m */,
-				8AA513D8176A04C600665111 /* connectionsTableViewController.h */,
-				8AA513D3176A04C600665111 /* connectionsTableViewController.m */,
 				8AA513D9176A04C600665111 /* datePickerViewController.h */,
 				8AA513DA176A04C600665111 /* datePickerViewController.m */,
 				8AA513DB176A04C600665111 /* docViewerViewController.h */,
@@ -968,8 +966,6 @@
 				8AA513E3176A04C600665111 /* signupViewController.m */,
 				8AA513E4176A04C600665111 /* storageSignupViewController.h */,
 				8AA513E5176A04C600665111 /* storageSignupViewController.m */,
-				8A256BBE176A2202001E5823 /* shareListViewController.h */,
-				8A256BBF176A2202001E5823 /* shareListViewController.m */,
 				754977EA176D1AED0042B5D8 /* shareDetailViewController.h */,
 				754977EB176D1AEE0042B5D8 /* shareDetailViewController.m */,
 				8AA513E0176A04C600665111 /* sharingViewController.h */,
@@ -1000,6 +996,10 @@
 		7599C787176F8A7E00AE368C /* ToBeDeleted */ = {
 			isa = PBXGroup;
 			children = (
+				8AA513F4176A062C00665111 /* connectionsManagerViewController.h */,
+				8AA513F5176A062C00665111 /* connectionsManagerViewController.m */,
+				8AA513D8176A04C600665111 /* connectionsTableViewController.h */,
+				8AA513D3176A04C600665111 /* connectionsTableViewController.m */,
 				7599C78C176F8AF700AE368C /* sharedFoldersViewController.h */,
 				7599C78B176F8AF700AE368C /* sharedFoldersViewController.m */,
 				7599C789176F8AEE00AE368C /* workspaceViewController.h */,
@@ -1553,7 +1553,7 @@
 				8AA513F2176A04C600665111 /* signupViewController.m in Sources */,
 				8AA513F3176A04C600665111 /* storageSignupViewController.m in Sources */,
 				8AA513F6176A062D00665111 /* connectionsManagerViewController.m in Sources */,
-				8A256BC0176A2202001E5823 /* shareListViewController.m in Sources */,
+				8A256BC0176A2202001E5823 /* accessRulesListViewController.m in Sources */,
 				754977DE176CFB4A0042B5D8 /* connectionListViewController.m in Sources */,
 				754977E1176D01AB0042B5D8 /* ConnectionListCell.m in Sources */,
 				754977E6176D0CB60042B5D8 /* ShareListCell.m in Sources */,

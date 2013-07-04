@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="W9C-aJ-NC9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E3067" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="W9C-aJ-NC9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -15,13 +15,15 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
+                        <segue destination="IRH-MX-DBM" kind="relationship" relationship="viewControllers" id="N9c-GI-nBs"/>
+                        <segue destination="ver-ZW-ifq" kind="relationship" relationship="viewControllers" id="qIF-Xv-hTD"/>
                         <segue destination="My2-vk-gIY" kind="relationship" relationship="viewControllers" id="Wqj-yR-Qlz"/>
                         <segue destination="oc3-oe-czr" kind="relationship" relationship="viewControllers" id="BdH-Zl-Fta"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQ2-Q6-L6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3416" y="-873"/>
+            <point key="canvasLocation" x="-2938" y="-817"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="5">
@@ -75,7 +77,6 @@
                                 </state>
                                 <connections>
                                     <action selector="signInPressed" destination="2" eventType="touchUpInside" id="UAz-o2-z7r"/>
-                                    <segue destination="jyc-eP-dc0" kind="push" identifier="goToShares" id="P2R-uD-7Sp"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="kXU-1L-J47">
@@ -123,24 +124,6 @@
                                     <action selector="goBackPressed" destination="2" eventType="touchUpInside" id="F3X-cz-jTa"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="y5o-hZ-q73">
-                                <rect key="frame" x="0.0" y="461" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Connections" id="hwg-c7-2lJ">
-                                        <connections>
-                                            <segue destination="CNt-x9-Fp5" kind="push" identifier="goToConnections" id="BqJ-d9-yVj"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem title="My Stuff" id="wxX-c5-hEA">
-                                        <connections>
-                                            <action selector="goBackPressed" destination="2" id="dO8-uy-umf"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nan-3H-z45"/>
-                                    <barButtonItem image="TabBarButtonItemSettings.png" id="XKb-me-auE"/>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -159,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-364" y="-1757"/>
+            <point key="canvasLocation" x="-1300" y="-3029"/>
         </scene>
         <!--Signup View Controller-->
         <scene sceneID="tsT-fG-CWf">
@@ -264,65 +247,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Md-hV-UqO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-404" y="-529"/>
+            <point key="canvasLocation" x="-644" y="-3053"/>
         </scene>
-        <!--Connections Table View Controller - Storage connections-->
-        <scene sceneID="P8z-Pz-dkf">
-            <objects>
-                <tableViewController id="bIl-zv-LeE" customClass="connectionsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="RNK-UK-kPi">
-                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConnectionCell" id="f6Q-IN-ZF2">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="bIl-zv-LeE" id="FI7-GN-awu"/>
-                            <outlet property="delegate" destination="bIl-zv-LeE" id="GDQ-PH-tfZ"/>
-                        </connections>
-                    </tableView>
-                    <toolbarItems>
-                        <barButtonItem style="plain" systemItem="add" id="bjB-12-umB">
-                            <connections>
-                                <action selector="addNewConnectionPressed:" destination="bIl-zv-LeE" id="9Zt-K9-1uK"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem title="Manage stored connections" id="02s-Jg-bOy">
-                            <color key="tintColor" red="0.10980392156862745" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="manageStoredConnectionsPressed:" destination="bIl-zv-LeE" id="JCT-Hs-g1v"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Storage connections" id="75k-bj-7pa">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="cMu-L7-sCi"/>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="manageStoredConnectionsButton" destination="02s-Jg-bOy" id="CnN-6h-L1l"/>
-                        <segue destination="amJ-qz-gvN" kind="push" identifier="manageConnections" id="OZ3-Sw-KtG"/>
-                        <segue destination="6Ps-kN-Pm1" kind="push" identifier="getOtherParams" id="Guj-hK-ntb"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8pf-ri-awS" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2127" y="-1201"/>
-        </scene>
-        <!--Share List View Controller - My Stuff-->
+        <!--Access Rules List View Controller - My Stuff-->
         <scene sceneID="xi8-Da-d7F">
             <objects>
-                <tableViewController id="jyc-eP-dc0" customClass="shareListViewController" sceneMemberID="viewController">
+                <tableViewController id="jyc-eP-dc0" customClass="accessRulesListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="YMl-nn-X3E">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -364,7 +296,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K01-67-yqw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="840" y="-2084"/>
+            <point key="canvasLocation" x="-1274" y="-1932"/>
         </scene>
         <!--Share Detail View Controller - My Documents-->
         <scene sceneID="2NF-D8-WeM">
@@ -438,59 +370,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="w3D-Q9-6Pv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2115" y="-1918"/>
-        </scene>
-        <!--Connection List View Controller - Connections-->
-        <scene sceneID="2M6-3Q-fqQ">
-            <objects>
-                <tableViewController id="mJP-2x-hC8" customClass="connectionListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cEq-p7-8TC">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ConnectionListCell" id="iRA-fB-Vuf" customClass="ConnectionListCell">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jaB-hh-7CB">
-                                            <rect key="frame" x="20" y="11" width="255" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <connections>
-                                    <outlet property="nameLabel" destination="jaB-hh-7CB" id="zBn-cd-fWF"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="mJP-2x-hC8" id="9Jb-RH-h4l"/>
-                            <outlet property="delegate" destination="mJP-2x-hC8" id="IiO-zX-Q1H"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Connections" id="ssP-tc-KRd">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="rt6-GJ-HXj">
-                            <connections>
-                                <action selector="addConnectionPressed:" destination="mJP-2x-hC8" id="doG-3K-o1u"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <segue destination="6Ps-kN-Pm1" kind="push" identifier="addConnection" id="bjj-CI-bpb"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pew-N3-6nQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="846" y="-1285"/>
+            <point key="canvasLocation" x="9" y="-1926"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="5SY-bl-UYx">
@@ -573,7 +453,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9U-VP-SV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-228" y="355"/>
+            <point key="canvasLocation" x="-1206" y="631"/>
         </scene>
         <!--Color Theme Picker View Controller - Select Color Theme-->
         <scene sceneID="Dye-kz-vSF">
@@ -612,152 +492,18 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yYE-hh-8jt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="507" y="355"/>
-        </scene>
-        <!--Connections Manager View Controller - Storage connections-->
-        <scene sceneID="Ddq-0r-5ca">
-            <objects>
-                <tableViewController id="amJ-qz-gvN" customClass="connectionsManagerViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="9tf-Rs-uNg">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" id="wYf-03-0fN">
-                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="amJ-qz-gvN" id="hVW-vF-OLi"/>
-                            <outlet property="delegate" destination="amJ-qz-gvN" id="wol-f6-ho9"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Storage connections" id="PMH-eo-Iuo">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="afp-6T-fUB"/>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <segue destination="LqM-ou-T9B" kind="push" identifier="goToStorage" id="E1V-Ns-m47"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HgJ-nI-WX0" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2758" y="-1201"/>
-        </scene>
-        <!--Storage View Controller - Login-->
-        <scene sceneID="ngi-ZK-2I9">
-            <objects>
-                <viewController id="LqM-ou-T9B" customClass="storageViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="X2t-uF-9Km">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Qv5-Hq-Iq3">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="506"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="screenPressed" destination="LqM-ou-T9B" eventType="touchUpInside" id="83C-YX-BTO"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZTB-cg-XPT">
-                                <rect key="frame" x="142" y="18" width="36" height="21"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1hO-hJ-v9c">
-                                <rect key="frame" x="97" y="393" width="126" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Sign up">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="signUp" destination="LqM-ou-T9B" eventType="touchUpInside" id="Lk3-vh-AaK"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="wWt-U4-y1n">
-                                <rect key="frame" x="97" y="325" width="126" height="44"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Sign in">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="signInPressed" destination="LqM-ou-T9B" eventType="touchUpInside" id="4XC-YT-phz"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" id="czC-El-8K8">
-                                <rect key="frame" x="20" y="125" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" minimumFontSize="17" clearButtonMode="whileEditing" id="54v-fm-7AJ">
-                                <rect key="frame" x="20" y="174" width="280" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Signing in..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="98f-Q3-XvK">
-                                <rect key="frame" x="116" y="241" width="89" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" style="gray" id="74h-AX-1hZ">
-                                <rect key="frame" x="150" y="212" width="20" height="20"/>
-                            </activityIndicatorView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Login" id="cZP-xz-Lmn">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="R8D-mJ-qWM"/>
-                    </navigationItem>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="passwordTextField" destination="54v-fm-7AJ" id="xdV-mL-UZM"/>
-                        <outlet property="signInButton" destination="wWt-U4-y1n" id="lSU-4U-e4B"/>
-                        <outlet property="signUpButton" destination="1hO-hJ-v9c" id="nuQ-fU-vV1"/>
-                        <outlet property="signingActivityIndicator" destination="74h-AX-1hZ" id="eZ1-m3-cqc"/>
-                        <outlet property="signingInLabel" destination="98f-Q3-XvK" id="416-KZ-cho"/>
-                        <outlet property="textLabel" destination="ZTB-cg-XPT" id="EgD-VD-i5s"/>
-                        <outlet property="usernameTextField" destination="czC-El-8K8" id="kcm-l8-7pl"/>
-                        <segue destination="iVQ-jo-DRn" kind="push" identifier="goToSignup" id="8Py-VE-IZb"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qbn-mt-Sgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3405" y="-1129"/>
+            <point key="canvasLocation" x="-492" y="631"/>
         </scene>
         <!--New Connection View Controller - New connection-->
         <scene sceneID="npW-B1-TN1">
             <objects>
                 <viewController id="6Ps-kN-Pm1" customClass="newConnectionViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="M2a-re-Hsj">
-                        <rect key="frame" x="0.0" y="20" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView autoresizesSubviews="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" delaysContentTouches="NO" id="eIU-nj-DZy">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="1049"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="947"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="nMc-c9-3bL">
@@ -878,14 +624,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MA9-ry-wGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1487" y="-1206"/>
+            <point key="canvasLocation" x="-7" y="-811"/>
         </scene>
         <!--Storage Sites List View Controller - Storage Sites-->
         <scene sceneID="anK-gD-GQR">
             <objects>
                 <tableViewController id="CNt-x9-Fp5" customClass="storageSitesListViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="4PU-fB-gNO">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -932,14 +678,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cs2-Jt-CD4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="320" y="-487"/>
+            <point key="canvasLocation" x="-1274" y="-811"/>
         </scene>
-        <!--Storage Types View Controller - Select Storage-->
+        <!--Storage Types View Controller - Storage to Add -->
         <scene sceneID="kqp-X4-Fdd">
             <objects>
                 <tableViewController id="m6e-45-E7n" customClass="StorageTypesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="qW0-av-QlH">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -976,11 +722,11 @@
                             <outlet property="delegate" destination="m6e-45-E7n" id="NTG-ni-WFp"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Select Storage" id="tOu-ex-dzt"/>
+                    <navigationItem key="navigationItem" title="Storage to Add " id="tOu-ex-dzt"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zLO-w8-EuN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="949" y="-487"/>
+            <point key="canvasLocation" x="-644" y="-811"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="xHE-fm-43a">
@@ -1196,22 +942,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k5U-H5-3QC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1599" y="-485"/>
-        </scene>
-        <!--Storage Signup View Controller - Sign up-->
-        <scene sceneID="9yn-Yi-GRz">
-            <objects>
-                <viewController id="iVQ-jo-DRn" customClass="storageSignupViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="L2o-r0-CLJ">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Sign up" id="UxV-o1-IWA"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NFf-a2-e9T" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4032" y="-1129"/>
+            <point key="canvasLocation" x="644" y="-805"/>
         </scene>
         <!--Doc Viewer View Controller-->
         <scene sceneID="PbD-pS-EoJ">
@@ -1255,7 +986,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mqg-FX-fT6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2758" y="-1918"/>
+            <point key="canvasLocation" x="644" y="-1916"/>
         </scene>
         <!--Sharing View Controller -  Share securely-->
         <scene sceneID="ebp-TK-CIg">
@@ -1352,7 +1083,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOA-PR-5EG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3395" y="-1918"/>
+            <point key="canvasLocation" x="1273" y="-1926"/>
         </scene>
         <!--Date Picker View Controller-->
         <scene sceneID="94u-7X-FgV">
@@ -1399,7 +1130,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3A-eE-3Sr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4049" y="-1918"/>
+            <point key="canvasLocation" x="1919" y="-1932"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vCW-Co-yYx">
@@ -1418,7 +1149,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmT-zV-fOi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1481" y="-1924"/>
+            <point key="canvasLocation" x="-633" y="-1932"/>
         </scene>
         <!--Navigation Controller - Settings-->
         <scene sceneID="TAZ-Hr-MeW">
@@ -1437,13 +1168,13 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YNL-1N-xd5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1770" y="139"/>
+            <point key="canvasLocation" x="-1922" y="619"/>
         </scene>
-        <!--Navigation Controller - My Stuff-->
+        <!--Navigation Controller - Login-->
         <scene sceneID="UD4-Lp-XtF">
             <objects>
                 <navigationController id="My2-vk-gIY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="My Stuff" image="TabBarButtonItemFileCabinet.png" id="Kny-Kq-mhB"/>
+                    <tabBarItem key="tabBarItem" title="Login" image="Balloon_1.png" id="Kny-Kq-mhB"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="RJH-1h-es1"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="n4u-An-vng">
@@ -1457,10 +1188,49 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKW-Vx-gb4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1834" y="-1573"/>
+            <point key="canvasLocation" x="-1928" y="-3029"/>
+        </scene>
+        <!--Navigation Controller - Storage Sites-->
+        <scene sceneID="LKD-5b-5Gf">
+            <objects>
+                <navigationController id="ver-ZW-ifq" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Storage Sites" image="TabBarButtonItemFileCabinet.png" id="gvr-S1-3d1"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="weV-ML-l5E">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CNt-x9-Fp5" kind="relationship" relationship="rootViewController" id="HvQ-Uz-yPg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kWT-CT-Rg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1914" y="-811"/>
+        </scene>
+        <!--Navigation Controller - My Stuff-->
+        <scene sceneID="sbp-RM-yUP">
+            <objects>
+                <navigationController id="IRH-MX-DBM" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="My Stuff" image="TabBarButtonItemFileCabinet.png" id="kSR-Bh-5xF"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="61B-dq-sca">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jyc-eP-dc0" kind="relationship" relationship="rootViewController" id="QSq-e8-TVe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aaz-cT-gxg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1928" y="-1932"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Balloon_1.png" width="43" height="32"/>
         <image name="TabBarButtonItemFileCabinet.png" width="24" height="22"/>
         <image name="TabBarButtonItemSettings.png" width="26" height="26"/>
         <image name="background.png" width="640" height="921"/>
@@ -1483,13 +1253,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         </class>
         <class className="ColorThemePickerViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ColorThemePickerViewController.h"/>
-        </class>
-        <class className="ConnectionListCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConnectionListCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statusSwitch" candidateClass="UISwitch"/>
-            </relationships>
         </class>
         <class className="SettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
@@ -1547,23 +1310,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="connectionListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionListViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addConnectionPressed:"/>
-                <relationship kind="action" name="valueChanged:withIndex:"/>
-            </relationships>
-        </class>
-        <class className="connectionsManagerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionsManagerViewController.h"/>
-        </class>
-        <class className="connectionsTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/connectionsTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addNewConnectionPressed:"/>
-                <relationship kind="action" name="manageStoredConnectionsPressed:"/>
-                <relationship kind="outlet" name="manageStoredConnectionsButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
+        <class className="accessRulesListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/accessRulesListViewController.h"/>
         </class>
         <class className="datePickerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/datePickerViewController.h"/>
@@ -1612,9 +1360,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
             </relationships>
         </class>
-        <class className="shareListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/shareListViewController.h"/>
-        </class>
         <class className="sharingViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/sharingViewController.h"/>
             <relationships>
@@ -1644,9 +1389,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
             </relationships>
         </class>
-        <class className="storageSignupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/storageSignupViewController.h"/>
-        </class>
         <class className="storageSitesListViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/storageSitesListViewController.h"/>
             <relationships>
@@ -1662,6 +1404,5 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Wqj-yR-Qlz"/>
-        <segue reference="Guj-hK-ntb"/>
     </inferredMetricsTieBreakers>
 </document>

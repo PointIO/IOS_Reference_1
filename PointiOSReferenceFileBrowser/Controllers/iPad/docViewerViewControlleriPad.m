@@ -156,15 +156,21 @@ BOOL manageStorageConnections;
             NSArray* tempCpy = [NSArray arrayWithArray:_list];
             [_list setArray:[[NSSet setWithArray:_list] allObjects]];
             if([tempCpy count] - [_list count] == 1){
+                // jb 7/3/13
+                /*
                 if([_appDel.enabledConnections count] - [_list count] == 1){
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"removeOneIndex" object:nil];
                 }
+                 */
             }
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                // jb 7/3/13
+                /*
                 if([_appDel.enabledConnections count] == 0 || ([_appDel.enabledConnections count] != [_list count])){
                     // [[NSNotificationCenter defaultCenter] postNotificationName:@"getEnabledStates" object:nil];
                 }
-                if([_appDel.enabledConnections count] != [_list count]){
+                 */
+                /* if([_appDel.enabledConnections count] != [_list count]){
                     _appDel.enabledConnections = nil;
                     _appDel.enabledConnections = [NSMutableArray array];
                     for(int j = 0; j< [_list count];j++){
@@ -177,6 +183,7 @@ BOOL manageStorageConnections;
                     }
                 }
                 [_connectionsTableView reloadData];
+                */
         }
 }
 
@@ -266,11 +273,13 @@ BOOL manageStorageConnections;
             for(int j=0; j<[data count];j++){
                 NSArray* data2 = [data objectAtIndex:j];
                 _sharedFolderData = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
+                /*
                 if([[_appDel.enabledConnections objectAtIndex:indexPath.row] integerValue] == 1){
                     tableViewSwitch.on = YES;
                 } else {
                     tableViewSwitch.on = NO;
                 }
+                */
             }
             [tableViewSwitch addTarget:self action:@selector(valueChanged:withIndex:) forControlEvents:UIControlEventValueChanged];
             cell.textLabel.text = [_manageList objectAtIndex:indexPath.row];
@@ -297,15 +306,17 @@ BOOL manageStorageConnections;
     int row = path.row;
     NSLog(@"ROW IS %i",row);
     if (controlSwitch.isOn) {
-        [_appDel.enabledConnections setObject:@"1" atIndexedSubscript:row];
+        // [_appDel.enabledConnections setObject:@"1" atIndexedSubscript:row];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
-        NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
+        // NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
     }
     if(!controlSwitch.isOn){
-        [_appDel.enabledConnections setObject:@"0" atIndexedSubscript:row];
+        // [_appDel.enabledConnections setObject:@"0" atIndexedSubscript:row];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
     }
     NSString* temp = [[NSString alloc] init];
+    // jb 7/3/13
+    /*
     for(int j = 0;j < [_appDel.enabledConnections count];j++){
         if([[_appDel.enabledConnections objectAtIndex:j] isEqualToString:@"1"]){
             if(j==0){
@@ -321,8 +332,9 @@ BOOL manageStorageConnections;
             }
         }
     }
-    [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"ENABLEDCONNECTIONS"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+    */
+    // [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"ENABLEDCONNECTIONS"];
+    // [[NSUserDefaults standardUserDefaults] synchronize];
     [TestFlight passCheckpoint:@"User changed enabled connections value"];
 }
 

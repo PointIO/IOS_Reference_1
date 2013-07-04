@@ -182,6 +182,7 @@ NSString *requestedConnectionName;
     UITableView* tableView = (UITableView*)[myCell superview];
     NSIndexPath* path = [tableView indexPathForCell:myCell];
     row = path.row;
+    /*
     if (controlSwitch.isOn) {
         [_appDel.enabledConnections setObject:@"1" atIndexedSubscript:row];
         [_appDel.connectionsTypesAndEnabledStates setObject:@"1" forKey:storageName];
@@ -191,7 +192,8 @@ NSString *requestedConnectionName;
         [_appDel.enabledConnections setObject:@"0" atIndexedSubscript:row];
         [_appDel.connectionsTypesAndEnabledStates setObject:@"0" forKey:storageName];
     }
-    
+    */
+    /*
     NSString* temp = [[NSString alloc] init];
     for(int i = 0;i < [_list count];i++){
         if([[_appDel.enabledConnections objectAtIndex:i] isEqualToString:@"1"]){
@@ -208,12 +210,12 @@ NSString *requestedConnectionName;
             }
         }
     }
+    */
+    // NSLog(@"APPDEL CONNECTIONS ENABLED STATES = %@",_appDel.connectionsTypesAndEnabledStates);
     
-    NSLog(@"APPDEL CONNECTIONS ENABLED STATES = %@",_appDel.connectionsTypesAndEnabledStates);
-    
-    [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"ENABLEDCONNECTIONS"];
-    [[NSUserDefaults standardUserDefaults] setObject:_appDel.connectionsNameAndTypes forKey:@"NAMETYPES"];
-    [[NSUserDefaults standardUserDefaults] setObject:_appDel.connectionsTypesAndEnabledStates forKey:@"ENABLEDTYPES"];
+    // [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"ENABLEDCONNECTIONS"];
+    // [[NSUserDefaults standardUserDefaults] setObject:_appDel.connectionsNameAndTypes forKey:@"NAMETYPES"];
+    // [[NSUserDefaults standardUserDefaults] setObject:_appDel.connectionsTypesAndEnabledStates forKey:@"ENABLEDTYPES"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [TestFlight passCheckpoint:@"User changed enabled connections value"];
 }

@@ -127,11 +127,13 @@ UIImageView* imgView2;
     for(int i=0; i<[data count];i++){
         NSArray* data2 = [data objectAtIndex:i];
         _sharedFolderData = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
+        /*
         if([[_appDel.enabledConnections objectAtIndex:indexPath.row] integerValue] == 1){
             tableViewSwitch.on = YES;
         } else {
             tableViewSwitch.on = NO;
         }
+        */
     }
 
     [tableViewSwitch addTarget:self action:@selector(valueChanged:withIndex:) forControlEvents:UIControlEventValueChanged];
@@ -149,6 +151,7 @@ UIImageView* imgView2;
     NSIndexPath* path = [tableView indexPathForCell:myCell];
     row = path.row;
     NSLog(@"ROW IS %i",row);
+    /*
     if (controlSwitch.isOn) {
         [_appDel.enabledConnections setObject:@"1" atIndexedSubscript:row];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
@@ -163,6 +166,8 @@ UIImageView* imgView2;
         imgView2.alpha = 0.5;
         NSLog(@"ENABLED CONNECTIONS IS NOW %@",_appDel.enabledConnections);
     }
+    */
+    /*
     NSString* temp = [[NSString alloc] init];
     for(int i = 0;i < [_appDel.enabledConnections count];i++){
         if([[_appDel.enabledConnections objectAtIndex:i] isEqualToString:@"1"]){
@@ -181,6 +186,7 @@ UIImageView* imgView2;
     }
     [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"ENABLEDCONNECTIONS"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    */
     [TestFlight passCheckpoint:@"User changed enabled connections value"];
 }
 

@@ -51,9 +51,11 @@ UIImageView* imgView;
     [_signOutButton setHidden:YES];
     [_goBackButton setHidden:YES];
 
+    /*
     UISwipeGestureRecognizer* swipedUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(screenPressed)];
     [swipedUp setDirection:UISwipeGestureRecognizerDirectionUp];
     [self.view addGestureRecognizer:swipedUp];
+    */
     
     _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
@@ -65,7 +67,11 @@ UIImageView* imgView;
         _username = [defaults valueForKey:@"USERNAME"];
         _password = [defaults valueForKey:@"PASSWORD"];
         if(![Common isConnectedToInternet]){
-            UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                          message:@"Looks like there is no internet connection, please check the settings"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"Dismiss"
+                                                otherButtonTitles:nil];
             UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
             temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
             [err addSubview:temp];
@@ -109,7 +115,8 @@ UIImageView* imgView;
         [err addSubview:temp];
         [err setBackgroundColor:[UIColor clearColor]];
         [err show];
-    } else {
+    }
+    else{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     if(![[_usernameTextField text] isEqualToString:@""] || ![[_passwordTextField text] isEqualToString:@""]){
         [UIView animateWithDuration:0.3 animations:^(void) {
@@ -237,7 +244,7 @@ UIImageView* imgView;
     _successfulLogin = NO;
     _postString = @"apikey=b022de6e-9bf6-11e2-b014-12313b093415";
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-    _appDel.enabledConnections = nil;
+   //  _appDel.enabledConnections = nil;
     _appDel.sessionKey = nil;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nil forKey:@"USERNAME"];
@@ -297,7 +304,7 @@ UIImageView* imgView;
         dispatch_async(dispatch_get_main_queue(), ^{
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             if(_JSONArrayAuth != NULL){
-            [self goToConnectionsView];
+                [self goToConnectionsView];
             }
         });
         }
@@ -346,7 +353,6 @@ UIImageView* imgView;
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
-
 
 - (void) performListCall{
      
@@ -534,7 +540,7 @@ UIImageView* imgView;
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"goToShares"]){
-        shareListViewController * ctvc = [segue destinationViewController];
+        accessRulesListViewController * ctvc = [segue destinationViewController];
         // [ctvc setJSONSharedFoldersArray:_JSONArrayList];
         [ctvc setSessionKey:_sessionKey];
     }

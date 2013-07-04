@@ -8,34 +8,32 @@
 
 #import <UIKit/UIKit.h>
 #import "TestFlight.h"
+#import "accessRulesListViewController.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic) NSMutableDictionary* storageStatus;
+// @property (nonatomic, strong) id vc;
+
+
 @property (nonatomic) BOOL hasLoggedIn;
-@property (nonatomic, strong) NSMutableArray* enabledConnections;
+@property (nonatomic) BOOL successfulLogin;
 @property (nonatomic, strong) NSString* sessionKey;
-@property (nonatomic, strong) NSString* user;
+@property (nonatomic, strong) NSString* username;
 @property (nonatomic, strong) NSString* password;
+@property (nonatomic, strong) NSString* postString;
+@property (nonatomic, strong) NSArray* JSONArrayAuth;
 @property (nonatomic, strong) NSString* shareExpirationDate;
-@property (nonatomic, strong) NSMutableDictionary* connectionsNameAndTypes;
-@property (nonatomic, strong) NSMutableDictionary* connectionsTypesAndEnabledStates;
 
+@property (nonatomic, strong) NSArray* accessRulesEnabledArray;
+@property (nonatomic, retain) IBOutlet accessRulesListViewController *accessRulesLVC;
 
-@property (nonatomic, strong) id vc;
+// @property (nonatomic, strong) NSMutableArray* enabledConnections;
+// @property (nonatomic) NSMutableDictionary* storageStatus;
+// @property (nonatomic, strong) NSMutableDictionary* connectionsNameAndTypes;
+// @property (nonatomic, strong) NSMutableDictionary* connectionsTypesAndEnabledStates;
 
-// JB 6/24
-@property (nonatomic,strong) NSArray* accessRulesEnabledArray;
-
-
-
-// DetailViewManager is assigned as the Split View Controller's delegate.
-// However, UISplitViewController maintains only a weak reference to its
-// delegate.  Someone must hold a strong reference to DetailViewManager
-// or it will be deallocated after the interface is finished unarchieving.
-
-- (void) getEnabledStates:(NSNotification*)notification;
-- (void) removeOneIndex:(NSNotification*)notification;
 
 @end

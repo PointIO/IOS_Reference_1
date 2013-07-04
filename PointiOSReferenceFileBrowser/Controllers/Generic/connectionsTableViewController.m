@@ -259,6 +259,7 @@ UIImageView* imgView4;
             
             [_list setArray:[[NSSet setWithArray:_list] allObjects]];
             
+           /*
             if([tempCpy count] - [_list count] == 1){
                 if([_appDel.enabledConnections count] - [_list count] == 1){
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"removeOneIndex" object:nil];
@@ -277,13 +278,14 @@ UIImageView* imgView4;
                     [_appDel.enabledConnections addObject:@"1"];
                 }
             }
+            */
             
             _displayList = [NSMutableArray array];
             for (int i = 0; i < [_list count];i++){
-                if([[_appDel.enabledConnections objectAtIndex:i] integerValue] == 1){
-                    [_displayList addObject:[_list objectAtIndex:i]];
+                // if([[_appDel.enabledConnections objectAtIndex:i] integerValue] == 1){
+                  //  [_displayList addObject:[_list objectAtIndex:i]];
                     // NSLog(@"from getConnections, displayList array contents are: %@", _displayList);
-                }
+               // }
             }
             
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;

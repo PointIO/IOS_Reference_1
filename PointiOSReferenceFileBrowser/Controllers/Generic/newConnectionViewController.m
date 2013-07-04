@@ -529,11 +529,12 @@ NSMutableArray* keys2;
                 // JB Need to refactor the ENABLED CONNECTIONS component
                 if(temp && [[temp valueForKey:@"ERROR"] integerValue] ==0) {
                     
-                    [_appDel.enabledConnections addObject:@"1"];
+                    // [_appDel.enabledConnections addObject:@"1"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
                     [self displayMessage:YES];
                     NSString* temp = [[NSString alloc] init];
                     
+                    /*
                     for(int i = 0;i < [_appDel.enabledConnections count];i++){
                         
                         if([[_appDel.enabledConnections objectAtIndex:i] isEqualToString:@"1"]){
@@ -574,6 +575,7 @@ NSMutableArray* keys2;
                                                               forKey:@"ENABLEDTYPES"];
                     
                     [[NSUserDefaults standardUserDefaults] synchronize];
+                     */
                 }
                 else if ([[temp valueForKey:@"ERROR"] integerValue] == 0){
                     [self displayMessage:NO];

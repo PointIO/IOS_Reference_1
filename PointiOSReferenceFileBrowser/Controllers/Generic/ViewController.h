@@ -8,7 +8,7 @@
 #import <QuartzCore/QuartzCore.h>
 
 #import "docViewerViewControlleriPad.h"
-#import "shareListViewController.h"
+#import "accessRulesListViewController.h"
 #import "ConnectionListViewController.h"
 #import "connectionsTableViewController.h"
 #import "SettingsViewController.h"

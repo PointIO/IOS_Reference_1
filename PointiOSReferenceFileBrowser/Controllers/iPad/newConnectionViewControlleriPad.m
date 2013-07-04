@@ -423,10 +423,12 @@ NSMutableArray* keys2;
                     [self displayError];
                 }
                 if(temp && [[temp valueForKey:@"ERROR"] integerValue] ==0) {
-                    [_appDel.enabledConnections addObject:@"1"];
+                    // [_appDel.enabledConnections addObject:@"1"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
                     [self displayMessage:YES];
                     NSString* temp = [[NSString alloc] init];
+                    // jb 7/3/13
+                    /*
                     for(int i = 0;i < [_appDel.enabledConnections count];i++){
                         if([[_appDel.enabledConnections objectAtIndex:i] isEqualToString:@"1"]){
                             if(i==0){
@@ -442,8 +444,11 @@ NSMutableArray* keys2;
                             }
                         }
                     }
+                    
                     [[NSUserDefaults standardUserDefaults] setObject:temp forKey:@"ENABLEDCONNECTIONS"];
                     [[NSUserDefaults standardUserDefaults] synchronize];
+                     */
+                    
                 } else if ([[temp valueForKey:@"ERROR"] integerValue] == 0){
                     [self displayMessage:NO];
                     }
