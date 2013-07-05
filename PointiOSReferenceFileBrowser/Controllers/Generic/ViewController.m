@@ -5,6 +5,8 @@
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone)
 
+static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093415";
+
 
 @interface ViewController ()
 
@@ -49,18 +51,9 @@ UIImageView* imgView;
     _passwordTextField.borderStyle = UITextBorderStyleRoundedRect;
 
     [_signOutButton setHidden:YES];
-    [_goBackButton setHidden:YES];
 
-    /*
-    UISwipeGestureRecognizer* swipedUp = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(screenPressed)];
-    [swipedUp setDirection:UISwipeGestureRecognizerDirectionUp];
-    [self.view addGestureRecognizer:swipedUp];
-    */
-    
-    _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    _postString = @"apikey=b022de6e-9bf6-11e2-b014-12313b093415";
     if([[defaults valueForKey:@"USERNAME"] length] != 0 && [[defaults valueForKey:@"PASSWORD"] length] !=0){
         [_usernameTextField setText:[defaults valueForKey:@"USERNAME"]];
         [_passwordTextField setText:[defaults valueForKey:@"PASSWORD"]];
@@ -139,38 +132,6 @@ UIImageView* imgView;
     [self signOut];
 }
 
-- (IBAction)goBackPressed {
-    
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-        if(![Common isConnectedToInternet]){
-            UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                          message:@"Looks like there is no internet connection, please check the settings"
-                                                         delegate:nil
-                                                cancelButtonTitle:@"Dismiss"
-                                                otherButtonTitles:nil];
-            UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
-            temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
-            [err addSubview:temp];
-            [err setBackgroundColor:[UIColor clearColor]];
-            [err show];
-        } else {
-            
-        }
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if (IS_IPAD) {
-            // if ( [(NSString*)[UIDevice currentDevice].model isEqualToString:@"iPad"] ) {
-                 [self performSegueWithIdentifier:@"goToDocView" sender:self];
-            } else {
-                // [self performSegueWithIdentifier:@"goToConnections" sender:self];
-                [self performSegueWithIdentifier:@"goToShares" sender:self];
-            }
-        });
-    });
-}
-
 - (IBAction)signUpPressed {
     if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -185,7 +146,6 @@ UIImageView* imgView;
         [err show];
     } else {
         [self performSegueWithIdentifier:@"goToSignup" sender:self];
-        NSLog(@"kik");
     }
 }
 
@@ -213,7 +173,7 @@ UIImageView* imgView;
         }
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     } else {
-        _postString = @"apikey=b022de6e-9bf6-11e2-b014-12313b093415";
+        _postString = kPointAPIKey;
         _username = [_usernameTextField text];
         _password = [_passwordTextField text];
         NSLog(@"IN MAIN VIEW, EMAIL = %@, PASSWORD = %@",_username,_password);
@@ -242,9 +202,8 @@ UIImageView* imgView;
     _JSONArrayAuth = nil;
     _JSONArrayList = nil;
     _successfulLogin = NO;
-    _postString = @"apikey=b022de6e-9bf6-11e2-b014-12313b093415";
+    _postString = kPointAPIKey;
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-   //  _appDel.enabledConnections = nil;
     _appDel.sessionKey = nil;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nil forKey:@"USERNAME"];
@@ -268,45 +227,59 @@ UIImageView* imgView;
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         if(![Common isConnectedToInternet]){
-            UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+            UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                          message:@"Looks like there is no internet connection, please check the settings"
+                                                         delegate:nil
+                                                cancelButtonTitle:@"Dismiss"
+                                                otherButtonTitles:nil];
             UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
             temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
             [err addSubview:temp];
             [err setBackgroundColor:[UIColor clearColor]];
             [err show];
-        } else {
+        }
+        else {
             NSURLResponse* urlResponseList;
             NSError* requestErrorList;
-            NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
+            NSData* response = [NSURLConnection sendSynchronousRequest:request
+                                                     returningResponse:&urlResponseList
+                                                                 error:&requestErrorList];
             if(!response){
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                message:@"Request response is nil"
+                                                               delegate:nil
+                                                      cancelButtonTitle:@"Dismiss"
+                                                      otherButtonTitles: nil];
                 [alert show];
-        } else {
-            _JSONArrayAuth = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-            NSString* errorFlagString = [_JSONArrayAuth valueForKey:@"ERROR"];
-            int errorFlag = [errorFlagString integerValue];
-            if(errorFlag == 1){
-                [self performSelectorOnMainThread:@selector(displayError) withObject:nil waitUntilDone:YES];
             } else {
-                _successfulLogin = YES;
-                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-                [defaults setObject:_username forKey:@"USERNAME"];
-                [defaults setObject:_password forKey:@"PASSWORD"];
-                [defaults synchronize];
-                NSDictionary* result = [_JSONArrayAuth valueForKey:@"RESULT"];
-                _sessionKey = [result valueForKey:@"SESSIONKEY"];
-                _appDel.sessionKey = _sessionKey;
-                NSLog(@"SESSION KEY = %@",_sessionKey);
-                [self performSelectorOnMainThread:@selector(performListCall) withObject:nil waitUntilDone:YES];
-             }
-        }
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if(_JSONArrayAuth != NULL){
-                [self goToConnectionsView];
+                _JSONArrayAuth = [NSJSONSerialization JSONObjectWithData:response
+                                                                 options:NSJSONReadingMutableContainers
+                                                                   error:nil];
+                NSString* errorFlagString = [_JSONArrayAuth valueForKey:@"ERROR"];
+                int errorFlag = [errorFlagString integerValue];
+                if(errorFlag == 1){
+                    [self performSelectorOnMainThread:@selector(displayError) withObject:nil waitUntilDone:YES];
+                } else {
+                    _successfulLogin = YES;
+                    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                    [defaults setObject:_username forKey:@"USERNAME"];
+                    [defaults setObject:_password forKey:@"PASSWORD"];
+                    [defaults synchronize];
+                    NSDictionary* result = [_JSONArrayAuth valueForKey:@"RESULT"];
+                    _sessionKey = [result valueForKey:@"SESSIONKEY"];
+                    _appDel.sessionKey = _sessionKey;
+                    NSLog(@"SESSION KEY = %@",_sessionKey);
+                    // [self performSelectorOnMainThread:@selector(performListCall) withObject:nil waitUntilDone:YES];
+                 }
             }
-        });
+            
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                if(_JSONArrayAuth != NULL){
+                    // [self goToConnectionsView];
+                }
+            });
         }
     });
 }
@@ -337,6 +310,7 @@ UIImageView* imgView;
     }];
 }
 
+/*
 - (void) goToConnectionsView{
     if([[_JSONArrayAuth valueForKey:@"ERROR"] integerValue] == 0){
         [TestFlight passCheckpoint:@"User logged in"];
@@ -353,7 +327,9 @@ UIImageView* imgView;
     }
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 }
+*/
 
+/*
 - (void) performListCall{
      
     // get storageTypes
@@ -500,7 +476,7 @@ UIImageView* imgView;
     _appDel.accessRulesEnabledArray = _accessRulesEnabledArray;
     
 }
-
+*/
 
 - (void)viewDidUnload {
     [self setGoBackButton:nil];
@@ -526,7 +502,6 @@ UIImageView* imgView;
 - (void) viewWillAppear:(BOOL)animated{
     if(_successfulLogin){
         [_signOutButton setHidden:NO];
-        // [_goBackButton setHidden:NO];
         [_signInButton setHidden:YES];
         [_signUpButton setHidden:YES];
         [_usernameTextField setHidden:YES];
