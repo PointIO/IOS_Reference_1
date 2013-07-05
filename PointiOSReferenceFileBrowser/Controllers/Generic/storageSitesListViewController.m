@@ -45,9 +45,9 @@ NSString *requestedConnectionName;
 {
     [super viewDidLoad];
     
-    _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _storageSiteTypesInUse = [[NSMutableArray alloc] init];
-     
+    _storageSitesArrayOfDictionaries = [[NSMutableArray alloc] init];
+    
     if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
@@ -61,8 +61,10 @@ NSString *requestedConnectionName;
         [err show];
     }
     else {
-        
-        _storageSiteTypesInUse = [[NSArray alloc] init];
+
+        [self performListCall];
+
+        // _storageSiteTypesInUse = [[NSArray alloc] init];
         NSMutableArray *temp = [[NSMutableArray alloc] init];
         NSMutableArray *tmpArrayOfDictionaries = [[NSMutableArray alloc] init];
 
@@ -152,31 +154,6 @@ NSString *requestedConnectionName;
 
 #pragma mark - Business Logic
 
-/*
-- (IBAction)addConnectionPressed:(id)sender {
-    [self getAllPossibleConnections];
-    if([_allPossibleConnections count] != 0){
-        _alert	= [[SBTableAlert alloc] initWithTitle:@"Choose a connection" cancelButtonTitle:@"Cancel" messageFormat:nil];
-        [_alert.view setTag:2];
-        [_alert setStyle:SBTableAlertStyleApple];
-        [_alert setDelegate:self];
-        [_alert setDataSource:self];
-        UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 286, 271)];
-        temp.image = [UIImage imageNamed:@"connectionsAlertView"];
-        [_alert.view addSubview:temp];
-        [_alert show];
-        _userKeys = [NSMutableArray array];
-        _userValues = [NSMutableArray array];
-    } else {
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There are no available connections for you" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        UIImageView* alertCustomView = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 154)];
-        alertCustomView.image = [UIImage imageNamed:@"noAvailableConnections.png"];
-        [alert addSubview:alertCustomView];
-        [alert show];
-    }
-}
-*/
-
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -185,6 +162,106 @@ NSString *requestedConnectionName;
 
 - (void) viewWillAppear:(BOOL)animated{
     [self.tableView reloadData];
+}
+
+#pragma mark - Segue
+- (void) goToStorage {
+    [self performSegueWithIdentifier:@"goToStorage" sender:self];
+}
+
+
+- (void) performListCall{
+    
+    //
+    // get storageSites
+    //
+    NSMutableArray *storageSitesArray = [[NSMutableArray alloc] init];
+    NSURLResponse* urlResponseList2;
+    NSError* requestErrorList2;
+    NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] init];
+    [request2 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
+    [request2 setHTTPMethod:@"GET"];
+    [request2 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
+    NSData* response2 = [NSURLConnection sendSynchronousRequest:request2 returningResponse:&urlResponseList2 error:&requestErrorList2];
+    if(!response2){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        [alert show];
+    } else {
+        storageSitesArray = [NSJSONSerialization JSONObjectWithData:response2 options:NSJSONReadingMutableContainers error:nil];
+    }
+    NSLog(@"Inside storageSitesListViewController, performListCall where storageSites are %@", storageSitesArray);
+    
+    
+    //
+    // create storageSites Arrays for Names, IDs, Enabled Status, SiteTypeID and SiteTypeName
+    //
+    NSDictionary *resultStorageSitesDictionary = [storageSitesArray valueForKey:@"RESULT"];
+    NSArray *resultColumns = [resultStorageSitesDictionary valueForKey:@"COLUMNS"];
+    NSArray *resultData = [resultStorageSitesDictionary valueForKey:@"DATA"];
+    
+    NSMutableArray *storageSitesNamesArray = [[NSMutableArray alloc] init];
+    NSMutableArray *storageSitesIDsArray = [[NSMutableArray alloc] init];
+    NSMutableArray *storageSitesEnabledStatusArray = [[NSMutableArray alloc] init];
+    NSMutableArray *storageSitesSiteTypeNameArray = [[NSMutableArray alloc] init];
+    NSMutableArray *storageSitesSiteTypeIDArray = [[NSMutableArray alloc] init];
+    
+    for(int i=0; i<[resultData count];i++){
+        NSArray* data2 = [resultData objectAtIndex:i];
+        NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:resultColumns];
+        [storageSitesIDsArray addObject:[temp valueForKey:@"SITEID"]];
+        [storageSitesNamesArray addObject:[temp valueForKey:@"NAME"]];
+        [storageSitesEnabledStatusArray addObject:[temp valueForKey:@"ENABLED"]];
+        [storageSitesSiteTypeIDArray addObject:[temp valueForKey:@"SITETYPEID"]];
+        [storageSitesSiteTypeNameArray addObject:[temp valueForKey:@"SITETYPENAME"]];
+        //
+        // evaluate storage sites for status of enabled or disabled
+        //
+        NSArray *keysArray = [[NSArray alloc] initWithObjects:
+                              @"StorageSiteID",
+                              @"StorageSiteName",
+                              @"StorageSiteEnabled",
+                              @"StorageSiteSiteTypeID",
+                              @"StorageSiteSiteTypeName",
+                              nil];
+        
+        NSArray *valuesArray = [[NSArray alloc] initWithObjects:
+                                [storageSitesIDsArray objectAtIndex:i],
+                                [storageSitesNamesArray objectAtIndex:i],
+                                [storageSitesEnabledStatusArray objectAtIndex:i],
+                                [storageSitesSiteTypeIDArray objectAtIndex:i],
+                                [storageSitesSiteTypeNameArray objectAtIndex:i],
+                                nil];
+        
+        NSDictionary *storageSiteDictionary = [[NSDictionary alloc] initWithObjects:valuesArray forKeys:keysArray];
+        [_storageSitesArrayOfDictionaries addObject:storageSiteDictionary];
+    }
+    
+}
+
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    /*
+    if([[segue identifier] isEqualToString:@"addConnection"]){
+        newConnectionViewController* ncvc = [segue destinationViewController];
+        [ncvc setUserStorageInput:_userStorageInput];
+        [ncvc setSessionKey:_sessionKey];
+        [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
+        [ncvc setAllPossibleConnections:_allPossibleConnections];
+        [ncvc setRequestedConnectionName:requestedConnectionName];
+    }
+    */
+    if([[segue identifier] isEqualToString:@"addConnection"]){
+        StorageTypesViewController * ncvc = [segue destinationViewController];
+        // [ncvc setUserStorageInput:_userStorageInput];
+        [ncvc setSessionKey:_sessionKey];
+        // [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
+        // [ncvc setAllPossibleConnections:_allPossibleConnections];
+        // [ncvc setRequestedConnectionName:requestedConnectionName];
+    }
+    else if([segue.identifier isEqualToString:@"goToStorage"]){
+        // storageViewController *svc = [segue destinationViewController];
+        // [svc setText:storageName];
+    }
 }
 
 /*
@@ -228,84 +305,6 @@ NSString *requestedConnectionName;
 }
 */
 
-
-#pragma mark - Segue
-- (void) goToStorage {
-    [self performSegueWithIdentifier:@"goToStorage" sender:self];
-}
-
-- (UITableViewCell *)tableAlert:(SBTableAlert *)tableAlert cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	UITableViewCell *cell;
-    
-	if (tableAlert.view.tag == 0 || tableAlert.view.tag == 1) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"ConnectionCell"];
-	} else {
-		// Note: SBTableAlertCell
-		cell = [[SBTableAlertCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-	}
-	
-    if(indexPath.row == [_allPossibleConnections count] || indexPath.row > [_allPossibleConnections count]){
-        [cell.textLabel setText:@""];
-    } else {
-        [cell.textLabel setText:[_allPossibleConnections objectAtIndex:indexPath.row]];
-	}
-	return cell;
-}
-
-- (NSInteger)tableAlert:(SBTableAlert *)tableAlert numberOfRowsInSection:(NSInteger)section {
-    if([_allPossibleConnections count] < 4){
-        return 4;
-    } else {
-        return [_allPossibleConnections count];
-    }
-}
-
-- (NSInteger)numberOfSectionsInTableAlert:(SBTableAlert *)tableAlert {
-    return 1;
-}
-
-- (NSString *)tableAlert:(SBTableAlert *)tableAlert titleForHeaderInSection:(NSInteger)section {
-    return nil;
-}
-
-#pragma mark - SBTableAlertDelegate
-
-- (void)tableAlert:(SBTableAlert *)tableAlert didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    tableAlert.view.alpha = 0;
-    if(indexPath.row == [_allPossibleConnections count] || indexPath.row > [_allPossibleConnections count]){
-        
-    } else {
-        i = indexPath.row;
-        NSLog(@"SITE TYPE ID = %@",[_storageIDs objectAtIndex:indexPath.row]);
-        requestedConnectionName = [_allPossibleConnections objectAtIndex:indexPath.row];
-        [self performSegueWithIdentifier:@"addConnection" sender:self];
-    }
-}
-
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    /*
-    if([[segue identifier] isEqualToString:@"addConnection"]){
-        newConnectionViewController* ncvc = [segue destinationViewController];
-        [ncvc setUserStorageInput:_userStorageInput];
-        [ncvc setSessionKey:_sessionKey];
-        [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
-        [ncvc setAllPossibleConnections:_allPossibleConnections];
-        [ncvc setRequestedConnectionName:requestedConnectionName];
-    }
-    */
-    if([[segue identifier] isEqualToString:@"addConnection"]){
-        StorageTypesViewController * ncvc = [segue destinationViewController];
-        // [ncvc setUserStorageInput:_userStorageInput];
-        [ncvc setSessionKey:_sessionKey];
-        // [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
-        // [ncvc setAllPossibleConnections:_allPossibleConnections];
-        // [ncvc setRequestedConnectionName:requestedConnectionName];
-    }
-    else if([segue.identifier isEqualToString:@"goToStorage"]){
-        // storageViewController *svc = [segue destinationViewController];
-        // [svc setText:storageName];
-    }
-}
 
 
 

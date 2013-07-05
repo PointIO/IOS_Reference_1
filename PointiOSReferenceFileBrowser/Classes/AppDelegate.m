@@ -12,6 +12,7 @@
 #import "Common.h"
 #import "JMC.h"
 #import "accessRulesListViewController.h"
+#import "storageSitesListViewController.h"
 
 
 @implementation AppDelegate
@@ -53,13 +54,19 @@ static NSString *resetPointFirstLaunchKey = @"1";
     }
     [self signIn];
     
-    // send Session Key to 1st View Controller
+    // send Session Key to 1st View Controllers
     UITabBarController* mainController = (UITabBarController*)  self.window.rootViewController;
     NSArray *navControllersArray = [mainController viewControllers];
     UINavigationController *rootNavController = [navControllersArray objectAtIndex:0];
     NSArray *viewControllersArray = rootNavController.viewControllers;
     accessRulesListViewController *aRLTVC = [viewControllersArray objectAtIndex:0];
     aRLTVC.sessionKey = _sessionKey;
+    
+    UINavigationController *navController2 = [navControllersArray objectAtIndex:1];
+    NSArray *viewControllersArray2 = navController2.viewControllers;
+    storageSitesListViewController *sSLVC = [viewControllersArray2 objectAtIndex:0];
+    sSLVC.sessionKey = _sessionKey;
+    
         
     return YES;
 }

@@ -266,7 +266,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sny-Is-14n">
-                                            <rect key="frame" x="72" y="11" width="201" height="21"/>
+                                            <rect key="frame" x="86" y="11" width="194" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -626,7 +626,7 @@
             </objects>
             <point key="canvasLocation" x="-7" y="-811"/>
         </scene>
-        <!--Storage Sites List View Controller - Storage Sites-->
+        <!--Storage Sites List View Controller - Active Storage Sites-->
         <scene sceneID="anK-gD-GQR">
             <objects>
                 <tableViewController id="CNt-x9-Fp5" customClass="storageSitesListViewController" sceneMemberID="viewController">
@@ -667,7 +667,7 @@
                             <outlet property="delegate" destination="CNt-x9-Fp5" id="UhT-dB-xF1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Storage Sites" id="qjg-eR-v2a">
+                    <navigationItem key="navigationItem" title="Active Storage Sites" id="qjg-eR-v2a">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="nmK-3O-wpF">
                             <connections>
                                 <segue destination="m6e-45-E7n" kind="push" identifier="addConnection" id="gm4-af-eZT"/>
@@ -1393,7 +1393,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <source key="sourceIdentifier" type="project" relativePath="./Classes/storageSitesListViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addConnectionPressed:"/>
-                <relationship kind="action" name="valueChanged:withIndex:"/>
             </relationships>
         </class>
     </classes>
