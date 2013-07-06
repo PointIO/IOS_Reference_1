@@ -13,6 +13,7 @@
 #import "JMC.h"
 #import "accessRulesListViewController.h"
 #import "storageSitesListViewController.h"
+#import "LoginViewController.h"
 
 
 @implementation AppDelegate
@@ -67,8 +68,14 @@ static NSString *const kPointDemoPassword = @"demo";
     NSArray *viewControllersArray2 = navController2.viewControllers;
     storageSitesListViewController *sSLVC = [viewControllersArray2 objectAtIndex:0];
     sSLVC.sessionKey = _sessionKey;
+            
+    // send Session Key to Relevant View Controllers
+    UINavigationController *navController3 = [navControllersArray objectAtIndex:2];
+    NSArray *viewControllersArray3 = navController3.viewControllers;
+    LoginViewController *lVC = [viewControllersArray3 objectAtIndex:0];
+    lVC.sessionKey = _sessionKey;
+    lVC.hasLoggedIn = TRUE;
     
-        
     return YES;
 }
 
@@ -156,6 +163,29 @@ static NSString *const kPointDemoPassword = @"demo";
     }
 }
 
+
+- (void) displayError{
+    _successfulLogin = NO;
+    // send Session Key to Relevant View Controllers
+    UITabBarController* mainController = (UITabBarController*)  self.window.rootViewController;
+    NSArray *navControllersArray = [mainController viewControllers];
+    UINavigationController *navController = [navControllersArray objectAtIndex:2];
+    NSArray *viewControllersArray = navController.viewControllers;
+    LoginViewController *lVC = [viewControllersArray objectAtIndex:0];
+    lVC.sessionKey = nil;
+    lVC.hasLoggedIn = FALSE;
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:@"The password or the username is incorrect. Please try again."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Dismiss"
+                                          otherButtonTitles: nil];
+    UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 154)];
+    temp.image = [UIImage imageNamed:@"passwordUsernameIncorrect.png"];
+    [alert addSubview:temp];
+    [alert setBackgroundColor:[UIColor clearColor]];
+    [alert show];
+}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application{
