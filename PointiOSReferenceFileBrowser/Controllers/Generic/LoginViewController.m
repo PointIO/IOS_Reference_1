@@ -186,6 +186,11 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
     }
 }
 
+- (IBAction)demoPressed {
+    [_usernameTextField setText:@"demo@point.io"];
+    [_passwordTextField setText:@"demo"];
+}
+
 - (void) signIn{
     if([[_usernameTextField text] isEqualToString:@""] || [[_passwordTextField text] isEqualToString:@""]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -217,9 +222,6 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
         NSLog(@"Inside LoginViewController.signIn EMAIL = %@, PASSWORD = %@",_username,_password);
         _postString = [_postString stringByAppendingFormat:@"&email=%@&password=%@",_username,_password];
         [self performSelectorOnMainThread:@selector(performAuthCall) withObject:nil waitUntilDone:YES];
-        [_loggedInAsNameText setHidden:NO];
-        [_loggedInAsNameLabel setHidden:NO];
-        [_signOutButton setHidden:NO];
     }
 }
 
@@ -311,13 +313,9 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
                     NSLog(@"SESSION KEY = %@",_sessionKey);
                     _loggedInAsNameText.text = _username;
                     
-                    /*
-                    accessRulesListViewController *aRLTVC = [[accessRulesListViewController alloc] init];
-                    aRLTVC.sessionKey = _sessionKey;
-
-                    storageSitesListViewController *sSLVC = [[storageSitesListViewController alloc] init];
-                    sSLVC.sessionKey = _sessionKey;
-                    */
+                    [_loggedInAsNameText setHidden:NO];
+                    [_loggedInAsNameLabel setHidden:NO];
+                    [_signOutButton setHidden:NO];
                     
                     // send Session Key to Relevant View Controllers
                     UITabBarController* mainController = (UITabBarController*)  self.tabBarController;
@@ -332,13 +330,6 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
                     NSArray *viewControllersArray2 = navController2.viewControllers;
                     storageSitesListViewController *sSLVC = [viewControllersArray2 objectAtIndex:0];
                     sSLVC.sessionKey = _sessionKey;
- 
-                    UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                                      message:@"Successfully logged in"
-                                                                     delegate:nil
-                                                            cancelButtonTitle:@"Dismiss"
-                                                            otherButtonTitles: nil];
-                    [myAlert show];
                 }
             }
             
@@ -350,18 +341,8 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
     // });
 }
 
-- (void) displayError{
+- (void) displayError{    
     _hasLoggedIn = NO;
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                    message:@"The password or the username is incorrect. Please try again."
-                                                   delegate:nil
-                                          cancelButtonTitle:@"Dismiss"
-                                          otherButtonTitles: nil];
-    UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 154)];
-    temp.image = [UIImage imageNamed:@"passwordUsernameIncorrect.png"];
-    [alert addSubview:temp];
-    [alert setBackgroundColor:[UIColor clearColor]];
-    [alert show];
     [_usernameTextField setText:@""];
     [_passwordTextField setText:@""];
     [_usernameTextField setHidden:NO];
@@ -380,6 +361,17 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
         [_signUpButton setAlpha:1];
         [_demoButton setAlpha:1];
     }];
+
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                    message:@"The password or the username is incorrect. Please try again."
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Dismiss"
+                                          otherButtonTitles: nil];
+    UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 154)];
+    temp.image = [UIImage imageNamed:@"passwordUsernameIncorrect.png"];
+    [alert addSubview:temp];
+    [alert setBackgroundColor:[UIColor clearColor]];
+    [alert show];
 }
 
 

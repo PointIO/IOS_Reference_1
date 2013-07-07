@@ -45,9 +45,69 @@ NSString *requestedConnectionName;
 {
     [super viewDidLoad];
     
+}
+
+
+- (void) viewWillAppear:(BOOL)animated{
+    
     _storageSiteTypesInUse = [[NSMutableArray alloc] init];
     _storageSitesArrayOfDictionaries = [[NSMutableArray alloc] init];
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    
+        if(![Common isConnectedToInternet]){
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:@"Looks like there is no internet connection, please check the settings"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Dismiss"
+                                            otherButtonTitles:nil];
+        UIImageView* temp = [[UIImageView alloc] initWithFrame:CGRectMake(2, 0, 280, 174)];
+        temp.image = [UIImage imageNamed:@"noInternetConnection.png"];
+        [err addSubview:temp];
+        [err setBackgroundColor:[UIColor clearColor]];
+        [err show];
+        }
+        else {
+            
+            [self performListCall];
+            
+            NSMutableArray *temp = [[NSMutableArray alloc] init];
+            NSMutableArray *tmpArrayOfDictionaries = [[NSMutableArray alloc] init];
+            
+            NSString *firstStorageSiteID = [[[_storageSitesArrayOfDictionaries objectAtIndex:0] valueForKey:@"StorageSiteSiteTypeID"] stringValue];
+            [tmpArrayOfDictionaries addObject:[_storageSitesArrayOfDictionaries objectAtIndex:0]];
+            [temp addObject:firstStorageSiteID];
+            
+            for(int i=0; i<[_storageSitesArrayOfDictionaries count];i++){
+                NSString *storageSiteID = [[[_storageSitesArrayOfDictionaries objectAtIndex:i] valueForKey:@"StorageSiteSiteTypeID"] stringValue];
+                if (![temp containsObject: storageSiteID]) {
+                    [temp addObject:[[[_storageSitesArrayOfDictionaries objectAtIndex:i] valueForKey:@"StorageSiteSiteTypeID"] stringValue]];
+                    [tmpArrayOfDictionaries addObject:[_storageSitesArrayOfDictionaries objectAtIndex:i]];
+                }
+            }
+            
+            NSSortDescriptor *nameDescriptor =
+            [[NSSortDescriptor alloc] initWithKey:@"StorageSiteSiteTypeName"
+                                        ascending:YES
+                                         selector:@selector(localizedCaseInsensitiveCompare:)];
+            
+            NSArray *descriptors = [NSArray arrayWithObjects:nameDescriptor, nil];
+            NSArray *sortedArray = [tmpArrayOfDictionaries sortedArrayUsingDescriptors:descriptors];
+            _storageSiteTypesInUse = sortedArray;
+            NSLog(@"Sorted StorageTypesInUse is %@", _storageSiteTypesInUse);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.tableView reloadData];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            });
+        }
+    });
+
+}
+
+
+- (void) viewDidAppear:(BOOL)animated{
     if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
@@ -59,41 +119,9 @@ NSString *requestedConnectionName;
         [err addSubview:temp];
         [err setBackgroundColor:[UIColor clearColor]];
         [err show];
+    } else {
+        [self.tableView reloadData];
     }
-    else {
-
-        [self performListCall];
-
-        // _storageSiteTypesInUse = [[NSArray alloc] init];
-        NSMutableArray *temp = [[NSMutableArray alloc] init];
-        NSMutableArray *tmpArrayOfDictionaries = [[NSMutableArray alloc] init];
-
-        NSString *firstStorageSiteID = [[[_storageSitesArrayOfDictionaries objectAtIndex:0] valueForKey:@"StorageSiteSiteTypeID"] stringValue];
-        [tmpArrayOfDictionaries addObject:[_storageSitesArrayOfDictionaries objectAtIndex:0]];
-        [temp addObject:firstStorageSiteID];
-        
-        for(int i=0; i<[_storageSitesArrayOfDictionaries count];i++){
-            NSString *storageSiteID = [[[_storageSitesArrayOfDictionaries objectAtIndex:i] valueForKey:@"StorageSiteSiteTypeID"] stringValue];
-            if (![temp containsObject: storageSiteID]) {
-                [temp addObject:[[[_storageSitesArrayOfDictionaries objectAtIndex:i] valueForKey:@"StorageSiteSiteTypeID"] stringValue]];
-                [tmpArrayOfDictionaries addObject:[_storageSitesArrayOfDictionaries objectAtIndex:i]];
-            }
-         }
-         
-        NSSortDescriptor *nameDescriptor =
-        [[NSSortDescriptor alloc] initWithKey:@"StorageSiteSiteTypeName"
-                                    ascending:YES
-                                     selector:@selector(localizedCaseInsensitiveCompare:)];
-
-        NSArray *descriptors = [NSArray arrayWithObjects:nameDescriptor, nil];
-        NSArray *sortedArray = [tmpArrayOfDictionaries sortedArrayUsingDescriptors:descriptors];
-        _storageSiteTypesInUse = sortedArray;
-        NSLog(@"Sorted StorageTypesInUse is %@", _storageSiteTypesInUse);
-    }
-}
-
-
-- (void) viewDidAppear:(BOOL)animated{
 }
 
 
@@ -160,9 +188,6 @@ NSString *requestedConnectionName;
 {
 }
 
-- (void) viewWillAppear:(BOOL)animated{
-    [self.tableView reloadData];
-}
 
 #pragma mark - Segue
 - (void) goToStorage {
@@ -240,27 +265,9 @@ NSString *requestedConnectionName;
 
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    /*
-    if([[segue identifier] isEqualToString:@"addConnection"]){
-        newConnectionViewController* ncvc = [segue destinationViewController];
-        [ncvc setUserStorageInput:_userStorageInput];
-        [ncvc setSessionKey:_sessionKey];
-        [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
-        [ncvc setAllPossibleConnections:_allPossibleConnections];
-        [ncvc setRequestedConnectionName:requestedConnectionName];
-    }
-    */
     if([[segue identifier] isEqualToString:@"addConnection"]){
         StorageTypesViewController * ncvc = [segue destinationViewController];
-        // [ncvc setUserStorageInput:_userStorageInput];
         [ncvc setSessionKey:_sessionKey];
-        // [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
-        // [ncvc setAllPossibleConnections:_allPossibleConnections];
-        // [ncvc setRequestedConnectionName:requestedConnectionName];
-    }
-    else if([segue.identifier isEqualToString:@"goToStorage"]){
-        // storageViewController *svc = [segue destinationViewController];
-        // [svc setText:storageName];
     }
 }
 
