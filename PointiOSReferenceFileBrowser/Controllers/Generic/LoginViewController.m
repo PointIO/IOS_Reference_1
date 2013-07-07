@@ -256,6 +256,21 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
     [defaults setObject:nil forKey:@"PASSWORD"];
     [defaults synchronize];
     
+    // send Session Key to Relevant View Controllers
+    UITabBarController* mainController = (UITabBarController*)  self.tabBarController;
+    NSArray *navControllersArray = [mainController viewControllers];
+    UINavigationController *rootNavController = [navControllersArray objectAtIndex:0];
+    NSArray *viewControllersArray = rootNavController.viewControllers;
+    accessRulesListViewController *aRLTVC = [viewControllersArray objectAtIndex:0];
+    aRLTVC.sessionKey = _sessionKey;
+    
+    // send Session Key to Relevant View Controllers
+    UINavigationController *navController2 = [navControllersArray objectAtIndex:1];
+    NSArray *viewControllersArray2 = navController2.viewControllers;
+    storageSitesListViewController *sSLVC = [viewControllersArray2 objectAtIndex:0];
+    sSLVC.sessionKey = _sessionKey;
+
+    
 }
 
 

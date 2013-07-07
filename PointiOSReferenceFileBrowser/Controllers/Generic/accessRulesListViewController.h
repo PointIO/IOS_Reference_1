@@ -11,7 +11,7 @@
 
 @interface accessRulesListViewController : UITableViewController
 
-@property (nonatomic) NSArray* list;
+@property (nonatomic) NSMutableArray* list;
 
 // REST API
 @property (nonatomic) NSString* sessionKey;
