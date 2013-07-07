@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 @property (weak, nonatomic) IBOutlet UIButton *signOutButton;
 @property (weak, nonatomic) IBOutlet UIButton *demoButton;
+@property (weak, nonatomic) IBOutlet UILabel *loggedInAsNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *loggedInAsNameText;
 
 // REST API PROPERTIES
 @property (nonatomic) NSString* username;

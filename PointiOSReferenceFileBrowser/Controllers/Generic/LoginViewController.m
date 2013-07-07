@@ -8,6 +8,8 @@
 
 #import "LoginViewController.h"
 #import "Common.h"
+#import "accessRulesListViewController.h"
+#import "storageSitesListViewController.h"
 
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone)
@@ -69,20 +71,26 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
     
     if (_hasLoggedIn){
         [_signOutButton setHidden:NO];
+        [_loggedInAsNameLabel setHidden:NO];
+        [_loggedInAsNameText setHidden:NO];
         [_demoButton setHidden:YES];
         [_signInButton setHidden:YES];
         [_signUpButton setHidden:YES];
         [_usernameTextField setHidden:YES];
         [_passwordTextField setHidden:YES];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [_loggedInAsNameText setText:[defaults valueForKey:@"USERNAME"]];
     }
     else {
         [_signOutButton setHidden:YES];
+        [_loggedInAsNameLabel setHidden:YES];
+        [_loggedInAsNameText setHidden:YES];
         [_demoButton setHidden:NO];
         [_signInButton setHidden:NO];
         [_signUpButton setHidden:NO];
         [_usernameTextField setHidden:NO];
         [_passwordTextField setHidden:NO];
-
+ 
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         if([[defaults valueForKey:@"USERNAME"] length] != 0 && [[defaults valueForKey:@"PASSWORD"] length] !=0){
             [_usernameTextField setText:[defaults valueForKey:@"USERNAME"]];
@@ -147,6 +155,8 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
             }];
         }
         [self signIn];
+        [_usernameTextField resignFirstResponder];
+        [_passwordTextField resignFirstResponder];
     }
 }
 
@@ -204,15 +214,21 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
         _postString = kPointAPIKey;
         _username = [_usernameTextField text];
         _password = [_passwordTextField text];
-        NSLog(@"IN MAIN VIEW, EMAIL = %@, PASSWORD = %@",_username,_password);
+        NSLog(@"Inside LoginViewController.signIn EMAIL = %@, PASSWORD = %@",_username,_password);
         _postString = [_postString stringByAppendingFormat:@"&email=%@&password=%@",_username,_password];
         [self performSelectorOnMainThread:@selector(performAuthCall) withObject:nil waitUntilDone:YES];
+        [_loggedInAsNameText setHidden:NO];
+        [_loggedInAsNameLabel setHidden:NO];
+        [_signOutButton setHidden:NO];
     }
 }
+
 
 - (void) signOut{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [_signOutButton setHidden:YES];
+    [_loggedInAsNameText setHidden:YES];
+    [_loggedInAsNameLabel setHidden:YES];
     [_usernameTextField setText:@""];
     [_passwordTextField setText:@""];
     [_usernameTextField setHidden:NO];
@@ -236,9 +252,6 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:nil forKey:@"USERNAME"];
     [defaults setObject:nil forKey:@"PASSWORD"];
-    // [defaults setObject:nil forKey:@"ENABLEDCONNECTIONS"];
-    // [defaults setObject:nil forKey:@"NAMETYPES"];
-    // [defaults setObject:nil forKey:@"ENABLEDTYPES"];
     [defaults synchronize];
     
 }
@@ -253,7 +266,7 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+    // dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
         if(![Common isConnectedToInternet]){
             UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                           message:@"Looks like there is no internet connection, please check the settings"
@@ -296,18 +309,45 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
                     NSDictionary* result = [_JSONArrayAuth valueForKey:@"RESULT"];
                     _sessionKey = [result valueForKey:@"SESSIONKEY"];
                     NSLog(@"SESSION KEY = %@",_sessionKey);
+                    _loggedInAsNameText.text = _username;
+                    
+                    /*
+                    accessRulesListViewController *aRLTVC = [[accessRulesListViewController alloc] init];
+                    aRLTVC.sessionKey = _sessionKey;
+
+                    storageSitesListViewController *sSLVC = [[storageSitesListViewController alloc] init];
+                    sSLVC.sessionKey = _sessionKey;
+                    */
+                    
+                    // send Session Key to Relevant View Controllers
+                    UITabBarController* mainController = (UITabBarController*)  self.tabBarController;
+                    NSArray *navControllersArray = [mainController viewControllers];
+                    UINavigationController *rootNavController = [navControllersArray objectAtIndex:0];
+                    NSArray *viewControllersArray = rootNavController.viewControllers;
+                    accessRulesListViewController *aRLTVC = [viewControllersArray objectAtIndex:0];
+                    aRLTVC.sessionKey = _sessionKey;
+                    
+                    // send Session Key to Relevant View Controllers
+                    UINavigationController *navController2 = [navControllersArray objectAtIndex:1];
+                    NSArray *viewControllersArray2 = navController2.viewControllers;
+                    storageSitesListViewController *sSLVC = [viewControllersArray2 objectAtIndex:0];
+                    sSLVC.sessionKey = _sessionKey;
+ 
+                    UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                                      message:@"Successfully logged in"
+                                                                     delegate:nil
+                                                            cancelButtonTitle:@"Dismiss"
+                                                            otherButtonTitles: nil];
+                    [myAlert show];
                 }
             }
             
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            dispatch_async(dispatch_get_main_queue(), ^{
+            // dispatch_async(dispatch_get_main_queue(), ^{
                 [MBProgressHUD hideHUDForView:self.view animated:YES];
-                if(_JSONArrayAuth != NULL){
-                    // [self goToConnectionsView];
-                }
-            });
+            // });
         }
-    });
+    // });
 }
 
 - (void) displayError{
@@ -329,6 +369,10 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
     [_signInButton setHidden:NO];
     [_signUpButton setHidden:NO];
     [_demoButton setHidden:NO];
+    [_signOutButton setHidden:YES];
+    [_loggedInAsNameText setHidden:YES];
+    [_loggedInAsNameLabel setHidden:YES];
+    
     [UIView animateWithDuration:0.3 animations:^(void) {
         [_usernameTextField setAlpha:1];
         [_passwordTextField setAlpha:1];

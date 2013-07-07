@@ -53,47 +53,7 @@ int i;
     
     [super viewDidLoad];
     
-    _list = [[NSMutableArray alloc] init];
-    _accessRulesEnabledArray = [[NSMutableArray alloc] init];
-    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-
-        [self performListCall];
-        
-        if (![_accessRulesEnabledArray count]==0){
-            for (i=0; i<[_accessRulesEnabledArray count]; i++) {
-                NSArray *accessRuleItem;
-                accessRuleItem = [_accessRulesEnabledArray objectAtIndex:i];
-                [tempArray addObject:accessRuleItem];
-            }
-    
-            NSSortDescriptor *nameDescriptor =
-            [[NSSortDescriptor alloc] initWithKey:@"AccessRuleShareName"
-                                        ascending:YES
-                                         selector:@selector(localizedCaseInsensitiveCompare:)];
-        
-            NSArray *descriptors = [NSArray arrayWithObjects:nameDescriptor, nil];
-            NSArray *sortedArray = [tempArray sortedArrayUsingDescriptors:descriptors];
-            _list = sortedArray;
-            NSLog(@"Sorted Access Rules is %@", _list);
-     
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                [self.tableView reloadData];
-                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            });
-        }
-        else {
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                              message:@"There are no enabled shares"
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"Dismiss"
-                                                    otherButtonTitles:nil];
-                [alert show];
-        }
-     });    
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
@@ -103,6 +63,48 @@ int i;
 }
 
 - (void) viewWillAppear:(BOOL)animated{
+    
+    _list = [[NSMutableArray alloc] init];
+    _accessRulesEnabledArray = [[NSMutableArray alloc] init];
+    NSMutableArray *tempArray = [[NSMutableArray alloc] init];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_async(dispatch_get_global_queue( DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
+        
+        [self performListCall];
+        
+        if (![_accessRulesEnabledArray count]==0){
+            for (i=0; i<[_accessRulesEnabledArray count]; i++) {
+                NSArray *accessRuleItem;
+                accessRuleItem = [_accessRulesEnabledArray objectAtIndex:i];
+                [tempArray addObject:accessRuleItem];
+            }
+            
+            NSSortDescriptor *nameDescriptor =
+            [[NSSortDescriptor alloc] initWithKey:@"AccessRuleShareName"
+                                        ascending:YES
+                                         selector:@selector(localizedCaseInsensitiveCompare:)];
+            
+            NSArray *descriptors = [NSArray arrayWithObjects:nameDescriptor, nil];
+            NSArray *sortedArray = [tempArray sortedArrayUsingDescriptors:descriptors];
+            _list = sortedArray;
+            NSLog(@"Sorted Access Rules is %@", _list);
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self.tableView reloadData];
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            });
+        }
+        else {
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"There are no enabled shares"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles:nil];
+            [alert show];
+        }
+    });
 }
 
 - (void) viewDidAppear:(BOOL)animated{
