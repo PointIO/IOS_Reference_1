@@ -31,7 +31,7 @@ static NSString *const kPointDemoPassword = @"demo";
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     ///*
-    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    // [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     [TestFlight takeOff:@"a16c5748-0fde-45d6-b1f5-6874d4388987"];
     _hasLoggedIn = NO;
     //*/
