@@ -160,7 +160,22 @@ NSMutableArray* tempContainer;
             _containerIDHistory = [NSMutableArray array];
         }
         [_containerIDHistory addObject:_containerID];
-        [self setRemotePath:[_remotePath stringByAppendingFormat:@"%@/",[_fileNames objectAtIndex:i]]];
+        NSLog(@"Starting REMOTE PATH = %@",_remotePath);
+        NSLog(@"Filenames @ i = %@",[_fileNames objectAtIndex:i]);
+        NSString *fileName = [_fileNames objectAtIndex:i];
+        NSString *resultString = _remotePath;
+        //TIP IOS-89
+        NSLog(@"REMOTE PATH = %@",resultString);
+        if(![resultString hasSuffix:@"/"])
+            resultString = [_remotePath stringByAppendingString:@"/"];
+        //TIP IOS-26 - supports Windows Share (SAMBA) folder names which come with the / suffix
+        NSLog(@"REMOTE PATH = %@",resultString);
+        if(![fileName hasSuffix:@"/"])
+            resultString = [resultString stringByAppendingFormat:@"%@/",[_fileNames objectAtIndex:i]];
+        else
+            resultString = [resultString stringByAppendingFormat:@"%@",[_fileNames objectAtIndex:i]];
+        NSLog(@"REMOTE PATH = %@",resultString);
+        [self setRemotePath:resultString];
         [self setContainerID:[_containerIDs objectAtIndex:i]];
         NSLog(@"REMOTE PATH = %@",_remotePath);
         
@@ -207,6 +222,8 @@ NSMutableArray* tempContainer;
     
     NSMutableArray* objects;
     NSMutableArray* keys;
+    NSLog(@"REMOTE PATH = %@",_remotePath);
+
     if(_containerID){
         objects = [NSArray arrayWithObjects:_shareID,_remotePath,_containerID,nil];
         keys = [NSArray arrayWithObjects:@"folderid",@"path",@"containerid",nil];
