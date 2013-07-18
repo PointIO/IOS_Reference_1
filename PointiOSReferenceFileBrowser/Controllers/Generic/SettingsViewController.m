@@ -30,9 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
     _currentColorThemeLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"defaultColorTheme"];
-    
 }
 
 
@@ -40,11 +38,9 @@
     BOOL timeStampStatus = [[NSUserDefaults standardUserDefaults] boolForKey:@"PointTimeStampStatus"];
     if (!(timeStampStatus)) {
         _timeStampSwitch.on = FALSE;
-        NSLog(@"Contents of PointTimeStampStatus is %c", [[NSUserDefaults standardUserDefaults] boolForKey:@"PointTimeStampStatus"]);
     }
     else {
         _timeStampSwitch.on = TRUE;
-        NSLog(@"Contents of PointTimeStampStatus is %c", [[NSUserDefaults standardUserDefaults] boolForKey:@"PointTimeStampStatus"]);
     }
 }
 
@@ -70,9 +66,6 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
     _currentColorThemeLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"defaultColorTheme"];
 }
-
-// Jira Connect
-// - (IBAction)addConnectionPressed:(id)sender {
 
 -(IBAction)showFeedback {
     [self presentModalViewController:[[JMC sharedInstance] viewController] animated:YES];
@@ -106,7 +99,6 @@
         colorThemePickerViewController.delegate = self;
         colorThemePickerViewController.currentValue = colorThemePickerViewController.currentValue;
     }
-    
 }
 
 
