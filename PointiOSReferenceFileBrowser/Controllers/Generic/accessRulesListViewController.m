@@ -178,8 +178,8 @@ int i;
         NSString *tmpFilePath               = [[NSBundle mainBundle] pathForResource:tmpFileName ofType:@"plist"];
         NSMutableDictionary *tmpDictionary  = [[NSMutableDictionary alloc] initWithContentsOfFile:tmpFilePath];
         NSDictionary *cloudProviderDict     = [tmpDictionary valueForKey:@"storageProviderArtwork"];
-        NSString *tmpImageName  = [cloudProviderDict valueForKey:storageSiteSiteName];
-        cell.storageImage.image = [UIImage imageNamed:tmpImageName];
+        NSString *tmpImageName              = [cloudProviderDict valueForKey:storageSiteSiteName];
+        cell.storageImage.image             = [UIImage imageNamed:tmpImageName];
     }
     return cell;
 }

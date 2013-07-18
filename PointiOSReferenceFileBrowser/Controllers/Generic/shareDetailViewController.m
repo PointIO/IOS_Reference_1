@@ -112,9 +112,19 @@ NSMutableArray* tempContainer;
     
     if([_fileNames count] != 0){
         
+        // Display Access Rule Name
         cell.nameLabel.text = [_fileNames objectAtIndex:indexPath.row];
-        cell.dateModifiedLabel.text = [_fileDateModified objectAtIndex:indexPath.row];
         
+        // Display Timestamps if Enabled in Settings
+        BOOL timeStampStatus = [[NSUserDefaults standardUserDefaults] boolForKey:@"PointTimeStampStatus"];
+        if (!(timeStampStatus)) {
+            cell.dateModifiedLabel.text = @" ";
+        }
+        else {
+            cell.dateModifiedLabel.text = [_fileDateModified objectAtIndex:indexPath.row];
+        }
+        
+        // Display Folder or Document Icon
         if([[_isFolder objectAtIndex:row] boolValue] == NO) {
             cell.typeImage.image = [UIImage imageNamed:@"Document"];
         } else {

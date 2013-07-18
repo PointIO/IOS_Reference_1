@@ -33,14 +33,21 @@
 
     _currentColorThemeLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"defaultColorTheme"];
     
+}
+
+
+- (void) viewWillAppear:(BOOL)animated{
     BOOL timeStampStatus = [[NSUserDefaults standardUserDefaults] boolForKey:@"PointTimeStampStatus"];
     if (!(timeStampStatus)) {
-        _timeStampSwitch.on = TRUE;
+        _timeStampSwitch.on = FALSE;
+        NSLog(@"Contents of PointTimeStampStatus is %c", [[NSUserDefaults standardUserDefaults] boolForKey:@"PointTimeStampStatus"]);
     }
     else {
-        _timeStampSwitch.on = FALSE;
+        _timeStampSwitch.on = TRUE;
+        NSLog(@"Contents of PointTimeStampStatus is %c", [[NSUserDefaults standardUserDefaults] boolForKey:@"PointTimeStampStatus"]);
     }
 }
+
 
 - (void)didReceiveMemoryWarning
 {
