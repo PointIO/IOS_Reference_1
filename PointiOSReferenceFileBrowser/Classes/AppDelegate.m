@@ -24,12 +24,12 @@ static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093
 static NSString *const kPointDemoUserName = @"demo@point.io";
 static NSString *const kPointDemoPassword = @"demo";
 
-// static NSString *resetPointFirstLaunchKey = @"1";
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
+    NSLog(@"Contents of NSUserDefaults is %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     ///*
     // [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     [TestFlight takeOff:@"a16c5748-0fde-45d6-b1f5-6874d4388987"];

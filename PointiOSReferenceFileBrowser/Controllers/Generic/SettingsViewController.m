@@ -33,12 +33,13 @@
 
     _currentColorThemeLabel.text = [[NSUserDefaults standardUserDefaults] stringForKey:@"defaultColorTheme"];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.leftBarButtonItem.isEnabled;
-    
+    BOOL timeStampStatus = [[NSUserDefaults standardUserDefaults] boolForKey:@"PointTimeStampStatus"];
+    if (!(timeStampStatus)) {
+        _timeStampSwitch.on = TRUE;
+    }
+    else {
+        _timeStampSwitch.on = FALSE;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,6 +70,23 @@
 -(IBAction)showFeedback {
     [self presentModalViewController:[[JMC sharedInstance] viewController] animated:YES];
 }
+
+
+- (IBAction)timeStampSwitchValueChanged {
+    if(_timeStampSwitch.isOn){
+        [[NSUserDefaults standardUserDefaults] setBool:TRUE forKey:@"PointTimeStampStatus"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        NSLog(@"Contents of NSUserDefaults is %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+
+    }
+    else{
+        [[NSUserDefaults standardUserDefaults] setBool:FALSE forKey:@"PointTimeStampStatus"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        NSLog(@"Contents of NSUserDefaults is %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+
+    }
+}
+
 
 #pragma mark
 #pragma Segue Logic

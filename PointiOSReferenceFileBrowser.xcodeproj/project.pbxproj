@@ -583,8 +583,8 @@
 		8AA513E7176A04C600665111 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/ViewController.h; sourceTree = "<group>"; };
 		8AA513F4176A062C00665111 /* connectionsManagerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = connectionsManagerViewController.h; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/connectionsManagerViewController.h; sourceTree = "<group>"; };
 		8AA513F5176A062C00665111 /* connectionsManagerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = connectionsManagerViewController.m; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/connectionsManagerViewController.m; sourceTree = "<group>"; };
-		8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BackupMainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BackupMainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
+		8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BackupMainStoryboard_iPad.storyboard; path = ../PointiOSReferenceFileBrowser/Views/Storyboards/BackupMainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
+		8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BackupMainStoryboard_iPhone.storyboard; path = ../PointiOSReferenceFileBrowser/Views/Storyboards/BackupMainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		8AA6572217832B38002C9A7B /* TabBarButtonItemFileCabinet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarButtonItemFileCabinet.png; sourceTree = "<group>"; };
 		8AE0787E177B8D22005318D1 /* Samba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Samba.png; sourceTree = "<group>"; };
 		8AE0787F177B8D22005318D1 /* FTP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FTP.png; sourceTree = "<group>"; };
@@ -800,8 +800,6 @@
 		7550E01B1767FFB500E8F547 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */,
-				8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */,
 				7550E01C1767FFB500E8F547 /* MainStoryboard_iPad.storyboard */,
 				7550E01D1767FFB500E8F547 /* MainStoryboard_iPhone.storyboard */,
 			);
@@ -1003,6 +1001,8 @@
 		7599C787176F8A7E00AE368C /* ToBeDeleted */ = {
 			isa = PBXGroup;
 			children = (
+				8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */,
+				8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */,
 				754977DC176CFB4A0042B5D8 /* connectionListViewController.h */,
 				754977DD176CFB4A0042B5D8 /* connectionListViewController.m */,
 				8AA513F4176A062C00665111 /* connectionsManagerViewController.h */,

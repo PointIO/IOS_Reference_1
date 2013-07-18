@@ -17,9 +17,9 @@
 
 @property (nonatomic, strong) IBOutlet UILabel *currentColorThemeLabel;
 @property (nonatomic, strong) IBOutlet UIButton *jiraButton;
-
+@property (nonatomic, strong) IBOutlet UISwitch *timeStampSwitch;
 
 -(IBAction)showFeedback;
-
+-(IBAction)timeStampSwitchValueChanged;
 
 @end
