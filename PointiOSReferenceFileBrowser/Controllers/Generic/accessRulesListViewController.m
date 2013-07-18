@@ -107,13 +107,18 @@ int i;
                 });
             }
             else {
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [MBProgressHUD hideHUDForView:self.view animated:YES];
+                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                });
+                /*
                 UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                                 message:@"There are no enabled shares"
                                                                delegate:nil
                                                       cancelButtonTitle:@"Dismiss"
                                                       otherButtonTitles:nil];
                 [alert show];
+                */
             }
         });
     }

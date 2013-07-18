@@ -116,15 +116,18 @@ NSString *requestedConnectionName;
                 else {
                     dispatch_async(dispatch_get_main_queue(), ^{
                         [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                        /*
                         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                                     message:@"You have not added any storage connections"
                                                                    delegate:nil
                                                           cancelButtonTitle:@"Dismiss"
                                                           otherButtonTitles:nil];
                         [alert show];
+                        */
                     });
                 }
-            }
+            }   
         });
     }
 }
