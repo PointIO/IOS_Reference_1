@@ -7,12 +7,16 @@
 //
 
 #import "signupViewController.h"
+// #import "LoginViewController.h"
 
 @interface signupViewController ()
 
 @end
 
 @implementation signupViewController
+
+static NSString *const kPointAPIKey = @"b022de6e-9bf6-11e2-b014-12313b093415";
+static NSString *const kPointAPISecret = @"NX6KLn8nQWy1mz0QI8KlNquUqEArkpqmyv5ic7Vtee2vRWGONROnqSEMSHGmYtp";
 
 @synthesize partnerSession = _partnerSession;
 @synthesize emailTextField = _emailTextField;
@@ -124,7 +128,15 @@ BOOL passwordsDontMatch;
                                  @"email":@"alex@valexconsulting.com",
                                  @"password":@"Valex123",
                                  @"apikey":@"b022de6e-9bf6-11e2-b014-12313b093415"
-                                 };
+                                };
+        
+
+        /*
+        @"email":@"demo@point.io",
+        @"password":@"demo",
+        @"apikey":kPointAPIKey
+        */
+        
         NSMutableArray* pairs = [[NSMutableArray alloc] initWithCapacity:0];
         for(NSString* key in params){
             [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
@@ -140,16 +152,22 @@ BOOL passwordsDontMatch;
         [request setHTTPBody:payload];
         NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
         if(!response){
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+            UIAlertView* alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Request response is nil"
+                                  delegate:nil
+                                  cancelButtonTitle:@"Dismiss"
+                                  otherButtonTitles: nil];
             [alert show];
-        } else {
-        NSArray* temp = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-        _partnerSession = [temp valueForKey:@"PARTNERKEY"];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self createUser];
-        });
+        }
+        else {
+            NSArray* temp = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+            _partnerSession = [temp valueForKey:@"PARTNERKEY"];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                [self createUser];
+            });
         }
     });
 
@@ -162,15 +180,25 @@ BOOL passwordsDontMatch;
     [self setSubmitButton:nil];
     [super viewDidUnload];
 }
+
 - (IBAction)signUpPressed {
-    if([[_firstNameTextField text] isEqualToString:@""] || [[_lastNameTextField text] isEqualToString:@""] || [[_emailTextField text] isEqualToString:@""] || [[_passwordTextField text] isEqualToString:@""] || [[_reEnterPasswordTextField text] isEqualToString:@""]){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Entered data is not valid." delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+    if([[_firstNameTextField text] isEqualToString:@""]
+       || [[_lastNameTextField text] isEqualToString:@""]
+       || [[_emailTextField text] isEqualToString:@""]
+       || [[_passwordTextField text] isEqualToString:@""]
+       || [[_reEnterPasswordTextField text] isEqualToString:@""]){
+        UIAlertView* alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Entered data is not valid. No blank fields allowed"
+                              delegate:nil
+                              cancelButtonTitle:@"Dismiss"
+                              otherButtonTitles: nil];
         UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 282, 133)];
         [imgView setImage:[UIImage imageNamed:@"enteredDataIsNotValid.png"]];
         [alert addSubview:imgView];
         [alert show];
     } else {
-    [self getPartnerSession];
+        [self getPartnerSession];
     }
 }
 
@@ -264,20 +292,32 @@ BOOL passwordsDontMatch;
 
 
 - (void) createUser{
-        NSArray* objects = [NSArray arrayWithObjects:[_emailTextField text],[_firstNameTextField text],[_lastNameTextField text],@"b022de6e-9bf6-11e2-b014-12313b093415",nil];
-        NSArray* keys = [NSArray arrayWithObjects:@"email",@"firstname",@"lastname",@"apikey",nil];
+        NSArray* objects = [NSArray arrayWithObjects:
+                            [_emailTextField text],
+                            [_firstNameTextField text],
+                            [_lastNameTextField text],
+                            [_passwordTextField text],
+                            kPointAPIKey,
+                            kPointAPISecret,
+                            nil];
+        NSArray* keys = [NSArray arrayWithObjects:
+                         @"email",
+                         @"firstname",
+                         @"lastname",
+                         @"password",
+                         @"appId",
+                         @"appSecret",
+                         nil];
         NSDictionary* params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 
         NSMutableArray* pairs = [[NSMutableArray alloc] initWithCapacity:0];
         for(NSString* key in params){
             if(params[key] == nil){
-                
                 break;
             }
             [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
         }
         NSString* requestParams = [pairs componentsJoinedByString:@"&"];
-        
         NSURLResponse* urlResponseList;
         NSError* requestErrorList;
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -287,69 +327,120 @@ BOOL passwordsDontMatch;
         [request setHTTPBody:payload];
         [request addValue:_partnerSession forHTTPHeaderField:@"Authorization"];
         NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
-    if(!response){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [alert show];
-    } else {
-        temp = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-        if([[temp valueForKey:@"ERROR"]integerValue] == 1){
-            NSString* message = [temp valueForKey:@"MESSAGE"];
-            message = [message stringByReplacingOccurrencesOfString:@"ERROR - " withString:@""];
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    
+        if(!response){
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"Request response is nil"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles: nil];
             [alert show];
-        } else {
-        _username = [_emailTextField text];
-        _password = [temp valueForKey:@"PASSWORD"];
-            NSString* userID = [temp valueForKey:@"USERID"];
-            
-            objects = nil;
-            keys = nil;
-            params = nil;
-            pairs = nil;
-            requestParams = nil;
-            payload = nil;
-            objects = [NSArray arrayWithObjects:@"b022de6e-9bf6-11e2-b014-12313b093415", _username,userID,_password,[_passwordTextField text],nil];
-            keys = [NSArray arrayWithObjects:@"apikey",@"email",@"userid",@"oldpassword",@"newpassword", nil];
-            params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-            pairs = [[NSMutableArray alloc] initWithCapacity:0];
-            for(NSString* key in params){
-                [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
-            }
-            requestParams = [pairs componentsJoinedByString:@"&"];
-            [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/users/chpass.json"]];
-            payload = [requestParams dataUsingEncoding:NSUTF8StringEncoding];
-            [request setHTTPBody:payload];
-            response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
-            temp = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        }
+        else {
+            NSArray *temp = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
             if([[temp valueForKey:@"ERROR"]integerValue] == 1){
                 NSString* message = [temp valueForKey:@"MESSAGE"];
                 message = [message stringByReplacingOccurrencesOfString:@"ERROR - " withString:@""];
-                UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:message delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+                UIAlertView* alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Error"
+                                      message:message
+                                      delegate:nil
+                                      cancelButtonTitle:@"Dismiss"
+                                      otherButtonTitles:nil];
                 [alert show];
+            } else {
+                UIAlertView* alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Success"
+                                      message:@"Account Created"
+                                      delegate:nil
+                                      cancelButtonTitle:@"Dismiss"
+                                      otherButtonTitles:nil];
+                [alert show];
+
+                /*
+                _username = [_emailTextField text];
+                _password = [temp valueForKey:@"PASSWORD"];
+                NSString* userID = [temp valueForKey:@"USERID"];
+                
+                objects = nil;
+                keys = nil;
+                params = nil;
+                pairs = nil;
+                requestParams = nil;
+                payload = nil;
+                objects = [NSArray arrayWithObjects:
+                           kPointAPIKey,
+                           _username,
+                           userID,
+                           _password,
+                           [_passwordTextField text],
+                           kPointAPIKey,
+                           kPointAPISecret,
+                           nil];
+                keys = [NSArray arrayWithObjects:
+                        @"apikey",
+                        @"email",
+                        @"userid",
+                        @"oldpassword",
+                        @"newpassword",
+                        @"appId",
+                        @"appSecret",
+                        nil];
+                params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+                pairs = [[NSMutableArray alloc] initWithCapacity:0];
+                for(NSString* key in params){
+                    [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
+                }
+                requestParams = [pairs componentsJoinedByString:@"&"];
+                [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/users/chpass.json"]];
+                payload = [requestParams dataUsingEncoding:NSUTF8StringEncoding];
+                [request setHTTPBody:payload];
+                response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
+                NSArray *temp2 = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+                if([[temp2 valueForKey:@"ERROR"]integerValue] == 1){
+                    NSString* message = [temp2 valueForKey:@"MESSAGE"];
+                    message = [message stringByReplacingOccurrencesOfString:@"ERROR - " withString:@""];
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                    message:message
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"Dismiss"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                }
+                else {
+                    _password = [_passwordTextField text];
+                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                                    message:@"Account Created, Tap Back to Sign In"
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"Dismiss"
+                                                          otherButtonTitles:nil];
+                    [alert show];
+                    // [self performSegueWithIdentifier:@"goBackHome" sender:self];
+                }
+                */
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             }
-            else {
-                _password = [_passwordTextField text];
-                [self performSegueWithIdentifier:@"goBackHome" sender:self];
         }
-        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-        }
-    }
 }
 
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
         
 }
 
+
+/*
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"goBackHome"]){
-        ViewController* vc = [segue destinationViewController];
+        LoginViewController* vc = [segue destinationViewController];
         [vc setUsername:_username];
         [vc setPassword:_password];
         [vc.usernameTextField setText:_username];
         [vc.passwordTextField setText:_password];
-        [vc setShouldSignIn:YES];
+        // [vc setShouldSignIn:YES];
     }
-    self.navigationItem.backBarButtonItem.enabled = NO;
-    [self.navigationItem setHidesBackButton:YES];
+    // self.navigationItem.backBarButtonItem.enabled = NO;
+    // [self.navigationItem setHidesBackButton:YES];
 }
+*/
+
 @end

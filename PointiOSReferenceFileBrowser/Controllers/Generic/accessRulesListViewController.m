@@ -107,6 +107,7 @@ int i;
                 });
             }
             else {
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
                 UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                                 message:@"There are no enabled shares"
                                                                delegate:nil

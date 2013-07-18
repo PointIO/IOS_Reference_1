@@ -81,36 +81,49 @@ NSString *requestedConnectionName;
             else {
                 
                 [self performListCall];
+                if (![_storageSitesArrayOfDictionaries count]==0){
+                    NSMutableArray *temp = [[NSMutableArray alloc] init];
+                    NSMutableArray *tmpArrayOfDictionaries = [[NSMutableArray alloc] init];
                 
-                NSMutableArray *temp = [[NSMutableArray alloc] init];
-                NSMutableArray *tmpArrayOfDictionaries = [[NSMutableArray alloc] init];
+                    NSString *firstStorageSiteID = [[[_storageSitesArrayOfDictionaries objectAtIndex:0] valueForKey:@"StorageSiteSiteTypeID"] stringValue];
+                    [tmpArrayOfDictionaries addObject:[_storageSitesArrayOfDictionaries objectAtIndex:0]];
+                    [temp addObject:firstStorageSiteID];
                 
-                NSString *firstStorageSiteID = [[[_storageSitesArrayOfDictionaries objectAtIndex:0] valueForKey:@"StorageSiteSiteTypeID"] stringValue];
-                [tmpArrayOfDictionaries addObject:[_storageSitesArrayOfDictionaries objectAtIndex:0]];
-                [temp addObject:firstStorageSiteID];
-                
-                for(int i=0; i<[_storageSitesArrayOfDictionaries count];i++){
-                    NSString *storageSiteID = [[[_storageSitesArrayOfDictionaries objectAtIndex:i] valueForKey:@"StorageSiteSiteTypeID"] stringValue];
-                    if (![temp containsObject: storageSiteID]) {
-                        [temp addObject:[[[_storageSitesArrayOfDictionaries objectAtIndex:i] valueForKey:@"StorageSiteSiteTypeID"] stringValue]];
-                        [tmpArrayOfDictionaries addObject:[_storageSitesArrayOfDictionaries objectAtIndex:i]];
+                    for(int i=0; i<[_storageSitesArrayOfDictionaries count];i++){
+                        NSString *storageSiteID = [[[_storageSitesArrayOfDictionaries objectAtIndex:i] valueForKey:@"StorageSiteSiteTypeID"] stringValue];
+                        if (![temp containsObject: storageSiteID]) {
+                            [temp addObject:[[[_storageSitesArrayOfDictionaries objectAtIndex:i] valueForKey:@"StorageSiteSiteTypeID"] stringValue]];
+                            [tmpArrayOfDictionaries addObject:[_storageSitesArrayOfDictionaries objectAtIndex:i]];
+                        }
                     }
+                
+                    NSSortDescriptor *nameDescriptor =
+                    [[NSSortDescriptor alloc] initWithKey:@"StorageSiteSiteTypeName"
+                                                ascending:YES
+                                                 selector:@selector(localizedCaseInsensitiveCompare:)];
+                    
+                    NSArray *descriptors = [NSArray arrayWithObjects:nameDescriptor, nil];
+                    NSArray *sortedArray = [tmpArrayOfDictionaries sortedArrayUsingDescriptors:descriptors];
+                    _storageSiteTypesInUse = sortedArray;
+                    NSLog(@"Sorted StorageTypesInUse is %@", _storageSiteTypesInUse);
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        [self.tableView reloadData];
+                        [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                    });
+                    
                 }
-                
-                NSSortDescriptor *nameDescriptor =
-                [[NSSortDescriptor alloc] initWithKey:@"StorageSiteSiteTypeName"
-                                            ascending:YES
-                                             selector:@selector(localizedCaseInsensitiveCompare:)];
-                
-                NSArray *descriptors = [NSArray arrayWithObjects:nameDescriptor, nil];
-                NSArray *sortedArray = [tmpArrayOfDictionaries sortedArrayUsingDescriptors:descriptors];
-                _storageSiteTypesInUse = sortedArray;
-                NSLog(@"Sorted StorageTypesInUse is %@", _storageSiteTypesInUse);
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    [MBProgressHUD hideHUDForView:self.view animated:YES];
-                    [self.tableView reloadData];
-                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-                });
+                else {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUDForView:self.view animated:YES];
+                        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                    message:@"You have not added any storage connections"
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"Dismiss"
+                                                          otherButtonTitles:nil];
+                        [alert show];
+                    });
+                }
             }
         });
     }
