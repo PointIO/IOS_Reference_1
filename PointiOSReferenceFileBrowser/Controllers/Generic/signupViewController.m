@@ -130,13 +130,6 @@ BOOL passwordsDontMatch;
                                  @"apikey":@"b022de6e-9bf6-11e2-b014-12313b093415"
                                 };
         
-
-        /*
-        @"email":@"demo@point.io",
-        @"password":@"demo",
-        @"apikey":kPointAPIKey
-        */
-        
         NSMutableArray* pairs = [[NSMutableArray alloc] initWithCapacity:0];
         for(NSString* key in params){
             [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
@@ -357,67 +350,6 @@ BOOL passwordsDontMatch;
                                       otherButtonTitles:nil];
                 [alert show];
 
-                /*
-                _username = [_emailTextField text];
-                _password = [temp valueForKey:@"PASSWORD"];
-                NSString* userID = [temp valueForKey:@"USERID"];
-                
-                objects = nil;
-                keys = nil;
-                params = nil;
-                pairs = nil;
-                requestParams = nil;
-                payload = nil;
-                objects = [NSArray arrayWithObjects:
-                           kPointAPIKey,
-                           _username,
-                           userID,
-                           _password,
-                           [_passwordTextField text],
-                           kPointAPIKey,
-                           kPointAPISecret,
-                           nil];
-                keys = [NSArray arrayWithObjects:
-                        @"apikey",
-                        @"email",
-                        @"userid",
-                        @"oldpassword",
-                        @"newpassword",
-                        @"appId",
-                        @"appSecret",
-                        nil];
-                params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-                pairs = [[NSMutableArray alloc] initWithCapacity:0];
-                for(NSString* key in params){
-                    [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
-                }
-                requestParams = [pairs componentsJoinedByString:@"&"];
-                [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/users/chpass.json"]];
-                payload = [requestParams dataUsingEncoding:NSUTF8StringEncoding];
-                [request setHTTPBody:payload];
-                response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
-                NSArray *temp2 = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-                if([[temp2 valueForKey:@"ERROR"]integerValue] == 1){
-                    NSString* message = [temp2 valueForKey:@"MESSAGE"];
-                    message = [message stringByReplacingOccurrencesOfString:@"ERROR - " withString:@""];
-                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                                    message:message
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"Dismiss"
-                                                          otherButtonTitles:nil];
-                    [alert show];
-                }
-                else {
-                    _password = [_passwordTextField text];
-                    UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                                    message:@"Account Created, Tap Back to Sign In"
-                                                                   delegate:nil
-                                                          cancelButtonTitle:@"Dismiss"
-                                                          otherButtonTitles:nil];
-                    [alert show];
-                    // [self performSegueWithIdentifier:@"goBackHome" sender:self];
-                }
-                */
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
             }
         }

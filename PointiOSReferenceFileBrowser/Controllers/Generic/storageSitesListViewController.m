@@ -294,48 +294,5 @@ NSString *requestedConnectionName;
     }
 }
 
-/*
-- (void) getAllPossibleConnections{
-    //
-    // called by addConnection
-    //
-    NSMutableArray* tempy = [NSMutableArray array];
-    NSURLResponse* urlResponseList;
-    NSError* requestErrorList;
-    _storageIDs = [NSMutableArray array];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagetypes/list.json"]];
-    [request setHTTPMethod:@"GET"];
-    NSLog(@"Session key = %@",_sessionKey);
-    [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
-    NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
-    
-    if(!response){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [alert show];
-    } else {
-        NSArray* availableConnectionsArray = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-        if([[availableConnectionsArray valueForKey:@"ERROR"] integerValue] == 0){
-            NSArray* result = [availableConnectionsArray valueForKey:@"RESULT"];
-            NSArray* columns = [result valueForKey:@"COLUMNS"];
-            NSArray* data = [result valueForKey:@"DATA"];
-            for (int i = 0; i<[data count]; i++) {
-                NSArray* data2 = [data objectAtIndex:i];
-                NSDictionary* temp = [NSDictionary dictionaryWithObjects:data2 forKeys:columns];
-                NSLog(@"TEMP LIST = %@",temp);
-                if([[temp valueForKey:@"ENABLED"] integerValue] == 1){
-                    [tempy addObject:[temp valueForKey:@"SITETYPENAME"]];
-                    [_storageIDs addObject:[temp valueForKey:@"SITETYPEID"]];
-                }
-            }
-            NSLog(@"ALL STORAGE IDs = %@",_storageIDs);
-            _allPossibleConnections = [NSMutableArray arrayWithArray:tempy];
-        }
-    }
-}
-*/
-
-
-
 
 @end
