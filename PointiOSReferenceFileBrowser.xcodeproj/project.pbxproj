@@ -89,6 +89,7 @@
 		8A2DD56F177511AB002310D0 /* pointio72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD56A177511AB002310D0 /* pointio72x72.png */; };
 		8A2DD570177511AB002310D0 /* pointio114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD56B177511AB002310D0 /* pointio114x114.png */; };
 		8A2DD571177511AB002310D0 /* pointio512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD56C177511AB002310D0 /* pointio512x512.png */; };
+		8A36F5521798CF2100E07632 /* DocumentShareSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A36F5511798CF2100E07632 /* DocumentShareSettingsViewController.m */; };
 		8A4D2C3C1775F1CD00E662E4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4D2C3B1775F1CD00E662E4 /* SettingsViewController.m */; };
 		8A4D2C4817762C3400E662E4 /* colorBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C3E17762C3400E662E4 /* colorBlack.png */; };
 		8A4D2C4917762C3400E662E4 /* colorBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C3F17762C3400E662E4 /* colorBlue.png */; };
@@ -357,6 +358,8 @@
 		8A2DD56A177511AB002310D0 /* pointio72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio72x72.png; sourceTree = "<group>"; };
 		8A2DD56B177511AB002310D0 /* pointio114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio114x114.png; sourceTree = "<group>"; };
 		8A2DD56C177511AB002310D0 /* pointio512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio512x512.png; sourceTree = "<group>"; };
+		8A36F5501798CF2100E07632 /* DocumentShareSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentShareSettingsViewController.h; sourceTree = "<group>"; };
+		8A36F5511798CF2100E07632 /* DocumentShareSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentShareSettingsViewController.m; sourceTree = "<group>"; };
 		8A4D2C3A1775F1CD00E662E4 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = PointiOSReferenceFileBrowser/Controllers/Generic/SettingsViewController.h; sourceTree = SOURCE_ROOT; };
 		8A4D2C3B1775F1CD00E662E4 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = PointiOSReferenceFileBrowser/Controllers/Generic/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
 		8A4D2C3E17762C3400E662E4 /* colorBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorBlack.png; sourceTree = "<group>"; };
@@ -959,6 +962,8 @@
 				8A25DA731770A0470025BBD3 /* connectionDetailViewController.m */,
 				8AA513D9176A04C600665111 /* datePickerViewController.h */,
 				8AA513DA176A04C600665111 /* datePickerViewController.m */,
+				8A36F5501798CF2100E07632 /* DocumentShareSettingsViewController.h */,
+				8A36F5511798CF2100E07632 /* DocumentShareSettingsViewController.m */,
 				8AA513DB176A04C600665111 /* docViewerViewController.h */,
 				8AA513D4176A04C600665111 /* docViewerViewController.m */,
 				8AA513DC176A04C600665111 /* HubsViewController.h */,
@@ -1640,6 +1645,7 @@
 				8A6E45DA177CC0DD0086C4F3 /* StorageTypesViewController.m in Sources */,
 				8A6E45DD177CC3050086C4F3 /* StorageTypeCell.m in Sources */,
 				8A9070711788895100529631 /* LoginViewController.m in Sources */,
+				8A36F5521798CF2100E07632 /* DocumentShareSettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
