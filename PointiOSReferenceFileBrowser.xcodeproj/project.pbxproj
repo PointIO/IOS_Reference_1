@@ -1727,7 +1727,8 @@
 		7550E0001767FDC600E8F547 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Andrew Schwabe (6H6E7F352G)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Andrew Schwabe (6H6E7F352G)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty\"",
@@ -1744,7 +1745,8 @@
 					"\"$(SRCROOT)/PointiOSReferenceFileBrowser/Classes/3rdParty/Flurry\"",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "6745F699-DBA3-48FE-9515-356A4AFB7FC5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6745F699-DBA3-48FE-9515-356A4AFB7FC5";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
