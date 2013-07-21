@@ -7,6 +7,8 @@
 //
 
 #import "signupViewController.h"
+#import "Common.h"
+
 // #import "LoginViewController.h"
 
 @interface signupViewController ()
@@ -18,17 +20,6 @@
 static NSString *const kPointAPIKey = @"b022de6e-9bf6-11e2-b014-12313b093415";
 static NSString *const kPointAPISecret = @"NX6KLn8nQWy1mz0QI8KlNquUqEArkpqmyv5ic7Vtee2vRWGONROnqSEMSHGmYtp";
 
-@synthesize partnerSession = _partnerSession;
-@synthesize emailTextField = _emailTextField;
-@synthesize firstNameTextField = _firstNameTextField;
-@synthesize lastNameTextField = _lastNameTextField;
-@synthesize sessionKey = _sessionKey;
-@synthesize username = _username;
-@synthesize password = _password;
-@synthesize passwordsDontMatchLabel = _passwordsDontMatchLabel;
-@synthesize passwordTextField = _passwordTextField;
-@synthesize reEnterPasswordTextField = _reEnterPasswordTextField;
-@synthesize submitButton = _submitButton;
 
 NSArray* temp;
 UIImageView* imgView;
@@ -91,12 +82,12 @@ BOOL passwordsDontMatch;
     [super viewWillAppear:animated];
     self.navigationItem.hidesBackButton = YES;
     if(!imgView){
-    imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
-    imgView2.image = [UIImage imageNamed:@"barImageWithLogoCentered.png"];
-    [self.navigationController.navigationBar addSubview:imgView2];
-    imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 7, 51, 29)];
-    imgView.image = [UIImage imageNamed:@"backButton.png"];
-    [self.navigationController.navigationBar addSubview:imgView];
+        imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
+        imgView2.image = [UIImage imageNamed:@"barImageWithLogoCentered.png"];
+        [self.navigationController.navigationBar addSubview:imgView2];
+        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 7, 51, 29)];
+        imgView.image = [UIImage imageNamed:@"backButton.png"];
+        [self.navigationController.navigationBar addSubview:imgView];
     }
     imgView2.alpha = 0;
     imgView.alpha = 0;
@@ -285,74 +276,77 @@ BOOL passwordsDontMatch;
 
 
 - (void) createUser{
-        NSArray* objects = [NSArray arrayWithObjects:
-                            [_emailTextField text],
-                            [_firstNameTextField text],
-                            [_lastNameTextField text],
-                            [_passwordTextField text],
-                            kPointAPIKey,
-                            kPointAPISecret,
-                            nil];
-        NSArray* keys = [NSArray arrayWithObjects:
-                         @"email",
-                         @"firstname",
-                         @"lastname",
-                         @"password",
-                         @"appId",
-                         @"appSecret",
-                         nil];
-        NSDictionary* params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
-
-        NSMutableArray* pairs = [[NSMutableArray alloc] initWithCapacity:0];
-        for(NSString* key in params){
-            if(params[key] == nil){
-                break;
-            }
-            [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
-        }
-        NSString* requestParams = [pairs componentsJoinedByString:@"&"];
-        NSURLResponse* urlResponseList;
-        NSError* requestErrorList;
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/users/create.json"]];
-        [request setHTTPMethod:@"POST"];
-        NSData* payload = [requestParams dataUsingEncoding:NSUTF8StringEncoding];
-        [request setHTTPBody:payload];
-        [request addValue:_partnerSession forHTTPHeaderField:@"Authorization"];
-        NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
     
-        if(!response){
-            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                            message:@"Request response is nil"
-                                                           delegate:nil
-                                                  cancelButtonTitle:@"Dismiss"
-                                                  otherButtonTitles: nil];
-            [alert show];
-        }
-        else {
-            NSArray *temp = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-            if([[temp valueForKey:@"ERROR"]integerValue] == 1){
-                NSString* message = [temp valueForKey:@"MESSAGE"];
-                message = [message stringByReplacingOccurrencesOfString:@"ERROR - " withString:@""];
-                UIAlertView* alert = [[UIAlertView alloc]
-                                      initWithTitle:@"Error"
-                                      message:message
-                                      delegate:nil
-                                      cancelButtonTitle:@"Dismiss"
-                                      otherButtonTitles:nil];
-                [alert show];
-            } else {
-                UIAlertView* alert = [[UIAlertView alloc]
-                                      initWithTitle:@"Success"
-                                      message:@"Account Created"
-                                      delegate:nil
-                                      cancelButtonTitle:@"Dismiss"
-                                      otherButtonTitles:nil];
-                [alert show];
+    NSString *kPAPIKey = [Common getAppKey:@"kPointAppId"];
+    NSString *kPAPISecret = [Common getAppKey:@"keyPointAppSecret"];
+    NSArray* objects = [NSArray arrayWithObjects:
+                        [_emailTextField text],
+                        [_firstNameTextField text],
+                        [_lastNameTextField text],
+                        [_passwordTextField text],
+                        kPointAPIKey,
+                        kPointAPISecret,
+                        nil];
+    NSArray* keys = [NSArray arrayWithObjects:
+                     @"email",
+                     @"firstname",
+                     @"lastname",
+                     @"password",
+                     @"appId",
+                     @"appSecret",
+                     nil];
+    NSDictionary* params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
 
-                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-            }
+    NSMutableArray* pairs = [[NSMutableArray alloc] initWithCapacity:0];
+    for(NSString* key in params){
+        if(params[key] == nil){
+            break;
         }
+        [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
+    }
+    NSString* requestParams = [pairs componentsJoinedByString:@"&"];
+    NSURLResponse* urlResponseList;
+    NSError* requestErrorList;
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+    [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/users/create.json"]];
+    [request setHTTPMethod:@"POST"];
+    NSData* payload = [requestParams dataUsingEncoding:NSUTF8StringEncoding];
+    [request setHTTPBody:payload];
+    [request addValue:_partnerSession forHTTPHeaderField:@"Authorization"];
+    NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
+
+    if(!response){
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Request response is nil"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Dismiss"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }
+    else {
+        NSArray *temp = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+        if([[temp valueForKey:@"ERROR"]integerValue] == 1){
+            NSString* message = [temp valueForKey:@"MESSAGE"];
+            message = [message stringByReplacingOccurrencesOfString:@"ERROR - " withString:@""];
+            UIAlertView* alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:message
+                                  delegate:nil
+                                  cancelButtonTitle:@"Dismiss"
+                                  otherButtonTitles:nil];
+            [alert show];
+        } else {
+            UIAlertView* alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Success"
+                                  message:@"Account Created"
+                                  delegate:nil
+                                  cancelButtonTitle:@"Dismiss"
+                                  otherButtonTitles:nil];
+            [alert show];
+
+            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        }
+    }
 }
 
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{

@@ -90,6 +90,8 @@
 		8A2DD570177511AB002310D0 /* pointio114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD56B177511AB002310D0 /* pointio114x114.png */; };
 		8A2DD571177511AB002310D0 /* pointio512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD56C177511AB002310D0 /* pointio512x512.png */; };
 		8A36F5521798CF2100E07632 /* DocumentShareSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A36F5511798CF2100E07632 /* DocumentShareSettingsViewController.m */; };
+		8A36F5591799D30F00E07632 /* AppContent.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A36F5571799D30F00E07632 /* AppContent.plist */; };
+		8A36F55A1799D30F00E07632 /* AppKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A36F5581799D30F00E07632 /* AppKeys.plist */; };
 		8A4D2C3C1775F1CD00E662E4 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4D2C3B1775F1CD00E662E4 /* SettingsViewController.m */; };
 		8A4D2C4817762C3400E662E4 /* colorBlack.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C3E17762C3400E662E4 /* colorBlack.png */; };
 		8A4D2C4917762C3400E662E4 /* colorBlue.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C3F17762C3400E662E4 /* colorBlue.png */; };
@@ -103,7 +105,6 @@
 		8A4D2C5117762C3400E662E4 /* colorYellow.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C4717762C3400E662E4 /* colorYellow.png */; };
 		8A4D2C5417762CB300E662E4 /* ColorThemePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4D2C5217762CB300E662E4 /* ColorThemePickerViewController.m */; };
 		8A4D2C5717762CC700E662E4 /* ColorThemeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A4D2C5517762CC700E662E4 /* ColorThemeCell.m */; };
-		8A4D2C5917763A4E00E662E4 /* AppContent.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A4D2C5817763A4E00E662E4 /* AppContent.plist */; };
 		8A4D2C5E177757D900E662E4 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4D2C5D177757D900E662E4 /* CFNetwork.framework */; };
 		8A4D2C60177757E700E662E4 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4D2C5F177757E700E662E4 /* MobileCoreServices.framework */; };
 		8A4D2C62177757F400E662E4 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4D2C61177757F400E662E4 /* AVFoundation.framework */; };
@@ -360,6 +361,8 @@
 		8A2DD56C177511AB002310D0 /* pointio512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio512x512.png; sourceTree = "<group>"; };
 		8A36F5501798CF2100E07632 /* DocumentShareSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentShareSettingsViewController.h; sourceTree = "<group>"; };
 		8A36F5511798CF2100E07632 /* DocumentShareSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentShareSettingsViewController.m; sourceTree = "<group>"; };
+		8A36F5571799D30F00E07632 /* AppContent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppContent.plist; sourceTree = "<group>"; };
+		8A36F5581799D30F00E07632 /* AppKeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppKeys.plist; sourceTree = "<group>"; };
 		8A4D2C3A1775F1CD00E662E4 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = PointiOSReferenceFileBrowser/Controllers/Generic/SettingsViewController.h; sourceTree = SOURCE_ROOT; };
 		8A4D2C3B1775F1CD00E662E4 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = PointiOSReferenceFileBrowser/Controllers/Generic/SettingsViewController.m; sourceTree = SOURCE_ROOT; };
 		8A4D2C3E17762C3400E662E4 /* colorBlack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorBlack.png; sourceTree = "<group>"; };
@@ -376,7 +379,6 @@
 		8A4D2C5317762CB300E662E4 /* ColorThemePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorThemePickerViewController.h; sourceTree = "<group>"; };
 		8A4D2C5517762CC700E662E4 /* ColorThemeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorThemeCell.m; sourceTree = "<group>"; };
 		8A4D2C5617762CC700E662E4 /* ColorThemeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorThemeCell.h; sourceTree = "<group>"; };
-		8A4D2C5817763A4E00E662E4 /* AppContent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppContent.plist; sourceTree = "<group>"; };
 		8A4D2C5D177757D900E662E4 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		8A4D2C5F177757E700E662E4 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		8A4D2C61177757F400E662E4 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -726,7 +728,6 @@
 		7550E00A1767FFA300E8F547 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				8A4D2C5817763A4E00E662E4 /* AppContent.plist */,
 				8A4D2C5317762CB300E662E4 /* ColorThemePickerViewController.h */,
 				8A4D2C5217762CB300E662E4 /* ColorThemePickerViewController.m */,
 				8AE2FEA51771DCB300FD20BF /* Common.h */,
@@ -812,6 +813,8 @@
 		7550E0201767FFBB00E8F547 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8A36F5571799D30F00E07632 /* AppContent.plist */,
+				8A36F5581799D30F00E07632 /* AppKeys.plist */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1475,7 +1478,6 @@
 				8A4D2C4F17762C3400E662E4 /* colorRed.png in Resources */,
 				8A4D2C5017762C3400E662E4 /* colorWhite.png in Resources */,
 				8A4D2C5117762C3400E662E4 /* colorYellow.png in Resources */,
-				8A4D2C5917763A4E00E662E4 /* AppContent.plist in Resources */,
 				8A4D2D4617775C6700E662E4 /* JMCViewController.xib in Resources */,
 				8A4D2D4717775C6700E662E4 /* JMCAttachmentsView.xib in Resources */,
 				8A4D2D5317775C6700E662E4 /* JMCIssuePreviewCell.xib in Resources */,
@@ -1534,6 +1536,8 @@
 				8AA6572317832B38002C9A7B /* TabBarButtonItemFileCabinet.png in Resources */,
 				8A521E5F178BA7C000CDD0FC /* TabBarButtonItemStorage.png in Resources */,
 				8A521E61178BA87500CDD0FC /* TabBarButtonItemLogin.png in Resources */,
+				8A36F5591799D30F00E07632 /* AppContent.plist in Resources */,
+				8A36F55A1799D30F00E07632 /* AppKeys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

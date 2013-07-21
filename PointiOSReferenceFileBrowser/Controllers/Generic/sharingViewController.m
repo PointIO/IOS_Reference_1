@@ -8,29 +8,6 @@
 
 @implementation sharingViewController
 
-@synthesize docName = _docName;
-@synthesize downloadData = _downloadData;
-@synthesize fileDownloadURL = _fileDownloadURL;
-@synthesize fileName = _fileName;
-@synthesize sessionKey = _sessionKey;
-@synthesize shareID = _shareID;
-@synthesize fileID = _fileID;
-@synthesize remotePath = _remotePath;
-@synthesize containerID = _containerID;
-@synthesize expirationDate = _expirationDate;
-@synthesize password = _password;
-
-@synthesize appDel = _appDel;
-
-@synthesize printSwitch = _printSwitch;
-@synthesize downloadSwitch = _downloadSwitch;
-@synthesize expireSwitch = _expireSwitch;
-@synthesize forwardingSwitch = _forwardingSwitch;
-@synthesize screenCaptureSwitch = _screenCaptureSwitch;
-@synthesize passwordSwitch = _passwordSwitch;
-@synthesize passwordsDontMatchLabel = _passwordsDontMatchLabel;
-@synthesize shareSecurelyButton = _shareSecurelyButton;
-
 
 UIImageView* imgView;
 UIImageView* imgView2;
@@ -66,14 +43,13 @@ BOOL shareSecurelyPressed, shouldCheck;
     
     _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     _shareSecurelyButton.width = 0.01;
+    /*
     NSMutableArray* toolbarItems = [self.toolbarItems mutableCopy];
     [toolbarItems addObject:_shareSecurelyButton];
     [toolbarItems addObject:_shareSecurelyButton];
     [toolbarItems addObject:_shareSecurelyButton];
     [self setToolbarItems:toolbarItems];
-    
-    
-    
+    */
 }
 
 - (void) viewWillDisappear:(BOOL)animated{

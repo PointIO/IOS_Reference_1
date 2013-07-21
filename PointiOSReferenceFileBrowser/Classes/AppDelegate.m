@@ -18,30 +18,29 @@
 
 @implementation AppDelegate
 
-
+/*
 static NSString *const kFlurryAPIKey = @"2XMYBQX7DPHPK96SQ9H9";
 static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093415";
 static NSString *const kPointDemoUserName = @"demo@point.io";
 static NSString *const kPointDemoPassword = @"demo";
-
+*/
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    NSLog(@"Contents of NSUserDefaults is %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
-    ///*
-    // [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-    [TestFlight takeOff:@"a16c5748-0fde-45d6-b1f5-6874d4388987"];
-    _hasLoggedIn = NO;
-    //*/
+    // NSLog(@"Contents of NSUserDefaults is %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
-    [Flurry startSession:kFlurryAPIKey];
-
+    // [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    NSString *testFlightKey = [Common getAppKey:@"keyTestFlight"];
+    [TestFlight takeOff:testFlightKey];
+    _hasLoggedIn = NO;
+    
+    NSString *flurryKey = [Common getAppKey:@"keyFlurry"];
+    [Flurry startSession:flurryKey];
     
     [[JMC sharedInstance] configureJiraConnect:@"https://pointio.atlassian.net/"
                                     projectKey:@"IOS"
-                                        apiKey:@"b85906bc-f3aa-4fd7-afb7-df3b7f4b2853"];
+                                        apiKey:[Common getAppKey:@"keyJira"]];
     
     _accessRulesEnabledArray = [[NSMutableArray alloc] init];
 
@@ -50,8 +49,8 @@ static NSString *const kPointDemoPassword = @"demo";
         _password = [defaults valueForKey:@"PASSWORD"];
     }
     else {
-        _username = kPointDemoUserName;
-        _password = kPointDemoPassword;
+        _username = [Common getAppKey:@"pointDemoAccount"];
+        _password = [Common getAppKey:@"pointDemoPassword"];
     }
     [self signIn];
     
@@ -79,6 +78,7 @@ static NSString *const kPointDemoPassword = @"demo";
     return YES;
 }
 
+
 - (void) signIn{
     if([_username isEqualToString:@""] || [_password isEqualToString:@""]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
@@ -102,7 +102,9 @@ static NSString *const kPointDemoPassword = @"demo";
         [err show];
     }
     else {
-        _postString = [kPointAPIKey stringByAppendingFormat:@"&email=%@&password=%@",_username,_password];
+        _postString = [Common getAppKey:@"AppKeyPostString"];
+        _postString = [_postString stringByAppendingFormat:@"&email=%@&password=%@",_username,_password];
+        // _postString = [kPointAPIKey stringByAppendingFormat:@"&email=%@&password=%@",_username,_password];
         [self performSelectorOnMainThread:@selector(performAuthCall) withObject:nil waitUntilDone:YES];
     }
 }

@@ -216,25 +216,6 @@ int i;
 
 
 - (void) performListCall{
-    
-    // get storageTypes
-    /*
-    NSURLResponse* urlResponseList1;
-    NSError* requestErrorList1;
-    NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc] init];
-    [request1 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagetypes/list.json"]];
-    [request1 setHTTPMethod:@"GET"];
-    [request1 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
-    NSData* response1 = [NSURLConnection sendSynchronousRequest:request1 returningResponse:&urlResponseList1 error:&requestErrorList1];
-    if(!response1){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [alert show];
-    } else {
-        _storageTypesArray = [NSJSONSerialization JSONObjectWithData:response1 options:NSJSONReadingMutableContainers error:nil];
-    }
-    NSLog(@"Inside accessRulesListViewController, performListCall where storageTypes are %@", _storageTypesArray);
-    */
-    
     //
     // get storageSites
     //
@@ -245,15 +226,21 @@ int i;
     [request2 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
     [request2 setHTTPMethod:@"GET"];
     [request2 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
-    NSData* response2 = [NSURLConnection sendSynchronousRequest:request2 returningResponse:&urlResponseList2 error:&requestErrorList2];
+    NSData* response2 = [NSURLConnection sendSynchronousRequest:request2
+                                              returningResponse:&urlResponseList2
+                                                          error:&requestErrorList2];
     if(!response2){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Request response is nil"
+                              delegate:nil
+                              cancelButtonTitle:@"Dismiss"
+                              otherButtonTitles: nil];
         [alert show];
     } else {
         storageSitesArray = [NSJSONSerialization JSONObjectWithData:response2 options:NSJSONReadingMutableContainers error:nil];
     }
     NSLog(@"Inside accessRulesListViewController, performListCall where storageSites are %@", storageSitesArray);
-    
     
     //
     // create storageSites Arrays for Names, IDs, Enabled Status, SiteTypeID and SiteTypeName
@@ -310,9 +297,16 @@ int i;
     [request3 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/accessrules/list.json"]];
     [request3 setHTTPMethod:@"GET"];
     [request3 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
-    NSData* response3 = [NSURLConnection sendSynchronousRequest:request3 returningResponse:&urlResponseList3 error:&requestErrorList3];
+    NSData* response3 = [NSURLConnection sendSynchronousRequest:request3
+                                              returningResponse:&urlResponseList3
+                                                          error:&requestErrorList3];
     if(!response3){
-        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Request response is nil" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+        UIAlertView* alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Request response is nil"
+                              delegate:nil
+                              cancelButtonTitle:@"Dismiss"
+                              otherButtonTitles: nil];
         [alert show];
     } else {
         accessRulesArray = [NSJSONSerialization JSONObjectWithData:response3 options:NSJSONReadingMutableContainers error:nil];
@@ -347,8 +341,18 @@ int i;
                 NSString *storageSiteEnabledStatus = [[storageSitesEnabledStatusArray objectAtIndex:j] stringValue];
                 if ([storageSiteEnabledStatus isEqualToString:@"1"]) {
                     
-                    NSArray *keysArray = [[NSArray alloc] initWithObjects:@"AccessRuleShareID",@"AccessRuleShareName", @"AccessRuleSiteTypeName", nil];
-                    NSArray *valuesArray = [[NSArray alloc] initWithObjects:[accessRulesShareIDArray objectAtIndex:i], [accessRulesNamesArray objectAtIndex:i], [accessRulesSiteTypeNameArray objectAtIndex:i], nil];
+                    NSArray *keysArray = [[NSArray alloc]
+                                          initWithObjects:
+                                          @"AccessRuleShareID",
+                                          @"AccessRuleShareName",
+                                          @"AccessRuleSiteTypeName",
+                                          nil];
+                    NSArray *valuesArray = [[NSArray alloc]
+                                            initWithObjects:
+                                            [accessRulesShareIDArray objectAtIndex:i],
+                                            [accessRulesNamesArray objectAtIndex:i],
+                                            [accessRulesSiteTypeNameArray objectAtIndex:i],
+                                            nil];
                     NSDictionary *accessRuleDictionary = [[NSDictionary alloc] initWithObjects:valuesArray forKeys:keysArray];
                     [_accessRulesEnabledArray addObject:accessRuleDictionary];
                     break;

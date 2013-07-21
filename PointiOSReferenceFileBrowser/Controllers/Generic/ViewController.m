@@ -5,7 +5,7 @@
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone)
 
-static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093415";
+// static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093415";
 
 
 @interface ViewController ()
@@ -173,7 +173,7 @@ UIImageView* imgView;
         }
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     } else {
-        _postString = kPointAPIKey;
+        _postString = [Common getAppKey:@"AppKeyPostString"];
         _username = [_usernameTextField text];
         _password = [_passwordTextField text];
         NSLog(@"IN MAIN VIEW, EMAIL = %@, PASSWORD = %@",_username,_password);
@@ -202,7 +202,7 @@ UIImageView* imgView;
     _JSONArrayAuth = nil;
     _JSONArrayList = nil;
     _successfulLogin = NO;
-    _postString = kPointAPIKey;
+    _postString = [Common getAppKey:@"AppKeyPostString"];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     _appDel.sessionKey = nil;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

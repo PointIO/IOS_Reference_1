@@ -22,6 +22,8 @@
 + (UIColor *)theTableViewBackgroundColor;
 + (BOOL)isDefaultColorThemeWhite;
 + (BOOL)shouldUseGradient;
++ (NSString *)getAppKey:(NSString *) keyToFind;
+
 
 
 @end

@@ -129,6 +129,24 @@
     
 }
 
++(NSString *)getAppKey: (NSString *)keyToFind {
+
+    // Query appKeys.plist Dictionary for value of provided key
+    NSString *path                  = [[NSBundle mainBundle] pathForResource:@"AppKeys" ofType:@"plist"];
+    NSMutableDictionary* tmpDict    = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    NSString *returnValue           = [tmpDict valueForKey:keyToFind];
+
+    return returnValue;
+    
+    /*
+     // Values are stored in sorted Dictionary in AppContent.plist
+     NSString *tmpFileName               = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"AppContent"];
+     NSString *tmpFilePath               = [[NSBundle mainBundle] pathForResource:tmpFileName ofType:@"plist"];
+     NSMutableDictionary *tmpDictionary  = [[NSMutableDictionary alloc] initWithContentsOfFile:tmpFilePath];
+     NSDictionary *cloudProviderDict     = [tmpDictionary valueForKey:@"storageProviderArtwork"];
+     NSString *tmpImageName              = [cloudProviderDict valueForKey:storageSiteSiteName];
+    */
+}
 
 
 

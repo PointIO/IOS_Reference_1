@@ -27,6 +27,16 @@
 	<array>
 		<dict>
 			<key>ColorName</key>
+			<string>White</string>
+			<key>ColorArt</key>
+			<string>colorWhite.png</string>
+			<key>ColorNSColor</key>
+			<string>whiteColor</string>
+			<key>ColorCode</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>ColorName</key>
 			<string>Blue</string>
 			<key>ColorArt</key>
 			<string>colorBlue.png</string>
@@ -62,16 +72,6 @@
 			<string>colorYellow.png</string>
 			<key>ColorNSColor</key>
 			<string>yellowColor</string>
-			<key>ColorCode</key>
-			<string></string>
-		</dict>
-		<dict>
-			<key>ColorName</key>
-			<string>White</string>
-			<key>ColorArt</key>
-			<string>colorWhite.png</string>
-			<key>ColorNSColor</key>
-			<string>whiteColor</string>
 			<key>ColorCode</key>
 			<string></string>
 		</dict>

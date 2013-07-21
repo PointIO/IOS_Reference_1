@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AppKeyPostString</key>
+	<string>apikey=b022de6e-9bf6-11e2-b014-12313b093415</string>
+	<key>keyPointAppId</key>
+	<string>b022de6e-9bf6-11e2-b014-12313b093415</string>
+	<key>keyPointAppSecret</key>
+	<string>NX6KLn8nQWy1mz0QI8KlNquUqEArkpqmyv5ic7Vtee2vRWGONROnqSEMSHGmYtp</string>
+	<key>keyFlurry</key>
+	<string>2XMYBQX7DPHPK96SQ9H9</string>
+	<key>keyTestFlight</key>
+	<string>a16c5748-0fde-45d6-b1f5-6874d4388987</string>
+	<key>keyJira</key>
+	<string>b85906bc-f3aa-4fd7-afb7-df3b7f4b2853</string>
+	<key>pointDemoAccount</key>
+	<string>demo@point.io</string>
+	<key>pointDemoPassword</key>
+	<string>demo</string>
+</dict>
+</plist>
