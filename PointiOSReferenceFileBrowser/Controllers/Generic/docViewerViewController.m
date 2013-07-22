@@ -220,7 +220,6 @@ NSArray* tempArray;
         [svc setSessionKey:_sessionKey];
     }
     if([[segue identifier] isEqualToString:@"goToDocumentShareSettings"]){
-        /*
         DocumentShareSettingsViewController *svc = [segue destinationViewController];
         [svc setFileDownloadURL:_fileDownloadURL];
         [svc setFileName:_fileName];
@@ -230,7 +229,6 @@ NSArray* tempArray;
         [svc setRemotePath:_remotePath];
         [svc setContainerID:_containerID];
         [svc setSessionKey:_sessionKey];
-        */
     }
 }
 

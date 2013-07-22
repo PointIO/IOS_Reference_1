@@ -37,12 +37,14 @@ UITextFieldDelegate
 @property (nonatomic) NSString* password;
 
 @property (weak, nonatomic) IBOutlet UILabel *passwordsDontMatchLabel;
-@property (weak, nonatomic) IBOutlet UISwitch *printSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *downloadSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *expireSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *forwardingSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *screenCaptureSwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *passwordSwitch;
+
+@property (nonatomic) BOOL printSwitch;
+@property (nonatomic) BOOL downloadSwitch;
+@property (nonatomic) BOOL expireSwitch;
+@property (nonatomic) BOOL forwardingSwitch;
+@property (nonatomic) BOOL screenCaptureSwitch;
+@property (nonatomic) BOOL passwordSwitch;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareSecurelyButton;
 
 - (IBAction)shareSecurelyPressed:(id)sender;

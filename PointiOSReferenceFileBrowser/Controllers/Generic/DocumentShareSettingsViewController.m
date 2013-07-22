@@ -41,6 +41,13 @@ BOOL shouldCheck;
     shouldCheck = YES;
     shareSecurelyPressed = NO;
     
+    _printSwitch = FALSE;
+    _downloadSwitch = FALSE;
+    _expireSwitch = FALSE;
+    _forwardingSwitch = FALSE;
+    _screenCaptureSwitch = FALSE;
+    _passwordSwitch = FALSE;
+    
     // _passwordsDontMatchLabel.alpha = 0;
     // _passwordsDontMatchLabel.frame = CGRectMake(_passwordsDontMatchLabel.frame.origin.x, _passwordSwitch.frame.origin.y + 20, _passwordsDontMatchLabel.frame.size.width, _passwordsDontMatchLabel.frame.size.height);
     // [_expireSwitch addTarget:self action:@selector(expireSwitchValueChanged) forControlEvents:UIControlEventValueChanged];
@@ -57,30 +64,67 @@ BOOL shouldCheck;
 }
 
 
-- (void) expireSwitchValueChanged{
-    if(_expireSwitch.isOn){
-        [self performSegueWithIdentifier:@"getTheDate" sender:self];
-    }
-}
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (cell.accessoryType == UITableViewCellAccessoryCheckmark)
-    {
+    if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    else
-    {
+    else {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    }
+    
+    if ((indexPath.section == 0)) {
+        switch (indexPath.row) {
+            case 0:
+                NSLog(@"Toggle Print");
+                _printSwitch = !_printSwitch;
+                break;
+            case 1:
+                NSLog(@"Toggle Download");
+                _downloadSwitch = !_downloadSwitch;
+                break;
+            case 2:
+                NSLog(@"Toggle Capture");
+                _screenCaptureSwitch = !_screenCaptureSwitch;
+                break;
+            /*
+            case 3:
+                NSLog(@"Toggle Forward");
+                _forwardingSwitch = !_forwardingSwitch;
+                break;
+            */
+            default:
+                break;
+        }
+    }
+    else if ((indexPath.section == 1)) {
+        switch (indexPath.row) {
+            case 0:
+                NSLog(@"Toggle Expire");
+                _expireSwitch = !_expireSwitch;
+                break;
+            case 1:
+                NSLog(@"Toggle Password");
+                _passwordSwitch = !_passwordSwitch;
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+- (void) expireSwitchValueChanged{
+    if(_expireSwitch){
+        [self performSegueWithIdentifier:@"getTheDate" sender:self];
     }
 }
 
 
-
 - (void) passwordSwitchValueChanged{
-    if(_passwordSwitch.isOn){
+    if(_passwordSwitch){
         passwordAlertView = [[UIAlertView alloc] initWithTitle:@"   "
                                                        message:@"   "
                                                       delegate:self
@@ -133,20 +177,6 @@ BOOL shouldCheck;
         {
             MFMailComposeViewController *mailer = [MFMailComposeViewController new];
             mailer.mailComposeDelegate = self;
-            //                [mailer setSubject:@""];
-            //            NSURLRequest* req = [NSURLRequest requestWithURL:_fileDownloadURL];
-            //        NSString* extension = [_fileName pathExtension];
-            //        if([extension isEqualToString:@"jpg"] || [extension isEqualToString:@"png"] || [extension isEqualToString:@"jpeg"] || [extension isEqualToString:@"gif"] || [extension isEqualToString:@"bmp"] || [extension isEqualToString:@"tiff"]){
-            //        [mailer addAttachmentData:_downloadData mimeType:@"image/png" fileName:_fileName];
-            //        } else if([extension isEqualToString:@"pdf"] || [extension isEqualToString:@"doc"] || [extension isEqualToString:@"xls"] || [extension isEqualToString:@"ppt"]){
-            //            [mailer addAttachmentData:_downloadData mimeType:@"application/pdf" fileName:_fileName];
-            //        }
-            
-            //                if(!imgView5){
-            //                imgView5 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
-            //                imgView5.image = [UIImage imageNamed:@"newMessageBarImage.png"];
-            //                [[UINavigationBar appearance] setBackgroundImage:imgView5.image forBarMetrics:UIBarMetricsDefault];
-            //                }
             [[mailer navigationBar] setTintColor:[UIColor colorWithRed:0.10980392156863f green:0.37254901960784f blue:0.6078431372549f alpha:1]];
             NSURLResponse* urlResponseList;
             NSError* requestErrorList;
@@ -160,24 +190,41 @@ BOOL shouldCheck;
                                        _fileName,
                                        _remotePath,
                                        _containerID];
-            if(_printSwitch.isOn){
+            if(_printSwitch){
                 requestParams = [requestParams stringByAppendingFormat:@"&allowPrint=1"];
             } else {
                 requestParams = [requestParams stringByAppendingFormat:@"&allowPrint=0"];
             }
             
-            if(_downloadSwitch.isOn){
+            if(_downloadSwitch){
                 requestParams = [requestParams stringByAppendingFormat:@"&allowDownload=1"];
             } else {
                 requestParams = [requestParams stringByAppendingFormat:@"&allowDownload=0"];
             }
             
-            if(_expireSwitch.isOn){
+            if(_screenCaptureSwitch){
+                requestParams = [requestParams stringByAppendingFormat:@"&maskDisplay=SMALL"];
+            } else {
+                requestParams = [requestParams stringByAppendingFormat:@"&maskDisplay=NONE"];
+            }
+
+            /*
+            if(_forwardingSwitch){
+                requestParams = [requestParams stringByAppendingFormat:@"&maskDisplay=SMALL"];
+            } else {
+                requestParams = [requestParams stringByAppendingFormat:@"&allowForwarding=NONE"];
+            }
+            */
+            
+            
+            /*
+            if(_expireSwitch){
                 requestParams = [requestParams stringByAppendingFormat:@"&expirationDate=%@",_appDel.shareExpirationDate];
             }
-            if(_passwordSwitch.isOn){
+            if(_passwordSwitch){
                 requestParams = [requestParams stringByAppendingFormat:@"&password=%@",_password];
             }
+            */
             
             NSLog(@"REQUEST PARAMS = %@",requestParams);
             NSData* payload = [requestParams dataUsingEncoding:NSUTF8StringEncoding];
@@ -204,6 +251,14 @@ BOOL shouldCheck;
                         shareSecurelyPressed = YES;
                     }];
                 }
+                else {
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                    message:@"Link Request Failed"
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"Dismiss"
+                                                          otherButtonTitles: nil];
+                    [alert show];
+                }
             }
         }
         else
@@ -217,7 +272,6 @@ BOOL shouldCheck;
         }
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }
-    
 }
 
 - (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
@@ -233,19 +287,19 @@ BOOL shouldCheck;
 - (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if(alertView.tag == 99){
         if(buttonIndex == 0){
-            [_passwordSwitch setOn:NO animated:YES];
+            // [_passwordSwitch setOn:NO animated:YES];
             _passwordsDontMatchLabel.alpha = 0;
             [_passwordsDontMatchLabel setHidden:YES];
         }
         if(buttonIndex == 1 && ([[passwordTextField text] length] == 0 || [[reenterPasswordTextField text] length] == 0)){
-            [_passwordSwitch setOn:NO animated:YES];
+            // [_passwordSwitch setOn:NO animated:YES];
             _passwordsDontMatchLabel.alpha = 0;
         } else {
             if([[passwordTextField text] isEqualToString:[reenterPasswordTextField text]] && (![[passwordTextField text] length] == 0 || ![[reenterPasswordTextField text] length] == 0)){
                 _password = [passwordTextField text];
                 _passwordsDontMatchLabel.alpha = 0;
             } else {
-                [_passwordSwitch setOn:NO animated:YES];
+                // [_passwordSwitch setOn:NO animated:YES];
                 _passwordsDontMatchLabel.alpha = 1;
                 [UIView animateWithDuration:4.0 animations:^(void){
                     _passwordsDontMatchLabel.alpha = 0;
