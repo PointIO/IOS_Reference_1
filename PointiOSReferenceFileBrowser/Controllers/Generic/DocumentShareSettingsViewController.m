@@ -104,6 +104,9 @@ BOOL shouldCheck;
         switch (indexPath.row) {
             case 0:
                 NSLog(@"Toggle Expire");
+                if (_expireSwitch){
+                    [self performSegueWithIdentifier:@"getTheDate" sender:self];
+                }
                 _expireSwitch = !_expireSwitch;
                 break;
             case 1:
@@ -116,14 +119,14 @@ BOOL shouldCheck;
     }
 }
 
-- (void) expireSwitchValueChanged{
+- (void)expireSwitchValueChanged{
     if(_expireSwitch){
         [self performSegueWithIdentifier:@"getTheDate" sender:self];
     }
 }
 
 
-- (void) passwordSwitchValueChanged{
+- (void)passwordSwitchValueChanged{
     if(_passwordSwitch){
         passwordAlertView = [[UIAlertView alloc] initWithTitle:@"   "
                                                        message:@"   "
@@ -217,10 +220,12 @@ BOOL shouldCheck;
             */
             
             
-            /*
+            
             if(_expireSwitch){
                 requestParams = [requestParams stringByAppendingFormat:@"&expirationDate=%@",_appDel.shareExpirationDate];
             }
+            
+            /*
             if(_passwordSwitch){
                 requestParams = [requestParams stringByAppendingFormat:@"&password=%@",_password];
             }
@@ -274,7 +279,7 @@ BOOL shouldCheck;
     }
 }
 
-- (BOOL) textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     if(textField == reenterPasswordTextField || textField == passwordTextField){
         if(![[passwordTextField text] isEqualToString:[reenterPasswordTextField text]] && !([[passwordTextField text] length] == 0 && [[reenterPasswordTextField text] length] == 0)){
         } else {
@@ -284,7 +289,7 @@ BOOL shouldCheck;
     return YES;
 }
 
-- (void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
     if(alertView.tag == 99){
         if(buttonIndex == 0){
             // [_passwordSwitch setOn:NO animated:YES];

@@ -1280,6 +1280,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <segue destination="aKD-Y2-NYx" kind="modal" identifier="getTheDate" modalTransitionStyle="partialCurl" id="AnH-TN-I5i"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="W51-wz-v91">
                                         <rect key="frame" x="0.0" y="220" width="320" height="44"/>
@@ -1317,7 +1320,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cg1-cx-LWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1273" y="-2636"/>
+            <point key="canvasLocation" x="1273" y="-2638"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="vCW-Co-yYx">
@@ -1436,5 +1439,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Wqj-yR-Qlz"/>
+        <segue reference="AnH-TN-I5i"/>
     </inferredMetricsTieBreakers>
 </document>
