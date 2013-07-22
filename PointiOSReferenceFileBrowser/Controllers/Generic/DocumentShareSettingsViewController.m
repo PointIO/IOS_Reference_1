@@ -112,6 +112,12 @@ BOOL shouldCheck;
             case 1:
                 NSLog(@"Toggle Password");
                 _passwordSwitch = !_passwordSwitch;
+                [self passwordSwitchValueChanged];
+                /*
+                if (_passwordSwitch){
+                    [self performSegueWithIdentifier:@"getThePassword" sender:self];
+                }
+                */
                 break;
             default:
                 break;
@@ -213,9 +219,9 @@ BOOL shouldCheck;
 
             /*
             if(_forwardingSwitch){
-                requestParams = [requestParams stringByAppendingFormat:@"&maskDisplay=SMALL"];
+                requestParams = [requestParams stringByAppendingFormat:@"&restrictByIP=SMALL"];
             } else {
-                requestParams = [requestParams stringByAppendingFormat:@"&allowForwarding=NONE"];
+                requestParams = [requestParams stringByAppendingFormat:@"&restrictByIP=NONE"];
             }
             */
             
