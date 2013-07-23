@@ -18,12 +18,6 @@
 
 @implementation AppDelegate
 
-/*
-static NSString *const kFlurryAPIKey = @"2XMYBQX7DPHPK96SQ9H9";
-static NSString *const kPointAPIKey = @"apikey=b022de6e-9bf6-11e2-b014-12313b093415";
-static NSString *const kPointDemoUserName = @"demo@point.io";
-static NSString *const kPointDemoPassword = @"demo";
-*/
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions{
 

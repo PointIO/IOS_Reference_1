@@ -18,8 +18,8 @@
 
 UITextField* passwordTextField, *reenterPasswordTextField;
 UIAlertView* passwordAlertView;
-BOOL shareSecurelyPressed;
-BOOL shouldCheck;
+// BOOL shareSecurelyPressed;
+// BOOL shouldCheck;
 
 
 
@@ -38,8 +38,8 @@ BOOL shouldCheck;
     [super viewDidLoad];
 
     _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
-    shouldCheck = YES;
-    shareSecurelyPressed = NO;
+    // shouldCheck = YES;
+    // shareSecurelyPressed = NO;
     
     _printSwitch = FALSE;
     _downloadSwitch = FALSE;
@@ -225,8 +225,6 @@ BOOL shouldCheck;
             }
             */
             
-            
-            
             if(_expireSwitch){
                 requestParams = [requestParams stringByAppendingFormat:@"&expirationDate=%@",_appDel.shareExpirationDate];
             }
@@ -259,7 +257,7 @@ BOOL shouldCheck;
                     [mailer setMessageBody:emailBody isHTML:NO];
                     [mailer setSubject:_fileName];
                     [self presentViewController:mailer animated:YES completion:^(void){
-                        shareSecurelyPressed = YES;
+                        // shareSecurelyPressed = YES;
                     }];
                 }
                 else {
