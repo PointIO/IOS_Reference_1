@@ -13,12 +13,14 @@
 #import "AppDelegate.h"
 #import "Reachability.h"
 #import "SystemConfiguration/SystemConfiguration.h"
+#import "passwordPickerViewController.h"
 
 @interface DocumentShareSettingsViewController : UITableViewController
 <
-MFMailComposeViewControllerDelegate,
-UIAlertViewDelegate,
-UITextFieldDelegate
+    MFMailComposeViewControllerDelegate,
+    UIAlertViewDelegate,
+    UITextFieldDelegate,
+    passwordPickerViewControllerDelegate
 >
 
 
@@ -40,9 +42,11 @@ UITextFieldDelegate
 
 @property (nonatomic) BOOL printSwitch;
 @property (nonatomic) BOOL downloadSwitch;
-@property (nonatomic) BOOL expireSwitch;
-@property (nonatomic) BOOL forwardingSwitch;
 @property (nonatomic) BOOL screenCaptureSwitch;
+@property (nonatomic) BOOL downloadAsPDFSwitch;
+@property (nonatomic) BOOL restrictByIPSwitch;
+
+@property (nonatomic) BOOL expireSwitch;
 @property (nonatomic) BOOL passwordSwitch;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareSecurelyButton;

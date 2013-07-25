@@ -237,6 +237,7 @@
 		8AA513F9176A0BC300665111 /* BackupMainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */; };
 		8AA513FA176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */; };
 		8AA6572317832B38002C9A7B /* TabBarButtonItemFileCabinet.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AA6572217832B38002C9A7B /* TabBarButtonItemFileCabinet.png */; };
+		8ACE6C4617A0B75600275501 /* passwordPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ACE6C4517A0B75600275501 /* passwordPickerViewController.m */; };
 		8AE07886177B8D22005318D1 /* Samba.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE0787E177B8D22005318D1 /* Samba.png */; };
 		8AE07887177B8D22005318D1 /* FTP.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE0787F177B8D22005318D1 /* FTP.png */; };
 		8AE07888177B8D22005318D1 /* SFTP.png in Resources */ = {isa = PBXBuildFile; fileRef = 8AE07880177B8D22005318D1 /* SFTP.png */; };
@@ -591,6 +592,8 @@
 		8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BackupMainStoryboard_iPad.storyboard; path = ../PointiOSReferenceFileBrowser/Views/Storyboards/BackupMainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BackupMainStoryboard_iPhone.storyboard; path = ../PointiOSReferenceFileBrowser/Views/Storyboards/BackupMainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		8AA6572217832B38002C9A7B /* TabBarButtonItemFileCabinet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TabBarButtonItemFileCabinet.png; sourceTree = "<group>"; };
+		8ACE6C4417A0B75600275501 /* passwordPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = passwordPickerViewController.h; sourceTree = "<group>"; };
+		8ACE6C4517A0B75600275501 /* passwordPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = passwordPickerViewController.m; sourceTree = "<group>"; };
 		8AE0787E177B8D22005318D1 /* Samba.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Samba.png; sourceTree = "<group>"; };
 		8AE0787F177B8D22005318D1 /* FTP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FTP.png; sourceTree = "<group>"; };
 		8AE07880177B8D22005318D1 /* SFTP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SFTP.png; sourceTree = "<group>"; };
@@ -975,6 +978,8 @@
 				8A9070701788895100529631 /* LoginViewController.m */,
 				8AA513DE176A04C600665111 /* newConnectionViewController.h */,
 				8AA513D5176A04C600665111 /* newConnectionViewController.m */,
+				8ACE6C4417A0B75600275501 /* passwordPickerViewController.h */,
+				8ACE6C4517A0B75600275501 /* passwordPickerViewController.m */,
 				8A4D2C3A1775F1CD00E662E4 /* SettingsViewController.h */,
 				8A4D2C3B1775F1CD00E662E4 /* SettingsViewController.m */,
 				8AA513E2176A04C600665111 /* signupViewController.h */,
@@ -1650,6 +1655,7 @@
 				8A6E45DD177CC3050086C4F3 /* StorageTypeCell.m in Sources */,
 				8A9070711788895100529631 /* LoginViewController.m in Sources */,
 				8A36F5521798CF2100E07632 /* DocumentShareSettingsViewController.m in Sources */,
+				8ACE6C4617A0B75600275501 /* passwordPickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

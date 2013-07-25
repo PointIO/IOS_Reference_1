@@ -8,6 +8,7 @@
 
 #import "DocumentShareSettingsViewController.h"
 #import "Common.h"
+#import "passwordPickerViewController.h"
 
 @interface DocumentShareSettingsViewController ()
 
@@ -43,9 +44,11 @@ UIAlertView* passwordAlertView;
     
     _printSwitch = FALSE;
     _downloadSwitch = FALSE;
-    _expireSwitch = FALSE;
-    _forwardingSwitch = FALSE;
     _screenCaptureSwitch = FALSE;
+    _downloadAsPDFSwitch = FALSE;
+    _restrictByIPSwitch = FALSE;
+
+    _expireSwitch = FALSE;
     _passwordSwitch = FALSE;
     
     // _passwordsDontMatchLabel.alpha = 0;
@@ -90,12 +93,14 @@ UIAlertView* passwordAlertView;
                 NSLog(@"Toggle Capture");
                 _screenCaptureSwitch = !_screenCaptureSwitch;
                 break;
-            /*
             case 3:
-                NSLog(@"Toggle Forward");
-                _forwardingSwitch = !_forwardingSwitch;
+                NSLog(@"Toggle PDF Download");
+                _downloadAsPDFSwitch = !_downloadAsPDFSwitch;
                 break;
-            */
+            case 4:
+                NSLog(@"Toggle Forwarding");
+                _restrictByIPSwitch = !_restrictByIPSwitch;
+                break;
             default:
                 break;
         }
@@ -112,7 +117,7 @@ UIAlertView* passwordAlertView;
             case 1:
                 NSLog(@"Toggle Password");
                 _passwordSwitch = !_passwordSwitch;
-                [self passwordSwitchValueChanged];
+                // [self passwordSwitchValueChanged];
                 /*
                 if (_passwordSwitch){
                     [self performSegueWithIdentifier:@"getThePassword" sender:self];
@@ -217,14 +222,18 @@ UIAlertView* passwordAlertView;
                 requestParams = [requestParams stringByAppendingFormat:@"&maskDisplay=NONE"];
             }
 
-            /*
-            if(_forwardingSwitch){
-                requestParams = [requestParams stringByAppendingFormat:@"&restrictByIP=SMALL"];
+            if(_downloadAsPDFSwitch){
+                requestParams = [requestParams stringByAppendingFormat:@"&allowDownloadAsPDF=1"];
             } else {
-                requestParams = [requestParams stringByAppendingFormat:@"&restrictByIP=NONE"];
+                requestParams = [requestParams stringByAppendingFormat:@"&allowDownloadAsPDF=0"];
             }
-            */
-            
+
+            if(_restrictByIPSwitch){
+                requestParams = [requestParams stringByAppendingFormat:@"&restrictByIP=1"];
+            } else {
+                requestParams = [requestParams stringByAppendingFormat:@"&restrictByIP=0"];
+            }
+
             if(_expireSwitch){
                 requestParams = [requestParams stringByAppendingFormat:@"&expirationDate=%@",_appDel.shareExpirationDate];
             }
@@ -343,5 +352,26 @@ UIAlertView* passwordAlertView;
     [super viewDidUnload];
 }
 
+
+#pragma mark
+#pragma Implement Delegate Methods
+- (void)passwordPickerViewControllerDidCancel:(passwordPickerViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+#pragma mark
+#pragma Segue Logic
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"goToPasswordPicker"])
+    {
+        passwordPickerViewController *pickerVC = segue.destinationViewController;
+        pickerVC.delegate = self;
+        // pickerVC.currentValue = colorThemePickerViewController.currentValue;
+    }
+}
 
 @end

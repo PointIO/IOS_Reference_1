@@ -1147,6 +1147,107 @@
             </objects>
             <point key="canvasLocation" x="1273" y="-1926"/>
         </scene>
+        <!--Password Picker View Controller - Set Password-->
+        <scene sceneID="2lm-Rq-pDx">
+            <objects>
+                <tableViewController id="02t-sd-Sx7" customClass="passwordPickerViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="NEy-YY-qpj">
+                        <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <sections>
+                            <tableViewSection headerTitle="Enter Password" id="EGf-G0-ezx">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="VtK-XC-Gj6">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password" minimumFontSize="17" clearButtonMode="whileEditing" id="0tO-QN-ria">
+                                                    <rect key="frame" x="20" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Retype Password" id="ww6-Si-g4J">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gvI-cf-z7l">
+                                        <rect key="frame" x="0.0" y="88" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password Again" minimumFontSize="17" clearButtonMode="whileEditing" id="On9-uc-Qjl">
+                                                    <rect key="frame" x="20" y="0.0" width="280" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="" id="bOD-rt-Kq2">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="NBC-Sw-AtR">
+                                        <rect key="frame" x="0.0" y="132" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Passwords do not match." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bcI-S1-Pfz">
+                                                    <rect key="frame" x="20" y="11" width="280" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="02t-sd-Sx7" id="R78-Pu-cQe"/>
+                            <outlet property="delegate" destination="02t-sd-Sx7" id="ikS-BS-joQ"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Set Password" id="B8V-YH-r3u">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="rDY-s8-mQa">
+                            <connections>
+                                <action selector="cancelButtonPressed:" destination="02t-sd-Sx7" id="stH-W9-IVp"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="OK" id="CFI-GI-21B">
+                            <connections>
+                                <action selector="okButtonPressed" destination="02t-sd-Sx7" id="73V-Sd-TPL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="passwordErrorLabel" destination="bcI-S1-Pfz" id="4Vm-f6-Wok"/>
+                        <outlet property="passwordTextField1" destination="0tO-QN-ria" id="M2W-x8-aWB"/>
+                        <outlet property="passwordTextField2" destination="On9-uc-Qjl" id="IEB-na-Im1"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xr8-Fg-gY8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1915" y="-3350"/>
+        </scene>
         <!--Date Picker View Controller-->
         <scene sceneID="94u-7X-FgV">
             <objects>
@@ -1203,7 +1304,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection headerTitle="Allow / Disallow" id="Bgq-K8-F3v">
+                            <tableViewSection headerTitle="Allow Recipient to  . . ." id="Bgq-K8-F3v">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hbV-Ul-IwS">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
@@ -1259,12 +1360,48 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="9zZ-aR-rJl">
+                                        <rect key="frame" x="0.0" y="154" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Download as PDF" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ODN-bk-VSa">
+                                                    <rect key="frame" x="20" y="11" width="171" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="iWv-Bc-uVt">
+                                        <rect key="frame" x="0.0" y="198" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Share Outside their Organization" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dGA-lI-5oc">
+                                                    <rect key="frame" x="20" y="11" width="248" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Additional Secure Setting" id="yLG-jT-ppa">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cV4-nN-s87">
-                                        <rect key="frame" x="0.0" y="176" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="264" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1282,6 +1419,27 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </view>
                                         <connections>
                                             <segue destination="aKD-Y2-NYx" kind="modal" identifier="getTheDate" modalTransitionStyle="partialCurl" id="AnH-TN-I5i"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="AMO-h7-jSS">
+                                        <rect key="frame" x="0.0" y="308" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Set Link Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fQE-HK-Se5">
+                                                    <rect key="frame" x="20" y="11" width="171" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <connections>
+                                            <segue destination="02t-sd-Sx7" kind="push" identifier="goToPasswordPicker" id="dcB-0V-K5T"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1414,6 +1572,181 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="signUpButton.png" width="165" height="87"/>
         <image name="submitButton.png" width="165" height="87"/>
     </resources>
+    <classes>
+        <class className="ColorThemeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ColorThemeCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="colorThemeColor" candidateClass="UIColor"/>
+                <relationship kind="outlet" name="colorThemeColorImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="colorThemeColorNameLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="ColorThemePickerViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ColorThemePickerViewController.h"/>
+        </class>
+        <class className="DocumentShareSettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentShareSettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="shareSecurelyPressed:"/>
+                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="shareSecurelyButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="demoPressed"/>
+                <relationship kind="action" name="screenPressed"/>
+                <relationship kind="action" name="signInPressed"/>
+                <relationship kind="action" name="signOutPressed"/>
+                <relationship kind="action" name="signUpPressed"/>
+                <relationship kind="outlet" name="demoButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="loggedInAsNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loggedInAsNameText" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="signInButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="signOutButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="showFeedback"/>
+                <relationship kind="action" name="timeStampSwitchValueChanged"/>
+                <relationship kind="outlet" name="currentColorThemeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="jiraButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="timeStampSwitch" candidateClass="UISwitch"/>
+            </relationships>
+        </class>
+        <class className="ShareDetailCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShareDetailCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dateModifiedLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="typeImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ShareListCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShareListCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="storageImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="StorageConnectionListCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StorageConnectionListCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="storageImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="StorageTypeCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StorageTypeCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="storageImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="StorageTypesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/StorageTypesViewController.h"/>
+        </class>
+        <class className="accessRulesListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/accessRulesListViewController.h"/>
+        </class>
+        <class className="datePickerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/datePickerViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
+            </relationships>
+        </class>
+        <class className="docViewerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/docViewerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="shareFilePressed:"/>
+                <relationship kind="outlet" name="docWebView" candidateClass="UIWebView"/>
+                <relationship kind="outlet" name="errorOccuredLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="shareFileButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
+            </relationships>
+        </class>
+        <class className="newConnectionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/newConnectionViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="createPressed"/>
+                <relationship kind="action" name="revisionControlEnabledValueChanged"/>
+                <relationship kind="action" name="screenPressed"/>
+                <relationship kind="outlet" name="checkinCheckout" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="checkinCheckoutLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="createButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="enabledLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="enabledSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="loggingEnabled" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="loggingLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="maxRevisions" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="maxRevisionsLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="revisionControl" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="revisionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="passwordPickerViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/passwordPickerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelButtonPressed:"/>
+                <relationship kind="outlet" name="passwordErrorLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordTextField1" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordTextField2" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="shareDetailViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/shareDetailViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="done:"/>
+                <relationship kind="action" name="showPastFolder:"/>
+                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="sharingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/sharingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="shareSecurelyPressed:"/>
+                <relationship kind="outlet" name="downloadSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="expireSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="forwardingSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="passwordSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="printSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="screenCaptureSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="shareSecurelyButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="signupViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/signupViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="screenPressed"/>
+                <relationship kind="action" name="signUpPressed"/>
+                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="firstNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lastNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="reEnterPasswordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
+                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="storageSitesListViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/storageSitesListViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="addConnectionPressed:"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

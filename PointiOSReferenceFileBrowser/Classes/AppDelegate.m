@@ -25,7 +25,8 @@
     // NSLog(@"Contents of NSUserDefaults is %@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
     // [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-    NSString *testFlightKey = [Common getAppKey:@"keyTestFlight"];
+    NSString *testFlightKey = @"a16c5748-0fde-45d6-b1f5-6874d4388987";
+    // [Common getAppKey:@"keyTestFlight"];
     [TestFlight takeOff:testFlightKey];
     _hasLoggedIn = NO;
     
@@ -38,6 +39,14 @@
     
     _accessRulesEnabledArray = [[NSMutableArray alloc] init];
 
+    NSString *tableViewRowColor = [defaults objectForKey:@"defaultColorTheme"];
+    if (!tableViewRowColor) {
+        NSLog(@"There was no color set");
+        [[NSUserDefaults standardUserDefaults] setValue:@"White" forKey:@"defaultColorTheme"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+    
     if([[defaults valueForKey:@"USERNAME"] length] != 0 && [[defaults valueForKey:@"PASSWORD"] length] !=0){
         _username = [defaults valueForKey:@"USERNAME"];
         _password = [defaults valueForKey:@"PASSWORD"];
