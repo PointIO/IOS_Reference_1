@@ -116,13 +116,13 @@ UIAlertView* passwordAlertView;
                 break;
             case 1:
                 NSLog(@"Toggle Password");
-                _passwordSwitch = !_passwordSwitch;
-                // [self passwordSwitchValueChanged];
-                /*
-                if (_passwordSwitch){
-                    [self performSegueWithIdentifier:@"getThePassword" sender:self];
+                if (!_passwordSwitch){
+                    _passwordSwitch = !_passwordSwitch;
+                    [self performSegueWithIdentifier:@"goToPasswordPicker" sender:self];
                 }
-                */
+                else {
+                    _passwordSwitch = !_passwordSwitch;
+                }
                 break;
             default:
                 break;
@@ -137,6 +137,7 @@ UIAlertView* passwordAlertView;
 }
 
 
+/*
 - (void)passwordSwitchValueChanged{
     if(_passwordSwitch){
         passwordAlertView = [[UIAlertView alloc] initWithTitle:@"   "
@@ -174,6 +175,7 @@ UIAlertView* passwordAlertView;
         [passwordAlertView show];
     }
 }
+*/
 
 
 - (IBAction)shareSecurelyPressed:(id)sender {
@@ -361,6 +363,15 @@ UIAlertView* passwordAlertView;
 }
 
 
+- (void)passwordPickerViewController:(passwordPickerViewController *)controller didSelectValue:(NSString *)theSelectedValue {
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+    NSString *passwordSelected = theSelectedValue;
+
+}
+
+
+
 #pragma mark
 #pragma Segue Logic
 
@@ -368,10 +379,24 @@ UIAlertView* passwordAlertView;
 {
     if ([segue.identifier isEqualToString:@"goToPasswordPicker"])
     {
-        passwordPickerViewController *pickerVC = segue.destinationViewController;
+        UINavigationController *navigationController = segue.destinationViewController;
+        passwordPickerViewController *pickerVC  = [[navigationController viewControllers] objectAtIndex:0];
+        // passwordPickerViewController *pickerVC = segue.destinationViewController;
         pickerVC.delegate = self;
         // pickerVC.currentValue = colorThemePickerViewController.currentValue;
     }
+    
+    /*
+    UINavigationController *navigationController            = segue.destinationViewController;
+    PlayerDetailViewController *playerDetailViewController  = [[navigationController viewControllers] objectAtIndex:0];
+    playerDetailViewController.delegate                     = self;
+    
+    NSIndexPath *indexPath                                  = [self.tableView indexPathForCell:sender];
+    
+    Player *player                                          = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    playerDetailViewController.playerToEdit                 = player;
+     */
+    
 }
 
 @end

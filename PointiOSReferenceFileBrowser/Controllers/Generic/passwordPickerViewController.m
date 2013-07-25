@@ -30,6 +30,8 @@
 {
     [super viewDidLoad];
     _passwordErrorLabel.hidden = TRUE;
+    _passwordTextField1.secureTextEntry=YES;
+    _passwordTextField2.secureTextEntry=YES;    
 }
 
 
@@ -52,7 +54,6 @@
 
 
 - (IBAction)okButtonPressed {
-    NSLog(@"OK Button Pressed Changed");
     [self.delegate passwordPickerViewController:self didSelectValue:@"passwordOK"];
 }
 
