@@ -24,7 +24,7 @@
 >
 
 
-@property (nonatomic) AppDelegate* appDel;
+// @property (nonatomic) AppDelegate* appDel;
 
 @property (nonatomic) NSURL* fileDownloadURL;
 @property (nonatomic) NSData* downloadData;

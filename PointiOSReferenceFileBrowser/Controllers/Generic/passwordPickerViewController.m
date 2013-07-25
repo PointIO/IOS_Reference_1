@@ -31,7 +31,7 @@
     [super viewDidLoad];
     _passwordErrorLabel.hidden = TRUE;
     _passwordTextField1.secureTextEntry=YES;
-    _passwordTextField2.secureTextEntry=YES;    
+    _passwordTextField2.secureTextEntry=YES;
 }
 
 
@@ -54,13 +54,37 @@
 
 
 - (IBAction)okButtonPressed {
-    [self.delegate passwordPickerViewController:self didSelectValue:@"passwordOK"];
+    
+    // !([[passwordTextField text] length] == 0 && [[reenterPasswordTextField text] length] == 0)){
+    if ([[_passwordTextField1 text] length] == 0) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Passwords is Zero Length, Try Again"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Dismiss"
+                                              otherButtonTitles:nil];
+        [alert show];
+
+    }
+    else if ([_passwordTextField1.text isEqualToString:_passwordTextField2.text]) {
+        UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                        message:@"Passwords Do Not Match, Try Again"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Dismiss"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else {
+        
+        [self.delegate passwordPickerViewController:self didSelectValue:_passwordTextField1.text];
+        
+    }
 }
 
 
 - (IBAction)cancelButtonPressed:(id)sender
 {
-    [self.delegate passwordPickerViewControllerDidCancel:self];
+    [self.delegate passwordPickerViewController:self didSelectValue:nil];
+    // [self.delegate passwordPickerViewControllerDidCancel:self];
 }
 
 

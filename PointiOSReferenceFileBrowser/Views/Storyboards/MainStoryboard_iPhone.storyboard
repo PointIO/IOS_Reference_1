@@ -1140,7 +1140,6 @@
                         <outlet property="printSwitch" destination="cA7-CU-CWm" id="4ub-RG-gxP"/>
                         <outlet property="screenCaptureSwitch" destination="rRM-bi-Z0w" id="O8D-nZ-ESb"/>
                         <outlet property="shareSecurelyButton" destination="Tuk-J1-dKX" id="clH-CV-46K"/>
-                        <segue destination="aKD-Y2-NYx" kind="modal" identifier="getTheDate" modalTransitionStyle="partialCurl" id="fmp-Qb-14L"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GOA-PR-5EG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1168,6 +1167,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Password" minimumFontSize="17" clearButtonMode="whileEditing" id="0tO-QN-ria">
                                                     <rect key="frame" x="20" y="0.0" width="280" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                                 </textField>
@@ -1288,13 +1288,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="tAq-Fs-yyo"/>
                     <connections>
                         <outlet property="datePicker" destination="YVh-zd-8f4" id="zx6-sQ-aHA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F3A-eE-3Sr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1915" y="-2646"/>
+            <point key="canvasLocation" x="2441" y="-2646"/>
         </scene>
         <!--Document Share Settings View Controller - Secure Sharing Options-->
         <scene sceneID="1GC-w4-hVo">
@@ -1418,9 +1419,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
-                                        <connections>
-                                            <segue destination="aKD-Y2-NYx" kind="modal" identifier="getTheDate" modalTransitionStyle="partialCurl" id="AnH-TN-I5i"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="AMO-h7-jSS">
                                         <rect key="frame" x="0.0" y="308" width="320" height="44"/>
@@ -1456,7 +1454,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="xQu-S4-8nT" kind="modal" identifier="goToPasswordPicker" id="WEc-Q1-ats"/>
+                        <segue destination="xQu-S4-8nT" kind="modal" identifier="goToPasswordPicker" modalTransitionStyle="flipHorizontal" id="WEc-Q1-ats"/>
+                        <segue destination="aKD-Y2-NYx" kind="modal" identifier="goToDatePicker" modalTransitionStyle="partialCurl" id="l8V-Ps-h8D"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cg1-cx-LWy" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1592,181 +1591,6 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <image name="signUpButton.png" width="165" height="87"/>
         <image name="submitButton.png" width="165" height="87"/>
     </resources>
-    <classes>
-        <class className="ColorThemeCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ColorThemeCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="colorThemeColor" candidateClass="UIColor"/>
-                <relationship kind="outlet" name="colorThemeColorImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="colorThemeColorNameLabel" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-        <class className="ColorThemePickerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ColorThemePickerViewController.h"/>
-        </class>
-        <class className="DocumentShareSettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentShareSettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="shareSecurelyPressed:"/>
-                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="shareSecurelyButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="demoPressed"/>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signInPressed"/>
-                <relationship kind="action" name="signOutPressed"/>
-                <relationship kind="action" name="signUpPressed"/>
-                <relationship kind="outlet" name="demoButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="loggedInAsNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="loggedInAsNameText" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="signInButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signOutButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="SettingsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showFeedback"/>
-                <relationship kind="action" name="timeStampSwitchValueChanged"/>
-                <relationship kind="outlet" name="currentColorThemeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="jiraButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="timeStampSwitch" candidateClass="UISwitch"/>
-            </relationships>
-        </class>
-        <class className="ShareDetailCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShareDetailCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dateModifiedLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="typeImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ShareListCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ShareListCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="storageImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="StorageConnectionListCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StorageConnectionListCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="storageImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="StorageTypeCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StorageTypeCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="storageImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="StorageTypesViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StorageTypesViewController.h"/>
-        </class>
-        <class className="accessRulesListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/accessRulesListViewController.h"/>
-        </class>
-        <class className="datePickerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/datePickerViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="datePicker" candidateClass="UIDatePicker"/>
-            </relationships>
-        </class>
-        <class className="docViewerViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/docViewerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="shareFilePressed:"/>
-                <relationship kind="outlet" name="docWebView" candidateClass="UIWebView"/>
-                <relationship kind="outlet" name="errorOccuredLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="shareFileButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
-            </relationships>
-        </class>
-        <class className="newConnectionViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/newConnectionViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="createPressed"/>
-                <relationship kind="action" name="revisionControlEnabledValueChanged"/>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="outlet" name="checkinCheckout" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="checkinCheckoutLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="createButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="enabledLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="enabledSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="loggingEnabled" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="loggingLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="maxRevisions" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="maxRevisionsLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="nameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="revisionControl" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="revisionLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-        <class className="passwordPickerViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/passwordPickerViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelButtonPressed:"/>
-                <relationship kind="outlet" name="passwordErrorLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordTextField1" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordTextField2" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="shareDetailViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/shareDetailViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="done:"/>
-                <relationship kind="action" name="showPastFolder:"/>
-                <relationship kind="outlet" name="backButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="sharingViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/sharingViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="shareSecurelyPressed:"/>
-                <relationship kind="outlet" name="downloadSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="expireSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="forwardingSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="passwordSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="printSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="screenCaptureSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="shareSecurelyButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="signupViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/signupViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="screenPressed"/>
-                <relationship kind="action" name="signUpPressed"/>
-                <relationship kind="outlet" name="emailTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordsDontMatchLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="reEnterPasswordTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="splitViewController" candidateClass="UISplitViewController"/>
-                <relationship kind="outlet" name="submitButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="storageSitesListViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/storageSitesListViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="addConnectionPressed:"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
@@ -1774,6 +1598,5 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="Wqj-yR-Qlz"/>
-        <segue reference="AnH-TN-I5i"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -17,13 +17,6 @@
 @implementation DocumentShareSettingsViewController
 
 
-UITextField* passwordTextField, *reenterPasswordTextField;
-UIAlertView* passwordAlertView;
-// BOOL shareSecurelyPressed;
-// BOOL shouldCheck;
-
-
-
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -38,7 +31,7 @@ UIAlertView* passwordAlertView;
 {
     [super viewDidLoad];
 
-    _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
+    // _appDel = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     // shouldCheck = YES;
     // shareSecurelyPressed = NO;
     
@@ -50,12 +43,6 @@ UIAlertView* passwordAlertView;
 
     _expireSwitch = FALSE;
     _passwordSwitch = FALSE;
-    
-    // _passwordsDontMatchLabel.alpha = 0;
-    // _passwordsDontMatchLabel.frame = CGRectMake(_passwordsDontMatchLabel.frame.origin.x, _passwordSwitch.frame.origin.y + 20, _passwordsDontMatchLabel.frame.size.width, _passwordsDontMatchLabel.frame.size.height);
-    // [_expireSwitch addTarget:self action:@selector(expireSwitchValueChanged) forControlEvents:UIControlEventValueChanged];
-    // [_passwordSwitch addTarget:self action:@selector(passwordSwitchValueChanged) forControlEvents:UIControlEventValueChanged];
-    // _shareSecurelyButton.width = 0.01;
     
 }
 
@@ -109,10 +96,13 @@ UIAlertView* passwordAlertView;
         switch (indexPath.row) {
             case 0:
                 NSLog(@"Toggle Expire");
-                if (_expireSwitch){
-                    [self performSegueWithIdentifier:@"getTheDate" sender:self];
+                if (!_expireSwitch){
+                    _expireSwitch = !_expireSwitch;
+                    [self performSegueWithIdentifier:@"goToDatePicker" sender:self];
                 }
-                _expireSwitch = !_expireSwitch;
+                else {
+                    _expireSwitch = !_expireSwitch;
+                }
                 break;
             case 1:
                 NSLog(@"Toggle Password");
@@ -132,50 +122,9 @@ UIAlertView* passwordAlertView;
 
 - (void)expireSwitchValueChanged{
     if(_expireSwitch){
-        [self performSegueWithIdentifier:@"getTheDate" sender:self];
+        [self performSegueWithIdentifier:@"goToDatePicker" sender:self];
     }
 }
-
-
-/*
-- (void)passwordSwitchValueChanged{
-    if(_passwordSwitch){
-        passwordAlertView = [[UIAlertView alloc] initWithTitle:@"   "
-                                                       message:@"   "
-                                                      delegate:self
-                                             cancelButtonTitle:@"Cancel"
-                                             otherButtonTitles:@"OK", nil];
-        passwordAlertView.frame = CGRectMake(self.view.bounds.size.width/2, self.view.bounds.size.height/2, passwordAlertView.bounds.size.width, 400);
-        _passwordsDontMatchLabel.alpha = 0;
-        [_passwordsDontMatchLabel setHidden:NO];
-        UIImageView* customAlert = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 283, 133)];
-        [customAlert setImage:[UIImage imageNamed:@"passwordsAlertView.png"]];
-        [passwordAlertView addSubview:customAlert];
-        passwordTextField = [[UITextField alloc] initWithFrame:CGRectMake(20.0, 15.0, 245.0, 25.0)];
-        passwordTextField.delegate=self;
-        [passwordTextField setBackgroundColor:[UIColor whiteColor]];
-        [passwordTextField setKeyboardType:UIKeyboardTypeDefault];
-        passwordTextField.placeholder=@"Enter a password";
-        passwordTextField.secureTextEntry=YES;
-        [passwordTextField setBorderStyle:UITextBorderStyleRoundedRect];
-        [passwordAlertView addSubview:passwordTextField];
-        
-        
-        reenterPasswordTextField = [[UITextField alloc] initWithFrame:CGRectMake(20.0, 45.0, 245.0, 25.0)];
-        reenterPasswordTextField.delegate=self;
-        [reenterPasswordTextField setBackgroundColor:[UIColor whiteColor]];
-        [reenterPasswordTextField setKeyboardType:UIKeyboardTypeDefault];
-        reenterPasswordTextField.placeholder=@"Re-enter the password";
-        reenterPasswordTextField.secureTextEntry=YES;
-        [reenterPasswordTextField setBorderStyle:UITextBorderStyleRoundedRect];
-        [passwordAlertView addSubview:reenterPasswordTextField];
-        
-        passwordAlertView.tag=99;
-        
-        [passwordAlertView show];
-    }
-}
-*/
 
 
 - (IBAction)shareSecurelyPressed:(id)sender {
@@ -236,15 +185,15 @@ UIAlertView* passwordAlertView;
                 requestParams = [requestParams stringByAppendingFormat:@"&restrictByIP=0"];
             }
 
+            /*
             if(_expireSwitch){
                 requestParams = [requestParams stringByAppendingFormat:@"&expirationDate=%@",_appDel.shareExpirationDate];
             }
+            */
             
-            /*
             if(_passwordSwitch){
                 requestParams = [requestParams stringByAppendingFormat:@"&password=%@",_password];
             }
-            */
             
             NSLog(@"REQUEST PARAMS = %@",requestParams);
             NSData* payload = [requestParams dataUsingEncoding:NSUTF8StringEncoding];
@@ -294,40 +243,6 @@ UIAlertView* passwordAlertView;
     }
 }
 
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
-    if(textField == reenterPasswordTextField || textField == passwordTextField){
-        if(![[passwordTextField text] isEqualToString:[reenterPasswordTextField text]] && !([[passwordTextField text] length] == 0 && [[reenterPasswordTextField text] length] == 0)){
-        } else {
-            _passwordsDontMatchLabel.alpha = 0;
-        }
-    }
-    return YES;
-}
-
-- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex{
-    if(alertView.tag == 99){
-        if(buttonIndex == 0){
-            // [_passwordSwitch setOn:NO animated:YES];
-            _passwordsDontMatchLabel.alpha = 0;
-            [_passwordsDontMatchLabel setHidden:YES];
-        }
-        if(buttonIndex == 1 && ([[passwordTextField text] length] == 0 || [[reenterPasswordTextField text] length] == 0)){
-            // [_passwordSwitch setOn:NO animated:YES];
-            _passwordsDontMatchLabel.alpha = 0;
-        } else {
-            if([[passwordTextField text] isEqualToString:[reenterPasswordTextField text]] && (![[passwordTextField text] length] == 0 || ![[reenterPasswordTextField text] length] == 0)){
-                _password = [passwordTextField text];
-                _passwordsDontMatchLabel.alpha = 0;
-            } else {
-                // [_passwordSwitch setOn:NO animated:YES];
-                _passwordsDontMatchLabel.alpha = 1;
-                [UIView animateWithDuration:4.0 animations:^(void){
-                    _passwordsDontMatchLabel.alpha = 0;
-                }];
-            }
-        }
-    }
-}
 
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error{
     if(result == MFMailComposeResultSent){
@@ -364,10 +279,8 @@ UIAlertView* passwordAlertView;
 
 
 - (void)passwordPickerViewController:(passwordPickerViewController *)controller didSelectValue:(NSString *)theSelectedValue {
-
     [self dismissViewControllerAnimated:YES completion:nil];
-    NSString *passwordSelected = theSelectedValue;
-
+    _password = theSelectedValue;
 }
 
 
@@ -381,22 +294,16 @@ UIAlertView* passwordAlertView;
     {
         UINavigationController *navigationController = segue.destinationViewController;
         passwordPickerViewController *pickerVC  = [[navigationController viewControllers] objectAtIndex:0];
-        // passwordPickerViewController *pickerVC = segue.destinationViewController;
         pickerVC.delegate = self;
+    }
+    else if ([segue.identifier isEqualToString:@"goToDatePicker"])
+    {
+        // UINavigationController *navigationController = segue.destinationViewController;
+        // datePickerViewController *pickerVC  = [[navigationController viewControllers] objectAtIndex:0];
+        datePickerViewController *pickerVC = segue.destinationViewController;
+        // pickerVC.delegate = self;
         // pickerVC.currentValue = colorThemePickerViewController.currentValue;
     }
-    
-    /*
-    UINavigationController *navigationController            = segue.destinationViewController;
-    PlayerDetailViewController *playerDetailViewController  = [[navigationController viewControllers] objectAtIndex:0];
-    playerDetailViewController.delegate                     = self;
-    
-    NSIndexPath *indexPath                                  = [self.tableView indexPathForCell:sender];
-    
-    Player *player                                          = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    playerDetailViewController.playerToEdit                 = player;
-     */
-    
 }
 
 @end
