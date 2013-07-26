@@ -65,11 +65,11 @@
         [alert show];
 
     }
-    else if ([_passwordTextField1.text isEqualToString:_passwordTextField2.text]) {
+    else if (![_passwordTextField1.text isEqualToString:_passwordTextField2.text]) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:@"Passwords Do Not Match, Try Again"
                                                        delegate:nil
-                                              cancelButtonTitle:@"Dismiss"
+                   	                           cancelButtonTitle:@"Dismiss"
                                               otherButtonTitles:nil];
         [alert show];
     }
