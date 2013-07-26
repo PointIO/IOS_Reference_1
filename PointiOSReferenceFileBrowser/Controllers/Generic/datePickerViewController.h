@@ -7,12 +7,55 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AppDelegate.h"
+// #import "AppDelegate.h"
 
-@class AppDelegate;
+// @class AppDelegate;
+@class datePickerViewController;
+
+@protocol datePickerViewControllerDelegate <NSObject>
+- (void)datePickerViewControllerDidCancel:(datePickerViewController *)controller;
+- (void)datePickerViewController:(datePickerViewController *)controller didSelectValue:(NSString *)theSelectedValue;
+@end
+
 
 @interface datePickerViewController : UIViewController
 
+// @property (nonatomic) AppDelegate* appDel;
+@property (nonatomic, weak) id <datePickerViewControllerDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
-@property (nonatomic) AppDelegate* appDel;
+
+
+- (IBAction)dateSelectedButtonPressed:(id)sender;
+
+
 @end
+
+
+/*
+#import <UIKit/UIKit.h>
+
+@class PracticeTimePickerViewController;
+
+@protocol PracticeTimePickerViewControllerDelegate <NSObject>
+- (void)practiceTimePickerViewControllerDidCancel:(PracticeTimePickerViewController *)controller;
+- (void)practiceTimePickerViewController:(PracticeTimePickerViewController *)controller didSelectPracticeTime:(NSString *)thePraticeTime:(NSString *)thePracticeTimeType;
+@end
+
+
+
+@interface PracticeTimePickerViewController : UIViewController
+
+{
+    IBOutlet UIDatePicker *datePicker;
+}
+
+@property (nonatomic, weak) id <PracticeTimePickerViewControllerDelegate> delegate;
+
+@property (nonatomic, strong) NSString      *practiceTime;
+@property (nonatomic, strong) UIDatePicker  *datePicker;
+@property (nonatomic, strong) NSString      *dateType;
+
+- (IBAction)dateSelectedButtonPressed:(id)sender;
+
+@end
+*/

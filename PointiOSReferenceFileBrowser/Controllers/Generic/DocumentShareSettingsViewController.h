@@ -20,15 +20,13 @@
     MFMailComposeViewControllerDelegate,
     UIAlertViewDelegate,
     UITextFieldDelegate,
-    passwordPickerViewControllerDelegate
+    passwordPickerViewControllerDelegate,
+    datePickerViewControllerDelegate
 >
-
-
-// @property (nonatomic) AppDelegate* appDel;
 
 @property (nonatomic) NSURL* fileDownloadURL;
 @property (nonatomic) NSData* downloadData;
-@property (nonatomic) NSDate* expirationDate;
+@property (nonatomic) NSString* expirationDateString;
 @property (nonatomic) NSString* docName;
 @property (nonatomic) NSString* fileName;
 @property (nonatomic) NSString* sessionKey;
@@ -38,8 +36,6 @@
 @property (nonatomic) NSString* containerID;
 @property (nonatomic) NSString* password;
 
-@property (weak, nonatomic) IBOutlet UILabel *passwordsDontMatchLabel;
-
 @property (nonatomic) BOOL printSwitch;
 @property (nonatomic) BOOL downloadSwitch;
 @property (nonatomic) BOOL screenCaptureSwitch;
@@ -48,8 +44,6 @@
 
 @property (nonatomic) BOOL expireSwitch;
 @property (nonatomic) BOOL passwordSwitch;
-
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *shareSecurelyButton;
 
 - (IBAction)shareSecurelyPressed:(id)sender;
 - (void) donePressed;

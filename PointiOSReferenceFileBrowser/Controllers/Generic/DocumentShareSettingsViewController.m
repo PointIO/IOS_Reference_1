@@ -44,6 +44,9 @@
     _expireSwitch = FALSE;
     _passwordSwitch = FALSE;
     
+    _expirationDateString = nil;
+    _password=nil;
+    
 }
 
 
@@ -137,7 +140,6 @@
         [err setBackgroundColor:[UIColor clearColor]];
         [err show];
     } else {
-        [_shareSecurelyButton setEnabled:NO];
         if ([MFMailComposeViewController canSendMail])
         {
             MFMailComposeViewController *mailer = [MFMailComposeViewController new];
@@ -185,11 +187,9 @@
                 requestParams = [requestParams stringByAppendingFormat:@"&restrictByIP=0"];
             }
 
-            /*
             if(_expireSwitch){
-                requestParams = [requestParams stringByAppendingFormat:@"&expirationDate=%@",_appDel.shareExpirationDate];
+                requestParams = [requestParams stringByAppendingFormat:@"&expirationDate=%@",_expirationDateString];
             }
-            */
             
             if(_passwordSwitch){
                 requestParams = [requestParams stringByAppendingFormat:@"&password=%@",_password];
@@ -261,11 +261,9 @@
         [TestFlight passCheckpoint:@"User failed to send a mail"];
         [self dismissViewControllerAnimated:YES completion:nil];
     }
-    [_shareSecurelyButton setEnabled:YES];
 }
 
 - (void)viewDidUnload {
-    [self setPasswordsDontMatchLabel:nil];
     [super viewDidUnload];
 }
 
@@ -283,6 +281,16 @@
     _password = theSelectedValue;
 }
 
+- (void)datePickerViewControllerDidCancel:(datePickerViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)datePickerViewController:(datePickerViewController *)controller didSelectValue:(NSString *)theSelectedValue {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    _expirationDateString = theSelectedValue;
+}
 
 
 #pragma mark
@@ -298,11 +306,8 @@
     }
     else if ([segue.identifier isEqualToString:@"goToDatePicker"])
     {
-        // UINavigationController *navigationController = segue.destinationViewController;
-        // datePickerViewController *pickerVC  = [[navigationController viewControllers] objectAtIndex:0];
         datePickerViewController *pickerVC = segue.destinationViewController;
-        // pickerVC.delegate = self;
-        // pickerVC.currentValue = colorThemePickerViewController.currentValue;
+        pickerVC.delegate = self;
     }
 }
 

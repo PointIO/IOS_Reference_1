@@ -29,7 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _passwordErrorLabel.hidden = TRUE;
     _passwordTextField1.secureTextEntry=YES;
     _passwordTextField2.secureTextEntry=YES;
 }
@@ -55,7 +54,6 @@
 
 - (IBAction)okButtonPressed {
     
-    // !([[passwordTextField text] length] == 0 && [[reenterPasswordTextField text] length] == 0)){
     if ([[_passwordTextField1 text] length] == 0) {
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
                                                         message:@"Passwords is Zero Length, Try Again"
