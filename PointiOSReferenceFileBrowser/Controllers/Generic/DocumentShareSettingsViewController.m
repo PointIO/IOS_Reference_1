@@ -270,8 +270,7 @@
 
 #pragma mark
 #pragma Implement Delegate Methods
-- (void)passwordPickerViewControllerDidCancel:(passwordPickerViewController *)controller
-{
+- (void)passwordPickerViewControllerDidCancel:(passwordPickerViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -281,8 +280,7 @@
     _password = theSelectedValue;
 }
 
-- (void)datePickerViewControllerDidCancel:(datePickerViewController *)controller
-{
+- (void)datePickerViewControllerDidCancel:(datePickerViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -291,6 +289,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
     _expirationDateString = theSelectedValue;
 }
+
 
 
 #pragma mark

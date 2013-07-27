@@ -13,9 +13,14 @@
 #import "Reachability.h"
 #import "SystemConfiguration/SystemConfiguration.h"
 #import <QuartzCore/QuartzCore.h>
+#import "getAccountViewController.h"
 
 
-@interface LoginViewController : UIViewController <UITextFieldDelegate>
+@interface LoginViewController : UIViewController
+<
+    UITextFieldDelegate,
+    getAccountViewControllerDelegate
+>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;

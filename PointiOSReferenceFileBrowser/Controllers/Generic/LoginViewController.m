@@ -10,6 +10,7 @@
 #import "Common.h"
 #import "accessRulesListViewController.h"
 #import "storageSitesListViewController.h"
+#import "getAccountViewController.h"
 
 
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() != UIUserInterfaceIdiomPhone)
@@ -182,7 +183,8 @@
         [err setBackgroundColor:[UIColor clearColor]];
         [err show];
     } else {
-        [self performSegueWithIdentifier:@"goToSignup" sender:self];
+        // [self performSegueWithIdentifier:@"goToSignup" sender:self];
+        [self performSegueWithIdentifier:@"goToGetAccount" sender:self];
     }
 }
 
@@ -425,6 +427,22 @@
     */
 }
 
+
+#pragma mark
+#pragma Implement Delegate Methods
+- (void)getAccountViewControllerDidCancel:(getAccountViewController *)controller
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+- (void)getAccountViewController:(getAccountViewController *)controller didSelectValue:(NSString *)theSelectedValue {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    // _password = theSelectedValue;
+}
+
+
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"goToShares"]){
         accessRulesListViewController * ctvc = [segue destinationViewController];
@@ -436,9 +454,16 @@
         // [dvvc setSessionKey:_sessionKey];
         // [dvvc setJSONArrayList:_JSONArrayList];
     }
+    /*
     else if([[segue identifier] isEqualToString:@"goToSignup"]){
         signupViewController* svc = [segue destinationViewController];
         [svc setSessionKey:_sessionKey];
+    }
+    */
+    else if([[segue identifier] isEqualToString:@"goToGetAccount"]){
+        getAccountViewController* svc = [segue destinationViewController];
+        [svc setSessionKey:_sessionKey];
+        svc.delegate = self;
     }
 }
 
