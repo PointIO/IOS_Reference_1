@@ -42,6 +42,29 @@
 
 
 
+#pragma mark
+#pragma Text Delegate Methods
+
+- (IBAction)dismissKeyboard: (id)sender {
+    [sender resignFirstResponder];
+}
+
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+}
+
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+}
+
+
+
 #pragma mark - Table view delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,8 +104,8 @@
 
 - (IBAction)cancelButtonPressed:(id)sender
 {
-    [self.delegate passwordPickerViewController:self didSelectValue:nil];
-    // [self.delegate passwordPickerViewControllerDidCancel:self];
+    // [self.delegate passwordPickerViewController:self didSelectValue:nil];
+    [self.delegate passwordPickerViewControllerDidCancel:self];
 }
 
 

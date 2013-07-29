@@ -17,6 +17,9 @@
 
 
 @interface passwordPickerViewController : UITableViewController
+<
+    UITextFieldDelegate
+>
 
 
 @property (nonatomic, weak) id <passwordPickerViewControllerDelegate> delegate;

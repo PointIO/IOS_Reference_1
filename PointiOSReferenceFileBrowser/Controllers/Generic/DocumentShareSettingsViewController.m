@@ -272,6 +272,7 @@
 #pragma Implement Delegate Methods
 - (void)passwordPickerViewControllerDidCancel:(passwordPickerViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
+    _password = nil;
 }
 
 

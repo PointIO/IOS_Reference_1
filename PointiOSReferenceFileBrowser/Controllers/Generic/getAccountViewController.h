@@ -19,15 +19,16 @@
 
 @interface getAccountViewController : UITableViewController
 <
-    passwordPickerViewControllerDelegate
+    passwordPickerViewControllerDelegate,
+    UITextFieldDelegate
 >
 
 
 @property (nonatomic, weak) id <getAccountViewControllerDelegate> delegate;
 @property (weak, nonatomic) NSString* sessionKey;
-// @property (weak, nonatomic) NSString* password;
 @property (nonatomic) NSString* partnerSession;
 
+@property (nonatomic, strong) NSString* password;
 @property (nonatomic, strong) IBOutlet UITextField *emailTextField;
 @property (nonatomic, strong) IBOutlet UITextField *firstNameTextField;
 @property (nonatomic, strong) IBOutlet UITextField *lastNameTextField;

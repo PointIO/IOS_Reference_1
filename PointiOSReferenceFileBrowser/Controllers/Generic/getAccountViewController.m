@@ -24,8 +24,7 @@ static NSString *const kPointAPISecret = @"NX6KLn8nQWy1mz0QI8KlNquUqEArkpqmyv5ic
 NSArray* temp;
 
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
+- (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
@@ -33,28 +32,76 @@ NSArray* temp;
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-
+    _passwordTextField.text=@"Set Password";
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)viewDidAppear:(BOOL)animated {
+    NSLog(@"getAccountViewController viewDidAppear, and password is %@", _password);
+}
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 }
 
 
+
+#pragma mark
+#pragma Text Delegate Methods
+
+- (IBAction)dismissKeyboard: (id)sender {
+    [sender resignFirstResponder];
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    return YES;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    // [textField resignFirstResponder];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    [self textFieldShouldReturn:textField];
+}
+
+
+
+
+
+#pragma mark
+#pragma Business Logic
 - (IBAction)okButtonPressed:(id)sender  {
-    [self.delegate getAccountViewController:self didSelectValue:nil];
-}
-
+    NSLog(@"The password is %@",_password);
+    
+    if([[_firstNameTextField text] isEqualToString:@""]
+       || [[_lastNameTextField text] isEqualToString:@""]
+       || [[_emailTextField text] isEqualToString:@""]){
+        UIAlertView* alert = [[UIAlertView alloc]
+                              initWithTitle:@"Error"
+                              message:@"Entered data is not valid. No blank fields allowed"
+                              delegate:nil
+                              cancelButtonTitle:@"Dismiss"
+                              otherButtonTitles: nil];
+        [alert show];
+    } else if (_password==nil){
+        UIAlertView* alert = [[UIAlertView alloc]
+                                  initWithTitle:@"Error"
+                                  message:@"Password looks Empty, Please try to Set a Password"
+                                  delegate:nil
+                                  cancelButtonTitle:@"Dismiss"
+                                  otherButtonTitles: nil];
+        [alert show];
+    }
+    else {
+        [self getPartnerSession];
+    }
+ }
 
 - (IBAction)cancelButtonPressed:(id)sender {
     [self.delegate getAccountViewController:self didSelectValue:nil];
@@ -104,10 +151,8 @@ NSArray* temp;
                 [self createUser];
             });
         }
-    });
-    
+    });   
 }
-
 
 - (void) createUser{
     
@@ -117,7 +162,7 @@ NSArray* temp;
                         [_emailTextField text],
                         [_firstNameTextField text],
                         [_lastNameTextField text],
-                        [_passwordTextField text],
+                        _password,
                         kPointAPIKey,
                         kPointAPISecret,
                         nil];
@@ -129,56 +174,67 @@ NSArray* temp;
                      @"appId",
                      @"appSecret",
                      nil];
-    NSDictionary* params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
-    NSMutableArray* pairs = [[NSMutableArray alloc] initWithCapacity:0];
-    for(NSString* key in params){
-        if(params[key] == nil){
-            break;
-        }
-        [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
-    }
-    NSString* requestParams = [pairs componentsJoinedByString:@"&"];
-    NSURLResponse* urlResponseList;
-    NSError* requestErrorList;
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/users/create.json"]];
-    [request setHTTPMethod:@"POST"];
-    NSData* payload = [requestParams dataUsingEncoding:NSUTF8StringEncoding];
-    [request setHTTPBody:payload];
-    [request addValue:_partnerSession forHTTPHeaderField:@"Authorization"];
-    NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
-    
-    if(!response){
+    if (![objects count] == [keys count]){
         UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                        message:@"Request response is nil"
+                                                        message:@"Invalid # of Parameters"
                                                        delegate:nil
                                               cancelButtonTitle:@"Dismiss"
                                               otherButtonTitles: nil];
         [alert show];
     }
     else {
-        NSArray *temp = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
-        if([[temp valueForKey:@"ERROR"]integerValue] == 1){
-            NSString* message = [temp valueForKey:@"MESSAGE"];
-            message = [message stringByReplacingOccurrencesOfString:@"ERROR - " withString:@""];
-            UIAlertView* alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Error"
-                                  message:message
-                                  delegate:nil
-                                  cancelButtonTitle:@"Dismiss"
-                                  otherButtonTitles:nil];
+        NSDictionary* params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+        
+        NSMutableArray* pairs = [[NSMutableArray alloc] initWithCapacity:0];
+        for(NSString* key in params){
+            if(params[key] == nil){
+                break;
+            }
+            [pairs addObject:[NSString stringWithFormat:@"%@=%@", key, params[key]]];
+        }
+        NSString* requestParams = [pairs componentsJoinedByString:@"&"];
+        NSURLResponse* urlResponseList;
+        NSError* requestErrorList;
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/users/create.json"]];
+        [request setHTTPMethod:@"POST"];
+        NSData* payload = [requestParams dataUsingEncoding:NSUTF8StringEncoding];
+        [request setHTTPBody:payload];
+        [request addValue:_partnerSession forHTTPHeaderField:@"Authorization"];
+        NSData* response = [NSURLConnection sendSynchronousRequest:request returningResponse:&urlResponseList error:&requestErrorList];
+        
+        if(!response){
+            UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"Request response is nil"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Dismiss"
+                                                  otherButtonTitles: nil];
             [alert show];
-        } else {
-            UIAlertView* alert = [[UIAlertView alloc]
-                                  initWithTitle:@"Success"
-                                  message:@"Account Created"
-                                  delegate:nil
-                                  cancelButtonTitle:@"Dismiss"
-                                  otherButtonTitles:nil];
-            [alert show];
-            
-            [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+        }
+        else {
+            NSArray *temp = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableContainers error:nil];
+            if([[temp valueForKey:@"ERROR"]integerValue] == 1){
+                NSString* message = [temp valueForKey:@"MESSAGE"];
+                message = [message stringByReplacingOccurrencesOfString:@"ERROR - " withString:@""];
+                UIAlertView* alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Error"
+                                      message:message
+                                      delegate:nil
+                                      cancelButtonTitle:@"Dismiss"
+                                      otherButtonTitles:nil];
+                [alert show];
+            } else {
+                UIAlertView* alert = [[UIAlertView alloc]
+                                      initWithTitle:@"Success"
+                                      message:@"Account Created"
+                                      delegate:nil
+                                      cancelButtonTitle:@"Dismiss"
+                                      otherButtonTitles:nil];
+                [alert show];
+                
+                [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+            }
         }
     }
 }
@@ -188,21 +244,35 @@ NSArray* temp;
 #pragma Implement Delegate Methods
 - (void)passwordPickerViewControllerDidCancel:(passwordPickerViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
+    _passwordTextField.text=@"Set Password";
+    _password=nil;
 }
 
 
 - (void)passwordPickerViewController:(passwordPickerViewController *)controller didSelectValue:(NSString *)theSelectedValue {
     [self dismissViewControllerAnimated:YES completion:nil];
-    _passwordTextField.text = theSelectedValue;
+    _passwordTextField.text = @"***************";
+    _password = theSelectedValue;
 }
 
+
+#pragma mark
+#pragma Segue Logic
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if ([segue.identifier isEqualToString:@"goToPasswordPicker"])
-    {
+    if ([segue.identifier isEqualToString:@"goToPasswordPicker"]){
+        NSLog(@"Inside prepareForSegue, The password is %@",_password);
+        [_passwordTextField becomeFirstResponder];
         UINavigationController *navigationController = segue.destinationViewController;
         passwordPickerViewController *pickerVC  = [[navigationController viewControllers] objectAtIndex:0];
         pickerVC.delegate = self;
     }
+    /*
+     - (BOOL)textFieldShouldReturn:(UITextField *)textField {
+     [textField resignFirstResponder];
+     return YES;
+     }
+*/
+    
 }
 
 
