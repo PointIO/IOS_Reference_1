@@ -1394,7 +1394,14 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Expire Link" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="w1f-54-HrA">
-                                                    <rect key="frame" x="20" y="11" width="171" height="21"/>
+                                                    <rect key="frame" x="20" y="11" width="96" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fz3-b2-hYr">
+                                                    <rect key="frame" x="196" y="11" width="91" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1474,6 +1481,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="expireDateLabel" destination="fz3-b2-hYr" id="7b1-bW-axG"/>
                         <segue destination="xQu-S4-8nT" kind="modal" identifier="goToPasswordPicker" modalTransitionStyle="flipHorizontal" id="WEc-Q1-ats"/>
                         <segue destination="aKD-Y2-NYx" kind="modal" identifier="goToDatePicker" modalTransitionStyle="partialCurl" id="l8V-Ps-h8D"/>
                     </connections>
@@ -1626,6 +1634,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <source key="sourceIdentifier" type="project" relativePath="./Classes/DocumentShareSettingsViewController.h"/>
             <relationships>
                 <relationship kind="action" name="shareSecurelyPressed:"/>
+                <relationship kind="outlet" name="expireDateLabel" candidateClass="UILabel"/>
             </relationships>
         </class>
         <class className="LoginViewController" superclassName="UIViewController">

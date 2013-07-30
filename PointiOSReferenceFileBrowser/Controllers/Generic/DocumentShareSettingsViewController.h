@@ -35,6 +35,7 @@
 @property (nonatomic) NSString* remotePath;
 @property (nonatomic) NSString* containerID;
 @property (nonatomic) NSString* password;
+@property (nonatomic, strong) IBOutlet UILabel *expireDateLabel;
 
 @property (nonatomic) BOOL printSwitch;
 @property (nonatomic) BOOL downloadSwitch;

@@ -80,16 +80,8 @@
                 _downloadSwitch = !_downloadSwitch;
                 break;
             case 2:
-                NSLog(@"Toggle Capture");
-                _screenCaptureSwitch = !_screenCaptureSwitch;
-                break;
-            case 3:
                 NSLog(@"Toggle PDF Download");
                 _downloadAsPDFSwitch = !_downloadAsPDFSwitch;
-                break;
-            case 4:
-                NSLog(@"Toggle Forwarding");
-                _restrictByIPSwitch = !_restrictByIPSwitch;
                 break;
             default:
                 break;
@@ -104,6 +96,7 @@
                     [self performSegueWithIdentifier:@"goToDatePicker" sender:self];
                 }
                 else {
+                    _expireDateLabel.text = nil;
                     _expireSwitch = !_expireSwitch;
                 }
                 break;
@@ -116,6 +109,14 @@
                 else {
                     _passwordSwitch = !_passwordSwitch;
                 }
+                break;
+            case 2:
+                NSLog(@"Toggle Capture");
+                _screenCaptureSwitch = !_screenCaptureSwitch;
+                break;
+            case 3:
+                NSLog(@"Toggle Forwarding");
+                _restrictByIPSwitch = !_restrictByIPSwitch;
                 break;
             default:
                 break;
@@ -289,6 +290,7 @@
 - (void)datePickerViewController:(datePickerViewController *)controller didSelectValue:(NSString *)theSelectedValue {
     [self dismissViewControllerAnimated:YES completion:nil];
     _expirationDateString = theSelectedValue;
+    _expireDateLabel.text = theSelectedValue;
 }
 
 
