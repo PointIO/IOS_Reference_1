@@ -104,7 +104,7 @@ NSArray* temp;
  }
 
 - (IBAction)cancelButtonPressed:(id)sender {
-    [self.delegate getAccountViewController:self didSelectValue:nil];
+    [self.delegate getAccountViewControllerDidCancel:self];
 }
 
 - (void) getPartnerSession{
@@ -225,15 +225,17 @@ NSArray* temp;
                                       otherButtonTitles:nil];
                 [alert show];
             } else {
-                UIAlertView* alert = [[UIAlertView alloc]
+                /*
+                 UIAlertView* alert = [[UIAlertView alloc]
                                       initWithTitle:@"Success"
                                       message:@"Account Created"
                                       delegate:nil
                                       cancelButtonTitle:@"Dismiss"
                                       otherButtonTitles:nil];
                 [alert show];
-                
+                */
                 [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                [self.delegate getAccountViewController:self username:_emailTextField.text password:_password];
             }
         }
     }
@@ -261,18 +263,10 @@ NSArray* temp;
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"goToPasswordPicker"]){
         NSLog(@"Inside prepareForSegue, The password is %@",_password);
-        [_passwordTextField becomeFirstResponder];
         UINavigationController *navigationController = segue.destinationViewController;
         passwordPickerViewController *pickerVC  = [[navigationController viewControllers] objectAtIndex:0];
         pickerVC.delegate = self;
-    }
-    /*
-     - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-     [textField resignFirstResponder];
-     return YES;
-     }
-*/
-    
+    }    
 }
 
 

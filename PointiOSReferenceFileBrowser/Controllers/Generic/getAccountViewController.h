@@ -13,7 +13,7 @@
 
 @protocol getAccountViewControllerDelegate <NSObject>
 - (void)getAccountViewControllerDidCancel:(getAccountViewController *)controller;
-- (void)getAccountViewController:(getAccountViewController *)controller didSelectValue:(NSString *)theSelectedValue;
+- (void)getAccountViewController:(getAccountViewController *)controller username:(NSString *)theSelectedUsername password:(NSString *)theSelectedPassword;
 @end
 
 

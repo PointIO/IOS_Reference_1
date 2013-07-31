@@ -26,19 +26,16 @@
 
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
     }
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
     if (IS_IPAD) {
@@ -56,8 +53,7 @@
     return YES;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     self.splitViewController.delegate = nil;
@@ -116,8 +112,6 @@
     }
 }
 
-
-
 - (BOOL) textFieldShouldReturn:(UITextField *)textField{
     if(textField == _usernameTextField){
         [_usernameTextField resignFirstResponder];
@@ -129,7 +123,6 @@
     }
     return YES;
 }
-
 
 - (IBAction)signInPressed {
     if(![Common isConnectedToInternet]){
@@ -227,7 +220,6 @@
     }
 }
 
-
 - (void) signOut{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
     [_signOutButton setHidden:YES];
@@ -274,8 +266,6 @@
 
     
 }
-
-
 
 - (void) performAuthCall{
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -391,8 +381,6 @@
     [alert show];
 }
 
-
- 
 - (void)viewDidUnload {
     [super viewDidUnload];
 }
@@ -430,18 +418,17 @@
 
 #pragma mark
 #pragma Implement Delegate Methods
-- (void)getAccountViewControllerDidCancel:(getAccountViewController *)controller
-{
+- (void)getAccountViewControllerDidCancel:(getAccountViewController *)controller {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-- (void)getAccountViewController:(getAccountViewController *)controller didSelectValue:(NSString *)theSelectedValue {
+- (void)getAccountViewController:(getAccountViewController *)controller username:(NSString *)theSelectedUsername password:(NSString *)theSelectedPassword {
+    NSLog(@"Inside Login View Controller, getAccountViewController getAccountViewController didCreateAccount");
     [self dismissViewControllerAnimated:YES completion:nil];
-    // _password = theSelectedValue;
+    _usernameTextField.text=theSelectedUsername;
+    _passwordTextField.text=theSelectedPassword;
+    [self signInPressed];
 }
-
-
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([[segue identifier] isEqualToString:@"goToShares"]){
