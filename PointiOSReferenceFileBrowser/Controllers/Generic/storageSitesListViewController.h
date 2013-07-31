@@ -18,6 +18,9 @@
 @property (nonatomic, strong) NSArray *storageSiteTypesInUse;
 @property (nonatomic) NSString *sessionKey;
 
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *addButton;
+@property (nonatomic) AppDelegate* appDel;
+
 - (IBAction)addConnectionPressed:(id)sender;
 
 @end

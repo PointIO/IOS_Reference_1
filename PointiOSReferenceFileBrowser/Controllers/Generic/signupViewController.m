@@ -65,6 +65,7 @@ BOOL passwordsDontMatch;
     _passwordTextField.delegate = self;
     _reEnterPasswordTextField.delegate = self;
     _passwordsDontMatchLabel.hidden = YES;
+    
 }
 
 - (void) viewWillDisappear:(BOOL)animated{

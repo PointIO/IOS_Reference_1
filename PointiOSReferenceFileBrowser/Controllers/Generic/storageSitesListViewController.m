@@ -44,7 +44,7 @@ NSString *requestedConnectionName;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    _appDel = (AppDelegate*)[UIApplication sharedApplication].delegate;
 }
 
 
@@ -79,7 +79,6 @@ NSString *requestedConnectionName;
                 [err show];
             }
             else {
-                
                 [self performListCall];
                 if (![_storageSitesArrayOfDictionaries count]==0){
                     NSMutableArray *temp = [[NSMutableArray alloc] init];
@@ -134,6 +133,19 @@ NSString *requestedConnectionName;
 
 
 - (void) viewDidAppear:(BOOL)animated{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *currentUser = [defaults valueForKey:@"USERNAME"];
+    if ([currentUser isEqualToString:@"demo@point.io"]) {
+        NSLog(@"Is loogged in as demo@point.io");
+        NSArray *toobarButtons = [[NSMutableArray alloc] initWithObjects:nil];
+        [self.navigationItem setRightBarButtonItems:toobarButtons];
+    }
+    else {
+        NSLog(@"Is NOT loogged in as demo@point.io");
+        NSArray *toobarButtons = [[NSMutableArray alloc] initWithObjects:_addButton,nil];
+        [self.navigationItem setRightBarButtonItems:toobarButtons];
+    }
+
     if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"

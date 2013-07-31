@@ -35,6 +35,8 @@ NSArray* temp;
 - (void)viewDidLoad {
     [super viewDidLoad];
     _passwordTextField.text=@"Set Password";
+    _passwordTextField.font = [UIFont fontWithName:@"System" size:18.0];
+    _passwordTextField.textColor = [UIColor lightGrayColor];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
