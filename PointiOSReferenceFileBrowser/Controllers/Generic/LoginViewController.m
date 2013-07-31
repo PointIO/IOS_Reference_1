@@ -184,6 +184,7 @@
 - (IBAction)demoPressed {
     [_usernameTextField setText:@"demo@point.io"];
     [_passwordTextField setText:@"demo"];
+    [self signInPressed];
 }
 
 - (void) signIn{

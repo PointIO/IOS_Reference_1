@@ -82,6 +82,7 @@
 		7550E0DD1768045700E8F547 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7550E0DC1768045700E8F547 /* libz.dylib */; };
 		7599C78A176F8AEE00AE368C /* workspaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599C788176F8AEE00AE368C /* workspaceViewController.m */; };
 		7599C78D176F8AF700AE368C /* sharedFoldersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7599C78B176F8AF700AE368C /* sharedFoldersViewController.m */; };
+		8A0179CC17A8B52B00AD1349 /* demoAccountSignIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A0179CB17A8B52B00AD1349 /* demoAccountSignIn.png */; };
 		8A256BC0176A2202001E5823 /* accessRulesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A256BBF176A2202001E5823 /* accessRulesListViewController.m */; };
 		8A25DA741770A0470025BBD3 /* connectionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A25DA731770A0470025BBD3 /* connectionDetailViewController.m */; };
 		8A2DD56D177511AB002310D0 /* pointio50x50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD568177511AB002310D0 /* pointio50x50.png */; };
@@ -352,6 +353,7 @@
 		7599C789176F8AEE00AE368C /* workspaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = workspaceViewController.h; sourceTree = "<group>"; };
 		7599C78B176F8AF700AE368C /* sharedFoldersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = sharedFoldersViewController.m; sourceTree = "<group>"; };
 		7599C78C176F8AF700AE368C /* sharedFoldersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sharedFoldersViewController.h; sourceTree = "<group>"; };
+		8A0179CB17A8B52B00AD1349 /* demoAccountSignIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demoAccountSignIn.png; sourceTree = "<group>"; };
 		8A256BBE176A2202001E5823 /* accessRulesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accessRulesListViewController.h; sourceTree = "<group>"; };
 		8A256BBF176A2202001E5823 /* accessRulesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accessRulesListViewController.m; sourceTree = "<group>"; };
 		8A25DA721770A0470025BBD3 /* connectionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectionDetailViewController.h; sourceTree = "<group>"; };
@@ -838,6 +840,7 @@
 		7550E05E1768011700E8F547 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8A0179CB17A8B52B00AD1349 /* demoAccountSignIn.png */,
 				8A521E60178BA87500CDD0FC /* TabBarButtonItemLogin.png */,
 				8A521E5E178BA7C000CDD0FC /* TabBarButtonItemStorage.png */,
 				8AA6572217832B38002C9A7B /* TabBarButtonItemFileCabinet.png */,
@@ -1548,6 +1551,7 @@
 				8A521E61178BA87500CDD0FC /* TabBarButtonItemLogin.png in Resources */,
 				8A36F5591799D30F00E07632 /* AppContent.plist in Resources */,
 				8A36F55A1799D30F00E07632 /* AppKeys.plist in Resources */,
+				8A0179CC17A8B52B00AD1349 /* demoAccountSignIn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
