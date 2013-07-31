@@ -19,6 +19,7 @@
                         <segue destination="ver-ZW-ifq" kind="relationship" relationship="viewControllers" id="qIF-Xv-hTD"/>
                         <segue destination="My2-vk-gIY" kind="relationship" relationship="viewControllers" id="Wqj-yR-Qlz"/>
                         <segue destination="oc3-oe-czr" kind="relationship" relationship="viewControllers" id="BdH-Zl-Fta"/>
+                        <segue destination="rQa-yb-GAv" kind="relationship" relationship="viewControllers" id="gcN-0X-dg7"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gQ2-Q6-L6L" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -683,6 +684,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yYE-hh-8jt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-652" y="331"/>
+        </scene>
+        <!--Twitter Feed-->
+        <scene sceneID="ZpT-vl-hlU">
+            <objects>
+                <viewController id="zm8-s6-h0d" customClass="twitterFeed" sceneMemberID="viewController">
+                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="fIS-CD-aNf">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" id="7ZS-TE-xQn">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                    </scrollView>
+                    <navigationItem key="navigationItem" id="dEw-Po-6Vt"/>
+                    <connections>
+                        <outlet property="webViewTwitter" destination="7ZS-TE-xQn" id="upS-SQ-SGY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b5V-21-pst" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1402" y="1046"/>
         </scene>
         <!--New Connection View Controller - New connection-->
         <scene sceneID="npW-B1-TN1">
@@ -1605,6 +1630,25 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="1901" y="-3358"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="nRc-MP-ACO">
+            <objects>
+                <navigationController id="rQa-yb-GAv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="more" id="nxZ-Bc-ktq"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cd5-Cy-Ijc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zm8-s6-h0d" kind="relationship" relationship="rootViewController" id="Sdn-Tc-lVh"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VxL-e7-aTk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1928" y="1046"/>
+        </scene>
     </scenes>
     <resources>
         <image name="TabBarButtonItemFileCabinet.png" width="24" height="22"/>
@@ -1788,6 +1832,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             <source key="sourceIdentifier" type="project" relativePath="./Classes/storageSitesListViewController.h"/>
             <relationships>
                 <relationship kind="action" name="addConnectionPressed:"/>
+            </relationships>
+        </class>
+        <class className="twitterFeed" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/twitterFeed.h"/>
+            <relationships>
+                <relationship kind="outlet" name="webViewTwitter" candidateClass="UIWebView"/>
             </relationships>
         </class>
     </classes>
