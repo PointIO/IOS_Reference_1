@@ -31,10 +31,12 @@
     [super viewDidLoad];
     _passwordTextField1.secureTextEntry=YES;
     _passwordTextField2.secureTextEntry=YES;
-    [_passwordTextField1 becomeFirstResponder];
 }
 
 
+-(void)viewDidAppear:(BOOL)animated {
+    [_passwordTextField1 becomeFirstResponder];
+}
 
 - (void)didReceiveMemoryWarning
 {

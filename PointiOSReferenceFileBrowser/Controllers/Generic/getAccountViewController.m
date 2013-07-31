@@ -243,6 +243,19 @@ NSArray* temp;
     }
 }
 
+-(NSArray*)findAllTextFieldsInView:(UIView*)view{
+    NSMutableArray* textfieldarray = [[NSMutableArray alloc] init];
+    for(id x in [view subviews]){
+        if([x isKindOfClass:[UITextField class]])
+            [textfieldarray addObject:x];
+        
+        if([x respondsToSelector:@selector(subviews)]){
+            // if it has subviews, loop through those, too
+            [textfieldarray addObjectsFromArray:[self findAllTextFieldsInView:x]];
+        }
+    }
+    return textfieldarray;
+}
 
 #pragma mark
 #pragma Implement Delegate Methods
@@ -265,6 +278,19 @@ NSArray* temp;
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"goToPasswordPicker"]){
         NSLog(@"Inside prepareForSegue, The password is %@",_password);
+        
+        /*
+        [_emailTextField resignFirstResponder];
+        [_firstNameTextField resignFirstResponder];
+        [_lastNameTextField resignFirstResponder];
+        */
+        
+        NSArray *allTextFields = [self findAllTextFieldsInView:[self view]];
+        for(id x in allTextFields){
+            [x resignFirstResponder];
+        }
+
+        
         UINavigationController *navigationController = segue.destinationViewController;
         passwordPickerViewController *pickerVC  = [[navigationController viewControllers] objectAtIndex:0];
         pickerVC.delegate = self;
