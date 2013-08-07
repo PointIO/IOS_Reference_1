@@ -92,6 +92,7 @@
 		8A2DD570177511AB002310D0 /* pointio114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD56B177511AB002310D0 /* pointio114x114.png */; };
 		8A2DD571177511AB002310D0 /* pointio512x512.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD56C177511AB002310D0 /* pointio512x512.png */; };
 		8A2FF86017AB2B4E00C3EF0E /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2FF85F17AB2B4E00C3EF0E /* AccountViewController.m */; };
+		8A2FF86317AC2A1200C3EF0E /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A2FF86217AC2A1200C3EF0E /* SignInViewController.m */; };
 		8A36F5521798CF2100E07632 /* DocumentShareSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A36F5511798CF2100E07632 /* DocumentShareSettingsViewController.m */; };
 		8A36F5591799D30F00E07632 /* AppContent.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A36F5571799D30F00E07632 /* AppContent.plist */; };
 		8A36F55A1799D30F00E07632 /* AppKeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A36F5581799D30F00E07632 /* AppKeys.plist */; };
@@ -369,6 +370,8 @@
 		8A2DD56C177511AB002310D0 /* pointio512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio512x512.png; sourceTree = "<group>"; };
 		8A2FF85E17AB2B4E00C3EF0E /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		8A2FF85F17AB2B4E00C3EF0E /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
+		8A2FF86117AC2A1200C3EF0E /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		8A2FF86217AC2A1200C3EF0E /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		8A36F5501798CF2100E07632 /* DocumentShareSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentShareSettingsViewController.h; sourceTree = "<group>"; };
 		8A36F5511798CF2100E07632 /* DocumentShareSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentShareSettingsViewController.m; sourceTree = "<group>"; };
 		8A36F5571799D30F00E07632 /* AppContent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppContent.plist; sourceTree = "<group>"; };
@@ -1002,6 +1005,8 @@
 				8AA513E5176A04C600665111 /* storageSignupViewController.m */,
 				754977EA176D1AED0042B5D8 /* shareDetailViewController.h */,
 				754977EB176D1AEE0042B5D8 /* shareDetailViewController.m */,
+				8A2FF86117AC2A1200C3EF0E /* SignInViewController.h */,
+				8A2FF86217AC2A1200C3EF0E /* SignInViewController.m */,
 				8A89FDA1177A7EB400D0F8A8 /* storageSitesListViewController.h */,
 				8A89FDA0177A7EB000D0F8A8 /* storageSitesListViewController.m */,
 				8A6E45D8177CC0DC0086C4F3 /* StorageTypesViewController.h */,
@@ -1678,6 +1683,7 @@
 				8AB8129E17A414B70029F161 /* getAccountViewController.m in Sources */,
 				8A0179CF17A8BCB000AD1349 /* twitterFeed.m in Sources */,
 				8A2FF86017AB2B4E00C3EF0E /* AccountViewController.m in Sources */,
+				8A2FF86317AC2A1200C3EF0E /* SignInViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,6 +7,7 @@
 //
 
 #import "AccountViewController.h"
+#import "SignInViewController.h"
 
 @interface AccountViewController ()
 
@@ -35,6 +36,12 @@
     // Dispose of any resources that can be recreated.
 }
 
-
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([[segue identifier] isEqualToString:@"goToLogin"]){
+        SignInViewController* svc = [segue destinationViewController];
+        // [svc setSessionKey:_sessionKey];
+        // svc.delegate = self;
+    }
+}
 
 @end
