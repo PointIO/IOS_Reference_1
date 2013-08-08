@@ -53,43 +53,56 @@
 - (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
     if(UIInterfaceOrientationIsLandscape(fromInterfaceOrientation)){
         if(!UIInterfaceOrientationIsLandscape(self.interfaceOrientation)){
-            [UIView animateWithDuration:0.20f animations:^(void) {
-                _usernameTextField.frame = CGRectMake(25, 10, 270, 44);
-                _passwordTextField.frame = CGRectMake(25, 60, 270, 44);
-                _signInButton.frame = CGRectMake(116, 120, 88, 44);
-                _signOutButton.frame = CGRectMake(116, 270, 88, 44);
-                _demoButton.frame = CGRectMake(116, 170, 88, 44);
-                _signUpButton.frame = CGRectMake(116, 220, 88, 44);
-                _loggedInAsNameLabel.frame = CGRectMake(25, 235, 116, 22);
-                _loggedInAsNameText.frame = CGRectMake(150, 235, 158, 22);
-                _screenPressedButton.frame = CGRectMake(0, 0, 320, 568);
-            }];
+            [self implementPortraitUI];
         }
     } else {
-        [UIView animateWithDuration:0.20f animations:^(void) {
-            _usernameTextField.frame = CGRectMake(25, 10, 430, 44);
-            _passwordTextField.frame = CGRectMake(25, 60, 430, 44);
-            _signInButton.frame = CGRectMake(45, 110, 88, 44);
-            _demoButton.frame = CGRectMake(200, 110, 88, 44);
-            _signUpButton.frame = CGRectMake(352, 110, 88, 44);
-            _signOutButton.frame = CGRectMake(200, 110, 88, 44);
-            _loggedInAsNameLabel.frame = CGRectMake(125, 160, 116, 22);
-            _loggedInAsNameText.frame = CGRectMake(245, 160, 158, 22);
-            _screenPressedButton.frame = CGRectMake(0, 0, 320, 568);
-        }];
+        [self implementLandscapeUI];
     }
 }
 
 
+- (void)implementLandscapeUI{
+    [UIView animateWithDuration:0.20f animations:^(void) {
+        _usernameTextField.frame = CGRectMake(25, 10, 430, 44);
+        _passwordTextField.frame = CGRectMake(25, 60, 430, 44);
+        _signInButton.frame = CGRectMake(45, 110, 88, 44);
+        _demoButton.frame = CGRectMake(200, 110, 88, 44);
+        _signUpButton.frame = CGRectMake(352, 110, 88, 44);
+        _signOutButton.frame = CGRectMake(200, 110, 88, 44);
+        _loggedInAsNameLabel.frame = CGRectMake(125, 160, 116, 22);
+        _loggedInAsNameText.frame = CGRectMake(245, 160, 158, 22);
+        _screenPressedButton.frame = CGRectMake(0, 0, 320, 568);
+    }];
+}
+
+- (void)implementPortraitUI{
+    [UIView animateWithDuration:0.20f animations:^(void) {
+        _usernameTextField.frame = CGRectMake(25, 10, 270, 44);
+        _passwordTextField.frame = CGRectMake(25, 60, 270, 44);
+        _signInButton.frame = CGRectMake(116, 120, 88, 44);
+        _signOutButton.frame = CGRectMake(116, 270, 88, 44);
+        _demoButton.frame = CGRectMake(116, 170, 88, 44);
+        _signUpButton.frame = CGRectMake(116, 220, 88, 44);
+        _loggedInAsNameLabel.frame = CGRectMake(25, 235, 116, 22);
+        _loggedInAsNameText.frame = CGRectMake(150, 235, 158, 22);
+        _screenPressedButton.frame = CGRectMake(0, 0, 320, 568);
+    }];
+}
+
+
+
+/*
 - (BOOL) splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation{
     return YES;
 }
+*/
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.splitViewController.delegate = nil;
-    self.splitViewController.delegate = self;
+    // self.splitViewController.delegate = nil;
+    // self.splitViewController.delegate = self;
     
     [_usernameTextField setDelegate:self];
     _usernameTextField.borderStyle = UITextBorderStyleRoundedRect;
@@ -420,10 +433,22 @@
 }
 
 - (void) viewDidAppear:(BOOL)animated{
+    /*
     if(self.splitViewController){
         self.splitViewController.delegate = nil;
         self.splitViewController.delegate = self;
     }
+    */
+    
+    if  (UIInterfaceOrientationIsLandscape(self.interfaceOrientation))
+    {
+        [self implementLandscapeUI];
+    }
+    else
+    {
+        [self implementPortraitUI];
+    }
+    
     [self screenPressed];
 }
 

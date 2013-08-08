@@ -110,11 +110,15 @@
                     _passwordSwitch = !_passwordSwitch;
                 }
                 break;
-            case 2:
+        }
+    }
+    else if ((indexPath.section == 2)) {
+        switch (indexPath.row) {
+            case 0:
                 NSLog(@"Toggle Capture");
                 _screenCaptureSwitch = !_screenCaptureSwitch;
                 break;
-            case 3:
+            case 1:
                 NSLog(@"Toggle Forwarding");
                 _restrictByIPSwitch = !_restrictByIPSwitch;
                 break;
@@ -123,6 +127,8 @@
         }
     }
 }
+
+
 
 - (void)expireSwitchValueChanged{
     if(_expireSwitch){
