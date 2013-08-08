@@ -25,6 +25,9 @@ UITextFieldDelegate
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UILabel *loggedInAsNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *loggedInAsNameText;
+@property (nonatomic) BOOL hasLoggedIn;
 
 // REST API PROPERTIES
 @property (nonatomic) NSString* username;
@@ -32,7 +35,6 @@ UITextFieldDelegate
 @property (nonatomic) NSString* sessionKey;
 @property (nonatomic) NSString* postString;
 @property (nonatomic,strong) NSArray* JSONArrayAuth;
-@property (nonatomic) BOOL hasLoggedIn;
 
 
 @end

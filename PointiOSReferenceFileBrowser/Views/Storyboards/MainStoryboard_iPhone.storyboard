@@ -35,10 +35,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="Ay7-bO-NIz">
-                                <rect key="frame" x="0.0" y="-3" width="320" height="510"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="JYK-0w-wYd">
                                 <rect key="frame" x="0.0" y="-9" width="320" height="522"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -152,6 +148,7 @@
                         <outlet property="loggedInAsNameLabel" destination="adI-HP-igz" id="gN0-rI-fjv"/>
                         <outlet property="loggedInAsNameText" destination="3G5-mz-j7Z" id="4z0-TC-wT6"/>
                         <outlet property="passwordTextField" destination="fpw-Jb-4Fx" id="dxc-nL-TXE"/>
+                        <outlet property="screenPressedButton" destination="JYK-0w-wYd" id="cSx-Qk-sNL"/>
                         <outlet property="signInButton" destination="yW5-Hb-YB1" id="Viv-5M-9tA"/>
                         <outlet property="signOutButton" destination="r2s-PH-fGG" id="kAl-54-0Bw"/>
                         <outlet property="signUpButton" destination="kXU-1L-J47" id="uv4-HE-bHS"/>
@@ -423,6 +420,35 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="RAS-3Y-f2g">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="M19-kO-l6S">
+                                        <rect key="frame" x="0.0" y="156" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="300" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Logged in as:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="14F-C3-4kB">
+                                                    <rect key="frame" x="20" y="11" width="103" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lbS-FB-KWU">
+                                                    <rect key="frame" x="131" y="11" width="156" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="9mE-sa-iN4" id="0uN-g3-wba"/>
@@ -437,6 +463,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="loggedInAsNameLabel" destination="14F-C3-4kB" id="aXf-WQ-LZ2"/>
+                        <outlet property="loggedInAsNameText" destination="lbS-FB-KWU" id="Gvr-bP-L8U"/>
                         <outlet property="passwordTextField" destination="Z7E-0i-Bbf" id="anf-QF-ASc"/>
                         <outlet property="usernameTextField" destination="Syx-IV-BbB" id="yke-j9-rAx"/>
                     </connections>
@@ -1847,6 +1875,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 <relationship kind="outlet" name="loggedInAsNameLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="loggedInAsNameText" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="screenPressedButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="signInButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="signOutButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="signUpButton" candidateClass="UIButton"/>
@@ -1881,6 +1910,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <class className="SignInViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SignInViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="loggedInAsNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="loggedInAsNameText" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="usernameTextField" candidateClass="UITextField"/>
             </relationships>

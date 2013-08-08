@@ -368,10 +368,10 @@
 		8A2DD56A177511AB002310D0 /* pointio72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio72x72.png; sourceTree = "<group>"; };
 		8A2DD56B177511AB002310D0 /* pointio114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio114x114.png; sourceTree = "<group>"; };
 		8A2DD56C177511AB002310D0 /* pointio512x512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pointio512x512.png; sourceTree = "<group>"; };
-		8A2FF85E17AB2B4E00C3EF0E /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
-		8A2FF85F17AB2B4E00C3EF0E /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
-		8A2FF86117AC2A1200C3EF0E /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
-		8A2FF86217AC2A1200C3EF0E /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		8A2FF85E17AB2B4E00C3EF0E /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccountViewController.h; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/AccountViewController.h; sourceTree = "<group>"; };
+		8A2FF85F17AB2B4E00C3EF0E /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccountViewController.m; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/AccountViewController.m; sourceTree = "<group>"; };
+		8A2FF86117AC2A1200C3EF0E /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignInViewController.h; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/SignInViewController.h; sourceTree = "<group>"; };
+		8A2FF86217AC2A1200C3EF0E /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignInViewController.m; path = ../PointiOSReferenceFileBrowser/Controllers/Generic/SignInViewController.m; sourceTree = "<group>"; };
 		8A36F5501798CF2100E07632 /* DocumentShareSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DocumentShareSettingsViewController.h; sourceTree = "<group>"; };
 		8A36F5511798CF2100E07632 /* DocumentShareSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DocumentShareSettingsViewController.m; sourceTree = "<group>"; };
 		8A36F5571799D30F00E07632 /* AppContent.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AppContent.plist; sourceTree = "<group>"; };
@@ -979,8 +979,6 @@
 			children = (
 				8A256BBE176A2202001E5823 /* accessRulesListViewController.h */,
 				8A256BBF176A2202001E5823 /* accessRulesListViewController.m */,
-				8A2FF85E17AB2B4E00C3EF0E /* AccountViewController.h */,
-				8A2FF85F17AB2B4E00C3EF0E /* AccountViewController.m */,
 				8A25DA721770A0470025BBD3 /* connectionDetailViewController.h */,
 				8A25DA731770A0470025BBD3 /* connectionDetailViewController.m */,
 				8AA513D9176A04C600665111 /* datePickerViewController.h */,
@@ -1005,8 +1003,6 @@
 				8AA513E5176A04C600665111 /* storageSignupViewController.m */,
 				754977EA176D1AED0042B5D8 /* shareDetailViewController.h */,
 				754977EB176D1AEE0042B5D8 /* shareDetailViewController.m */,
-				8A2FF86117AC2A1200C3EF0E /* SignInViewController.h */,
-				8A2FF86217AC2A1200C3EF0E /* SignInViewController.m */,
 				8A89FDA1177A7EB400D0F8A8 /* storageSitesListViewController.h */,
 				8A89FDA0177A7EB000D0F8A8 /* storageSitesListViewController.m */,
 				8A6E45D8177CC0DC0086C4F3 /* StorageTypesViewController.h */,
@@ -1033,6 +1029,10 @@
 		7599C787176F8A7E00AE368C /* ToBeDeleted */ = {
 			isa = PBXGroup;
 			children = (
+				8A2FF86117AC2A1200C3EF0E /* SignInViewController.h */,
+				8A2FF86217AC2A1200C3EF0E /* SignInViewController.m */,
+				8A2FF85E17AB2B4E00C3EF0E /* AccountViewController.h */,
+				8A2FF85F17AB2B4E00C3EF0E /* AccountViewController.m */,
 				8AA513F7176A0BC200665111 /* BackupMainStoryboard_iPad.storyboard */,
 				8AA513F8176A0BC300665111 /* BackupMainStoryboard_iPhone.storyboard */,
 				754977DC176CFB4A0042B5D8 /* connectionListViewController.h */,
