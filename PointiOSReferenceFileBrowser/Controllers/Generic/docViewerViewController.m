@@ -208,17 +208,6 @@ NSArray* tempArray;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if([[segue identifier] isEqualToString:@"goToShare"]){
-        sharingViewController *svc = [segue destinationViewController];
-        [svc setFileDownloadURL:_fileDownloadURL];
-        [svc setFileName:_fileName];
-        [svc setDownloadData:_downloadData];
-        [svc setFileID:_fileID];
-        [svc setShareID:_shareID];
-        [svc setRemotePath:_remotePath];
-        [svc setContainerID:_containerID];
-        [svc setSessionKey:_sessionKey];
-    }
     if([[segue identifier] isEqualToString:@"goToDocumentShareSettings"]){
         DocumentShareSettingsViewController *svc = [segue destinationViewController];
         [svc setFileDownloadURL:_fileDownloadURL];

@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "ViewController.h"
+// #import "ViewController.h"
 #import "Flurry.h"
 #import "Common.h"
 #import "JMC.h"
