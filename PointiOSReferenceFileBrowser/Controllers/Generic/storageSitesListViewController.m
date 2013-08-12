@@ -184,20 +184,30 @@ NSString *requestedConnectionName;
 {
     StorageConnectionListCell *cell = (StorageConnectionListCell *)[tableView dequeueReusableCellWithIdentifier:@"StorageConnectionListCell"];
     
-    // set Cell Name
-    NSString *tmpSiteName = [[_storageSiteTypesInUse objectAtIndex:indexPath.row] valueForKey:@"StorageSiteSiteTypeName"];
-    cell.nameLabel.text = tmpSiteName;
-    
-    // Set Cell Image
-    // Values are stored in sorted Dictionary in AppContent.plist
-    NSString *tmpFileName               = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"AppContent"];
-    NSString *tmpFilePath               = [[NSBundle mainBundle] pathForResource:tmpFileName ofType:@"plist"];
-    NSMutableDictionary *tmpDictionary  = [[NSMutableDictionary alloc] initWithContentsOfFile:tmpFilePath];
-    NSDictionary *cloudProviderDict     = [tmpDictionary valueForKey:@"storageProviderArtwork"];
-    NSString *tmpImageName  = [cloudProviderDict valueForKey:tmpSiteName];
-    cell.storageImage.image = [UIImage imageNamed:tmpImageName];
-
-    return cell;
+    if ([_storageSiteTypesInUse count] == 0) {
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:@"Looks like there are no active storage connections"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Dismiss"
+                                            otherButtonTitles:nil];
+        [err show];
+    }
+    else {
+        // set Cell Name
+        NSString *tmpSiteName = [[_storageSiteTypesInUse objectAtIndex:indexPath.row] valueForKey:@"StorageSiteSiteTypeName"];
+        cell.nameLabel.text = tmpSiteName;
+        
+        // Set Cell Image
+        // Values are stored in sorted Dictionary in AppContent.plist
+        NSString *tmpFileName               = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"AppContent"];
+        NSString *tmpFilePath               = [[NSBundle mainBundle] pathForResource:tmpFileName ofType:@"plist"];
+        NSMutableDictionary *tmpDictionary  = [[NSMutableDictionary alloc] initWithContentsOfFile:tmpFilePath];
+        NSDictionary *cloudProviderDict     = [tmpDictionary valueForKey:@"storageProviderArtwork"];
+        NSString *tmpImageName  = [cloudProviderDict valueForKey:tmpSiteName];
+        cell.storageImage.image = [UIImage imageNamed:tmpImageName];
+        
+        return cell;
+    }
 }
 
 

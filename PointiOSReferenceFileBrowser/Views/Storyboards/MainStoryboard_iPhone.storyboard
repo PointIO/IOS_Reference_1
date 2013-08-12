@@ -136,7 +136,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pKg-cE-WDQ">
+                            <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="pKg-cE-WDQ">
                                 <rect key="frame" x="116" y="322" width="88" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -1492,11 +1492,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
             </objects>
             <point key="canvasLocation" x="-1914" y="331"/>
         </scene>
-        <!--Navigation Controller - Login-->
+        <!--Navigation Controller - Account-->
         <scene sceneID="UD4-Lp-XtF">
             <objects>
                 <navigationController id="My2-vk-gIY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Login" image="TabBarButtonItemLogin.png" id="Kny-Kq-mhB"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="TabBarButtonItemLogin.png" id="Kny-Kq-mhB"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="RJH-1h-es1"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="n4u-An-vng">

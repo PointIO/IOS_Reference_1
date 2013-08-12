@@ -26,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
+    // _webView.autoresizingMask = (UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight);
     NSURL *urlAddress = [NSURL URLWithString:@"http://www.point.io/account"];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:urlAddress];
     [_webView loadRequest:requestObj];
