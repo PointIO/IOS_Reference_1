@@ -223,7 +223,7 @@ int i;
     NSURLResponse* urlResponseList2;
     NSError* requestErrorList2;
     NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] init];
-    [request2 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
+    [request2 setURL:[NSURL URLWithString:@"https://api.point.io/v2/storagesites/list.json"]];
     [request2 setHTTPMethod:@"GET"];
     [request2 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
     NSData* response2 = [NSURLConnection sendSynchronousRequest:request2
@@ -294,7 +294,7 @@ int i;
     NSURLResponse* urlResponseList3;
     NSError* requestErrorList3;
     NSMutableURLRequest *request3 = [[NSMutableURLRequest alloc] init];
-    [request3 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/accessrules/list.json"]];
+    [request3 setURL:[NSURL URLWithString:@"https://api.point.io/v2/accessrules/list.json"]];
     [request3 setHTTPMethod:@"GET"];
     [request3 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
     NSData* response3 = [NSURLConnection sendSynchronousRequest:request3

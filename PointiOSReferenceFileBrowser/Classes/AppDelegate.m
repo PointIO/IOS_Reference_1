@@ -116,7 +116,7 @@
 - (void) performAuthCall{
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/auth.json"]];
+    [request setURL:[NSURL URLWithString:@"https://api.point.io/v2/auth.json"]];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[_postString dataUsingEncoding:NSUTF8StringEncoding]];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

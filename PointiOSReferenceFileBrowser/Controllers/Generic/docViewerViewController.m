@@ -225,7 +225,7 @@ NSArray* tempArray;
     NSURLResponse* urlResponseList;
     NSError* requestErrorList;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSString* URLString = [NSString stringWithFormat:@"https://api.point.io/api/v2/folders/files/download.json"];
+    NSString* URLString = [NSString stringWithFormat:@"https://api.point.io/v2/folders/files/download.json"];
     [request setURL:[NSURL URLWithString:URLString]];
     [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
     NSArray* objects,* keys;

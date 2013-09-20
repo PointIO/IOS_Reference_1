@@ -252,7 +252,7 @@ NSString *requestedConnectionName;
     NSURLResponse* urlResponseList2;
     NSError* requestErrorList2;
     NSMutableURLRequest *request2 = [[NSMutableURLRequest alloc] init];
-    [request2 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagesites/list.json"]];
+    [request2 setURL:[NSURL URLWithString:@"https://api.point.io/v2/storagesites/list.json"]];
     [request2 setHTTPMethod:@"GET"];
     [request2 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
     NSData* response2 = [NSURLConnection sendSynchronousRequest:request2 returningResponse:&urlResponseList2 error:&requestErrorList2];

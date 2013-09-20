@@ -70,7 +70,7 @@ NSMutableArray* keys2;
     NSURLResponse* urlResponseList;
     NSError* requestErrorList;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagetypes/list.json"]];
+    [request setURL:[NSURL URLWithString:@"https://api.point.io/v2/storagetypes/list.json"]];
     [request setHTTPMethod:@"GET"];
     [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
     NSData* response = [NSURLConnection sendSynchronousRequest:request
@@ -107,7 +107,7 @@ NSMutableArray* keys2;
                     NSURLResponse* urlResponseList;
                     NSError* requestErrorList;
                     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-                    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.point.io/api/v2/storagetypes/%@/params.json",_connectionSiteTypeID]]];
+                    [request setURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.point.io/v2/storagetypes/%@/params.json",_connectionSiteTypeID]]];
                     [request setHTTPMethod:@"GET"];
                     [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
                     NSData* response = [NSURLConnection sendSynchronousRequest:request
@@ -495,7 +495,7 @@ NSMutableArray* keys2;
                 NSError* requestErrorList2;
                 
                     
-                NSString* URLString = [@"https://api.point.io/api/v2/storagesites/create.json"
+                NSString* URLString = [@"https://api.point.io/v2/storagesites/create.json"
                                        stringByAppendingFormat:@"?%@",
                                        requestParams];
                 

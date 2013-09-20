@@ -155,7 +155,7 @@
             NSURLResponse* urlResponseList;
             NSError* requestErrorList;
             NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-            [request setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/links/create.json"]];
+            [request setURL:[NSURL URLWithString:@"https://api.point.io/v2/links/create.json"]];
             [request setHTTPMethod:@"POST"];
             [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
             NSString* requestParams = [NSString stringWithFormat:@"shareId=%@&fileid=%@&filename=%@&remotepath=%@&containerid=%@",

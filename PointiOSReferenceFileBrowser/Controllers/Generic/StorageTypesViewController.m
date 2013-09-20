@@ -33,7 +33,7 @@
     NSURLResponse* urlResponseList1;
     NSError* requestErrorList1;
     NSMutableURLRequest *request1 = [[NSMutableURLRequest alloc] init];
-    [request1 setURL:[NSURL URLWithString:@"https://api.point.io/api/v2/storagetypes/list.json"]];
+    [request1 setURL:[NSURL URLWithString:@"https://api.point.io/v2/storagetypes/list.json"]];
     [request1 setHTTPMethod:@"GET"];
     [request1 addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
     NSData* response1 = [NSURLConnection sendSynchronousRequest:request1 returningResponse:&urlResponseList1 error:&requestErrorList1];

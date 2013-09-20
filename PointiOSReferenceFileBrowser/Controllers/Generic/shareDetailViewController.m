@@ -228,7 +228,7 @@ NSMutableArray* tempContainer;
     NSURLResponse* urlResponseList;
     NSError* requestErrorList;
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSString* URLString = [NSString stringWithFormat:@"https://api.point.io/api/v2/folders/list.json"];
+    NSString* URLString = [NSString stringWithFormat:@"https://api.point.io/v2/folders/list.json"];
     
     NSMutableArray* objects;
     NSMutableArray* keys;

@@ -16,6 +16,8 @@
 	<string>b85906bc-f3aa-4fd7-afb7-df3b7f4b2853</string>
 	<key>pointDemoAccount</key>
 	<string>demo@point.io</string>
+	<key>ApiURL</key>
+	<string>https://api.point.io/v2/</string>
 	<key>pointDemoPassword</key>
 	<string>demo</string>
 </dict>
