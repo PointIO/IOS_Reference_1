@@ -63,29 +63,29 @@
 
 - (void)implementLandscapeUI{
     [UIView animateWithDuration:0.20f animations:^(void) {
-        _usernameTextField.frame = CGRectMake(25, 10, 430, 44);
-        _passwordTextField.frame = CGRectMake(25, 60, 430, 44);
-        _signInButton.frame = CGRectMake(45, 110, 88, 44);
-        _demoButton.frame = CGRectMake(200, 110, 88, 44);
-        _signUpButton.frame = CGRectMake(352, 110, 88, 44);
+        _usernameTextField.frame = CGRectMake(25, 60, 430, 44);
+        _passwordTextField.frame = CGRectMake(25, 110, 430, 44);
+        _signInButton.frame = CGRectMake(45, 160, 88, 44);
+        _demoButton.frame = CGRectMake(200, 160, 88, 44);
+        _signUpButton.frame = CGRectMake(352, 160, 88, 44);
         _signOutButton.frame = CGRectMake(200, 110, 88, 44);
-        _loggedInAsNameLabel.frame = CGRectMake(125, 160, 116, 22);
-        _loggedInAsNameText.frame = CGRectMake(245, 160, 158, 22);
-        _screenPressedButton.frame = CGRectMake(0, 0, 320, 568);
+        _loggedInAsNameLabel.frame = CGRectMake(125, 220, 116, 22);
+        _loggedInAsNameText.frame = CGRectMake(245, 220, 158, 22);
+        // _screenPressedButton.frame = CGRectMake(0, 0, 320, 568);
     }];
 }
 
 - (void)implementPortraitUI{
     [UIView animateWithDuration:0.20f animations:^(void) {
-        _usernameTextField.frame = CGRectMake(25, 10, 270, 44);
-        _passwordTextField.frame = CGRectMake(25, 60, 270, 44);
-        _signInButton.frame = CGRectMake(116, 120, 88, 44);
-        _signOutButton.frame = CGRectMake(116, 270, 88, 44);
-        _demoButton.frame = CGRectMake(116, 170, 88, 44);
-        _signUpButton.frame = CGRectMake(116, 220, 88, 44);
+        _usernameTextField.frame = CGRectMake(25, 80, 270, 44);
+        _passwordTextField.frame = CGRectMake(25, 130, 270, 44);
+        _signInButton.frame = CGRectMake(116, 180, 88, 44);
+        _demoButton.frame = CGRectMake(116, 230, 88, 44);
+        _signUpButton.frame = CGRectMake(116, 280, 88, 44);
+        _signOutButton.frame = CGRectMake(116, 330, 88, 44);
         _loggedInAsNameLabel.frame = CGRectMake(25, 235, 116, 22);
         _loggedInAsNameText.frame = CGRectMake(150, 235, 158, 22);
-        _screenPressedButton.frame = CGRectMake(0, 0, 320, 568);
+        // _screenPressedButton.frame = CGRectMake(0, 0, 320, 568);
     }];
 }
 
@@ -200,12 +200,6 @@
 }
 
 
-- (IBAction)screenPressed {
-    [_usernameTextField resignFirstResponder];
-    [_passwordTextField resignFirstResponder];
-}
-
-
 - (IBAction)signOutPressed {
     [self signOut];
 }
@@ -231,6 +225,11 @@
     [_usernameTextField setText:@"demo@point.io"];
     [_passwordTextField setText:@"demo"];
     [self signInPressed];
+}
+
+- (IBAction)screenPressed {
+    [_usernameTextField resignFirstResponder];
+    [_passwordTextField resignFirstResponder];
 }
 
 - (void) signIn{
