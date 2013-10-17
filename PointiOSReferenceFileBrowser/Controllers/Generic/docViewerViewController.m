@@ -182,6 +182,7 @@ NSArray* tempArray;
     [request addValue:_sessionKey forHTTPHeaderField:@"Authorization"];
     NSArray* objects,* keys;
     NSLog(@"EXTENSION IS %@",[_fileName pathExtension]);
+    /*
     if (([[_fileName pathExtension] isEqualToString:@"doc"]) ||
         ([[_fileName pathExtension] isEqualToString:@"xls"]) ||
         ([[_fileName pathExtension] isEqualToString:@"ppt"])) {
@@ -225,7 +226,26 @@ NSArray* tempArray;
                 @"convertToPdf",
                 nil];
     }
+    */
     
+    objects = [NSArray arrayWithObjects:
+               _shareID,
+               _containerID,
+               _remotePath,
+               _fileName,
+               _fileID,
+               @"false",
+               nil];
+    
+    keys = [NSArray arrayWithObjects:
+            @"folderid",
+            @"containerid",
+            @"remotepath",
+            @"filename",
+            @"fileid",
+            @"convertToPdf",
+            nil];
+
     NSDictionary* params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
     
     NSMutableArray* pairs = [[NSMutableArray alloc] initWithCapacity:0];
