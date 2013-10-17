@@ -47,21 +47,12 @@ NSArray* tempArray;
 {
     [super viewDidLoad];
     
-    /*
-    for (UIView *view in self.navigationController.navigationBar.subviews) {
-        [view removeFromSuperview];
-    }
-    */
-    
-    
     [_errorOccuredLabel setAlpha:0];
     [_shareFileButton setEnabled:NO];
 	self.navigationItem.title = _fileName;
     _docWebView.delegate = self;
     _docWebView.scalesPageToFit = YES;
     
-    // self.navigationItem.backBarButtonItem.title = @"Back";
-    // [self.navigationController setToolbarHidden:NO animated:YES];
     
     if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Looks like there is no internet connection, please check the settings" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
@@ -108,9 +99,10 @@ NSArray* tempArray;
                 } else {
                     imgView4.alpha = 1;
                 }
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                // [MBProgressHUD hideHUDForView:self.view animated:YES];
             });
         });
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }
 }
 
@@ -121,19 +113,6 @@ NSArray* tempArray;
 }
 
 - (void) viewWillDisappear:(BOOL)animated{
-    /*
-    [UIView animateWithDuration:0.25 animations:^(void) {
-        imgView.alpha = 0;
-        imgView2.alpha = 0;
-        imgView4.alpha = 0;
-        fileNameLabel.alpha = 0;
-    }];
-    imgView = nil;
-    imgView = nil;
-    imgView2 = nil;
-    imgView4 = nil;
-    fileNameLabel = nil;
-    */
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -145,22 +124,6 @@ NSArray* tempArray;
         [fileNameLabel setTextAlignment:UITextAlignmentCenter];
         fileNameLabel.font = [UIFont fontWithName:@"Helvetica Neue" size:18.0];
         
-        /*
-        imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, 320, 44)];
-        imgView.image = [UIImage imageNamed:@"blueBarImageClean.png"];
-        [self.navigationController.view addSubview:imgView];
-        imgView2 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 27, 50, 29)];
-        imgView2.image = [UIImage imageNamed:@"backButton.png"];
-        [self.navigationController.view addSubview:imgView2];
-        [self.navigationController.view addSubview:fileNameLabel];
-        imgView3 = [[UIImageView alloc] initWithFrame:CGRectMake(0, 1.1f, 320, 44)];
-        imgView3.image = [UIImage imageNamed:@"blueBarImageClean"];
-        [self.navigationController.toolbar addSubview:imgView3];
-        imgView4 = [[UIImageView alloc] initWithFrame:CGRectMake(5, 7, 78, 30)];
-        */
-         
-        //JB 6/9/13 - changed ShareFileButton to standard Apple Action image
-        // imgView4.image = [UIImage imageNamed:@"shareFileButton"];
         [self.navigationController.toolbar addSubview:imgView4];
     }
     
@@ -171,18 +134,6 @@ NSArray* tempArray;
     fileNameLabel.alpha = 0;
     _shareFileButton.width = 0.01;
 
-    /*
-    [UIView animateWithDuration:0.25 animations:^(void) {
-        imgView.alpha = 1;
-        imgView2.alpha = 1;
-        if(_fileDownloadURL){
-        imgView4.alpha = 1;
-        } else {
-        imgView4.alpha = 0.5;
-        }
-        fileNameLabel.alpha = 1;
-    }];
-    */
 }
 
 
@@ -195,6 +146,7 @@ NSArray* tempArray;
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [MBProgressHUD hideAllHUDsForView:self.view animated:YES];
     [TestFlight passCheckpoint:@"User viewed a document"];
 }
 
