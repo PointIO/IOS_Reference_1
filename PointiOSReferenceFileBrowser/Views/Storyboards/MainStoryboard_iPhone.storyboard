@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12E3067" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="W9C-aJ-NC9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="W9C-aJ-NC9">
     <dependencies>
         <deployment defaultVersion="1552" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
@@ -94,6 +94,7 @@
                                 </state>
                                 <connections>
                                     <action selector="signUpPressed" destination="2" eventType="touchUpInside" id="hie-vU-UCW"/>
+                                    <segue destination="sZ5-ZM-GNy" kind="modal" identifier="goToGetAccount" id="VKx-R6-cpu"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="r2s-PH-fGG">
@@ -343,7 +344,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="xQu-S4-8nT" kind="modal" identifier="goToPasswordPicker" modalTransitionStyle="flipHorizontal" id="euZ-pe-s1B"/>
+                                            <segue destination="xQu-S4-8nT" kind="modal" identifier="goToPasswordPicker" id="euZ-pe-s1B"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -354,6 +355,7 @@
                             <outlet property="delegate" destination="sZ5-ZM-GNy" id="rDc-BG-Mk7"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="3Ob-FJ-ILE"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="emailTextField" destination="FRN-Tk-8P2" id="jcW-jg-BC7"/>
@@ -1084,7 +1086,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="5cM-fU-YNZ">
                             <connections>
                                 <action selector="shareFilePressed:" destination="DXI-Pc-COU" id="HgH-hU-jHA"/>
-                                <segue destination="U66-ao-pMA" kind="push" identifier="goToDocumentShareSettings" id="7mq-Um-kfc"/>
+                                <segue destination="U66-ao-pMA" kind="modal" identifier="goToDocumentShareSettings" id="7mq-Um-kfc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1248,7 +1250,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <tableViewSection headerTitle="Tap to Allow" id="Bgq-K8-F3v">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="hbV-Ul-IwS">
-                                        <rect key="frame" x="0.0" y="119" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hbV-Ul-IwS" id="mbP-aK-Xiz">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1265,7 +1267,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="voW-3i-W6F">
-                                        <rect key="frame" x="0.0" y="163" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="99" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="voW-3i-W6F" id="XbM-1H-0XF">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1282,7 +1284,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="9zZ-aR-rJl">
-                                        <rect key="frame" x="0.0" y="207" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="143" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9zZ-aR-rJl" id="DjX-7X-YFL">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1303,7 +1305,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <tableViewSection headerTitle="Tap to Set Restriction" id="yLG-jT-ppa">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="cV4-nN-s87">
-                                        <rect key="frame" x="0.0" y="299" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="235" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cV4-nN-s87" id="hZa-su-Dwd">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1327,7 +1329,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="AMO-h7-jSS">
-                                        <rect key="frame" x="0.0" y="343" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="279" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AMO-h7-jSS" id="CJU-uv-7BI">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1348,7 +1350,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                             <tableViewSection headerTitle="Tap to Restrict" id="SsQ-6H-Otv">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="555-xG-oZQ">
-                                        <rect key="frame" x="0.0" y="435" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="371" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="555-xG-oZQ" id="WJm-hR-1KC">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1365,7 +1367,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="wnd-Q5-RaR">
-                                        <rect key="frame" x="0.0" y="479" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="415" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wnd-Q5-RaR" id="q2G-bL-1Z8">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
