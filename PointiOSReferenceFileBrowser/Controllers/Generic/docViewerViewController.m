@@ -339,29 +339,16 @@ NSArray* tempArray;
             return;
     }
     */
-    
-    
+ 
     NSLog(@"Error : %@", error);
-    if (error.code == NSURLErrorCancelled) {
-        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                      message:[error localizedDescription]
-                                                     delegate:nil
-                                            cancelButtonTitle:@"Dismiss"
-                                            otherButtonTitles:nil];
-        [err show];
-    }
-    else if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"]) {
-        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
-                                                      message:[error localizedDescription]
-                                                     delegate:nil
-                                            cancelButtonTitle:@"Dismiss"
-                                            otherButtonTitles:nil];
-        [err show];
-    }
-    else {
-        // Normal error handling…
-        NSLog(@"Error : %@",error);
-    }
+    UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                  message:[error localizedDescription]
+                                                 delegate:nil
+                                        cancelButtonTitle:@"Dismiss"
+                                        otherButtonTitles:nil];
+    [err show];
+    
+    NSLog(@"Error : %@",error);
     return;
 }
 
