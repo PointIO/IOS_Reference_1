@@ -139,7 +139,7 @@ NSMutableArray* keys2;
                         }
                         [keys2 addObject:[temp2 valueForKey:@"FIELDNAME"]];
                         
-                        UITextField* field = [[UITextField alloc] initWithFrame:CGRectMake(20, 40+totalYOffset, 280, 30)];
+                        UITextField* field = [[UITextField alloc] initWithFrame:CGRectMake(20, 100+totalYOffset, 280, 30)];
                         [field setFont:[UIFont fontWithName:@"System" size:17.0]];
                         field.borderStyle = UITextBorderStyleRoundedRect;
                         field.placeholder = [temp2 valueForKey:@"LABEL"];
@@ -169,7 +169,7 @@ NSMutableArray* keys2;
                         }
                         [keys2 addObject:[temp2 valueForKey:@"FIELDNAME"]];
                         
-                        UILabel* switchLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 40+totalYOffset, 209, 21)];
+                        UILabel* switchLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 100+totalYOffset, 209, 21)];
                         [switchLabel setText:[temp2 valueForKey:@"LABEL"]];
                         [switchLabel setFont:[UIFont systemFontOfSize:19.0]];
                         [switchLabel setBackgroundColor:[UIColor clearColor]];
@@ -532,7 +532,7 @@ NSMutableArray* keys2;
                     // [_appDel.enabledConnections addObject:@"1"];
                     [[NSNotificationCenter defaultCenter] postNotificationName:@"reloadLists" object:nil];
                     [self displayMessage:YES];
-                    NSString* temp = [[NSString alloc] init];
+                    // NSString* temp = [[NSString alloc] init];
                     
                     /*
                     for(int i = 0;i < [_appDel.enabledConnections count];i++){

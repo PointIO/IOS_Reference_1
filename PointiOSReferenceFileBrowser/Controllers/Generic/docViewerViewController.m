@@ -234,7 +234,7 @@ NSArray* tempArray;
                _remotePath,
                _fileName,
                _fileID,
-               @"false",
+               // @"false",
                nil];
     
     keys = [NSArray arrayWithObjects:
@@ -243,7 +243,7 @@ NSArray* tempArray;
             @"remotepath",
             @"filename",
             @"fileid",
-            @"convertToPdf",
+            // @"convertToPdf",
             nil];
 
     NSDictionary* params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
@@ -270,6 +270,7 @@ NSArray* tempArray;
         NSLog(@"TEMP = %@",temp);
         NSString* extension = [_fileName pathExtension];
         NSLog(@"FILE NAME = %@",_fileName);
+        NSLog(@" ");
         extension = [extension lowercaseString];
         NSString* downloadString = [temp valueForKey:@"RESULT"];
         _fileDownloadURL = [NSURL URLWithString:downloadString];
@@ -287,6 +288,28 @@ NSArray* tempArray;
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     }
 }
+
+
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    
+    /*
+    UIWebView *myWebView = [[UIWebView alloc] initWithFrame:CGRectMake(10, 10, 320, 480)];
+     
+    NSURL *targetURL = [NSURL URLWithString:@"http://developer.apple.com/iphone/library/documentation/UIKit/Reference/UIWebView_Class/UIWebView_Class.pdf"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:targetURL];
+    [webView loadRequest:request];
+    [self.view addSubview:webView];
+    */
+    
+    /*
+    NSURL *targetURL = [NSURL URLWithString:@"http://cdn.point.io/shares/59DCF683_AD18_48FE_B1E60FFB084DB718/Accounts_Payable/Contracts/DavisAndGilbert.pdf?response-content-type=application/force-download&AWSAccessKeyId=AKIAJF3B7DECFIG6EQJQ&Signature=e%2B3d9%2BKQ%2F4KMjkSwHc4x%2FCD%2FLfU%3D&Expires=1383934333"];
+    */
+   
+    
+    NSLog(@"Error : %@",error);
+}
+
 
 - (void)viewDidUnload {
     [self setErrorOccuredLabel:nil];
