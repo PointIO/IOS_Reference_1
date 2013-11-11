@@ -234,7 +234,7 @@ NSArray* tempArray;
                _remotePath,
                _fileName,
                _fileID,
-               // @"false",
+               @"false",
                nil];
     
     keys = [NSArray arrayWithObjects:
@@ -243,7 +243,7 @@ NSArray* tempArray;
             @"remotepath",
             @"filename",
             @"fileid",
-            // @"convertToPdf",
+            @"convertToPdf",
             nil];
 
     NSDictionary* params = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
@@ -259,6 +259,7 @@ NSArray* tempArray;
     NSLog(@"URL STRING = %@",URLString);
     [request setHTTPMethod:@"GET"];
     [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+    
     NSData* response = [NSURLConnection
                         sendSynchronousRequest:request
                         returningResponse:&urlResponseList
@@ -275,7 +276,14 @@ NSArray* tempArray;
         NSString* downloadString = [temp valueForKey:@"RESULT"];
         _fileDownloadURL = [NSURL URLWithString:downloadString];
         NSURLRequest* fileRequest = [NSURLRequest requestWithURL:_fileDownloadURL];
-        [_docWebView loadRequest:fileRequest];
+        
+        
+        if ([[UIApplication sharedApplication]canOpenURL:_fileDownloadURL]) {
+            // [[UIApplication sharedApplication]openURL:url];
+            [_docWebView loadRequest:fileRequest];
+        }
+        
+        
         [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         tempArray = [temp copy];
     }
@@ -289,6 +297,21 @@ NSArray* tempArray;
     }
 }
 
+
+/*
+- (BOOL)webView:(UIWebView *)wv shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    
+    // Determine if we want the system to handle it.
+    NSURL *url = request.URL;
+    if (![url.scheme isEqual:@"http"] && ![url.scheme isEqual:@"https"]) {
+        if ([[UIApplication sharedApplication]canOpenURL:url]) {
+            [[UIApplication sharedApplication]openURL:url];
+            return NO;
+        }
+    }
+    return YES;
+}
+*/
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
 {
@@ -306,9 +329,43 @@ NSArray* tempArray;
     NSURL *targetURL = [NSURL URLWithString:@"http://cdn.point.io/shares/59DCF683_AD18_48FE_B1E60FFB084DB718/Accounts_Payable/Contracts/DavisAndGilbert.pdf?response-content-type=application/force-download&AWSAccessKeyId=AKIAJF3B7DECFIG6EQJQ&Signature=e%2B3d9%2BKQ%2F4KMjkSwHc4x%2FCD%2FLfU%3D&Expires=1383934333"];
     */
    
+    /*
+    // Give iOS a chance to open it.
+    NSURL *url = [NSURL URLWithString:[error.userInfo objectForKey:@"NSErrorFailingURLStringKey"]];
+    if ([error.domain isEqual:@"WebKitErrorDomain"]
+        && error.code == 102
+        && [[UIApplication sharedApplication]canOpenURL:url]) {
+            [[UIApplication sharedApplication]openURL:url];
+            return;
+    }
+    */
     
-    NSLog(@"Error : %@",error);
+    
+    NSLog(@"Error : %@", error);
+    if (error.code == NSURLErrorCancelled) {
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:[error localizedDescription]
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Dismiss"
+                                            otherButtonTitles:nil];
+        [err show];
+    }
+    else if (error.code == 102 && [error.domain isEqual:@"WebKitErrorDomain"]) {
+        UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                      message:[error localizedDescription]
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Dismiss"
+                                            otherButtonTitles:nil];
+        [err show];
+    }
+    else {
+        // Normal error handling…
+        NSLog(@"Error : %@",error);
+    }
+    return;
 }
+
+
 
 
 - (void)viewDidUnload {

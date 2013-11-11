@@ -17,12 +17,14 @@
 @property (nonatomic) NSString* fileName;
 @property (nonatomic) NSString* fileID;
 @property (nonatomic, strong) NSData* downloadData;
-
+// @property (nonatomic, strong) NSString* fileDownloadURL;
 @property (nonatomic, strong) NSURL* fileDownloadURL;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *shareFileButton;
 @property (weak, nonatomic) IBOutlet UILabel *errorOccuredLabel;
 
 @property (nonatomic) IBOutlet UISplitViewController* splitViewController;
+
+// @property (nonatomic, strong) NSURL* fileRequestURL;
 
 - (IBAction)shareFilePressed:(id)sender;
 
