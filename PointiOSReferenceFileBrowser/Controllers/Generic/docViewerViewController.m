@@ -132,7 +132,7 @@ NSArray* tempArray;
     imgView3.alpha = 0;
     imgView4.alpha = 0;
     fileNameLabel.alpha = 0;
-    _shareFileButton.width = 0.01;
+    // _shareFileButton.width = 0.01;
 
 }
 
@@ -347,9 +347,10 @@ NSArray* tempArray;
                                         cancelButtonTitle:@"Dismiss"
                                         otherButtonTitles:nil];
     [err show];
-    
     NSLog(@"Error : %@",error);
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     return;
+    
 }
 
 
