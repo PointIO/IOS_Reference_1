@@ -9,6 +9,7 @@
 #import "StorageTypesViewController.h"
 #import "StorageTypeCell.h"
 #import "newConnectionViewController.h"
+#import "newConnectionGoogleViewController.h"
 
 @interface StorageTypesViewController ()
 
@@ -117,56 +118,16 @@
     
     // Set Cell Image
     // Values are stored in sorted Dictionary in AppContent.plist
-    ///*
     NSString *tmpFileName               = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"AppContent"];
     NSString *tmpFilePath               = [[NSBundle mainBundle] pathForResource:tmpFileName ofType:@"plist"];
     NSMutableDictionary *tmpDictionary  = [[NSMutableDictionary alloc] initWithContentsOfFile:tmpFilePath];
     NSDictionary *cloudProviderDict     = [tmpDictionary valueForKey:@"storageProviderArtwork"];
     NSString *tmpImageName  = [cloudProviderDict valueForKey:tmpSiteName];
     cell.storageImage.image = [UIImage imageNamed:tmpImageName];
-    //*/
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
@@ -179,35 +140,27 @@
     
     if([[segue identifier] isEqualToString:@"addConnection"]){
         
+        /*
         newConnectionViewController* ncvc = [segue destinationViewController];
-        // not used, ok to delete // [ncvc setUserStorageInput:_userStorageInput];
         [ncvc setSessionKey:_sessionKey];
-        // set below // [ncvc setSiteTypeID:[_storageIDs objectAtIndex:i]];
-        // [ncvc setAllPossibleConnections:_allPossibleConnections];
-        // set below // [ncvc setRequestedConnectionName:requestedConnectionName];
         NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
         
         NSString *tmpSiteName = [[_storageTypesArrayOfDictionaries objectAtIndex:indexPath.row] valueForKey:@"StorageTypeName"];
         NSString *tmpSiteID = [[[_storageTypesArrayOfDictionaries objectAtIndex:indexPath.row] valueForKey:@"StorageTypeID"] stringValue];
         ncvc.requestedConnectionName = tmpSiteName;
         ncvc.siteTypeID = tmpSiteID;
-        
-        /*
-        UINavigationController *navigationController            = segue.destinationViewController;
-        PlayerDetailViewController *playerDetailViewController  = [[navigationController viewControllers] objectAtIndex:0];
-        playerDetailViewController.delegate                     = self;
-        
-        NSIndexPath *indexPath                                  = [self.tableView indexPathForCell:sender];
-        
-        Player *player                                          = [self.fetchedResultsController objectAtIndexPath:indexPath];
-        playerDetailViewController.playerToEdit                 = player;
         */
         
-    }
-    else if([segue.identifier isEqualToString:@"goToStorage"]){
-        // storageViewController *svc = [segue destinationViewController];
-        // [svc setText:storageName];
+        newConnectionGoogleViewController* ncvc = [segue destinationViewController];
+        // [ncvc setSessionKey:_sessionKey];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+        
+        NSString *tmpSiteName = [[_storageTypesArrayOfDictionaries objectAtIndex:indexPath.row] valueForKey:@"StorageTypeName"];
+        NSString *tmpSiteID = [[[_storageTypesArrayOfDictionaries objectAtIndex:indexPath.row] valueForKey:@"StorageTypeID"] stringValue];
+        // ncvc.requestedConnectionName = tmpSiteName;
+        // ncvc.siteTypeID = tmpSiteID;
     }
 }
+
 
 @end

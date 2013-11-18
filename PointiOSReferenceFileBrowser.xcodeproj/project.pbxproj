@@ -82,6 +82,7 @@
 		75BFB38217ECF721006E916A /* pointio120x120.png in Resources */ = {isa = PBXBuildFile; fileRef = 75BFB38117ECF721006E916A /* pointio120x120.png */; };
 		8A0179CC17A8B52B00AD1349 /* demoAccountSignIn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A0179CB17A8B52B00AD1349 /* demoAccountSignIn.png */; };
 		8A0179CF17A8BCB000AD1349 /* twitterFeed.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A0179CE17A8BCB000AD1349 /* twitterFeed.m */; };
+		8A046BCC18331007009D4B88 /* newConnectionGoogleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A046BCB18331007009D4B88 /* newConnectionGoogleViewController.m */; };
 		8A256BC0176A2202001E5823 /* accessRulesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A256BBF176A2202001E5823 /* accessRulesListViewController.m */; };
 		8A25DA741770A0470025BBD3 /* connectionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A25DA731770A0470025BBD3 /* connectionDetailViewController.m */; };
 		8A2DD56D177511AB002310D0 /* pointio50x50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8A2DD568177511AB002310D0 /* pointio50x50.png */; };
@@ -344,6 +345,8 @@
 		8A0179CB17A8B52B00AD1349 /* demoAccountSignIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = demoAccountSignIn.png; sourceTree = "<group>"; };
 		8A0179CD17A8BCB000AD1349 /* twitterFeed.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = twitterFeed.h; sourceTree = "<group>"; };
 		8A0179CE17A8BCB000AD1349 /* twitterFeed.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = twitterFeed.m; sourceTree = "<group>"; };
+		8A046BCA18331007009D4B88 /* newConnectionGoogleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = newConnectionGoogleViewController.h; sourceTree = "<group>"; };
+		8A046BCB18331007009D4B88 /* newConnectionGoogleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = newConnectionGoogleViewController.m; sourceTree = "<group>"; };
 		8A256BBE176A2202001E5823 /* accessRulesListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = accessRulesListViewController.h; sourceTree = "<group>"; };
 		8A256BBF176A2202001E5823 /* accessRulesListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = accessRulesListViewController.m; sourceTree = "<group>"; };
 		8A25DA721770A0470025BBD3 /* connectionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = connectionDetailViewController.h; sourceTree = "<group>"; };
@@ -968,6 +971,8 @@
 				8A9070701788895100529631 /* LoginViewController.m */,
 				8AA513DE176A04C600665111 /* newConnectionViewController.h */,
 				8AA513D5176A04C600665111 /* newConnectionViewController.m */,
+				8A046BCA18331007009D4B88 /* newConnectionGoogleViewController.h */,
+				8A046BCB18331007009D4B88 /* newConnectionGoogleViewController.m */,
 				8ACE6C4417A0B75600275501 /* passwordPickerViewController.h */,
 				8ACE6C4517A0B75600275501 /* passwordPickerViewController.m */,
 				8A4D2C3A1775F1CD00E662E4 /* SettingsViewController.h */,
@@ -1550,6 +1555,7 @@
 				8A25DA741770A0470025BBD3 /* connectionDetailViewController.m in Sources */,
 				8AE2FEA71771DCB300FD20BF /* Common.m in Sources */,
 				8A4D2C3C1775F1CD00E662E4 /* SettingsViewController.m in Sources */,
+				8A046BCC18331007009D4B88 /* newConnectionGoogleViewController.m in Sources */,
 				8A4D2C5417762CB300E662E4 /* ColorThemePickerViewController.m in Sources */,
 				8A4D2C5717762CC700E662E4 /* ColorThemeCell.m in Sources */,
 				8A4D2D4317775C6700E662E4 /* JMC.m in Sources */,
