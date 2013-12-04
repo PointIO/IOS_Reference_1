@@ -133,9 +133,10 @@ NSString *requestedConnectionName;
 
 
 - (void) viewDidAppear:(BOOL)animated{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *currentUser = [defaults valueForKey:@"USERNAME"];
+    // NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    // NSString *currentUser = [defaults valueForKey:@"USERNAME"];
 
+    /*
     if ([currentUser isEqualToString:@"demo@point.io"]) {
         NSLog(@"Is loogged in as demo@point.io");
         NSArray *toobarButtons = [[NSMutableArray alloc] initWithObjects:nil];
@@ -147,7 +148,12 @@ NSString *requestedConnectionName;
         NSArray *toobarButtons = [[NSMutableArray alloc] initWithObjects:_addButton,nil];
         [self.navigationItem setRightBarButtonItems:toobarButtons];
     }
+    */
+    
+    NSArray *toobarButtons = [[NSMutableArray alloc] initWithObjects:nil];
+    [self.navigationItem setRightBarButtonItems:toobarButtons];
 
+    
     if(![Common isConnectedToInternet]){
         UIAlertView* err = [[UIAlertView alloc] initWithTitle:@"Error"
                                                       message:@"Looks like there is no internet connection, please check the settings"
@@ -315,10 +321,12 @@ NSString *requestedConnectionName;
 
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    /*
     if([[segue identifier] isEqualToString:@"addConnection"]){
         StorageTypesViewController * ncvc = [segue destinationViewController];
         [ncvc setSessionKey:_sessionKey];
     }
+    */
 }
 
 

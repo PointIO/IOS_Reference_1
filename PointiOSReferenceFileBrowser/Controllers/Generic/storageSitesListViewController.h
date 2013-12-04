@@ -21,6 +21,6 @@
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *addButton;
 @property (nonatomic) AppDelegate* appDel;
 
-- (IBAction)addConnectionPressed:(id)sender;
+// - (IBAction)addConnectionPressed:(id)sender;
 
 @end
